@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> MAMEM Game </title>
+
+    <script type="text/javascript" src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+    <script type="text/css" src="css/style.css"></script>
+
+</head>
+<body onload="init();">
+
+<canvas id="canvas"></canvas>
+<input placeholder="Answer" type="text" style="display: none;" id="caveInputText">
+<input placeholder="Longitude" type="text" style="display: none;" id="caveInputText2">
+
+<p class="textStyle" style="display: none;" id="caveLatText">40.6401° N</p>
+<p class="textStyle" style="display: none;" id="caveLngText">22.9444° E</p>
+
+
+
+<script type="text/javascript" src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyC29Yx0QEoGNgCdl4dT8TD4UNbsJcA1zVg",
+        authDomain: "mamem-fbce4.firebaseapp.com",
+        databaseURL: "https://mamem-fbce4.firebaseio.com",
+        storageBucket: "mamem-fbce4.appspot.com"
+
+    };
+    firebase.initializeApp(config);
+</script>
+
+<script type="text/javascript" src="user.js"></script>
+<script type="text/javascript" src="libs/ScaleBitmap.js"></script>
+<script type="text/javascript" src="text.js"></script>
+
+<script type="text/javascript" src="js/levels.js"></script>
+<script type="text/javascript" src="js/helper.js"></script>
+<script type="text/javascript" src="js/components.js"></script>
+<script type="text/javascript" src="js/firebase.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
