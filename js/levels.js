@@ -34,11 +34,15 @@ function loadLevel(group, level) {
 
                 tutorialContainer = addTutorials(textPointer);
 
+                canvas.height = window.innerHeight - 20;
+
             }
             else if (level === 2) {
                 textPointer = 4;
 
                 tutorialContainer = addTutorials(textPointer);
+
+                canvas.height = window.innerHeight - 20;
             }
 
             break;
@@ -760,7 +764,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                 barContainer.addChild(barElement);
 
-                questionLabel.text = genericText.question + " " + idx + " / " + questions;
+                questionLabel.text = genericText.question + " " + (idx+1) + " / " + questions;
                 questionLabel = alignTextToStageCenter(stage, questionLabel);
                 questionLabel.y = 100;
                 question.text = quizText[pointer].question;

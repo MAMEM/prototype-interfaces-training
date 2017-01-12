@@ -541,6 +541,10 @@ function getRandomInt(idx, min, max) {
     return newVal;
 }
 
+function handleGTWMessages(str) {
+    console.log(str);
+}
+
 function Stopwatch(text) {
 
     this.text = text;

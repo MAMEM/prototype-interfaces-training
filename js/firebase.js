@@ -56,6 +56,8 @@ function loginUser() {
             });
         }
     });
+
+
 }
 
 function updateUserData(group, level, userId, score, time, trophy, metrics) {

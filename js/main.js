@@ -23,6 +23,8 @@ function init() {
         resizeCanvas();
         renderGame();
     });
+
+
 }
 
 function renderGame() {
