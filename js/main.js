@@ -216,9 +216,6 @@ function loadOverviewPage() {
                 basicTileTitle[i].textAlign = "center";
 
 
-
-
-
                 s[i].on("mouseover", function() {
 
                     createjs.Ticker.addEventListener("tick", mouseTick);
@@ -270,8 +267,6 @@ function loadOverviewPage() {
             }
 
             overviewBasicGroupContainer.addChild(s[i]);
-
-
 
             overviewBasicGroupContainer.addChild(basicTileTitle[i]);
 
@@ -447,8 +442,6 @@ function loadOverviewPage() {
             }
 
 
-
-
             overviewIntGroupContainer.addChild(s[i]);
 
             overviewIntGroupContainer.addChild(intTileTitle[i]);
@@ -456,7 +449,6 @@ function loadOverviewPage() {
             if (intLevelTrophy[i]) {overviewIntGroupContainer.addChild(intLevelTrophy[i]);}
 
         }
-
 
         // ADVANCED
 
@@ -492,7 +484,6 @@ function loadOverviewPage() {
                     } else {
                         levelAvailable[i+1] = false;
                     }
-
                 }
             }
         }
@@ -529,8 +520,6 @@ function loadOverviewPage() {
                 entryY: 760 + (height/2),
                 i: i
             });
-
-
 
             // Discard hover if previous level is not completed.
             if (levelAvailable[i]) {

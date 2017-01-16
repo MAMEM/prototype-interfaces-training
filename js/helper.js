@@ -534,9 +534,6 @@ function addTutorials(textPointer) {
 function loadAdvancedLevelsIntroMap(level) {
     var container = new createjs.Container();
 
-    var backgroundColor = new createjs.Shape();
-    backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
-
     var elemSize = [];
     elemSize.x = 450;
     elemSize.y = 305;
@@ -608,7 +605,7 @@ function loadAdvancedLevelsIntroMap(level) {
 
     }
 
-    container.addChild(backgroundColor, lvl1, lvl1Marker, lvl2, lvl2Marker, lvl3, lvl3Marker, lvl4, lvl4Marker, label, hand);
+    container.addChild(lvl1, lvl1Marker, lvl2, lvl2Marker, lvl3, lvl3Marker, lvl4, lvl4Marker, label, hand);
     return container;
 }
 

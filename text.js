@@ -266,6 +266,17 @@ var genericText =
         signedOut: "USER IS SIGNED OUT"
     };
 
+var advInstructions =
+    {
+        tasks: "Tasks",
+        openSettings: "Open Settings",
+        generalSettings: "Go to General Settings",
+        enableGaze: "Enable Gaze Visualization",
+        generalSettingsAgain: "Go to General Settings again",
+        disableGaze: "Disable Gaze Visualization",
+        taskComplete: "Level completed"
+    };
+
 var trophiesArray = [
     {
         group: 'basic',

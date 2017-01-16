@@ -1,5 +1,10 @@
 function loadLevel(group, level) {
 
+    /*if ( group > 1 && !window.loggingMediator) {
+     alert('The advanced levels support only the GTW browser');
+     return;
+     }*/
+
     stage.removeAllChildren();
     stage.removeAllEventListeners("mouseover");
     stage.removeAllEventListeners("mouseout");
@@ -22,27 +27,21 @@ function loadLevel(group, level) {
             canvas.height = window.innerHeight - 20;
             break;
         case 1:
+
+            canvas.height = window.innerHeight - 20;
+
             if (level === 0) {
                 textPointer = 2;
                 tutorialContainer = addTutorials(textPointer);
-
                 canvas.height = 1400;
-
             }
             else if (level === 1) {
                 textPointer = 3;
-
                 tutorialContainer = addTutorials(textPointer);
-
-                canvas.height = window.innerHeight - 20;
-
             }
             else if (level === 2) {
                 textPointer = 4;
-
                 tutorialContainer = addTutorials(textPointer);
-
-                canvas.height = window.innerHeight - 20;
             }
 
             break;
@@ -1018,17 +1017,100 @@ function InitiateLevel(group, level, levelStructure) {
 
     function loadLevel6() {
 
-        var levelContainer = new createjs.Container();
+        var metrics = [];
 
-        levelContainer = loadAdvancedLevelsIntroMap(1);
+        var backgroundColor = new createjs.Shape();
+        backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
 
-        /*    window.loggingMediator.registerFunction(function(str) {
-         console.log(str);
-         });*/
+        var levelContainer = loadAdvancedLevelsIntroMap(1);
+        var level = levelContainer.getChildAt(0);
+
+        // Create task list. All must be set to true to finish level
+        var taskList = [];
+        taskList.settings = false;
+        taskList.general = false;
+        taskList.gaze_on = false;
+        taskList.close = false;
+        taskList.gaze_off = false;
+        taskList.end = false;
+
+        level.on("mousedown", function() {
+
+            stage.removeChild(levelContainer);
+
+            var taskContainer = new createjs.Container();
+
+            var tasksLabel = new createjs.Text(advInstructions.tasks, "700 34px Roboto", color.whitePimary);
+            tasksLabel = alignTextToStageCenter(stage, tasksLabel);
+            tasksLabel.y = 80;
+
+            var task1Label = new createjs.Text(advInstructions.openSettings, "400 28px Roboto", color.whitePimary);
+            task1Label = alignTextToStageCenter(stage, task1Label);
+            task1Label.y = 160;
+            task1Label.alpha = 0.54;
+
+            var task2Label = new createjs.Text(advInstructions.generalSettings, "400 28px Roboto", color.whitePimary);
+            task2Label = alignTextToStageCenter(stage, task2Label);
+            task2Label.y = task1Label.y + 60;
+            task2Label.alpha = 0.54;
+
+            var task3Label = new createjs.Text(advInstructions.enableGaze, "400 28px Roboto", color.whitePimary);
+            task3Label = alignTextToStageCenter(stage, task3Label);
+            task3Label.y = task2Label.y + 60;
+            task3Label.alpha = 0.54;
+
+            var task4Label = new createjs.Text(advInstructions.generalSettingsAgain, "400 28px Roboto", color.whitePimary);
+            task4Label = alignTextToStageCenter(stage, task4Label);
+            task4Label.y = task3Label.y + 60;
+            task4Label.alpha = 0.54;
+
+            var task5Label = new createjs.Text(advInstructions.disableGaze, "400 28px Roboto", color.whitePimary);
+            task5Label = alignTextToStageCenter(stage, task5Label);
+            task5Label.y = task4Label.y + 60;
+            task5Label.alpha = 0.54;
+
+            var task6Label = new createjs.Text(advInstructions.taskComplete, "400 28px Roboto", color.whitePimary);
+            task6Label = alignTextToStageCenter(stage, task6Label);
+            task6Label.y = task5Label.y + 60;
+            task6Label.alpha = 0.54;
+
+            taskContainer.addChild(tasksLabel, task1Label, task2Label, task3Label, task4Label, task5Label, task6Label);
+            stage.addChild(taskContainer);
+
+            // Start communication with GTW
+            if (window.loggingMediator) {
+
+                window.loggingMediator.registerFunction(function(string) {
+
+                    console.log(string);
+                    console.log(taskList);
+
+                    if (string === 'settings') { taskList.settings = true; }
+                    if (string === 'general') { taskList.general = true; }
+                    if (string === 'gaze_on') { taskList.gaze_on = true; }
+                    if (string === 'close') { taskList.close = true; }
+
+                    if (string === 'general' && taskList.gaze_on) {  }
+
+                    if (string === 'gaze_off' && taskList.close) { taskList.gaze_off = true; }
+
+                    if (string === 'close' && taskList.gaze_off) { taskList.end = true; }
+
+                    if (taskList.end) {
+                        results = [levelContainer, metrics];
+
+                        createjs.Tween.get(level)
+                            .wait(1000)
+                            .call(endLevel);
+
+                    }
+                });
+            }
+        });
 
         stage.addChild(levelContainer);
-        stage.setChildIndex(levelContainer, 0);
-
+        stage.addChild(backgroundColor);
+        stage.setChildIndex(backgroundColor, 0);
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
     }
 
@@ -1161,6 +1243,26 @@ function InitiateLevel(group, level, levelStructure) {
 
                 break;
             case 2:
+
+                if (level === 0) {
+
+                    stage.removeChild(results[0]); // remove container
+                    metrics = results[1];
+
+
+                    if (metrics.submit === metrics.pass) {
+                        trophy.current = true;
+                    }
+
+                    score.current = parseInt(scoreBounds.level22 - (stopwatch.time()/3 + (metrics.fail * 200)), 10);
+
+                    // Have a good score!
+                    if (score.current > scoreThreshold.level22) {
+                        levelComplete = true;
+                    }
+
+                }
+
                 break;
         }
 
