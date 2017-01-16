@@ -9,7 +9,7 @@ Access **user.js** and provide values to the four fields:
 
 1. **user.firstName**: The first name of the participant.
 
-2. **user.firstName**: The last name of the participant.
+2. **user.lastName**: The last name of the participant.
 
 3. **user.email**: A valid e-mail for the participant.
  
