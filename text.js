@@ -29,33 +29,34 @@ var levelText = [
         shortTitle: "The quiz",
         description: "Let GazeTheWeb aid you to answer correctly to the quiz",
         story: "You found the wizard! Now he is challenging you to a quiz test. Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD!"
-    }, {
+    },
+    {
         fullTitle: "INTERMEDIATE - 03 Find the treasure",
         shortTitle: "The map",
         description: "Use GazeTheWeb copy & paste functionality to find the treasure",
         story: "Open the map using the click emulation button, then use the GazeTheWeb copy & paste functionality to find the treasure!"
     },
     {
+        fullTitle: "ADVANCED - 01 Gaze Visualization",
+        shortTitle: "Settings - Gaze Visualization",
+        description: "Access General Settings of GTW and learn how to use Gaze Visualization",
+        story: "You uncovered the location of the treasure in the previous levels. Now tread through the path accross 4 locations to finally find the treasure, while learning how to use the unique tools GTW has to offer!"
+    },
+    {
         story: "---------------------------------",
-        fullTitle: "ADVANCED - 01",
+        fullTitle: "ADVANCED - 02 Typing",
         shortTitle: "SDSFSD",
         description: "SDFSDAFDSFSDAFDSFSDAFAD"
     },
     {
         story: "---------------------------------",
-        fullTitle: "ADVANCED - 02",
+        fullTitle: "ADVANCED - 03 Typing with prediction",
         shortTitle: "SDSFSD",
         description: "SDFSDAFDSFSDAFDSFSDAFAD"
     },
     {
         story: "---------------------------------",
-        fullTitle: "ADVANCED - 03",
-        shortTitle: "SDSFSD",
-        description: "SDFSDAFDSFSDAFDSFSDAFAD"
-    },
-    {
-        story: "---------------------------------",
-        fullTitle: "ADVANCED - 04",
+        fullTitle: "ADVANCED - 04 Bookmarks",
         shortTitle: "SDSFSD",
         description: "SDFSDAFDSFSDAFDSFSDAFAD"
     }
@@ -256,7 +257,7 @@ var genericText =
         lvl4CongrTextA: "Congratulations on finding me.",
         lvl4CongrTextB: "Your real test begins now!",
         lvl4ScrollDesc: "Use the ZOOM button to read the available answers, then type the answer below!",
-        lvl4SubmitBtn: "Click me!",
+        clickMe: "Click me!",
         latitude: "latitude",
         longitude: "longitude",
         lvl5CongrText: "You have been deemed worthy! Now find the treasure!",

@@ -531,6 +531,87 @@ function addTutorials(textPointer) {
     return container;
 }
 
+function loadAdvancedLevelsIntroMap(level) {
+    var container = new createjs.Container();
+
+    var backgroundColor = new createjs.Shape();
+    backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
+
+    var elemSize = [];
+    elemSize.x = 450;
+    elemSize.y = 305;
+
+    var lvl1 = new createjs.Bitmap("assets/adv/lvl1.png");
+    lvl1.x = 80;
+    lvl1.y = 80;
+    var lvl1Marker = new createjs.Bitmap("assets/adv/place_on.png");
+    lvl1Marker.x = (elemSize.x/2) + lvl1.x - 21;
+    lvl1Marker.y = elemSize.y;
+
+    var label = new createjs.Text(genericText.clickMe, "700 28px Roboto", color.whitePimary);
+    label.textAlign = "center";
+    var hand = new createjs.Bitmap("assets/ic_hand.png");
+
+    var lvl2 = new createjs.Bitmap("assets/adv/lvl2.png");
+    lvl2.regX = elemSize.x;
+    lvl2.x = stage.canvas.width - 80;
+    lvl2.y = 80;
+    var lvl2Marker = new createjs.Bitmap("assets/adv/place_off.png");
+    lvl2Marker.x = lvl2.x - (elemSize.x/2) - 21;
+    lvl2Marker.y = elemSize.y;
+
+    var lvl3 = new createjs.Bitmap("assets/adv/lvl3.png");
+    lvl3.regY = elemSize.y;
+    lvl3.x = 80;
+    lvl3.y = stage.canvas.height - 20;
+    var lvl3Marker = new createjs.Bitmap("assets/adv/place_off.png");
+    lvl3Marker.x = (elemSize.x/2) + lvl3.x - 21;
+    lvl3Marker.y = lvl3.y - 100;
+
+    var lvl4 = new createjs.Bitmap("assets/adv/lvl4.png");
+    lvl4.regX = elemSize.x;
+    lvl4.regY = elemSize.y;
+    lvl4.x = stage.canvas.width - 80;
+    lvl4.y = stage.canvas.height - 20;
+    var lvl4Marker = new createjs.Bitmap("assets/adv/place_off.png");
+    lvl4Marker.x = lvl4.x - (elemSize.x/2) - 21;
+    lvl4Marker.y = lvl4.y - 100;
+
+    switch(level) {
+        case 1:
+            lvl2.alpha = 0.54;
+            lvl3.alpha = 0.54;
+            lvl4.alpha = 0.54;
+
+            label.x = 300;
+            label.y = elemSize.y + 80;
+
+            hand.x = 370;
+            hand.y = elemSize.y + 66;
+
+            break;
+        case 2:
+            lvl1.alpha = 0.54;
+            lvl3.alpha = 0.54;
+            lvl4.alpha = 0.54;
+            break;
+        case 3:
+            lvl1.alpha = 0.54;
+            lvl2.alpha = 0.54;
+            lvl4.alpha = 0.54;
+            break;
+        case 4:
+            lvl1.alpha = 0.54;
+            lvl2.alpha = 0.54;
+            lvl3.alpha = 0.54;
+            break;
+
+    }
+
+    container.addChild(backgroundColor, lvl1, lvl1Marker, lvl2, lvl2Marker, lvl3, lvl3Marker, lvl4, lvl4Marker, label, hand);
+    return container;
+}
+
 function getRandomInt(idx, min, max) {
     var newVal = Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -539,10 +620,6 @@ function getRandomInt(idx, min, max) {
     }
 
     return newVal;
-}
-
-function handleGTWMessages(str) {
-    console.log(str);
 }
 
 function Stopwatch(text) {

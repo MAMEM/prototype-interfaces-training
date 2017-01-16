@@ -717,7 +717,7 @@ function InitiateLevel(group, level, levelStructure) {
             submitBtn.x = stage.canvas.width/2;
             submitBtn.y = stage.canvas.height - 190;
 
-            var submitLabel = new createjs.Text(genericText.lvl4SubmitBtn, "700 24px Roboto", color.darkBrown);
+            var submitLabel = new createjs.Text(genericText.clickMe, "700 24px Roboto", color.darkBrown);
             submitLabel.x = stage.canvas.width/2 + 70;
             submitLabel.y = stage.canvas.height - 170;
 
@@ -730,8 +730,6 @@ function InitiateLevel(group, level, levelStructure) {
             var answerD = new createjs.Text(" ", "400 10px Roboto", color.darkBrown);
 
             ask(idx);
-
-
 
             function ask(idx) {
 
@@ -954,7 +952,7 @@ function InitiateLevel(group, level, levelStructure) {
         submitBtn.y = stage.canvas.height - 150;
         submitBtn.alpha = 0;
 
-        var submitLabel = new createjs.Text(genericText.lvl4SubmitBtn, "700 28px Roboto", color.darkBrown);
+        var submitLabel = new createjs.Text(genericText.clickMe, "700 28px Roboto", color.darkBrown);
         submitLabel.x = submitBtn.x + 60;
         submitLabel.y = submitBtn.y + 20;
         submitLabel.alpha = 0;
@@ -1018,6 +1016,21 @@ function InitiateLevel(group, level, levelStructure) {
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
     }
 
+    function loadLevel6() {
+
+        var levelContainer = new createjs.Container();
+
+        levelContainer = loadAdvancedLevelsIntroMap(1);
+
+        /*    window.loggingMediator.registerFunction(function(str) {
+         console.log(str);
+         });*/
+
+        stage.addChild(levelContainer);
+        stage.setChildIndex(levelContainer, 0);
+
+        stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
+    }
 
     function endLevel() {
 
