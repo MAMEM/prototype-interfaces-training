@@ -1018,6 +1018,7 @@ function InitiateLevel(group, level, levelStructure) {
     function loadLevel6() {
 
         var metrics = [];
+        var i;
 
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
@@ -1040,41 +1041,31 @@ function InitiateLevel(group, level, levelStructure) {
 
             var taskContainer = new createjs.Container();
 
-            var tasksLabel = new createjs.Text(advInstructions.tasks, "700 34px Roboto", color.whitePimary);
+            var tasksLabel = new createjs.Text(genericText.tasks, "700 34px Roboto", color.whitePimary);
             tasksLabel = alignTextToStageCenter(stage, tasksLabel);
             tasksLabel.y = 80;
 
-            var task1Label = new createjs.Text(advInstructions.openSettings, "400 28px Roboto", color.whitePimary);
-            task1Label = alignTextToStageCenter(stage, task1Label);
-            task1Label.y = 160;
-            task1Label.alpha = 0.54;
+            taskContainer.addChild(tasksLabel);
 
-            var task2Label = new createjs.Text(advInstructions.generalSettings, "400 28px Roboto", color.whitePimary);
-            task2Label = alignTextToStageCenter(stage, task2Label);
-            task2Label.y = task1Label.y + 60;
-            task2Label.alpha = 0.54;
+            var taskLabel = [];
+            var checkmark = [];
+            var idx = 0;
+            for (i in advFirstInstructions) {
+                console.log(advFirstInstructions[i]);
+                taskLabel[idx] = new createjs.Text(advFirstInstructions[i], "400 28px Roboto", color.whitePimary);
+                taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
+                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
+                taskLabel[idx].alpha = 0.54;
 
-            var task3Label = new createjs.Text(advInstructions.enableGaze, "400 28px Roboto", color.whitePimary);
-            task3Label = alignTextToStageCenter(stage, task3Label);
-            task3Label.y = task2Label.y + 60;
-            task3Label.alpha = 0.54;
+                checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
+                checkmark[idx].x = taskLabel[idx].x - 50;
+                checkmark[idx].y = taskLabel[idx].y - 10;
+                checkmark[idx].alpha = 0;
 
-            var task4Label = new createjs.Text(advInstructions.generalSettingsAgain, "400 28px Roboto", color.whitePimary);
-            task4Label = alignTextToStageCenter(stage, task4Label);
-            task4Label.y = task3Label.y + 60;
-            task4Label.alpha = 0.54;
+                taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                idx++;
+            }
 
-            var task5Label = new createjs.Text(advInstructions.disableGaze, "400 28px Roboto", color.whitePimary);
-            task5Label = alignTextToStageCenter(stage, task5Label);
-            task5Label.y = task4Label.y + 60;
-            task5Label.alpha = 0.54;
-
-            var task6Label = new createjs.Text(advInstructions.taskComplete, "400 28px Roboto", color.whitePimary);
-            task6Label = alignTextToStageCenter(stage, task6Label);
-            task6Label.y = task5Label.y + 60;
-            task6Label.alpha = 0.54;
-
-            taskContainer.addChild(tasksLabel, task1Label, task2Label, task3Label, task4Label, task5Label, task6Label);
             stage.addChild(taskContainer);
 
             // Start communication with GTW
@@ -1082,19 +1073,42 @@ function InitiateLevel(group, level, levelStructure) {
 
                 window.loggingMediator.registerFunction(function(string) {
 
-                    console.log(string);
-                    console.log(taskList);
+                    if (string === 'settings') {
+                        taskList.settings = true;
+                        taskLabel[0].alpha = 1;
+                        checkmark[0].alpha = 1;
+                    }
 
-                    if (string === 'settings') { taskList.settings = true; }
-                    if (string === 'general') { taskList.general = true; }
-                    if (string === 'gaze_on') { taskList.gaze_on = true; }
+                    if (string === 'general') {
+                        taskList.general = true;
+                        taskLabel[1].alpha = 1;
+                        checkmark[1].alpha = 1;
+                    }
+
+                    if (string === 'gaze_on') {
+                        taskList.gaze_on = true;
+                        taskLabel[2].alpha = 1;
+                        checkmark[2].alpha = 1;
+                    }
+
                     if (string === 'close') { taskList.close = true; }
 
-                    if (string === 'general' && taskList.gaze_on) {  }
+                    if (string === 'general' && taskList.gaze_on) {
+                        taskLabel[3].alpha = 1;
+                        checkmark[3].alpha = 1;
+                    }
 
-                    if (string === 'gaze_off' && taskList.close) { taskList.gaze_off = true; }
+                    if (string === 'gaze_off' && taskList.close) {
+                        taskList.gaze_off = true;
+                        taskLabel[4].alpha = 1;
+                        checkmark[4].alpha = 1;
+                    }
 
-                    if (string === 'close' && taskList.gaze_off) { taskList.end = true; }
+                    if (string === 'close' && taskList.gaze_off) {
+                        taskList.end = true;
+                        taskLabel[5].alpha = 1;
+                        checkmark[5].alpha = 1;
+                    }
 
                     if (taskList.end) {
                         results = [levelContainer, metrics];
@@ -1325,12 +1339,10 @@ function InitiateLevel(group, level, levelStructure) {
                         levelInformation.countOff = 999999999999;
                     }
 
-
                     score = calculateNewScore(score, levelInformation.score);
                     time = calculateNewTime(time, levelInformation, stopwatch);
                     trophy = calculateNewTrophy(trophy, levelInformation.trophyGained);
                     metrics = calculateNewMetrics(metrics, levelInformation);
-
                 }
 
 
@@ -1473,12 +1485,24 @@ function InitiateLevel(group, level, levelStructure) {
                     loadLevel(1, 1);
                 } else if (level === 1) {
                     loadLevel(1, 2);
-                } /*else {
-             loadLevel(2, 0);
-             }*/
+                } else {
+                    loadLevel(2, 0);
+                }
 
                 break;
             case 2:
+
+                if (level === 0) {
+                    loadLevel(2, 1);
+                } else if (level === 1) {
+                    loadLevel(2, 2);
+                } else if (level === 2) {
+                    loadLevel(2, 3);
+                } else if (level === 3) {
+                    // disable it!
+                    break;
+                }
+
                 break;
         }
     }

@@ -263,12 +263,12 @@ var genericText =
         lvl5CongrText: "You have been deemed worthy! Now find the treasure!",
         coordinates: "COORDINATES",
         lvl5ScrollDesc: "use the",
-        signedOut: "USER IS SIGNED OUT"
+        signedOut: "USER IS SIGNED OUT",
+        tasks: "Tasks"
     };
 
-var advInstructions =
+var advFirstInstructions =
     {
-        tasks: "Tasks",
         openSettings: "Open Settings",
         generalSettings: "Go to General Settings",
         enableGaze: "Enable Gaze Visualization",
@@ -307,6 +307,29 @@ var trophiesArray = [
         level: 'level3',
         title: "Charted!",
         description: "You found the treasure at one fell swoop!"
+    },
+    {
+        group: 'adv',
+        level: 'level1',
+        title: "???",
+        description: "?????????"
+    },
+    {
+        group: 'adv',
+        level: 'level2',
+        title: "???",
+        description: "?????????"
+    },
+    {
+        group: 'adv',
+        level: 'level3',
+        title: "???",
+        description: "?????????"
+    },
+    {
+        group: 'adv',
+        level: 'level4',
+        title: "???",
+        description: "?????????"
     }
-
 ];
