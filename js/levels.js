@@ -1260,6 +1260,9 @@ function InitiateLevel(group, level, levelStructure) {
 
                 if (level === 0) {
 
+                    var bg = stage.getChildAt(0);
+                    bg.graphics.beginFill(color.whitePimary).drawRect(0, 0, stage.canvas.width, canvas.height);
+
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
@@ -1270,7 +1273,7 @@ function InitiateLevel(group, level, levelStructure) {
                     score.current = parseInt(scoreBounds.level31 - (stopwatch.time()), 10);
 
                     // Have a good score!
-                    if (score.current > scoreThreshold.level22) {
+                    if (score.current > scoreThreshold.level31) {
                         levelComplete = true;
                     }
                 }

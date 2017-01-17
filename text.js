@@ -288,48 +288,48 @@ var trophiesArray = [
         group: 'basic',
         level: 'level2',
         title: "Sharpshooter!",
-        description: "Don't miss any marker!"
+        description: "Don't miss any marker."
     },
     {
         group: 'int',
         level: 'level1',
         title: "The Flash!",
-        description: "Lightning strikes only once in the same place!"
+        description: "Lightning strikes only once in the same place."
     },
     {
         group: 'int',
         level: 'level2',
         title: "Scholar!",
-        description: "Whoa! You're really knowledgeable!"
+        description: "Whoa! You're really knowledgeable."
     },
     {
         group: 'int',
         level: 'level3',
         title: "Charted!",
-        description: "You found the treasure at one fell swoop!"
+        description: "You found the treasure at one fell swoop."
     },
     {
         group: 'adv',
         level: 'level1',
-        title: "???",
-        description: "?????????"
+        title: "In Control!",
+        description: "You really like to see how everything works."
     },
     {
         group: 'adv',
         level: 'level2',
-        title: "???",
-        description: "?????????"
+        title: "Commander!",
+        description: "You are the captain of the GTW ship. Toot-toot!"
     },
     {
         group: 'adv',
         level: 'level3',
-        title: "???",
-        description: "?????????"
+        title: "Automaton!",
+        description: "You are transcending the boundaries of human nature."
     },
     {
         group: 'adv',
         level: 'level4',
-        title: "???",
-        description: "?????????"
+        title: "Librarian!",
+        description: "You have been awarded the honorary title of Bookmark master!"
     }
 ];
