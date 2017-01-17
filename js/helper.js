@@ -591,6 +591,13 @@ function loadAdvancedLevelsIntroMap(level) {
             lvl1.alpha = 0.54;
             lvl3.alpha = 0.54;
             lvl4.alpha = 0.54;
+
+            label.x = stage.canvas.width - 370;
+            label.y = elemSize.y + 80;
+
+            hand.x = stage.canvas.width - 300;
+            hand.y = elemSize.y + 66;
+
             break;
         case 3:
             lvl1.alpha = 0.54;

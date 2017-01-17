@@ -534,6 +534,7 @@ function InitiateLevel(group, level, levelStructure) {
 
 
         tower.on("mousedown", function() {
+
             // Create browser state so as to use the back button!
             history.pushState(null, null, 'tower');
             stage.removeChild(levelContainer);
@@ -558,12 +559,20 @@ function InitiateLevel(group, level, levelStructure) {
             table.y = canvas.height - 350;
 
             var brb = new createjs.Text(genericText.lvl3BRB, "500 20px Roboto", color.whitePimary);
-            brb.x = fireplace.x + 190;
-            brb.y = fireplace.y + 210;
+            brb.x = fireplace.x + 180;
+            brb.y = fireplace.y + 220;
             brb.textAlign = "center";
             brb.rotation = -8;
 
-            towerContainer.addChild(towerFloor, towerWall, fireplace, frame, table, brb);
+            var arrow = new createjs.Bitmap("assets/arrow.png");
+            arrow.x = 100;
+            arrow.y = window.innerHeight * (55/100);
+            arrow.rotation = -180;
+            var arrowLabel = new createjs.Text(genericText.arrBackBtn, "500 32px Roboto", color.whitePimary);
+            arrowLabel.x = 40;
+            arrowLabel.y = arrow.y + 40;
+
+            towerContainer.addChild(towerFloor, towerWall, fireplace, frame, table, brb, arrow, arrowLabel);
 
             stage.addChild(towerContainer);
 
@@ -1024,7 +1033,7 @@ function InitiateLevel(group, level, levelStructure) {
         backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
 
         var levelContainer = loadAdvancedLevelsIntroMap(1);
-        var level = levelContainer.getChildAt(0);
+        var actualLevel = levelContainer.getChildAt(0);
 
         // Create task list. All must be set to true to finish level
         var taskList = [];
@@ -1035,7 +1044,7 @@ function InitiateLevel(group, level, levelStructure) {
         taskList.gaze_off = false;
         taskList.end = false;
 
-        level.on("mousedown", function() {
+        actualLevel.on("mousedown", function() {
 
             stage.removeChild(levelContainer);
 
@@ -1113,7 +1122,7 @@ function InitiateLevel(group, level, levelStructure) {
                     if (taskList.end) {
                         results = [levelContainer, metrics];
 
-                        createjs.Tween.get(level)
+                        createjs.Tween.get(actualLevel)
                             .wait(1000)
                             .call(endLevel);
 
@@ -1127,6 +1136,121 @@ function InitiateLevel(group, level, levelStructure) {
         stage.setChildIndex(backgroundColor, 0);
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
     }
+
+    function loadLevel7() {
+
+        var metrics = [];
+        var i;
+
+        var backgroundColor = new createjs.Shape();
+        backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
+
+        var levelContainer = loadAdvancedLevelsIntroMap(2);
+        var actualLevel = levelContainer.getChildAt(2);
+
+        // Create task list. All must be set to true to finish level
+        var taskList = [];
+        taskList.settings = false;
+        taskList.general = false;
+        taskList.gaze_on = false;
+        taskList.close = false;
+        taskList.gaze_off = false;
+        taskList.end = false;
+
+        actualLevel.on("mousedown", function() {
+
+            stage.removeChild(levelContainer);
+
+            var taskContainer = new createjs.Container();
+
+            var tasksLabel = new createjs.Text(genericText.tasks, "700 34px Roboto", color.whitePimary);
+            tasksLabel = alignTextToStageCenter(stage, tasksLabel);
+            tasksLabel.y = 80;
+
+            taskContainer.addChild(tasksLabel);
+
+            var taskLabel = [];
+            var checkmark = [];
+            var idx = 0;
+            for (i in advSecondInstructions) {
+                console.log(advSecondInstructions[i]);
+                taskLabel[idx] = new createjs.Text(advSecondInstructions[i], "400 28px Roboto", color.whitePimary);
+                taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
+                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
+                taskLabel[idx].alpha = 0.54;
+
+                checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
+                checkmark[idx].x = taskLabel[idx].x - 50;
+                checkmark[idx].y = taskLabel[idx].y - 10;
+                checkmark[idx].alpha = 0;
+
+                taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                idx++;
+            }
+
+            stage.addChild(taskContainer);
+
+            // Start communication with GTW
+            if (window.loggingMediator) {
+
+                window.loggingMediator.registerFunction(function(string) {
+
+                    if (string === 'settings') {
+                        taskList.settings = true;
+                        taskLabel[0].alpha = 1;
+                        checkmark[0].alpha = 1;
+                    }
+
+                    if (string === 'general') {
+                        taskList.general = true;
+                        taskLabel[1].alpha = 1;
+                        checkmark[1].alpha = 1;
+                    }
+
+                    if (string === 'gaze_on') {
+                        taskList.gaze_on = true;
+                        taskLabel[2].alpha = 1;
+                        checkmark[2].alpha = 1;
+                    }
+
+                    if (string === 'close') { taskList.close = true; }
+
+                    if (string === 'general' && taskList.gaze_on) {
+                        taskLabel[3].alpha = 1;
+                        checkmark[3].alpha = 1;
+                    }
+
+                    if (string === 'gaze_off' && taskList.close) {
+                        taskList.gaze_off = true;
+                        taskLabel[4].alpha = 1;
+                        checkmark[4].alpha = 1;
+                    }
+
+                    if (string === 'close' && taskList.gaze_off) {
+                        taskList.end = true;
+                        taskLabel[5].alpha = 1;
+                        checkmark[5].alpha = 1;
+                    }
+
+                    if (taskList.end) {
+                        results = [levelContainer, metrics];
+
+                        createjs.Tween.get(actualLevel)
+                            .wait(1000)
+                            .call(endLevel);
+
+                    }
+                });
+            }
+        });
+
+        stage.addChild(levelContainer);
+        stage.addChild(backgroundColor);
+        stage.setChildIndex(backgroundColor, 0);
+        stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
+    }
+
+
 
     function endLevel() {
 

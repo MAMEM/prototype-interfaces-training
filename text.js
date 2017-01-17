@@ -44,13 +44,13 @@ var levelText = [
     },
     {
         story: "---------------------------------",
-        fullTitle: "ADVANCED - 02 Typing",
+        fullTitle: "ADVANCED - 02 New Tab / Typing",
         shortTitle: "SDSFSD",
         description: "SDFSDAFDSFSDAFDSFSDAFAD"
     },
     {
         story: "---------------------------------",
-        fullTitle: "ADVANCED - 03 Typing with prediction",
+        fullTitle: "ADVANCED - 03 Edit URL / Typing with prediction",
         shortTitle: "SDSFSD",
         description: "SDFSDAFDSFSDAFDSFSDAFAD"
     },
@@ -242,8 +242,9 @@ var genericText =
         hit: "HIT!",
         arrScrollUp: "Scroll up",
         arrScrollDown: "Scroll down",
-        clickEmu: "Click emulation",
+        arrBackBtn: "Go back",
         arrScrollBtn: "Auto scrolling",
+        clickEmu: "Click emulation",
         zoomBtn: "Zoom",
         textSelBtn: "Text selection",
         question: "Question",
@@ -268,6 +269,15 @@ var genericText =
     };
 
 var advFirstInstructions =
+    {
+        openSettings: "Open Settings",
+        generalSettings: "Go to General Settings",
+        enableGaze: "Enable Gaze Visualization",
+        generalSettingsAgain: "Go to General Settings again",
+        disableGaze: "Disable Gaze Visualization",
+        taskComplete: "Level completed"
+    };
+var advSecondInstructions =
     {
         openSettings: "Open Settings",
         generalSettings: "Go to General Settings",
