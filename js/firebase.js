@@ -129,6 +129,35 @@ function updateUserData(group, level, userId, score, time, trophy, metrics) {
 
             break;
         case 2:
+            if (level === 0) {
+                firebase.database().ref('users/' + userId + '/levels/adv/level1').set({
+                    "score": score.current,
+                    "ms": time.current,
+                    "timeLabel": time.currentFormatted,
+                    "trophyGained": trophy.hasIt
+                });
+            } else if (level === 1) {
+                firebase.database().ref('users/' + userId + '/levels/adv/level2').set({
+                    "score": score.current,
+                    "ms": time.current,
+                    "timeLabel": time.currentFormatted,
+                    "trophyGained": trophy.hasIt
+                });
+            } else if (level === 2) {
+                firebase.database().ref('users/' + userId + '/levels/adv/level3').set({
+                    "score": score.current,
+                    "ms": time.current,
+                    "timeLabel": time.currentFormatted,
+                    "trophyGained": trophy.hasIt
+                });
+            } else if (level === 3) {
+                firebase.database().ref('users/' + userId + '/levels/adv/level4').set({
+                    "score": score.current,
+                    "ms": time.current,
+                    "timeLabel": time.currentFormatted,
+                    "trophyGained": trophy.hasIt
+                });
+            }
             break;
     }
 }
@@ -253,9 +282,90 @@ function createScoreboard(group, level, col) {
                         users.push(entity);
                     }
                 }
-
                 break;
             case 2:
+
+                trophyPath.group = "adv";
+
+                if (level === 0) {
+
+                    trophyPath.level = "level1";
+
+                    for (key in userData) {
+                        // skip loop if the property is from prototype
+                        if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels.adv) continue;
+
+                        entity = {
+                            name: userData[key].userDetails.name,
+                            id: key,
+                            score: userData[key].levels.adv.level1.score,
+                            time: userData[key].levels.adv.level1.timeLabel,
+                            trophy: userData[key].levels.adv.level1.trophyGained
+                        };
+                        users.push(entity);
+                    }
+
+                } else if (level === 1) {
+
+                    trophyPath.level = "level2";
+
+                    for (key in userData) {
+                        // skip loop if the property is from prototype
+                        if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels.adv) continue;
+                        if (!userData[key].levels.adv.level2) continue;
+
+                        entity = {
+                            name: userData[key].userDetails.name,
+                            id: key,
+                            score: userData[key].levels.adv.level2.score,
+                            time: userData[key].levels.adv.level2.timeLabel,
+                            trophy: userData[key].levels.adv.level2.trophyGained
+                        };
+                        users.push(entity);
+                    }
+
+                } else if (level === 2) {
+
+                    trophyPath.level = "level3";
+
+                    for (key in userData) {
+                        // skip loop if the property is from prototype
+                        if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels.adv) continue;
+                        if (!userData[key].levels.adv.level3) continue;
+
+                        entity = {
+                            name: userData[key].userDetails.name,
+                            id: key,
+                            score: userData[key].levels.adv.level3.score,
+                            time: userData[key].levels.adv.level3.timeLabel,
+                            trophy: userData[key].levels.adv.level3.trophyGained
+                        };
+                        users.push(entity);
+                    }
+                } else if (level === 3) {
+
+                    trophyPath.level = "level4";
+
+                    for (key in userData) {
+                        // skip loop if the property is from prototype
+                        if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels.adv) continue;
+                        if (!userData[key].levels.adv.level4) continue;
+
+                        entity = {
+                            name: userData[key].userDetails.name,
+                            id: key,
+                            score: userData[key].levels.adv.level4.score,
+                            time: userData[key].levels.adv.level4.timeLabel,
+                            trophy: userData[key].levels.adv.level4.trophyGained
+                        };
+                        users.push(entity);
+                    }
+                }
+
                 break;
         }
 

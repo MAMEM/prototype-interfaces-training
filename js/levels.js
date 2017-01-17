@@ -1263,18 +1263,16 @@ function InitiateLevel(group, level, levelStructure) {
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-
-                    if (metrics.submit === metrics.pass) {
+                    /*if (metrics.submit === metrics.pass) {
                         trophy.current = true;
-                    }
+                    }*/
 
-                    score.current = parseInt(scoreBounds.level22 - (stopwatch.time()/3 + (metrics.fail * 200)), 10);
+                    score.current = parseInt(scoreBounds.level31 - (stopwatch.time()), 10);
 
                     // Have a good score!
                     if (score.current > scoreThreshold.level22) {
                         levelComplete = true;
                     }
-
                 }
 
                 break;
@@ -1328,6 +1326,10 @@ function InitiateLevel(group, level, levelStructure) {
                         if (snapshot.val().levels.int) {
                             levelInformation = snapshot.val().levels.int[Object.keys(snapshot.val().levels.int)[level]];
                         }
+                    } else if (group === 2) {
+                        if (snapshot.val().levels.adv) {
+                            levelInformation = snapshot.val().levels.adv[Object.keys(snapshot.val().levels.adv)[level]];
+                        }
                     }
 
                     if (!levelInformation || levelInformation.length === 0) {
@@ -1352,7 +1354,6 @@ function InitiateLevel(group, level, levelStructure) {
                 trophy = positionedResults[2];
                 label = positionedResults[3];
                 separator = positionedResults[4];
-
 
                 updateUserData(group, level, userId, score, time, trophy, metrics);
 
