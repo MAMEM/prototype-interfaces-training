@@ -30,11 +30,6 @@ function init() {
 function renderGame() {
     createjs.Touch.enable(stage);
 
-
-/*    window.loggingMediator.registerFunction(function(str) {
-        console.log(str);
-    });*/
-
     stage.addEventListener("stagemousemove", moveHandler);
 
     loadSplashPage();

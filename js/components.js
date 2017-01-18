@@ -31,6 +31,9 @@ scoreThreshold.level21 = 20000;
 scoreThreshold.level22 = 20000;
 scoreThreshold.level23 = 5000;
 scoreThreshold.level31 = 20000;
+scoreThreshold.level32 = 20000;
+scoreThreshold.level33 = 20000;
+scoreThreshold.level34 = 20000;
 
 var scoreBounds = [];
 scoreBounds.level11 = 100000;
@@ -39,6 +42,9 @@ scoreBounds.level21 = 100000;
 scoreBounds.level22 = 100000;
 scoreBounds.level23 = 100000;
 scoreBounds.level31 = 100000;
+scoreBounds.level32 = 100000;
+scoreBounds.level33 = 100000;
+scoreBounds.level34 = 100000;
 
 var interval = [];
 interval.normal = 1500;

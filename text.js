@@ -43,22 +43,23 @@ var levelText = [
         story: "You uncovered the location of the treasure in the previous levels. Now tread through the path accross 4 locations to finally find the treasure, while learning how to use the unique tools GTW has to offer!"
     },
     {
-        story: "---------------------------------",
-        fullTitle: "ADVANCED - 02 New Tab / Typing",
-        shortTitle: "SDSFSD",
-        description: "SDFSDAFDSFSDAFDSFSDAFAD"
+        fullTitle: "ADVANCED - 02 URL Typing",
+        shortTitle: "URL Typing",
+        description: "Learn how to type a url",
+        story: "Learn how to type a url for a new tab to open"
     },
     {
-        story: "---------------------------------",
-        fullTitle: "ADVANCED - 03 Edit URL / Typing with prediction",
-        shortTitle: "SDSFSD",
-        description: "SDFSDAFDSFSDAFDSFSDAFAD"
+
+        fullTitle: "ADVANCED - 03 Text prediction",
+        shortTitle: "Text prediction",
+        description: "Learn how to use the text predictor",
+        story: "---------------------------------"
     },
     {
-        story: "---------------------------------",
         fullTitle: "ADVANCED - 04 Bookmarks",
-        shortTitle: "SDSFSD",
-        description: "SDFSDAFDSFSDAFDSFSDAFAD"
+        shortTitle: "Bookmarks",
+        description: "Learn how to bookmark a page",
+        story: "---------------------------------"
     }
 ];
 
@@ -66,96 +67,76 @@ var levelText = [
 var quizText = [
     {
         questionLabel: "Easy 1",
-        question: "what? 1",
-        answer1: "a) pizza",
-        answer2: "b) hat",
-        answer3: "c) bat",
-        answer4: "d) jesus",
-        correct: "pizza",
+        question: "Which of the following is a traditional Greek dish?",
+        answer1: "moussaka",
+        answer2: "spaghetti",
+        answer3: "pizza",
+        answer4: "burger",
+        correct: "moussaka",
         cat: "Easy"
     },
     {
         questionLabel: "Easy 2",
-        question: "what? 2",
-        answer1: "a) ant",
-        answer2: "b) panda",
-        answer3: "c) bear",
-        answer4: "d) bug",
-        correct: "ant",
+        question: "Who is the son of Daedalus?",
+        answer1: "minoas",
+        answer2: "theseus",
+        answer3: "icarus",
+        answer4: "menelaus",
+        correct: "icarus",
         cat: "Easy"
     },
     {
         questionLabel: "Easy 3",
-        question: "what? 3",
-        answer1: "a) 1",
-        answer2: "b) 2",
-        answer3: "c) 3",
-        answer4: "d) 4",
-        correct: "1",
+        question: "What was the color of the ‘Baywatch’ lifeguard swimsuit?",
+        answer1: "pink",
+        answer2: "red",
+        answer3: "green",
+        answer4: "white",
+        correct: "red",
         cat: "Easy"
     },
     {
         questionLabel: "Easy 4",
-        question: "what? 3",
-        answer1: "a) 1",
-        answer2: "b) 2",
-        answer3: "c) 3",
-        answer4: "d) 4",
-        correct: "1",
-        cat: "Easy"
-    },
-    {
-        questionLabel: "Easy 5",
-        question: "what? 3",
-        answer1: "a) 1",
-        answer2: "b) 2",
-        answer3: "c) 3",
-        answer4: "d) 4",
-        correct: "1",
+        question: "In honor of which goddess was the Acropolis of Athens built?",
+        answer1: "aphrodite",
+        answer2: "ira",
+        answer3: "artemis",
+        answer4: "athena",
+        correct: "athena",
         cat: "Easy"
     },
     {
         questionLabel: "Int 1",
         question: "what? 1",
-        answer1: "a) pizza",
-        answer2: "b) hat",
-        answer3: "c) bat",
-        answer4: "d) jesus",
+        answer1: "pizza",
+        answer2: "hat",
+        answer3: "bat",
+        answer4: "jesus",
         correct: "pizza",
         cat: "Intermediate"
     },
     {
         questionLabel: "Int 2",
         question: "what? 2",
-        answer1: "a) ant",
-        answer2: "b) panda",
-        answer3: "c) bear",
-        answer4: "d) bug",
+        answer1: "ant",
+        answer2: "panda",
+        answer3: "bear",
+        answer4: "bug",
         correct: "ant",
         cat: "Intermediate"
     },
     {
         questionLabel: "Int 3",
         question: "what? 3",
-        answer1: "a) 1",
-        answer2: "b) 2",
-        answer3: "c) 3",
-        answer4: "d) 4",
+        answer1: "1",
+        answer2: "2",
+        answer3: "3",
+        answer4: "4",
         correct: "1",
         cat: "Intermediate"
     },
     {
         questionLabel: "Int 4",
-        question: "what? 3",
-        answer1: "a) 1",
-        answer2: "b) 2",
-        answer3: "c) 3",
-        answer4: "d) 4",
-        correct: "1",
-        cat: "Intermediate"
-    },
-    {
-        questionLabel: "Int 5",
         question: "what? 3",
         answer1: "a) 1",
         answer2: "b) 2",
@@ -196,16 +177,6 @@ var quizText = [
     },
     {
         questionLabel: "Adv 4",
-        question: "what? 3",
-        answer1: "a) 1",
-        answer2: "b) 2",
-        answer3: "c) 3",
-        answer4: "d) 4",
-        correct: "1",
-        cat: "Advanced"
-    },
-    {
-        questionLabel: "Adv 5",
         question: "what? 3",
         answer1: "a) 1",
         answer2: "b) 2",
@@ -279,11 +250,10 @@ var advFirstInstructions =
     };
 var advSecondInstructions =
     {
-        openSettings: "Open Settings",
-        generalSettings: "Go to General Settings",
-        enableGaze: "Enable Gaze Visualization",
-        generalSettingsAgain: "Go to General Settings again",
-        disableGaze: "Disable Gaze Visualization",
+        openTabs: "Open Tab manager",
+        editUrl: "Edit url",
+        typeUrl: "Type www.mamem.eu",
+        abort: "Abort",
         taskComplete: "Level completed"
     };
 

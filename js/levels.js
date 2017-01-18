@@ -744,7 +744,7 @@ function InitiateLevel(group, level, levelStructure) {
                 var barElement = new createjs.Shape();
 
                 if (idx < 2) {
-                    pointer = getRandomInt(idx, 0, 4);
+                    pointer = getRandomInt(idx, 0, 3);
                     barElement.graphics.beginFill(color.barGreen).drawRect(0, 0, 60, 12).endFill();
 
                     if (idx === 0) {
@@ -756,12 +756,12 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                 } else if (idx < 4) {
-                    pointer = getRandomInt(idx, 5, 9);
+                    pointer = getRandomInt(idx, 4, 7);
                     barElement.graphics.beginFill(color.barYellow).drawRect(0, 0, 60, 12).endFill();
                     prevElem = barContainer.getChildAt(idx-1);
                     barElement.x = prevElem.x + 61;
                 } else {
-                    pointer = getRandomInt(idx, 10, 14);
+                    pointer = getRandomInt(idx, 8, 11);
                     barElement.graphics.beginFill(color.barRed).drawRect(0, 0, 60, 12).endFill();
                     prevElem = barContainer.getChildAt(idx-1);
                     barElement.x = prevElem.x + 61;
@@ -776,16 +776,16 @@ function InitiateLevel(group, level, levelStructure) {
                 question.text = quizText[pointer].question;
                 question = alignTextToStageCenter(stage, question);
                 question.y = papyrus.y + 100;
-                answerA.text = quizText[pointer].answer1;
+                answerA.text = "a) " + quizText[pointer].answer1;
                 answerA.x = (stage.canvas.width/2) - 100;
                 answerA.y = papyrus.y + 150;
-                answerB.text = quizText[pointer].answer2;
+                answerB.text = "b) " + quizText[pointer].answer2;
                 answerB.x = (stage.canvas.width/2) - 100;
                 answerB.y = papyrus.y + 180;
-                answerC.text = quizText[pointer].answer3;
+                answerC.text = "c) " + quizText[pointer].answer3;
                 answerC.x = (stage.canvas.width/2) + 60;
                 answerC.y = papyrus.y + 150;
-                answerD.text = quizText[pointer].answer4;
+                answerD.text = "d) " + quizText[pointer].answer4;
                 answerD.x = (stage.canvas.width/2) + 60;
                 answerD.y = papyrus.y + 180;
 
@@ -1060,7 +1060,7 @@ function InitiateLevel(group, level, levelStructure) {
             var checkmark = [];
             var idx = 0;
             for (i in advFirstInstructions) {
-                console.log(advFirstInstructions[i]);
+
                 taskLabel[idx] = new createjs.Text(advFirstInstructions[i], "400 28px Roboto", color.whitePimary);
                 taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
                 taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
@@ -1081,6 +1081,8 @@ function InitiateLevel(group, level, levelStructure) {
             if (window.loggingMediator) {
 
                 window.loggingMediator.registerFunction(function(string) {
+
+                    console.log(string);
 
                     if (string === 'settings') {
                         taskList.settings = true;
@@ -1120,6 +1122,8 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     if (taskList.end) {
+                        window.loggingMediator.unregisterFunction();
+
                         results = [levelContainer, metrics];
 
                         createjs.Tween.get(actualLevel)
@@ -1150,11 +1154,11 @@ function InitiateLevel(group, level, levelStructure) {
 
         // Create task list. All must be set to true to finish level
         var taskList = [];
-        taskList.settings = false;
-        taskList.general = false;
-        taskList.gaze_on = false;
-        taskList.close = false;
-        taskList.gaze_off = false;
+        taskList.tabs = false;
+        taskList.edit = false;
+        taskList.type = 0;
+        taskList.url = false;
+        taskList.abort = false;
         taskList.end = false;
 
         actualLevel.on("mousedown", function() {
@@ -1173,7 +1177,7 @@ function InitiateLevel(group, level, levelStructure) {
             var checkmark = [];
             var idx = 0;
             for (i in advSecondInstructions) {
-                console.log(advSecondInstructions[i]);
+
                 taskLabel[idx] = new createjs.Text(advSecondInstructions[i], "400 28px Roboto", color.whitePimary);
                 taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
                 taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
@@ -1195,44 +1199,40 @@ function InitiateLevel(group, level, levelStructure) {
 
                 window.loggingMediator.registerFunction(function(string) {
 
-                    if (string === 'settings') {
-                        taskList.settings = true;
+                    console.log(string);
+
+                    if (string === 'tabs') {
+                        taskList.tabs = true;
                         taskLabel[0].alpha = 1;
                         checkmark[0].alpha = 1;
                     }
 
-                    if (string === 'general') {
-                        taskList.general = true;
+                    if (string === 'edit') {
+                        taskList.new_tab = true;
                         taskLabel[1].alpha = 1;
                         checkmark[1].alpha = 1;
                     }
 
-                    if (string === 'gaze_on') {
-                        taskList.gaze_on = true;
-                        taskLabel[2].alpha = 1;
-                        checkmark[2].alpha = 1;
+                    if (string === 'keystroke') {
+                        taskList.type++;
+
+                        if (taskList.type > 8) {
+                            taskList.url = true;
+                            taskLabel[2].alpha = 1;
+                            checkmark[2].alpha = 1;
+                        }
                     }
 
-                    if (string === 'close') { taskList.close = true; }
+                    if (string === 'close' && taskList.url) {
 
-                    if (string === 'general' && taskList.gaze_on) {
                         taskLabel[3].alpha = 1;
                         checkmark[3].alpha = 1;
-                    }
 
-                    if (string === 'gaze_off' && taskList.close) {
-                        taskList.gaze_off = true;
                         taskLabel[4].alpha = 1;
                         checkmark[4].alpha = 1;
-                    }
 
-                    if (string === 'close' && taskList.gaze_off) {
-                        taskList.end = true;
-                        taskLabel[5].alpha = 1;
-                        checkmark[5].alpha = 1;
-                    }
+                        window.loggingMediator.unregisterFunction();
 
-                    if (taskList.end) {
                         results = [levelContainer, metrics];
 
                         createjs.Tween.get(actualLevel)
@@ -1348,7 +1348,6 @@ function InitiateLevel(group, level, levelStructure) {
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-
                     if (metrics.submit === metrics.pass) {
                         trophy.current = true;
                     }
@@ -1382,22 +1381,38 @@ function InitiateLevel(group, level, levelStructure) {
                 break;
             case 2:
 
-                if (level === 0) {
+                var bg = stage.getChildAt(0);
+                bg.graphics.beginFill(color.whitePimary).drawRect(0, 0, stage.canvas.width, canvas.height);
 
-                    var bg = stage.getChildAt(0);
-                    bg.graphics.beginFill(color.whitePimary).drawRect(0, 0, stage.canvas.width, canvas.height);
+                if (level === 0) {
 
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
                     /*if (metrics.submit === metrics.pass) {
-                        trophy.current = true;
-                    }*/
+                     trophy.current = true;
+                     }*/
 
                     score.current = parseInt(scoreBounds.level31 - (stopwatch.time()), 10);
 
                     // Have a good score!
                     if (score.current > scoreThreshold.level31) {
+                        levelComplete = true;
+                    }
+                }
+                else if (level === 1) {
+
+                    stage.removeChild(results[0]); // remove container
+                    metrics = results[1];
+
+                    /*if (metrics.submit === metrics.pass) {
+                     trophy.current = true;
+                     }*/
+
+                    score.current = parseInt(scoreBounds.level32 - (stopwatch.time()), 10);
+
+                    // Have a good score!
+                    if (score.current > scoreThreshold.level32) {
                         levelComplete = true;
                     }
                 }
