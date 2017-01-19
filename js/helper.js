@@ -239,6 +239,12 @@ function initializeResultsValues(group, level, stopwatch, score, time, trophy) {
         case 2:
             if (level === 0) {
                 id = 5;
+            } else if (level === 1) {
+                id = 6;
+            } else if (level === 2) {
+                id = 7;
+            } else if (level === 3) {
+                id = 8;
             }
             break;
     }
