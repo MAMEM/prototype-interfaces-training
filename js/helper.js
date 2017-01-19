@@ -538,16 +538,16 @@ function loadAdvancedLevelsIntroMap(level) {
     elemSize.x = 450;
     elemSize.y = 305;
 
+    var label = new createjs.Text(genericText.clickMe, "700 28px Roboto", color.whitePimary);
+    label.textAlign = "center";
+    var hand = new createjs.Bitmap("assets/ic_hand.png");
+
     var lvl1 = new createjs.Bitmap("assets/adv/lvl1.png");
     lvl1.x = 80;
     lvl1.y = 80;
     var lvl1Marker = new createjs.Bitmap("assets/adv/place_off.png");
     lvl1Marker.x = (elemSize.x/2) + lvl1.x - 21;
     lvl1Marker.y = elemSize.y;
-
-    var label = new createjs.Text(genericText.clickMe, "700 28px Roboto", color.whitePimary);
-    label.textAlign = "center";
-    var hand = new createjs.Bitmap("assets/ic_hand.png");
 
     var lvl2 = new createjs.Bitmap("assets/adv/lvl2.png");
     lvl2.regX = elemSize.x;
@@ -583,7 +583,7 @@ function loadAdvancedLevelsIntroMap(level) {
             label.x = 300;
             label.y = elemSize.y + 80;
 
-            hand.x = 370;
+            hand.x = 380;
             hand.y = elemSize.y + 66;
 
             lvl1Marker = new createjs.Bitmap("assets/adv/place_on.png");
@@ -596,7 +596,7 @@ function loadAdvancedLevelsIntroMap(level) {
             lvl3.alpha = 0.54;
             lvl4.alpha = 0.54;
 
-            label.x = stage.canvas.width - 370;
+            label.x = stage.canvas.width - 380;
             label.y = elemSize.y + 80;
 
             hand.x = stage.canvas.width - 300;
@@ -612,6 +612,12 @@ function loadAdvancedLevelsIntroMap(level) {
             lvl2.alpha = 0.54;
             lvl4.alpha = 0.54;
 
+            label.x = 300;
+            label.y = stage.canvas.height - 50;
+
+            hand.x = 380;
+            hand.y = stage.canvas.height - 60;
+
             lvl3Marker = new createjs.Bitmap("assets/adv/place_on.png");
             lvl3Marker.x = (elemSize.x/2) + lvl3.x - 21;
             lvl3Marker.y = lvl3.y - 100;
@@ -622,13 +628,17 @@ function loadAdvancedLevelsIntroMap(level) {
             lvl2.alpha = 0.54;
             lvl3.alpha = 0.54;
 
+            label.x = stage.canvas.width - 380;
+            label.y = stage.canvas.height - 50;
+
+            hand.x = stage.canvas.width - 300;
+            hand.y = stage.canvas.height - 60;
 
             lvl4Marker = new createjs.Bitmap("assets/adv/place_on.png");
             lvl4Marker.x = lvl4.x - (elemSize.x/2) - 21;
             lvl4Marker.y = lvl4.y - 100;
 
             break;
-
     }
 
     container.addChild(lvl1, lvl1Marker, lvl2, lvl2Marker, lvl3, lvl3Marker, lvl4, lvl4Marker, label, hand);

@@ -46,27 +46,26 @@ var levelText = [
         fullTitle: "ADVANCED - 02 URL Typing",
         shortTitle: "URL Typing",
         description: "Learn how to type a url",
-        story: "Learn how to type a url for a new tab to open"
+        story: "Learn how to edit a url on GTW Browser"
     },
     {
 
         fullTitle: "ADVANCED - 03 Text prediction",
         shortTitle: "Text prediction",
-        description: "Learn how to use the text predictor",
-        story: "---------------------------------"
+        description: "Learn how to type using text prediction",
+        story: "Learn how to type using text prediction"
     },
     {
         fullTitle: "ADVANCED - 04 Bookmarks",
         shortTitle: "Bookmarks",
         description: "Learn how to bookmark a page",
-        story: "---------------------------------"
+        story: "Learn how to bookmark a page"
     }
 ];
 
 // Categories: easy = 0, int = 1, adv = 2
 var quizText = [
     {
-        questionLabel: "Easy 1",
         question: "Which of the following is a traditional Greek dish?",
         answer1: "moussaka",
         answer2: "spaghetti",
@@ -76,7 +75,6 @@ var quizText = [
         cat: "Easy"
     },
     {
-        questionLabel: "Easy 2",
         question: "Who is the son of Daedalus?",
         answer1: "minoas",
         answer2: "theseus",
@@ -86,7 +84,6 @@ var quizText = [
         cat: "Easy"
     },
     {
-        questionLabel: "Easy 3",
         question: "What was the color of the ‘Baywatch’ lifeguard swimsuit?",
         answer1: "pink",
         answer2: "red",
@@ -96,7 +93,6 @@ var quizText = [
         cat: "Easy"
     },
     {
-        questionLabel: "Easy 4",
         question: "In honor of which goddess was the Acropolis of Athens built?",
         answer1: "aphrodite",
         answer2: "ira",
@@ -106,83 +102,75 @@ var quizText = [
         cat: "Easy"
     },
     {
-        questionLabel: "Int 1",
-        question: "what? 1",
-        answer1: "pizza",
-        answer2: "hat",
-        answer3: "bat",
-        answer4: "jesus",
-        correct: "pizza",
+        question: "Who is considered as the founder of Medicine?",
+        answer1: "hippocrates",
+        answer2: "Hieronymus",
+        answer3: "xenophon",
+        answer4: "demosthenes",
+        correct: "hippocrates",
         cat: "Intermediate"
     },
     {
-        questionLabel: "Int 2",
-        question: "what? 2",
-        answer1: "ant",
-        answer2: "panda",
-        answer3: "bear",
-        answer4: "bug",
-        correct: "ant",
+        question: "Which team won the national football league in 2014?",
+        answer1: "olympiacos",
+        answer2: "panathinaikos",
+        answer3: "aek",
+        answer4: "paok",
+        correct: "olympiacos",
         cat: "Intermediate"
     },
     {
-        questionLabel: "Int 3",
-        question: "what? 3",
-        answer1: "1",
-        answer2: "2",
-        answer3: "3",
-        answer4: "4",
-        correct: "1",
+        question: "Which was the host country of Euro 2004?",
+        answer1: "italy",
+        answer2: "england",
+        answer3: "greece",
+        answer4: "portugal",
+        correct: "portugal",
         cat: "Intermediate"
     },
     {
-        questionLabel: "Int 4",
-        question: "what? 3",
-        answer1: "a) 1",
-        answer2: "b) 2",
-        answer3: "c) 3",
-        answer4: "d) 4",
-        correct: "1",
+        question: "He is considered as the father of History",
+        answer1: "herodotus",
+        answer2: "eratosthenes",
+        answer3: "pausanias",
+        answer4: "pericles",
+        correct: "herodotus",
         cat: "Intermediate"
     },
     {
-        questionLabel: "Adv 1",
-        question: "what? 1",
-        answer1: "a) pizza",
-        answer2: "b) hat",
-        answer3: "c) bat",
-        answer4: "d) jesus",
-        correct: "pizza",
+        question: "Who cut off Vincent van Gogh's ear?",
+        answer1: "a thief",
+        answer2: "himself",
+        answer3: "his mother",
+        answer4: "his father",
+        correct: "himself",
         cat: "Advanced"
     },
     {
-        questionLabel: "Adv 2",
-        question: "what? 2",
-        answer1: "a) ant",
-        answer2: "b) panda",
-        answer3: "c) bear",
-        answer4: "d) bug",
-        correct: "ant",
+        question: "Which country launched the cultivation of coffee?",
+        answer1: "arabia",
+        answer2: "brazil",
+        answer3: "colombia",
+        answer4: "mexico",
+        correct: "arabia",
         cat: "Advanced"
     },
     {
-        questionLabel: "Adv 3",
-        question: "what? 3",
-        answer1: "a) 1",
-        answer2: "b) 2",
-        answer3: "c) 3",
-        answer4: "d) 4",
-        correct: "1",
+        question: "Cleopatra used to bathe in...",
+        answer1: "milk",
+        answer2: "coconut oil",
+        answer3: "water",
+        answer4: "olive oil",
+        correct: "milk",
         cat: "Advanced"
     },
     {
-        questionLabel: "Adv 4",
-        question: "what? 3",
-        answer1: "a) 1",
-        answer2: "b) 2",
-        answer3: "c) 3",
-        answer4: "d) 4",
-        correct: "1",
+        question: "Where was Che Guevara born?",
+        answer1: "brazil",
+        answer2: "cuba",
+        answer3: "argentina",
+        answer4: "colombia",
+        correct: "argentina",
         cat: "Advanced"
     }
 ];
@@ -252,8 +240,17 @@ var advSecondInstructions =
     {
         openTabs: "Open Tab manager",
         editUrl: "Edit url",
-        typeUrl: "Type www.mamem.eu",
+        typeUrl: "Type 'www.mamem.eu'",
         abort: "Abort",
+        taskComplete: "Level completed"
+    };
+var advThirdInstructions =
+    {
+        click: "Click on the document to reveal the text",
+        editUrl: "Edit text",
+        typeUrl: "Type the missing phrase:",
+        phrase: "see in the world",
+        abort: "Close keyboard",
         taskComplete: "Level completed"
     };
 
@@ -291,13 +288,13 @@ var trophiesArray = [
     {
         group: 'adv',
         level: 'level1',
-        title: "In Control!",
+        title: "Gaze all the things!",
         description: "You really like to see how everything works."
     },
     {
         group: 'adv',
         level: 'level2',
-        title: "Commander!",
+        title: "Navigator!",
         description: "You are the captain of the GTW ship. Toot-toot!"
     },
     {

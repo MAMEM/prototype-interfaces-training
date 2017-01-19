@@ -731,7 +731,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             var idx = 0;
 
-            var question = new createjs.Text(" ", "700 28px Roboto", color.darkBrown);
+            var question = new createjs.Text(" ", "700 24px Roboto", color.darkBrown);
             var answerA = new createjs.Text(" ", "400 10px Roboto", color.darkBrown);
             var answerB = new createjs.Text(" ", "400 10px Roboto", color.darkBrown);
             var answerC = new createjs.Text(" ", "400 10px Roboto", color.darkBrown);
@@ -1250,6 +1250,118 @@ function InitiateLevel(group, level, levelStructure) {
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
     }
 
+    function loadLevel8() {
+
+        var metrics = [];
+        var i;
+
+        var backgroundColor = new createjs.Shape();
+        backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
+
+        var levelContainer = loadAdvancedLevelsIntroMap(3);
+        var actualLevel = levelContainer.getChildAt(4);
+
+        // Create task list. All must be set to true to finish level
+        var taskList = [];
+        taskList.click = false;
+        taskList.edit = false;
+        taskList.phrase = '';
+        taskList.abort = false;
+        taskList.end = false;
+
+        actualLevel.on("mousedown", function() {
+
+            stage.removeChild(levelContainer);
+
+            var taskContainer = new createjs.Container();
+
+            var tasksLabel = new createjs.Text(genericText.tasks, "700 34px Roboto", color.whitePimary);
+            tasksLabel = alignTextToStageCenter(stage, tasksLabel);
+            tasksLabel.y = 80;
+
+            taskContainer.addChild(tasksLabel);
+
+            var taskLabel = [];
+            var checkmark = [];
+            var idx = 0;
+            for (i in advThirdInstructions) {
+
+                taskLabel[idx] = new createjs.Text(advThirdInstructions[i], "400 28px Roboto", color.whitePimary);
+                taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
+                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
+                taskLabel[idx].alpha = 0.54;
+
+                checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
+                checkmark[idx].x = taskLabel[idx].x - 50;
+                checkmark[idx].y = taskLabel[idx].y - 10;
+                checkmark[idx].alpha = 0;
+
+                taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                idx++;
+            }
+
+
+            var document = new createjs.Bitmap("assets/adv/doc-before.png");
+            document.x = (stage.canvas.width/2) - 186;
+            document.y = (stage.canvas.height/2) - 256;
+
+            stage.addChild(taskContainer, document);
+
+            // Start communication with GTW
+            if (window.loggingMediator) {
+
+                window.loggingMediator.registerFunction(function(string) {
+
+                    console.log(string);
+
+                    if (string === 'tabs') {
+                        taskList.tabs = true;
+                        taskLabel[0].alpha = 1;
+                        checkmark[0].alpha = 1;
+                    }
+
+                    if (string === 'edit') {
+                        taskList.new_tab = true;
+                        taskLabel[1].alpha = 1;
+                        checkmark[1].alpha = 1;
+                    }
+
+                    if (string === 'keystroke') {
+                        taskList.type++;
+
+                        if (taskList.type > 8) {
+                            taskList.url = true;
+                            taskLabel[2].alpha = 1;
+                            checkmark[2].alpha = 1;
+                        }
+                    }
+
+                    if (string === 'close' && taskList.url) {
+
+                        taskLabel[3].alpha = 1;
+                        checkmark[3].alpha = 1;
+
+                        taskLabel[4].alpha = 1;
+                        checkmark[4].alpha = 1;
+
+                        window.loggingMediator.unregisterFunction();
+
+                        results = [levelContainer, metrics];
+
+                        createjs.Tween.get(actualLevel)
+                            .wait(1000)
+                            .call(endLevel);
+
+                    }
+                });
+            }
+        });
+
+        stage.addChild(levelContainer);
+        stage.addChild(backgroundColor);
+        stage.setChildIndex(backgroundColor, 0);
+        stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
+    }
 
 
     function endLevel() {
@@ -1439,8 +1551,6 @@ function InitiateLevel(group, level, levelStructure) {
             col.x = poe.x + 20;
             col.y = poe.y + 140;
             col.width = (window.innerWidth - 90)/3;
-
-
 
             var initVals = initializeResultsValues(group, level, stopwatch, score, time, trophy);
             trophy = initVals[0];
