@@ -218,13 +218,16 @@ var genericText =
         lvl4CongrTextB: "Your real test begins now!",
         lvl4ScrollDesc: "Use the ZOOM button to read the available answers, then type the answer below!",
         clickMe: "Click me!",
-        latitude: "latitude",
-        longitude: "longitude",
+        latitude: "Latitude",
+        longitude: "Longitude",
+        answer: "Answer",
         lvl5CongrText: "You have been deemed worthy! Now find the treasure!",
         coordinates: "COORDINATES",
         lvl5ScrollDesc: "use the",
         signedOut: "USER IS SIGNED OUT",
-        tasks: "Tasks"
+        tasks: "Tasks",
+        advQuote1: "Be The Change",
+        advQuote2: "That You Want To"
     };
 
 var advFirstInstructions =
@@ -246,11 +249,10 @@ var advSecondInstructions =
     };
 var advThirdInstructions =
     {
-        click: "Click on the document to reveal the text",
-        editUrl: "Edit text",
+        editUrl: "Click on the text element",
         typeUrl: "Type the missing phrase:",
-        phrase: "see in the world",
-        abort: "Close keyboard",
+        phrase: "See In The World",
+        abort: "Submit",
         taskComplete: "Level completed"
     };
 

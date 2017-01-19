@@ -614,7 +614,8 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer = new createjs.Container();
 
-        var textInput = document.getElementById('caveInputText');
+        var textInput = document.getElementById('inputTextFirst');
+        textInput.placeholder = genericText.answer;
         textInput.style.display = "none";
 
         var metrics = [];
@@ -663,7 +664,6 @@ function InitiateLevel(group, level, levelStructure) {
         var congratTextB = new createjs.Text(genericText.lvl4CongrTextB, "700 28px Roboto", color.whitePimary);
         congratTextB = alignTextToStageCenter(stage, congratTextB);
         congratTextB.y = 140;
-
 
         var questionLabel = new createjs.Text(" ", "700 28px Roboto", color.whitePimary);
         questionLabel = alignTextToStageCenter(stage, questionLabel);
@@ -717,7 +717,7 @@ function InitiateLevel(group, level, levelStructure) {
             textInput.style.padding = "15px";
             textInput.style.background = "rgba(255,255,255,0.5)";
 
-            var inputDomElement = new createjs.DOMElement('caveInputText');
+            var inputDomElement = new createjs.DOMElement('inputTextFirst');
             inputDomElement.visible = true;
 
 
@@ -839,12 +839,12 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer = new createjs.Container();
 
-        var textInput1 = document.getElementById('caveInputText');
+        var textInput1 = document.getElementById('inputTextFirst');
         textInput1.placeholder = genericText.latitude;
         textInput1.style.display = "none";
 
-        var textInput2 = document.getElementById('caveInputText2');
-        textInput1.placeholder = genericText.longitude;
+        var textInput2 = document.getElementById('inputTextSecond');
+        textInput2.placeholder = genericText.longitude;
         textInput2.style.display = "none";
 
         var textElement1 = document.getElementById('caveLatText');
@@ -1124,7 +1124,7 @@ function InitiateLevel(group, level, levelStructure) {
                     if (taskList.end) {
                         window.loggingMediator.unregisterFunction();
 
-                        results = [levelContainer, metrics];
+                        results = [task, metrics];
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
@@ -1233,7 +1233,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                         window.loggingMediator.unregisterFunction();
 
-                        results = [levelContainer, metrics];
+                        results = [taskContainer, metrics];
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
@@ -1263,9 +1263,8 @@ function InitiateLevel(group, level, levelStructure) {
 
         // Create task list. All must be set to true to finish level
         var taskList = [];
-        taskList.click = false;
         taskList.edit = false;
-        taskList.phrase = '';
+        taskList.phrase = "";
         taskList.abort = false;
         taskList.end = false;
 
@@ -1279,6 +1278,8 @@ function InitiateLevel(group, level, levelStructure) {
             tasksLabel = alignTextToStageCenter(stage, tasksLabel);
             tasksLabel.y = 80;
 
+            tasksLabel.x = tasksLabel.x + 100;
+
             taskContainer.addChild(tasksLabel);
 
             var taskLabel = [];
@@ -1290,9 +1291,10 @@ function InitiateLevel(group, level, levelStructure) {
                 taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
                 taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
                 taskLabel[idx].alpha = 0.54;
+                taskLabel[idx].x = taskLabel[idx].x + 100;
 
                 checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
-                checkmark[idx].x = taskLabel[idx].x - 50;
+                checkmark[idx].x = taskLabel[idx].x + 50;
                 checkmark[idx].y = taskLabel[idx].y - 10;
                 checkmark[idx].alpha = 0;
 
@@ -1300,12 +1302,40 @@ function InitiateLevel(group, level, levelStructure) {
                 idx++;
             }
 
+            var quoteDoc = new createjs.Bitmap("assets/adv/doc-after.png");
+            quoteDoc.x = 130;
+            quoteDoc.y = 160;
 
-            var document = new createjs.Bitmap("assets/adv/doc-before.png");
-            document.x = (stage.canvas.width/2) - 186;
-            document.y = (stage.canvas.height/2) - 256;
+            var quoteFirstLine = new createjs.Text(genericText.advQuote1, "500 24px Roboto", "#4D3D36");
+            quoteFirstLine.x = quoteDoc.x + 60;
+            quoteFirstLine.y = 230;
 
-            stage.addChild(taskContainer, document);
+            var quoteSecondLine = new createjs.Text(genericText.advQuote2, "500 24px Roboto", "#4D3D36");
+            quoteSecondLine.x = quoteDoc.x + 55;
+            quoteSecondLine.y = 320;
+
+            taskContainer.addChild(quoteDoc, quoteFirstLine, quoteSecondLine);
+            stage.addChild(taskContainer);
+
+            var textInput = document.getElementById('inputTextFirst');
+            textInput.style.display = "block";
+            textInput.style.position = "absolute";
+            textInput.placeholder = " ";
+            textInput.style.left = quoteDoc.x + 50 + "px";
+            textInput.style.top = "410px";
+            textInput.style.border = "none";
+            textInput.style.padding = "15px";
+            textInput.style.width = "210px";
+            textInput.style.background = color.transparent;
+            textInput.style.fontSize = "24px";
+            textInput.style.fontWeight = "500";
+            textInput.style.color = "#4D3D36";
+
+            textInput.addEventListener("click", function () {
+                taskList.edit = true;
+                taskLabel[0].alpha = 1;
+                checkmark[0].alpha = 1;
+            });
 
             // Start communication with GTW
             if (window.loggingMediator) {
@@ -1314,51 +1344,47 @@ function InitiateLevel(group, level, levelStructure) {
 
                     console.log(string);
 
-                    if (string === 'tabs') {
-                        taskList.tabs = true;
-                        taskLabel[0].alpha = 1;
-                        checkmark[0].alpha = 1;
-                    }
-
-                    if (string === 'edit') {
-                        taskList.new_tab = true;
-                        taskLabel[1].alpha = 1;
-                        checkmark[1].alpha = 1;
-                    }
-
-                    if (string === 'keystroke') {
-                        taskList.type++;
-
-                        if (taskList.type > 8) {
-                            taskList.url = true;
-                            taskLabel[2].alpha = 1;
-                            checkmark[2].alpha = 1;
-                        }
-                    }
-
-                    if (string === 'close' && taskList.url) {
-
-                        taskLabel[3].alpha = 1;
-                        checkmark[3].alpha = 1;
-
-                        taskLabel[4].alpha = 1;
-                        checkmark[4].alpha = 1;
-
-                        window.loggingMediator.unregisterFunction();
-
-                        results = [levelContainer, metrics];
+                    if (string === 'submit' || string === 'close') {
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
-                            .call(endLevel);
+                            .call(getTextValue);
+                    }
 
+                    function getTextValue() {
+
+                        taskList.phrase = document.getElementById("inputTextFirst").value;
+
+                        console.log(taskList.phrase);
+
+                        if (taskList.phrase === advThirdInstructions.phrase) {
+
+                            taskLabel[1].alpha = 1;
+                            checkmark[1].alpha = 1;
+                            taskLabel[2].alpha = 1;
+                            checkmark[2].alpha = 1;
+                            taskLabel[3].alpha = 1;
+                            checkmark[3].alpha = 1;
+                            taskLabel[4].alpha = 1;
+                            checkmark[4].alpha = 1;
+
+                            /*textInput.style.display = "none";*/
+
+                            window.loggingMediator.unregisterFunction();
+
+                            results = [taskContainer, metrics];
+
+                            createjs.Tween.get(actualLevel)
+                                .wait(1000)
+                                .call(endLevel);
+                        }
                     }
                 });
             }
         });
 
-        stage.addChild(levelContainer);
         stage.addChild(backgroundColor);
+        stage.addChild(levelContainer);
         stage.setChildIndex(backgroundColor, 0);
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
     }
@@ -1528,7 +1554,38 @@ function InitiateLevel(group, level, levelStructure) {
                         levelComplete = true;
                     }
                 }
+                else if (level === 2) {
 
+                    stage.removeChild(results[0]); // remove container
+                    metrics = results[1];
+
+                    /*if (metrics.submit === metrics.pass) {
+                     trophy.current = true;
+                     }*/
+
+                    score.current = parseInt(scoreBounds.level33 - (stopwatch.time()), 10);
+
+                    // Have a good score!
+                    if (score.current > scoreThreshold.level33) {
+                        levelComplete = true;
+                    }
+                }
+                else if (level === 3) {
+
+                    stage.removeChild(results[0]); // remove container
+                    metrics = results[1];
+
+                    /*if (metrics.submit === metrics.pass) {
+                     trophy.current = true;
+                     }*/
+
+                    score.current = parseInt(scoreBounds.level34 - (stopwatch.time()), 10);
+
+                    // Have a good score!
+                    if (score.current > scoreThreshold.level34) {
+                        levelComplete = true;
+                    }
+                }
                 break;
         }
 
