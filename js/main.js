@@ -607,9 +607,6 @@ function loadOverviewPage() {
 
             }
 
-
-
-
             overviewAdvGroupContainer.addChild(s[i]);
 
             overviewAdvGroupContainer.addChild(advTileTitle[i]);

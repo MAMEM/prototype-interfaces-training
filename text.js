@@ -255,6 +255,16 @@ var advThirdInstructions =
         abort: "Submit",
         taskComplete: "Level completed"
     };
+var advFourthInstructions =
+    {
+        openTabs: "Open Tab manager",
+        bookmark: "Bookmark Current Tab",
+        add: "Add a New Tab",
+        openBookmarks: "Go to Bookmarks",
+        selectBookmark: "Select Saved bookmark",
+        openTabsAgain: "Open Tab manager again",
+        taskComplete: "Return to game tab"
+    };
 
 var trophiesArray = [
     {

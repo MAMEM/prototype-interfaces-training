@@ -797,8 +797,6 @@ function InitiateLevel(group, level, levelStructure) {
                 // Check GAZETHEWEB INPUT TYPE
                 metrics.submit++;
 
-                console.log(pointer);
-
                 if (textInput.value === quizText[pointer].correct) {
 
                     textInput.value = '';
@@ -1082,8 +1080,6 @@ function InitiateLevel(group, level, levelStructure) {
 
                 window.loggingMediator.registerFunction(function(string) {
 
-                    console.log(string);
-
                     if (string === 'settings') {
                         taskList.settings = true;
                         taskLabel[0].alpha = 1;
@@ -1198,8 +1194,6 @@ function InitiateLevel(group, level, levelStructure) {
             if (window.loggingMediator) {
 
                 window.loggingMediator.registerFunction(function(string) {
-
-                    console.log(string);
 
                     if (string === 'tabs') {
                         taskList.tabs = true;
@@ -1342,8 +1336,6 @@ function InitiateLevel(group, level, levelStructure) {
 
                 window.loggingMediator.registerFunction(function(string) {
 
-                    console.log(string);
-
                     if (string === 'submit' || string === 'close') {
 
                         createjs.Tween.get(actualLevel)
@@ -1354,8 +1346,6 @@ function InitiateLevel(group, level, levelStructure) {
                     function getTextValue() {
 
                         taskList.phrase = document.getElementById("inputTextFirst").value;
-
-                        console.log(taskList.phrase);
 
                         if (taskList.phrase === advThirdInstructions.phrase) {
 
@@ -1378,6 +1368,124 @@ function InitiateLevel(group, level, levelStructure) {
                                 .wait(1000)
                                 .call(endLevel);
                         }
+                    }
+                });
+            }
+        });
+
+        stage.addChild(backgroundColor);
+        stage.addChild(levelContainer);
+        stage.setChildIndex(backgroundColor, 0);
+        stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
+    }
+
+    function loadLevel9() {
+
+        var metrics = [];
+        var i;
+
+        var backgroundColor = new createjs.Shape();
+        backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
+
+        var levelContainer = loadAdvancedLevelsIntroMap(4);
+        var actualLevel = levelContainer.getChildAt(6);
+
+        // Create task list. All must be set to true to finish level
+        var taskList = [];
+        taskList.tabs = false;
+        taskList.bookmark = false;
+        taskList.new_tab = false;
+        taskList.open_bookmarks = false;
+        taskList.select_bookmark = false;
+        taskList.tabs_again = false;
+        taskList.return = false;
+
+
+        actualLevel.on("mousedown", function() {
+
+            stage.removeChild(levelContainer);
+
+            var taskContainer = new createjs.Container();
+
+            var tasksLabel = new createjs.Text(genericText.tasks, "700 34px Roboto", color.whitePimary);
+            tasksLabel = alignTextToStageCenter(stage, tasksLabel);
+            tasksLabel.y = 80;
+
+            taskContainer.addChild(tasksLabel);
+
+            var taskLabel = [];
+            var checkmark = [];
+            var idx = 0;
+            for (i in advFourthInstructions) {
+
+                taskLabel[idx] = new createjs.Text(advFourthInstructions[i], "400 28px Roboto", color.whitePimary);
+                taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
+                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
+                taskLabel[idx].alpha = 0.54;
+
+                checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
+                checkmark[idx].x = taskLabel[idx].x - 50;
+                checkmark[idx].y = taskLabel[idx].y - 10;
+                checkmark[idx].alpha = 0;
+
+                taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                idx++;
+            }
+            stage.addChild(taskContainer);
+
+            // Start communication with GTW
+            if (window.loggingMediator) {
+
+                window.loggingMediator.registerFunction(function(string) {
+
+                    if (string === "tabs") {
+                        taskList.tabs = true;
+                        taskLabel[0].alpha = 1;
+                        checkmark[0].alpha = 1;
+                    }
+
+                    if (string === "bookmark_add") {
+                        taskList.bookmark = true;
+                        taskLabel[1].alpha = 1;
+                        checkmark[1].alpha = 1;
+                    }
+
+                    if (string === "new_tab") {
+                        taskList.new_tab = true;
+                        taskLabel[2].alpha = 1;
+                        checkmark[2].alpha = 1;
+                    }
+
+                    if (string === "bookmarks") {
+                        taskList.open_bookmarks = true;
+                        taskLabel[3].alpha = 1;
+                        checkmark[3].alpha = 1;
+                    }
+
+                    if (string === "open_bookmark") {
+                        taskList.select_bookmark = true;
+                        taskLabel[4].alpha = 1;
+                        checkmark[4].alpha = 1;
+                    }
+
+                    if (taskList.select_bookmark && string === "tabs") {
+                        taskList.tabs_again = true;
+                        taskLabel[5].alpha = 1;
+                        checkmark[5].alpha = 1;
+                    }
+
+                    if (taskList.tabs_again && string === "tab0") {
+
+                        taskList.return = true;
+                        taskLabel[6].alpha = 1;
+                        checkmark[6].alpha = 1;
+
+                        window.loggingMediator.unregisterFunction();
+                        results = [taskContainer, metrics];
+
+                        createjs.Tween.get(actualLevel)
+                            .wait(1000)
+                            .call(endLevel);
                     }
                 });
             }
@@ -1416,16 +1524,12 @@ function InitiateLevel(group, level, levelStructure) {
         var levelComplete = false;
         trophy.current = false;
 
-        console.log(group, level);
-
         switch(group) {
             case 0:
                 if (level === 0) {
 
                     var marker = results[0];
                     metrics = results[1];
-
-                    console.log(metrics);
 
                     stage.removeChild(marker); // remove marker
                     score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + (metrics.countOff * 50)), 10); // metrics
@@ -1469,8 +1573,6 @@ function InitiateLevel(group, level, levelStructure) {
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-                    console.log(metrics);
-
                     if (metrics.clicks < 2) {
                         trophy.current = true;
                     }
@@ -1502,8 +1604,6 @@ function InitiateLevel(group, level, levelStructure) {
 
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
-
-                    console.log(metrics, stopwatch.time());
 
                     if (metrics.paste < 3) {
                         trophy.current = true;
