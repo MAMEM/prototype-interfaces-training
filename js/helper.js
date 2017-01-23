@@ -92,7 +92,7 @@ function loadLvlStructure(fullTitle, shortTitle, description) {
     timer.icon.x = polygon.x - 3;
     timer.icon.y = 70;
 
-    timer.text = new createjs.Text("00:00:00", "Italic 24px Roboto", color.gray);
+    timer.text = new createjs.Text("00:00", "Italic 24px Roboto", color.gray);
     timer.text.x = timer.icon.x + 43;
     timer.text.y = 75;
     timer.text.textAlign = "left";
@@ -709,9 +709,10 @@ function Stopwatch(text) {
         m = Math.floor( newTime / (60 * 1000) );
         newTime = newTime % (60 * 1000);
         s = Math.floor( newTime / 1000 );
-        ms = newTime % 1000;
-
-        return pad(m, 2) + ':' + pad(s, 2) + ':' + pad(ms, 2);
+        // Exclude ms;
+        /*ms = newTime % 1000;*/
+        /*return pad(m, 2) + ':' + pad(s, 2) + ':' + pad(ms, 2);*/
+        return pad(m, 2) + ':' + pad(s, 2);
     };
 
     this.update =  function(){

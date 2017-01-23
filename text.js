@@ -1,8 +1,8 @@
 var textString = [];
 
 textString.levelSuperComplete = 'Wow ' + user.firstName + ', great score! You also got the trophy!';
-textString.levelComplete = 'You completed the level. You can try replaying it in order to earn the trophy.';
-textString.levelIncomplete = 'Please try again';
+textString.levelComplete = user.firstName + ', you completed the level. You can try replaying it in order to earn the trophy.';
+textString.levelIncomplete = user.firstName + ', you can do better than that! Please try again.';
 
 
 var levelText = [
@@ -63,7 +63,6 @@ var levelText = [
     }
 ];
 
-// Categories: easy = 0, int = 1, adv = 2
 var quizText = [
     {
         question: "Which of the following is a traditional Greek dish?",

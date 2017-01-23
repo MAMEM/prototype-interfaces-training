@@ -115,8 +115,8 @@ function loadOverviewPage() {
     var userId = firebase.auth().currentUser.uid;
     return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
 
-        // BASIC
 
+        // BASIC
         var overviewBasicGroupContainer = new createjs.Container();
 
         // Calculate level unlock for BASIC
@@ -133,8 +133,6 @@ function loadOverviewPage() {
                 } else {
                     levelAvailable[i+1] = false;
                 }
-
-
             }
         }
         levelAvailable[0] = true; // First level is always available!
