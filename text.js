@@ -10,7 +10,7 @@ var levelText = [
         fullTitle: "BASIC - 01 Focus on the markers",
         shortTitle: "Focus on the markers",
         description: "Focus long enough on several locations",
-        story: "Try to focus your eyes on a series of markers for a set amount of time!"
+        story: "Try to focus your eyes on a series of markers. Get the trophy by focusing on each marker only once!"
     },
     {
         fullTitle: "BASIC - 02 Focus on a sequence of markers",

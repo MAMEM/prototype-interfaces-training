@@ -121,13 +121,16 @@ function loadOverviewPage() {
 
         // Calculate level unlock for BASIC
         var levelAvailable = [];
+        var levelCompleted = 0;
+
         if (snapshot.val()) {
             for (i=0; i<2; i++) {
 
                 if (snapshot.val().levels.basic[Object.keys(snapshot.val().levels.basic)[i]]) {
+
+                    levelCompleted++;
                     levelAvailable[i+1] = true;
                     trophyAvailable[i] = snapshot.val().levels.basic[Object.keys(snapshot.val().levels.basic)[i]].trophyGained;
-
                     if (trophyAvailable[i]) {trophyCount++;}
 
                 } else {
@@ -137,7 +140,10 @@ function loadOverviewPage() {
         }
         levelAvailable[0] = true; // First level is always available!
 
-        var basicCompletedLabel = new createjs.Text(levelAvailable.length-1 +"/2 " + genericText.completed, "700 24px Roboto", "rgba(0,0,0,0.23)");
+        console.log(levelCompleted);
+        console.log(levelAvailable);
+
+        var basicCompletedLabel = new createjs.Text(levelCompleted +"/2 " + genericText.completed, "700 24px Roboto", "rgba(0,0,0,0.23)");
         basicCompletedLabel.x = window.innerWidth - poe;
         basicCompletedLabel.y = 140;
         basicCompletedLabel.textAlign = "right";
@@ -273,6 +279,7 @@ function loadOverviewPage() {
         intLabel.y = 420;
 
         trophyAvailable = [];
+        levelCompleted = 0;
 
         // Calculate level unlock for INT
         i = 0;
@@ -292,6 +299,7 @@ function loadOverviewPage() {
                 for (i=0; i<3; i++) {
 
                     if (snapshot.val().levels.int[Object.keys(snapshot.val().levels.int)[i]]) {
+                        levelCompleted++;
                         levelAvailable[i+1] = true;
                         trophyAvailable[i] = snapshot.val().levels.int[Object.keys(snapshot.val().levels.int)[i]].trophyGained;
 
@@ -315,7 +323,7 @@ function loadOverviewPage() {
         var intLevelTime = [];
         var intLevelTrophy = [];
 
-        var intCompletedLabel = new createjs.Text(levelAvailable.length-1 +"/3 " + genericText.completed, "700 24px Roboto", "rgba(0,0,0,0.23)");
+        var intCompletedLabel = new createjs.Text(levelCompleted +"/3 " + genericText.completed, "700 24px Roboto", "rgba(0,0,0,0.23)");
         intCompletedLabel.x = window.innerWidth - poe;
         intCompletedLabel.y = 420;
         intCompletedLabel.textAlign = "right";
@@ -448,6 +456,7 @@ function loadOverviewPage() {
         advLabel.y = 700;
 
         trophyAvailable = [];
+        levelCompleted = 0;
 
         // Calculate level unlock for INT
         i = 0;
@@ -467,6 +476,7 @@ function loadOverviewPage() {
                 for (i=0; i<4; i++) {
 
                     if (snapshot.val().levels.adv[Object.keys(snapshot.val().levels.adv)[i]]) {
+                        levelCompleted++;
                         levelAvailable[i+1] = true;
                         trophyAvailable[i] = snapshot.val().levels.adv[Object.keys(snapshot.val().levels.adv)[i]].trophyGained;
 
@@ -488,7 +498,7 @@ function loadOverviewPage() {
         var advLevelTime = [];
         var advLevelTrophy = [];
 
-        var advCompletedLabel = new createjs.Text(levelAvailable.length-1 +"/4 " + genericText.completed, "700 24px Roboto", "rgba(0,0,0,0.23)");
+        var advCompletedLabel = new createjs.Text(levelCompleted +"/4 " + genericText.completed, "700 24px Roboto", "rgba(0,0,0,0.23)");
         advCompletedLabel.x = window.innerWidth - poe;
         advCompletedLabel.y = 700;
         advCompletedLabel.textAlign = "right";

@@ -290,6 +290,7 @@ function calculateIntervals(intervals, time, metrics) {
             accuracy: metrics.countOff
         });
     }
+
     return intervals;
 }
 

@@ -22,9 +22,12 @@ function loadLevel(group, level) {
     switch(group) {
         case 0:
             // No need to add tutorials, for the basic levels. There is no interface involved!
-            if (level === 1) { textPointer = 1; }
 
             canvas.height = window.innerHeight - 20;
+
+            if (level === 1) {
+                textPointer = 1;
+            }
             break;
         case 1:
 
@@ -47,12 +50,13 @@ function loadLevel(group, level) {
             break;
         case 2:
 
+            canvas.height = window.innerHeight - 20;
+
             if (level === 0) { textPointer = 5; }
             else if (level === 1) { textPointer = 6; }
             else if (level === 2) { textPointer = 7; }
             else if (level === 3) { textPointer = 8; }
 
-            canvas.height = window.innerHeight - 20;
             break;
     }
 
@@ -206,16 +210,18 @@ function InitiateLevel(group, level, levelStructure) {
 
     function loadLevel1() {
 
+        var markers = 5;
+
         var idx = 0;
         var marker = [];
 
         // create metrics
         var metrics = [];
-        metrics.points = 5;
+        metrics.points = markers;
         metrics.countOff = 0;
         metrics.countOffTotal = 0;
         metrics.countOnTotal = 0;
-
+        metrics.eval = 0;
 
         // crate intervals (used in evaluation process)
         var intervals = [];
@@ -291,51 +297,56 @@ function InitiateLevel(group, level, levelStructure) {
 
             if (idx > metrics.points-1) {
 
-                var acc = [];
-                var speed = [];
-                var eval = 0;
-
-                console.log(metrics);
-                console.log(intervals);
-
                 for (var i in intervals) {
                     if (i > 0) {
                         console.log(i);
                         console.log(intervals[i]);
 
-                        acc.push(intervals[i].accuracy > evaluationRatio * intervals[i-1].accuracy);
-                        speed.push(intervals[i].time < evaluationRatio * intervals[i-1].time);
+                        intervals[i].accEval = intervals[i].accuracy > evaluationRatio * intervals[i-1].accuracy;
+                        intervals[i].speedEval = intervals[i].time < evaluationRatio * intervals[i-1].time;
 
-                        if (acc || speed) {
-                            eval++;
+                        console.log(intervals[i].accEval);
+                        console.log(intervals[i].speedEval);
+
+                        if (intervals[i].accEval || intervals[i].speedEval) {
+                            metrics.eval++;
                         }
                     }
                 }
+
+                console.log(metrics);
+                console.log(intervals);
+
+                // delete me (Debugging)
+                /*metrics.eval = 0;*/
 
                 // Got trophy! The user didn't move his eyes from the target.
                 // Evaluation does not matter, beacuse his performance is top.
-                if (metrics.countOnTotal === metrics.points) {
+                if (metrics.countOnTotal === metrics.points && metrics.points === markers) {
 
                     metrics.trophy = true;
                     results = [marker, metrics];
-                    endLevel();
+                    endLevel(true);
                 }
                 // If not trophy, then check evaluation strategy
                 else {
+                    metrics.trophy = false;
 
-                    if (eval > (metrics.points-1) / 2) {
-                        metrics.trophy = false;
+                    if (metrics.eval > (metrics.points-1) / 2) {
+
                         results = [marker, metrics, intervals];
-                        endLevel();
+                        endLevel(true);
                     }
                     else {
 
-                        if (metrics.points > 15) {
-                            console.log("FAIL");
-                        }
+                        if (metrics.points >= (3*markers)-1) {
+                            results = [marker, metrics, intervals];
+                            endLevel(false);
+                        } else {
 
-                        metrics.points = metrics.points + 5;
-                        addMarker(idx);
+                            metrics.points = metrics.points + markers;
+                            addMarker(idx);
+                        }
                     }
                 }
 
@@ -1548,7 +1559,7 @@ function InitiateLevel(group, level, levelStructure) {
     }
 
 
-    function endLevel() {
+    function endLevel(levelComplete) {
 
         if (progressBar) {
             stage.removeChild(progressBar);
@@ -1563,7 +1574,6 @@ function InitiateLevel(group, level, levelStructure) {
         var scoreInfoContainer = new createjs.Container();
         var metrics;
         var intervals;
-        var levelComplete = false;
         var score = [];
         var time = [];
         var trophy = [];
@@ -1583,12 +1593,8 @@ function InitiateLevel(group, level, levelStructure) {
                     intervals = results[2];
 
                     stage.removeChild(marker); // remove marker
-                    score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + (metrics.countOff * 50)), 10); // metrics
+                    score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + ((metrics.countOffTotal - metrics.points) * 50)), 10); // metrics
                     trophy.current = metrics.trophy;
-
-                    if (score.current > scoreThreshold.level11 ) {
-                        levelComplete = true;
-                    }
 
 
                 } else if (level === 1) {

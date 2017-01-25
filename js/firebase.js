@@ -10,7 +10,10 @@ function loginUser() {
 
             if (!currentUser.displayName) {
                 currentUser.updateProfile({
-                    displayName: user.name
+                    displayName: user.name,
+                    gender: user.gender,
+                    age: user.age,
+                    exp: user.exp
                 });
             }
 
@@ -36,7 +39,10 @@ function loginUser() {
 
                     if (!currentUser.displayName) {
                         currentUser.updateProfile({
-                            displayName: user.name
+                            displayName: user.name,
+                            gender: user.gender,
+                            age: user.age,
+                            exp: user.exp
                         });
                     }
 
@@ -76,7 +82,6 @@ function updateUserData(group, level, userId, score, time, trophy, metrics) {
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
                     "trophyGained": trophy.hasIt,
-                    "countOn": metrics.countOn,
                     "countOff": metrics.countOff
                 });
 
