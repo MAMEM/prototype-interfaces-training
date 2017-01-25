@@ -299,23 +299,15 @@ function InitiateLevel(group, level, levelStructure) {
 
                 for (var i in intervals) {
                     if (i > 0) {
-                        console.log(i);
-                        console.log(intervals[i]);
 
                         intervals[i].accEval = intervals[i].accuracy > evaluationRatio * intervals[i-1].accuracy;
                         intervals[i].speedEval = intervals[i].time < evaluationRatio * intervals[i-1].time;
-
-                        console.log(intervals[i].accEval);
-                        console.log(intervals[i].speedEval);
 
                         if (intervals[i].accEval || intervals[i].speedEval) {
                             metrics.eval++;
                         }
                     }
                 }
-
-                console.log(metrics);
-                console.log(intervals);
 
                 // delete me (Debugging)
                 /*metrics.eval = 0;*/
@@ -1592,6 +1584,9 @@ function InitiateLevel(group, level, levelStructure) {
                     metrics = results[1];
                     intervals = results[2];
 
+                    console.log(metrics);
+                    console.log(intervals);
+
                     stage.removeChild(marker); // remove marker
                     score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + ((metrics.countOffTotal - metrics.points) * 50)), 10); // metrics
                     trophy.current = metrics.trophy;
@@ -1817,7 +1812,7 @@ function InitiateLevel(group, level, levelStructure) {
                 label = positionedResults[3];
                 separator = positionedResults[4];
 
-                updateUserData(group, level, userId, score, time, trophy, metrics);
+                updateUserData(group, level, userId, score, time, trophy, metrics, intervals);
 
                 // Add Rankings
                 createScoreboard(group, level, col);

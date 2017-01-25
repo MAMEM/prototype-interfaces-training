@@ -66,7 +66,7 @@ function loginUser() {
 
 }
 
-function updateUserData(group, level, userId, score, time, trophy, metrics) {
+function updateUserData(group, level, userId, score, time, trophy, metrics, intervals) {
 
     switch(group) {
         case 0:
@@ -82,7 +82,9 @@ function updateUserData(group, level, userId, score, time, trophy, metrics) {
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
                     "trophyGained": trophy.hasIt,
-                    "countOff": metrics.countOff
+                    "markers": metrics.points,
+                    "eval": metrics.eval,
+                    "intervals": intervals
                 });
 
 
