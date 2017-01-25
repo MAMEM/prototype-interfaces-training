@@ -269,6 +269,30 @@ function initializeResultsValues(group, level, stopwatch, score, time, trophy) {
     return [trophy, score, time];
 }
 
+function calculateIntervals(intervals, time, metrics) {
+
+    var i;
+
+    if (intervals.length > 0) {
+
+        for (i in intervals) {
+            time = time - intervals[i].time;
+        }
+
+        intervals.push({
+            time: time,
+            accuracy: metrics.countOff - 1
+        });
+
+    } else {
+        intervals.push({
+            time: time,
+            accuracy: metrics.countOff
+        });
+    }
+    return intervals;
+}
+
 function calculateNewScore(score, savedScore) {
 
     score.saved = savedScore;

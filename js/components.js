@@ -24,6 +24,9 @@ color.textRegular = "rgba(0,0,0,0.87)";
 var textSize = [];
 textSize.mini = "400 14px Roboto";
 
+// S-shaped curve Evaluation ratio
+var evaluationRatio = 130 / 100;
+
 var scoreThreshold = [];
 scoreThreshold.level11 = 20000;
 scoreThreshold.level12 = 20000;
@@ -52,6 +55,8 @@ interval.markerHover = 3000;
 interval.markerFocus = 2000;
 
 interval.markerDuration = 4000;
+
+
 
 var introStoryContainer;
 

@@ -151,8 +151,6 @@ function loadLevel(group, level) {
             }
         }
     }
-
-
 }
 
 function InitiateLevel(group, level, levelStructure) {
@@ -179,7 +177,7 @@ function InitiateLevel(group, level, levelStructure) {
             if (level === 0) {
                 results = loadLevel1();
             } else if (level === 1) {
-                loadLevel2();
+                results = loadLevel2();
             }
 
             break;
@@ -209,14 +207,19 @@ function InitiateLevel(group, level, levelStructure) {
     function loadLevel1() {
 
         var idx = 0;
+        var marker = [];
 
         // create metrics
         var metrics = [];
-        metrics.countOn = 0;
-        metrics.countOff = 0;
         metrics.points = 5;
+        metrics.countOff = 0;
+        metrics.countOffTotal = 0;
+        metrics.countOnTotal = 0;
 
-        var marker = [];
+
+        // crate intervals (used in evaluation process)
+        var intervals = [];
+
         var markerTimeout;
         addMarker(idx);
 
@@ -228,8 +231,8 @@ function InitiateLevel(group, level, levelStructure) {
             stage.addChild(marker[idx]);
 
             marker[idx].on("mouseover", function() {
+                metrics.countOnTotal++;
                 changeCursor(true);
-                metrics.countOn++;
                 createjs.Ticker.addEventListener("tick", mouseTick);
                 markerTimeout = setTimeout( loadNewMarker, interval.markerHover);
 
@@ -258,6 +261,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             marker[idx].on("mouseout", function() {
                 changeCursor(false);
+                metrics.countOffTotal++;
                 metrics.countOff++;
                 createjs.Ticker.removeEventListener("tick", mouseTick);
                 window.clearTimeout(markerTimeout);
@@ -281,19 +285,65 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.removeChild(marker[idx]);
 
+            intervals = calculateIntervals(intervals, stopwatch.time(), metrics);
+            metrics.countOff = 0;
             idx++;
 
             if (idx > metrics.points-1) {
 
-                results =  [marker, metrics];
-                endLevel();
+                var acc = [];
+                var speed = [];
+                var eval = 0;
+
+                console.log(metrics);
+                console.log(intervals);
+
+                for (var i in intervals) {
+                    if (i > 0) {
+                        console.log(i);
+                        console.log(intervals[i]);
+
+                        acc.push(intervals[i].accuracy > evaluationRatio * intervals[i-1].accuracy);
+                        speed.push(intervals[i].time < evaluationRatio * intervals[i-1].time);
+
+                        if (acc || speed) {
+                            eval++;
+                        }
+                    }
+                }
+
+                // Got trophy! The user didn't move his eyes from the target.
+                // Evaluation does not matter, beacuse his performance is top.
+                if (metrics.countOnTotal === metrics.points) {
+
+                    metrics.trophy = true;
+                    results = [marker, metrics];
+                    endLevel();
+                }
+                // If not trophy, then check evaluation strategy
+                else {
+
+                    if (eval > (metrics.points-1) / 2) {
+                        metrics.trophy = false;
+                        results = [marker, metrics, intervals];
+                        endLevel();
+                    }
+                    else {
+
+                        if (metrics.points > 15) {
+                            console.log("FAIL");
+                        }
+
+                        metrics.points = metrics.points + 5;
+                        addMarker(idx);
+                    }
+                }
 
             } else {
-
+                // Load another marker
                 addMarker(idx);
             }
         }
-
     }
 
 
@@ -1511,7 +1561,9 @@ function InitiateLevel(group, level, levelStructure) {
 
         var outroStoryContainer;
         var scoreInfoContainer = new createjs.Container();
-
+        var metrics;
+        var intervals;
+        var levelComplete = false;
         var score = [];
         var time = [];
         var trophy = [];
@@ -1520,8 +1572,6 @@ function InitiateLevel(group, level, levelStructure) {
         poe.x = 40;
         poe.y = 70;
 
-        var metrics;
-        var levelComplete = false;
         trophy.current = false;
 
         switch(group) {
@@ -1530,14 +1580,11 @@ function InitiateLevel(group, level, levelStructure) {
 
                     var marker = results[0];
                     metrics = results[1];
+                    intervals = results[2];
 
                     stage.removeChild(marker); // remove marker
                     score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + (metrics.countOff * 50)), 10); // metrics
-
-                    // Reward scenario for level1
-                    if (metrics.countOff < 5) {
-                        trophy.current = true;
-                    }
+                    trophy.current = metrics.trophy;
 
                     if (score.current > scoreThreshold.level11 ) {
                         levelComplete = true;
