@@ -67,7 +67,21 @@ function changeCursor(hover) {
 
 function mouseTick() {
     mousePointer.rotation++;
+}
 
+function createProgressBarElement(mousePointer) {
+    var progressBar = [];
+
+    progressBar.foreground = new createjs.Shape();
+    progressBar.background = new createjs.Shape();
+    progressBar.foreground.graphics.beginFill(color.green).drawRect(0, 0, 1, 8).endFill();
+    progressBar.background.graphics.beginFill(color.gray).drawRect(0, 0, 100, 8).endFill();
+    progressBar.foreground.x = mousePointer.x - 50;
+    progressBar.foreground.y = mousePointer.y + 60;
+    progressBar.background.x = mousePointer.x - 50;
+    progressBar.background.y = mousePointer.y + 60;
+
+    return progressBar;
 }
 
 function loadLvlStructure(fullTitle, shortTitle, description) {
@@ -269,7 +283,7 @@ function initializeResultsValues(group, level, stopwatch, score, time, trophy) {
     return [trophy, score, time];
 }
 
-function calculateIntervals(intervals, time, metrics) {
+function calculateLvl1Intervals(intervals, time, metrics) {
 
     var i;
 

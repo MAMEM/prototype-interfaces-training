@@ -140,9 +140,6 @@ function loadOverviewPage() {
         }
         levelAvailable[0] = true; // First level is always available!
 
-        console.log(levelCompleted);
-        console.log(levelAvailable);
-
         var basicCompletedLabel = new createjs.Text(levelCompleted +"/2 " + genericText.completed, "700 24px Roboto", "rgba(0,0,0,0.23)");
         basicCompletedLabel.x = window.innerWidth - poe;
         basicCompletedLabel.y = 140;

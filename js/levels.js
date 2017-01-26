@@ -211,11 +211,10 @@ function InitiateLevel(group, level, levelStructure) {
     function loadLevel1() {
 
         var markers = 5;
-
         var idx = 0;
         var marker = [];
 
-        // create metrics
+        // Create metrics
         var metrics = [];
         metrics.points = markers;
         metrics.countOff = 0;
@@ -223,7 +222,7 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.countOnTotal = 0;
         metrics.eval = 0;
 
-        // crate intervals (used in evaluation process)
+        // Create intervals (used in evaluation process)
         var intervals = [];
 
         var markerTimeout;
@@ -243,14 +242,7 @@ function InitiateLevel(group, level, levelStructure) {
                 markerTimeout = setTimeout( loadNewMarker, interval.markerHover);
 
                 progressBarInterval = setInterval(refreshProgressBar, 10);
-                progressBar.foreground = new createjs.Shape();
-                progressBar.background = new createjs.Shape();
-                progressBar.foreground.graphics.beginFill(color.green).drawRect(0, 0, 1, 8).endFill();
-                progressBar.background.graphics.beginFill(color.gray).drawRect(0, 0, 100, 8).endFill();
-                progressBar.foreground.x = mousePointer.x - 50;
-                progressBar.foreground.y = mousePointer.y + 60;
-                progressBar.background.x = mousePointer.x - 50;
-                progressBar.background.y = mousePointer.y + 60;
+                progressBar = createProgressBarElement(mousePointer);
 
                 stage.addChild(progressBar.foreground, progressBar.background);
 
@@ -291,7 +283,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.removeChild(marker[idx]);
 
-            intervals = calculateIntervals(intervals, stopwatch.time(), metrics);
+            intervals = calculateLvl1Intervals(intervals, stopwatch.time(), metrics);
             metrics.countOff = 0;
             idx++;
 
@@ -317,13 +309,14 @@ function InitiateLevel(group, level, levelStructure) {
                 if (metrics.countOnTotal === metrics.points && metrics.points === markers) {
 
                     metrics.trophy = true;
-                    results = [marker, metrics];
+                    results = [marker, metrics, intervals];
                     endLevel(true);
                 }
                 // If not trophy, then check evaluation strategy
                 else {
                     metrics.trophy = false;
 
+                    // Level completed (no trophy)
                     if (metrics.eval > (metrics.points-1) / 2) {
 
                         results = [marker, metrics, intervals];
@@ -331,11 +324,13 @@ function InitiateLevel(group, level, levelStructure) {
                     }
                     else {
 
+                        // Level failed (no trophy obviously)
                         if (metrics.points >= (3*markers)-1) {
                             results = [marker, metrics, intervals];
                             endLevel(false);
-                        } else {
-
+                        }
+                        // Add another group of markers
+                        else {
                             metrics.points = metrics.points + markers;
                             addMarker(idx);
                         }
@@ -352,6 +347,10 @@ function InitiateLevel(group, level, levelStructure) {
 
     function loadLevel2() {
 
+        var markers = 8;
+
+        var index = 0;
+
         var i, j;
         var width = 80;
         var height = 80;
@@ -361,9 +360,10 @@ function InitiateLevel(group, level, levelStructure) {
         var metrics = [];
         metrics.countOn = 0;
         metrics.countOff = 0;
-        metrics.hit = 0;
-        metrics.miss = 0;
-        metrics.moles = 12;
+        metrics.hits = 0;
+        metrics.moles = markers;
+
+        var intervals = [];
 
         var col = [];
         col.x = 60;
@@ -376,7 +376,6 @@ function InitiateLevel(group, level, levelStructure) {
         // Set markers on the stage
         for(i=0; i < cols; i++) {
             for (j=0; j < rows; j++) {
-
                 marker = new createjs.Bitmap("assets/marker_disabled.png");
                 marker.x = poe + col.x + (col.width * i) - 48;
                 marker.y = (window.innerHeight/2 - height/2) - 150 + (300 * j);
@@ -390,16 +389,23 @@ function InitiateLevel(group, level, levelStructure) {
 
         var currentMarker = [];
         var idx = 0;
-        for (i=0; i < metrics.moles; i++) {
-            // Pick one at random
 
-            idx = getRandomInt(idx, 0,5);
+        startMoles(index);
 
-            currentMarker[i] = markersContainer.getChildAt(idx);
-            createjs.Tween.get(currentMarker[i])
-                .wait(interval.markerDuration * i)
-                .call(activateMole, [currentMarker[i], i]);
+        function startMoles(index) {
+
+            for (i=index; i < metrics.moles; i++) {
+                // Pick one at random
+
+                idx = getRandomInt(idx, 0,5);
+
+                currentMarker[i] = markersContainer.getChildAt(idx);
+                createjs.Tween.get(currentMarker[i])
+                    .wait(interval.markerDuration * (i-index))
+                    .call(activateMole, [currentMarker[i], i]);
+            }
         }
+
 
         function activateMole(elem, i) {
 
@@ -411,17 +417,9 @@ function InitiateLevel(group, level, levelStructure) {
                 createjs.Ticker.addEventListener("tick", mouseTick);
 
                 elem.markerTimeout = setTimeout( hit, interval.markerFocus);
-
-                elem.progressBar = [];
                 elem.progressBarInterval = setInterval(refreshProgressBar, 10);
-                elem.progressBar.foreground = new createjs.Shape();
-                elem.progressBar.background = new createjs.Shape();
-                elem.progressBar.foreground.graphics.beginFill(color.green).drawRect(0, 0, 1, 8).endFill();
-                elem.progressBar.background.graphics.beginFill(color.gray).drawRect(0, 0, 100, 8).endFill();
-                elem.progressBar.foreground.x = mousePointer.x - 50;
-                elem.progressBar.foreground.y = mousePointer.y + 60;
-                elem.progressBar.background.x = mousePointer.x - 50;
-                elem.progressBar.background.y = mousePointer.y + 60;
+
+                elem.progressBar = createProgressBarElement(mousePointer);
 
                 elem.progressBar.text = new createjs.Text(genericText.hit, "700 32px Roboto", color.green);
                 stage.addChild(elem.progressBar.text);
@@ -480,15 +478,69 @@ function InitiateLevel(group, level, levelStructure) {
             elem.removeAllEventListeners();
             changeCursor(false);
 
-            // When all moles have popped, end the level
-            if (metrics.moles === (i+1)) {
-                results = [markersContainer, metrics];
-                endLevel();
+            if(!intervals[i]) {
+                intervals.push({ hit: false });
             }
 
+            // When all moles have popped, end the level
+            if (i === metrics.moles-1) {
+
+                // GOT trophy when all targets are successfully hit!
+                if (metrics.hits === metrics.moles) {
+                    metrics.trophy = true;
+                    results = [markersContainer, metrics];
+                    endLevel(true);
+                }
+                else {
+                    metrics.trophy = false;
+
+                    // Level complete - no trophy
+                    if (metrics.hits > (metrics.moles/2)) {
+                        results = [markersContainer, metrics];
+                        endLevel(true);
+                    }
+                    else {
+
+                        // Level failed (no trophy obviously)
+                        if (metrics.moles >= (3*markers)-1) {
+                            results = [markersContainer, metrics];
+                            endLevel(false);
+                        }
+                        // Add another group of markers
+                        else {
+
+                            metrics.moles = metrics.moles + markers;
+
+                            console.log(index, markers, metrics.moles, index+markers);
+
+                            startMoles(index + metrics.moles - markers);
+                        }
+                    }
+
+
+                }
+            }
         }
+
         function hit() {
-            metrics.hit++;
+
+            var time = stopwatch.time();
+
+            if (intervals.length > 0) {
+                for (j in intervals) {
+                    time = time - intervals[j].startTime - interval.markerDuration;
+                }
+
+                intervals.push({ startTime: time, hit: true });
+            } else {
+                intervals.push({ startTime: time - interval.markerFocus, hit: true });
+            }
+
+            console.log("stopwatch: ", stopwatch.time());
+
+            console.log("NEW: ", intervals);
+
+            metrics.hits++;
         }
     }
 
@@ -1589,6 +1641,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     stage.removeChild(marker); // remove marker
                     score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + ((metrics.countOffTotal - metrics.points) * 50)), 10); // metrics
+
                     trophy.current = metrics.trophy;
 
 
@@ -1598,17 +1651,11 @@ function InitiateLevel(group, level, levelStructure) {
 
                     metrics.multiplier = metrics.countOff > metrics.moles ? metrics.countOff - metrics.moles : 0;
 
-                    if (metrics.hit === metrics.moles) {
-                        trophy.current = true;
-                    }
-
                     var multiplier = parseInt(scoreBounds.level12 / metrics.moles, 10);
-                    score.current = parseInt(((metrics.hit) * multiplier) - (metrics.multiplier * 5), 10); // metrics
+                    score.current = parseInt(((metrics.hits) * multiplier) - (metrics.multiplier * 5), 10); // metrics
 
-                    // Hit half of them & have a good score!
-                    if (metrics.hit >= (metrics.moles/2)-1 && score.current > scoreThreshold.level12) {
-                        levelComplete = true;
-                    }
+                    console.log(metrics);
+
 
                 }
 
@@ -1740,6 +1787,9 @@ function InitiateLevel(group, level, levelStructure) {
 
         // Run update to firebase only if threshold is reached
         if (levelComplete) {
+
+            // Check if score is negative, then substitute with zero.
+            score.current = score.current > 0 ? score.current : 0;
 
             // Create results screen
             var resultsPopup = new createjs.Shape();
