@@ -511,35 +511,27 @@ function InitiateLevel(group, level, levelStructure) {
 
                             metrics.moles = metrics.moles + markers;
 
-                            console.log(index, markers, metrics.moles, index+markers);
-
                             startMoles(index + metrics.moles - markers);
                         }
                     }
-
-
                 }
             }
         }
 
         function hit() {
 
+            // Calculate the time spent from activation of marker to start of the hover that hits it.
             var time = stopwatch.time();
-
             if (intervals.length > 0) {
-                for (j in intervals) {
-                    time = time - intervals[j].startTime - interval.markerDuration;
-                }
+
+                time = time - (interval.markerDuration * intervals.length) - interval.markerFocus;
 
                 intervals.push({ startTime: time, hit: true });
             } else {
                 intervals.push({ startTime: time - interval.markerFocus, hit: true });
             }
 
-            console.log("stopwatch: ", stopwatch.time());
-
-            console.log("NEW: ", intervals);
-
+            // Increment hit counter
             metrics.hits++;
         }
     }
