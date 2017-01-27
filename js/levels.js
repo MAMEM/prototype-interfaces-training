@@ -1638,7 +1638,6 @@ function InitiateLevel(group, level, levelStructure) {
                             score.current = score.current + parseInt((segment * intervals[i].scoreRatio), 10);
                         }
                     }
-
                     trophy.current = metrics.trophy;
                 }
 

@@ -94,8 +94,9 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
                     "trophyGained": trophy.hasIt,
-                    "countOn": metrics.countOn,
-                    "countOff": metrics.countOff
+                    "hits": metrics.hits,
+                    "moles": metrics.moles,
+                    "intervals": intervals
                 });
             }
             break;
