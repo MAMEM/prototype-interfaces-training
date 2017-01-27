@@ -60,7 +60,7 @@ function loadLevel(group, level) {
             break;
     }
 
-    levelStructure = loadLvlStructure(levelText[textPointer].fullTitle, levelText[textPointer].shortTitle, levelText[textPointer].description);
+    levelStructure = loadLvlStructure(levelText[textPointer].fullTitle, levelText[textPointer].shortTitle);
     levelIntro = loadLvlIntroStory(levelText[textPointer].story);
 
     var speechBubble = levelIntro.getChildAt(0);
@@ -124,10 +124,8 @@ function loadLevel(group, level) {
 
                 var title = levelStructure.getChildAt(5);
                 var line = levelStructure.getChildAt(6);
-                var desc = levelStructure.getChildAt(7);
                 levelStructure.removeChild(title);
                 levelStructure.removeChild(line);
-                levelStructure.removeChild(desc);
 
                 InitiateLevel(group, level, levelStructure);
             }

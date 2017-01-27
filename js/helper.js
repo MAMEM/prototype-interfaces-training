@@ -84,7 +84,7 @@ function createProgressBarElement(mousePointer) {
     return progressBar;
 }
 
-function loadLvlStructure(fullTitle, shortTitle, description) {
+function loadLvlStructure(fullTitle, shortTitle) {
     var polygon = new createjs.Shape();
     polygon.graphics.beginFill(color.gray);
     polygon.graphics.moveTo(14, 0).lineTo(28, 16).lineTo(14, 32).lineTo(0, 16).lineTo(14, 0);
@@ -123,12 +123,8 @@ function loadLvlStructure(fullTitle, shortTitle, description) {
     smallSeparator.graphics.drawRect(poe, 216, mainTitleBounds.width + 100, 1);
     smallSeparator.graphics.endFill();
 
-    var descriptionText = new createjs.Text(description, "22px Roboto", color.blue);
-    descriptionText = alignTextToStageCenter(stage, descriptionText);
-    descriptionText.y = 220;
-
     var levelStructureContainer = new createjs.Container();
-    levelStructureContainer.addChild(polygon, bigSeparator, levelTitle, timer.icon, timer.text, mainTitle, smallSeparator, descriptionText);
+    levelStructureContainer.addChild(polygon, bigSeparator, levelTitle, timer.icon, timer.text, mainTitle, smallSeparator);
     stage.addChild(levelStructureContainer);
 
     return levelStructureContainer;

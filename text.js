@@ -9,56 +9,46 @@ var levelText = [
     {
         fullTitle: "BASIC - 01 Focus on the markers",
         shortTitle: "Focus on the markers",
-        description: "Focus long enough on several locations",
         story: "Try to focus your eyes on a series of markers. Get the trophy by focusing on each marker only once!"
     },
     {
         fullTitle: "BASIC - 02 Focus on a sequence of markers",
         shortTitle: "Whack-a-mole!",
-        description: "Focus on a sequence of locations",
         story: "Try to focus your eyes on each marker when it appears, for a set amount of time!"
     },
     {
         fullTitle: "INTERMEDIATE - 01 Find the wizard",
         shortTitle: "Find the wizard",
-        description: "He is hiding somewhere along the river",
         story: "Scroll through the level to find the wizard using the scroll overlays or the auto scrolling, and use the click emulation button to select the place where he is hiding!"
     },
     {
         fullTitle: "INTERMEDIATE - 02 The Quiz",
         shortTitle: "The quiz",
-        description: "Let GazeTheWeb aid you to answer correctly to the quiz",
         story: "You found the wizard! Now he is challenging you to a quiz test. Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD!"
     },
     {
         fullTitle: "INTERMEDIATE - 03 Find the treasure",
         shortTitle: "The map",
-        description: "Use GazeTheWeb copy & paste functionality to find the treasure",
         story: "Open the map using the click emulation button, then use the GazeTheWeb copy & paste functionality to find the treasure!"
     },
     {
         fullTitle: "ADVANCED - 01 Gaze Visualization",
         shortTitle: "Settings - Gaze Visualization",
-        description: "Access General Settings of GTW and learn how to use Gaze Visualization",
         story: "You uncovered the location of the treasure in the previous levels. Now tread through the path accross 4 locations to finally find the treasure, while learning how to use the unique tools GTW has to offer!"
     },
     {
         fullTitle: "ADVANCED - 02 URL Typing",
         shortTitle: "URL Typing",
-        description: "Learn how to type a url",
         story: "Learn how to edit a url on GTW Browser"
     },
     {
-
         fullTitle: "ADVANCED - 03 Text prediction",
         shortTitle: "Text prediction",
-        description: "Learn how to type using text prediction",
         story: "Learn how to type using text prediction"
     },
     {
         fullTitle: "ADVANCED - 04 Bookmarks",
         shortTitle: "Bookmarks",
-        description: "Learn how to bookmark a page",
         story: "Learn how to bookmark a page"
     }
 ];
