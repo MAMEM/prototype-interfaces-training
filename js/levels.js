@@ -1621,7 +1621,6 @@ function InitiateLevel(group, level, levelStructure) {
                     intervals = results[2];
 
                     score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + ((metrics.countOffTotal - metrics.points) * 50)), 10);
-
                     trophy.current = metrics.trophy;
 
                 } else if (level === 1) {
@@ -1629,11 +1628,9 @@ function InitiateLevel(group, level, levelStructure) {
                     metrics = results[1];
                     intervals = results[2];
 
-                    var segment = parseInt(scoreBounds.level12 / metrics.hits, 10);
-
-                    score.current = 0;
-
                     var i;
+                    var segment = parseInt(scoreBounds.level12 / metrics.hits, 10);
+                    score.current = 0;
                     for (i in intervals) {
                         if (intervals[i].hit) {
                             intervals[i].scoreRatio = 1.2 - ((intervals[i].startTime / (interval.markerDuration - interval.markerFocus)));
@@ -1641,6 +1638,8 @@ function InitiateLevel(group, level, levelStructure) {
                             score.current = score.current + parseInt((segment * intervals[i].scoreRatio), 10);
                         }
                     }
+
+                    trophy.current = metrics.trophy;
                 }
 
                 break;
