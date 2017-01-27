@@ -63,17 +63,47 @@ var introStoryContainer;
 var Button = function (fillColor, size, pos, text, action) {
 
     this.btn = new createjs.Shape();
-    this.btn.graphics.beginFill(fillColor).drawRect(10, 0, size.x-20, size.y);
-    this.btn.x = pos.x;
-    this.btn.y = pos.y;
+    this.btn.graphics.beginFill(fillColor).drawRect(0, 0, size.x, size.y);
+    this.btn.x = pos.x + size.x/2;
+    this.btn.y = pos.y + size.y/2;
+    this.btn.regX = size.x/2;
+    this.btn.regY = size.y/2;
 
     this.btn.outColor = fillColor;
-    this.btn.overColor = '';
+    this.btn.overColor = color.gray;
 
     var timeout;
+    var self = this;
+
     this.btn.addEventListener("mouseover", function(event) {
-        changeCursor(true);
+
+        self.btn.hoverFill = new createjs.Shape().set({
+            x: self.btn.x,
+            y: self.btn.y,
+            scaleX: 0,
+            scaleY: 0,
+            regX: self.btn.regX,
+            regY: self.btn.regY
+        });
+
+        self.btn.hoverFill.graphics
+            .beginFill(self.btn.overColor)
+            .drawRect(0, 0, size.x, size.y);
+
+        stage.addChild(self.btn.hoverFill);
+
         createjs.Ticker.addEventListener("tick", mouseTick);
+
+        createjs.Tween.get(self.btn.hoverFill)
+            .to({
+                scaleX:1,
+                scaleY:1,
+                x: self.btn.x,
+                y: self.btn.y
+            }, interval.normal, createjs.Ease.quadInOut);
+
+        changeCursor(true);
+
         timeout = setTimeout(action, interval.normal);
     });
 
@@ -82,11 +112,14 @@ var Button = function (fillColor, size, pos, text, action) {
         changeCursor(false);
         createjs.Ticker.removeEventListener("tick", mouseTick);
 
+        createjs.Tween.removeTweens(self.btn.hoverFill);
+        stage.removeChild(self.btn.hoverFill);
+
         window.clearTimeout(timeout);
 
     });
 
-    this.label = new createjs.Text(text, "500 48px Roboto", color.whitePimary);
+    this.label = new createjs.Text(text, "500 32px Roboto", color.whitePimary);
     this.label = centerElement(size, pos, this.label);
 
     return this;

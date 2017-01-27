@@ -103,7 +103,7 @@ var quizText = [
     {
         question: "Who is considered as the founder of Medicine?",
         answer1: "hippocrates",
-        answer2: "Hieronymus",
+        answer2: "hieronymus",
         answer3: "xenophon",
         answer4: "demosthenes",
         correct: "hippocrates",

@@ -439,42 +439,32 @@ function positionResultsElements(score, time, trophy, col, label, separator) {
 
 }
 
-function positionResultsFooterElements(col, resultsPopup, poe) {
+function positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage, replayCurrentLevel, advanceToNextLevel) {
 
     var button = [];
 
-    button.overview = new createjs.Shape();
-    button.overview.graphics.beginFill(color.green).drawRect(col.x, resultsPopup.height + poe.y - 20, col.width - col.x, 100);
+    var size = [], pos = [];
+    size.x = col.width - col.x;
+    size.y = 100;
+    pos.x = col.x;
+    pos.y = resultsPopup.height + poe.y - 20;
 
+    button.overview = new Button(color.green, size, pos, genericText.overview, loadOverviewPage);
     button.overview.icon = new createjs.Bitmap("assets/ic_overview.png");
-    button.overview.icon.x = col.width/2 - col.x;
-    button.overview.icon.y = resultsPopup.height + poe.y + 10;
+    button.overview.icon.x = col.width/2 - col.x - 60;
+    button.overview.icon.y = resultsPopup.height + poe.y + 15;
 
-    button.overview.label = new createjs.Text(genericText.overview, "22px Roboto", color.whitePimary);
-    button.overview.label.x = col.width/2 - col.x + 56;
-    button.overview.label.y = resultsPopup.height + poe.y + 20;
-
-    button.replay = new createjs.Shape();
-    button.replay.graphics.beginFill(color.green).drawRect(col.x + col.width, resultsPopup.height + poe.y - 20, col.width - col.x, 100);
-
+    pos.x = col.x + col.width;
+    button.replay = new Button(color.green, size, pos, genericText.replay, replayCurrentLevel);
     button.replay.icon = new createjs.Bitmap("assets/ic_replay.png");
-    button.replay.icon.x = col.width + (col.width/2 - col.x);
-    button.replay.icon.y = resultsPopup.height + poe.y + 10;
+    button.replay.icon.x = col.width + (col.width/2 - col.x) - 60;
+    button.replay.icon.y = resultsPopup.height + poe.y + 15;
 
-    button.replay.label = new createjs.Text(genericText.replay, "22px Roboto", color.whitePimary);
-    button.replay.label.x = col.width + (col.width/2 - col.x) + 56;
-    button.replay.label.y = resultsPopup.height + poe.y + 20;
-
-    button.next = new createjs.Shape();
-    button.next.graphics.beginFill(color.green).drawRect(col.x + (2 * col.width), resultsPopup.height + poe.y - 20, col.width - col.x, 100);
-
+    pos.x = col.x + (2 * col.width);
+    button.next = new Button(color.green, size, pos, genericText.next, advanceToNextLevel);
     button.next.icon = new createjs.Bitmap("assets/ic_next.png");
-    button.next.icon.x = (2 * col.width) + (col.width - (2 * col.x));
-    button.next.icon.y = resultsPopup.height + poe.y + 10;
-
-    button.next.label = new createjs.Text(genericText.next, "22px Roboto", color.whitePimary);
-    button.next.label.x = (2 * col.width) + (col.width/2 - col.x) + 80;
-    button.next.label.y = resultsPopup.height + poe.y + 20;
+    button.next.icon.x = (2 * col.width) + (col.width - ( (2 * col.x) ));
+    button.next.icon.y = resultsPopup.height + poe.y + 15;
 
     return button;
 }

@@ -71,34 +71,12 @@ function loadLevel(group, level) {
     btnSize.y = 140;
     btnPos.y = speechBubble.y + speechBubble.drawHeight;
 
-    var nextButton = [];
-    nextButton.shape = new createjs.Shape();
-    nextButton.shape.graphics.beginFill(color.green).drawRect(10, 0, btnSize.x -20, btnSize.y);
-    nextButton.shape.x = btnPos.x;
-    nextButton.shape.y = btnPos.y;
-    nextButton.shape.outColor = color.green;
-    nextButton.shape.overColor = '';
-    nextButton.label = new createjs.Text(genericText.start, "500 48px Roboto", color.whitePimary);
-    nextButton.label = centerElement(btnSize, btnPos, nextButton.label);
+    var nextButton = new Button(color.green, btnSize, btnPos, genericText.start, startLevel);
 
-    var timeout;
-    nextButton.shape.addEventListener("mouseover", function() {
-        changeCursor(true);
-        createjs.Ticker.addEventListener("tick", mouseTick);
-        timeout = setTimeout( startLevel, interval.normal);
-    });
-    nextButton.shape.addEventListener("mouseout", function() {
-        changeCursor(false);
-        createjs.Ticker.removeEventListener("tick", mouseTick);
-        window.clearTimeout(timeout);
-
-    });
-
-    stage.addChild(nextButton.shape, nextButton.label);
+    stage.addChild(nextButton.btn, nextButton.label);
 
     if (tutorialContainer) {
         stage.addChild(tutorialContainer);
-
     }
 
 
@@ -106,7 +84,7 @@ function loadLevel(group, level) {
 
         // Remove previous containers
         stage.removeChild(introStoryContainer);
-        stage.removeChild(nextButton.shape);
+        stage.removeChild(nextButton.btn);
         stage.removeChild(nextButton.label);
 
         // Remove tutorial layers if any
@@ -1850,45 +1828,9 @@ function InitiateLevel(group, level, levelStructure) {
                 createScoreboard(group, level, col);
 
                 // Footer navigation buttons
-                var button = positionResultsFooterElements(col, resultsPopup, poe);
+                var button = positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage, replayCurrentLevel, advanceToNextLevel);
 
-                var overviewTimeout;
-                button.overview.addEventListener("mouseover", function() {
-                    changeCursor(true);
-                    createjs.Ticker.addEventListener("tick", mouseTick);
-                    overviewTimeout = setTimeout( loadOverviewPage, interval.normal);
-                });
-                button.overview.addEventListener("mouseout", function() {
-                    changeCursor(false);
-                    createjs.Ticker.removeEventListener("tick", mouseTick);
-                    window.clearTimeout(overviewTimeout);
-                });
-
-                var replayTimeout;
-                button.replay.addEventListener("mouseover", function() {
-                    changeCursor(true);
-                    createjs.Ticker.addEventListener("tick", mouseTick);
-                    replayTimeout = setTimeout( replayCurrentLevel, interval.normal);
-                });
-                button.replay.addEventListener("mouseout", function() {
-                    changeCursor(false);
-                    createjs.Ticker.removeEventListener("tick", mouseTick);
-                    window.clearTimeout(replayTimeout);
-                });
-
-                var nextTimeout;
-                button.next.addEventListener("mouseover", function() {
-                    changeCursor(true);
-                    createjs.Ticker.addEventListener("tick", mouseTick);
-                    nextTimeout = setTimeout( advanceToNextLevel, interval.normal);
-                });
-                button.next.addEventListener("mouseout", function() {
-                    changeCursor(false);
-                    createjs.Ticker.removeEventListener("tick", mouseTick);
-                    window.clearTimeout(nextTimeout);
-                });
-
-                scoreInfoContainer.addChild(resultsPopup, label.score, separator.score, label.currentScore, label.previousScore, label.time, separator.time, label.currentTime, label.previousTime, label.rewards, separator.rewards, score.currentValue, score.previousValue, time.currentValue, time.previousValue, trophy.title, trophy.img, trophy.desc, button.overview, button.overview.icon, button.overview.label, button.replay, button.replay.icon, button.replay.label, button.next, button.next.icon, button.next.label);
+                scoreInfoContainer.addChild(resultsPopup, label.score, separator.score, label.currentScore, label.previousScore, label.time, separator.time, label.currentTime, label.previousTime, label.rewards, separator.rewards, score.currentValue, score.previousValue, time.currentValue, time.previousValue, trophy.title, trophy.img, trophy.desc, button.overview.btn, button.overview.icon, button.overview.label, button.replay.btn, button.replay.icon, button.replay.label, button.next.btn, button.next.icon, button.next.label);
 
                 stage.addChild( scoreInfoContainer );
                 stage.setChildIndex( outroStoryContainer, stage.getNumChildren()-1);
@@ -1920,36 +1862,13 @@ function InitiateLevel(group, level, levelStructure) {
             btnPos.y = speechBubble.y + speechBubble.drawHeight + 80;
 
             var button = [];
-            button.replay = new createjs.Shape();
-            button.replay.graphics.beginFill(color.green).drawRect(btnPos.x, btnPos.y, btnSize.x -20, btnSize.y);
-
+            button.replay = new Button(color.green, btnSize, btnPos, genericText.replay, replayCurrentLevel);
             button.replay.icon = new createjs.Bitmap("assets/ic_replay.png");
-            button.replay.icon.x = window.innerWidth/2 - 80;
+            button.replay.icon.x = window.innerWidth/2 - 180;
             button.replay.icon.y = btnPos.y + btnSize.y/2 - 27;
 
-            button.replay.label = new createjs.Text(genericText.replay, "700 32px Roboto", color.whitePimary);
-            button.replay.label.x = window.innerWidth/2 - 17;
-            button.replay.label.y = btnPos.y + btnSize.y/2 - 23;
-
-
-            var replayTimeout;
-            button.replay.addEventListener("mouseover", function() {
-                changeCursor(true);
-                createjs.Ticker.addEventListener("tick", mouseTick);
-                replayTimeout = setTimeout( replayCurrentLevel, interval.normal);
-            });
-            button.replay.addEventListener("mouseout", function() {
-                changeCursor(false);
-                createjs.Ticker.removeEventListener("tick", mouseTick);
-                window.clearTimeout(replayTimeout);
-            });
-
-            stage.addChild(button.replay, button.replay.icon, button.replay.label);
-
-
+            stage.addChild(button.replay.btn, button.replay.icon, button.replay.label);
         }
-
-
         stage.addChild(outroStoryContainer);
     }
 
