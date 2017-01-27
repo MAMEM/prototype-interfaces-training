@@ -406,7 +406,6 @@ function InitiateLevel(group, level, levelStructure) {
             }
         }
 
-
         function activateMole(elem, i) {
 
             elem.image.src = "assets/marker.png";
@@ -488,7 +487,7 @@ function InitiateLevel(group, level, levelStructure) {
                 // GOT trophy when all targets are successfully hit!
                 if (metrics.hits === metrics.moles) {
                     metrics.trophy = true;
-                    results = [markersContainer, metrics];
+                    results = [markersContainer, metrics, intervals];
                     endLevel(true);
                 }
                 else {
@@ -496,14 +495,14 @@ function InitiateLevel(group, level, levelStructure) {
 
                     // Level complete - no trophy
                     if (metrics.hits > (metrics.moles/2)) {
-                        results = [markersContainer, metrics];
+                        results = [markersContainer, metrics, intervals];
                         endLevel(true);
                     }
                     else {
 
                         // Level failed (no trophy obviously)
                         if (metrics.moles >= (3*markers)-1) {
-                            results = [markersContainer, metrics];
+                            results = [markersContainer, metrics, intervals];
                             endLevel(false);
                         }
                         // Add another group of markers
@@ -522,14 +521,8 @@ function InitiateLevel(group, level, levelStructure) {
 
             // Calculate the time spent from activation of marker to start of the hover that hits it.
             var time = stopwatch.time();
-            if (intervals.length > 0) {
-
-                time = time - (interval.markerDuration * intervals.length) - interval.markerFocus;
-
-                intervals.push({ startTime: time, hit: true });
-            } else {
-                intervals.push({ startTime: time - interval.markerFocus, hit: true });
-            }
+            time = time - (interval.markerDuration * intervals.length) - interval.markerFocus;
+            intervals.push({ startTime: time, hit: true });
 
             // Increment hit counter
             metrics.hits++;
@@ -1623,32 +1616,31 @@ function InitiateLevel(group, level, levelStructure) {
         switch(group) {
             case 0:
                 if (level === 0) {
-
-                    var marker = results[0];
+                    stage.removeChild(results[0]); // remove marker
                     metrics = results[1];
                     intervals = results[2];
 
-                    console.log(metrics);
-                    console.log(intervals);
-
-                    stage.removeChild(marker); // remove marker
-                    score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + ((metrics.countOffTotal - metrics.points) * 50)), 10); // metrics
+                    score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + ((metrics.countOffTotal - metrics.points) * 50)), 10);
 
                     trophy.current = metrics.trophy;
 
-
                 } else if (level === 1) {
-                    stage.removeChild(results[0]); // remove container
+                    stage.removeChild(results[0]); // remove markers container
                     metrics = results[1];
+                    intervals = results[2];
 
-                    metrics.multiplier = metrics.countOff > metrics.moles ? metrics.countOff - metrics.moles : 0;
+                    var segment = parseInt(scoreBounds.level12 / metrics.hits, 10);
 
-                    var multiplier = parseInt(scoreBounds.level12 / metrics.moles, 10);
-                    score.current = parseInt(((metrics.hits) * multiplier) - (metrics.multiplier * 5), 10); // metrics
+                    score.current = 0;
 
-                    console.log(metrics);
+                    var i;
+                    for (i in intervals) {
+                        if (intervals[i].hit) {
+                            intervals[i].scoreRatio = 1.2 - ((intervals[i].startTime / (interval.markerDuration - interval.markerFocus)));
 
-
+                            score.current = score.current + parseInt((segment * intervals[i].scoreRatio), 10);
+                        }
+                    }
                 }
 
                 break;
