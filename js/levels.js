@@ -868,16 +868,16 @@ function InitiateLevel(group, level, levelStructure) {
                 question.text = quizText[pointer].question;
                 question = alignTextToStageCenter(stage, question);
                 question.y = papyrus.y + 100;
-                answerA.text = "a) " + quizText[pointer].answer1;
+                answerA.text = "1) " + quizText[pointer].answer1;
                 answerA.x = (stage.canvas.width/2) - 100;
                 answerA.y = papyrus.y + 150;
-                answerB.text = "b) " + quizText[pointer].answer2;
+                answerB.text = "2) " + quizText[pointer].answer2;
                 answerB.x = (stage.canvas.width/2) - 100;
                 answerB.y = papyrus.y + 180;
-                answerC.text = "c) " + quizText[pointer].answer3;
+                answerC.text = "3) " + quizText[pointer].answer3;
                 answerC.x = (stage.canvas.width/2) + 60;
                 answerC.y = papyrus.y + 150;
-                answerD.text = "d) " + quizText[pointer].answer4;
+                answerD.text = "4) " + quizText[pointer].answer4;
                 answerD.x = (stage.canvas.width/2) + 60;
                 answerD.y = papyrus.y + 180;
             }
@@ -909,6 +909,8 @@ function InitiateLevel(group, level, levelStructure) {
                 stage.addChild(barContainer);
 
                 if (metrics.fail > 2) {
+                    stage.removeChild(barContainer);
+                    textInput.style.display = "none";
                     results = [levelContainer, metrics];
                     endLevel(false);
                 }
@@ -923,7 +925,7 @@ function InitiateLevel(group, level, levelStructure) {
                         .wait(2000)
                         .call(function(){
 
-                            stage.remoceChild(barContainer);
+                            stage.removeChild(barContainer);
                             textInput.style.display = "none";
                             results = [levelContainer, metrics];
 
@@ -937,7 +939,6 @@ function InitiateLevel(group, level, levelStructure) {
                 ask(idx);
 
             });
-
             levelContainer.addChild(question, answerA, answerB, answerC, answerD, hint, submitBtn, submitLabel);
         }
 
@@ -1049,10 +1050,13 @@ function InitiateLevel(group, level, levelStructure) {
         textElement2.style.padding = "12px";
         textElement2.style.color = color.darkBrown;
 
-
         var globe = new createjs.Bitmap("assets/int/globe.png");
         globe.x = stage.canvas.width - 400 < stage.canvas.width/2 ? stage.canvas.width - 400 : stage.canvas.width/2 + 200;
         globe.y = stage.canvas.height - 300;
+
+        var clickLabel = new createjs.Text(genericText.clickMe, "700 28px Roboto", color.whitePimary);
+        clickLabel.x = stage.canvas.width - 400 < stage.canvas.width/2 ? stage.canvas.width - 400 : stage.canvas.width/2 + 200;
+        clickLabel.y = globe.y + 180;
 
         var map = new createjs.Bitmap("assets/int/map.png");
         map.x = stage.canvas.width - 300 < stage.canvas.width/2 ? stage.canvas.width - 300 : stage.canvas.width/2 + 100;
@@ -1109,8 +1113,15 @@ function InitiateLevel(group, level, levelStructure) {
                 textElement2.style.display = "none";
                 textInput1.style.display = "none";
                 textInput2.style.display = "none";
+
+                textInput1.value = '';
+                textInput2.value = '';
+
                 results = [levelContainer, metrics];
                 endLevel();
+            } else {
+
+                // wrong coordinates, try again.
             }
 
         });
@@ -1128,7 +1139,8 @@ function InitiateLevel(group, level, levelStructure) {
         });
 
 
-        levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratulatoryText, scroll, scrollTitle, scrollDesc, cpIcon, globe, map, submitBtn, submitLabel);
+
+        levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratulatoryText, scroll, scrollTitle, scrollDesc, cpIcon, globe, clickLabel, map, submitBtn, submitLabel);
         levelContainer.alpha = 0;
 
         stage.addChild(levelContainer);
@@ -1691,9 +1703,11 @@ function InitiateLevel(group, level, levelStructure) {
 
                     trophy.current = metrics.trophy;
 
-                    score.current = parseInt(scoreBounds.level22 - (stopwatch.time()/3 + (metrics.fail * 200)), 10);
+                    score.current = parseInt(scoreBounds.level22 - (stopwatch.time()/4 + (metrics.fail * 200)), 10);
                 }
                 else if (level === 2) {
+
+                    console.log(metrics);
 
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
