@@ -109,7 +109,9 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "timeLabel": time.currentFormatted,
                     "trophyGained": trophy.hasIt,
                     "countOn": metrics.countOn,
-                    "countOff": metrics.countOff
+                    "countOff": metrics.countOff,
+                    "clicks": metrics.clicks,
+                    "hits": metrics.hit
                 });
             } else if (level === 1) {
                 firebase.database().ref('users/' + userId + '/levels/int/level2').set({

@@ -662,8 +662,6 @@ function InitiateLevel(group, level, levelStructure) {
         cave.on("mousedown", function() {
             metrics.hit++;
 
-            console.log(metrics);
-
             stage.removeChild(levelContainer);
 
             var backgroundColor = new createjs.Shape();
@@ -738,8 +736,11 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.submit = 0;
         metrics.pass = 0;
         metrics.fail = 0;
+        metrics.trophy = false;
 
-        var questions = 5;
+        var questions = [];
+        questions.total = 5;
+        questions.idx = questions.total;
 
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.darkBrown).drawRect(0, 0, stage.canvas.width, canvas.height);
@@ -814,10 +815,10 @@ function InitiateLevel(group, level, levelStructure) {
 
         function launchTrivia() {
 
+            var idx = 0;
             var pointer;
-            var barContainer = new createjs.Container();
 
-            var prevElem;
+            var barContainer = new createjs.Container();
 
             var hint = new createjs.Text(genericText.lvl4ScrollDesc, "400 14px Roboto", color.darkBrown);
             hint = alignTextToStageCenter(stage, hint);
@@ -844,8 +845,6 @@ function InitiateLevel(group, level, levelStructure) {
             submitLabel.x = stage.canvas.width/2 + 70;
             submitLabel.y = stage.canvas.height - 170;
 
-            var idx = 0;
-
             var question = new createjs.Text(" ", "700 24px Roboto", color.darkBrown);
             var answerA = new createjs.Text(" ", "400 10px Roboto", color.darkBrown);
             var answerB = new createjs.Text(" ", "400 10px Roboto", color.darkBrown);
@@ -856,36 +855,14 @@ function InitiateLevel(group, level, levelStructure) {
 
             function ask(idx) {
 
-                var barElement = new createjs.Shape();
-
                 if (idx < 2) {
                     pointer = getRandomInt(idx, 0, 3);
-                    barElement.graphics.beginFill(color.barGreen).drawRect(0, 0, 60, 12).endFill();
-
-                    if (idx === 0) {
-
-                        barElement.x = stage.canvas.width/2 - 304/2;
-                    } else {
-                        prevElem = barContainer.getChildAt(idx-1);
-                        barElement.x = prevElem.x + 61;
-                    }
-
                 } else if (idx < 4) {
                     pointer = getRandomInt(idx, 4, 7);
-                    barElement.graphics.beginFill(color.barYellow).drawRect(0, 0, 60, 12).endFill();
-                    prevElem = barContainer.getChildAt(idx-1);
-                    barElement.x = prevElem.x + 61;
                 } else {
                     pointer = getRandomInt(idx, 8, 11);
-                    barElement.graphics.beginFill(color.barRed).drawRect(0, 0, 60, 12).endFill();
-                    prevElem = barContainer.getChildAt(idx-1);
-                    barElement.x = prevElem.x + 61;
                 }
-                barElement.y = 160;
-
-                barContainer.addChild(barElement);
-
-                questionLabel.text = genericText.question + " " + (idx+1) + " / " + questions;
+                questionLabel.text = genericText.question + " " + (idx+1) + " / " + questions.total;
                 questionLabel = alignTextToStageCenter(stage, questionLabel);
                 questionLabel.y = 100;
                 question.text = quizText[pointer].question;
@@ -903,34 +880,62 @@ function InitiateLevel(group, level, levelStructure) {
                 answerD.text = "d) " + quizText[pointer].answer4;
                 answerD.x = (stage.canvas.width/2) + 60;
                 answerD.y = papyrus.y + 180;
-
-                stage.addChild(barContainer);
-
             }
+
             submitBtn.addEventListener("mousedown", function (e) {
 
                 // Check GAZETHEWEB INPUT TYPE
                 metrics.submit++;
 
+                var barElement = new createjs.Shape();
+
+                barElement.x = (stage.canvas.width/2 - 304/2) + (idx * 61);
+                barElement.y = 160;
+
                 if (textInput.value === quizText[pointer].correct) {
 
-                    textInput.value = '';
-
+                    barElement.graphics.beginFill(color.barGreen).drawRect(0, 0, 60, 12).endFill();
                     metrics.pass++;
-                    idx++;
-
-                    if (idx === questions) {
-                        textInput.style.display = "none";
-                        results = [levelContainer, metrics];
-                        endLevel();
-
-                    } else {
-                        ask(idx);
-                    }
 
                 } else {
+
+                    barElement.graphics.beginFill(color.barRed).drawRect(0, 0, 60, 12).endFill();
                     metrics.fail++;
                 }
+
+                idx++;
+                barContainer.addChild(barElement);
+                textInput.value = '';
+                stage.addChild(barContainer);
+
+                if (metrics.fail > 2) {
+                    results = [levelContainer, metrics];
+                    endLevel(false);
+                }
+
+                if (idx === questions.total) {
+
+                    if (metrics.fail === 0 ) {
+                        metrics.trophy = true;
+                    }
+
+                    createjs.Tween.get(levelContainer)
+                        .wait(2000)
+                        .call(function(){
+
+                            stage.remoceChild(barContainer);
+                            textInput.style.display = "none";
+                            results = [levelContainer, metrics];
+
+                            if (metrics.pass > metrics.fail) {
+                                endLevel(true);
+                            } else {
+                                endLevel(false);
+                            }
+                        });
+                }
+                ask(idx);
+
             });
 
             levelContainer.addChild(question, answerA, answerB, answerC, answerD, hint, submitBtn, submitLabel);
@@ -1684,17 +1689,9 @@ function InitiateLevel(group, level, levelStructure) {
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-                    if (metrics.submit === metrics.pass) {
-                        trophy.current = true;
-                    }
+                    trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level22 - (stopwatch.time()/3 + (metrics.fail * 200)), 10);
-
-                    // Have a good score!
-                    if (score.current > scoreThreshold.level22) {
-                        levelComplete = true;
-                    }
-
                 }
                 else if (level === 2) {
 
