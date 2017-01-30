@@ -601,6 +601,8 @@ function InitiateLevel(group, level, levelStructure) {
 
         tower.on("mousedown", function() {
 
+            metrics.hit++;
+
             // Create browser state so as to use the back button!
             history.pushState(null, null, 'tower');
             stage.removeChild(levelContainer);
@@ -659,8 +661,55 @@ function InitiateLevel(group, level, levelStructure) {
 
         cave.on("mousedown", function() {
             metrics.hit++;
+
+            console.log(metrics);
+
+            stage.removeChild(levelContainer);
+
+            var backgroundColor = new createjs.Shape();
+            backgroundColor.graphics.beginFill(color.darkBrown).drawRect(0, 0, stage.canvas.width, canvas.height);
+
+            var caveFloor = new createjs.Bitmap("assets/int/cave-floor.png");
+            caveFloor.x = (stage.canvas.width/2) - 550;
+            caveFloor.y = stage.canvas.height - 300;
+
+            var rocksL = new createjs.Bitmap("assets/int/stones-l.png");
+            rocksL.x = (stage.canvas.width/2) - 500;
+            rocksL.y = stage.canvas.height - 120;
+
+            var rocksR = new createjs.Bitmap("assets/int/stones-r.png");
+            rocksR.x = (stage.canvas.width/2) + 100;
+            rocksR.y = stage.canvas.height - 120;
+
+            var torchL = new createjs.Bitmap("assets/int/torch-l.png");
+            torchL.x = -23;
+            torchL.y = 110;
+
+            var torchR = new createjs.Bitmap("assets/int/torch-r.png");
+            torchR.x = stage.canvas.width - 98;
+            torchR.y = 110;
+
+            var fire = new createjs.Bitmap("assets/int/fire.png");
+            fire.x = (stage.canvas.width/2) - 200;
+            fire.y = stage.canvas.height - 350;
+
+            var wizard = new createjs.Bitmap("assets/int/wizard.png");
+            wizard.x = stage.canvas.width/2;
+            wizard.y = stage.canvas.height - 500;
+
+            levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard);
+
+            stage.addChild(levelContainer);
+
+            metrics.trophy = (metrics.hit < 2);
+
             results = [levelContainer, metrics];
-            endLevel();
+
+            createjs.Tween.get(levelContainer)
+                .wait(3000)
+                .call(endLevel, [true]);
+
+
         });
 
         levelContainer.addChild(backgroundColor, river, village, villageTextA, villageTextB, villageTitle, tower, towerTitle, towerSelect, towerSelectIcon, cave, caveTitle, caveSelect, caveSelectIcon,
@@ -1626,15 +1675,9 @@ function InitiateLevel(group, level, levelStructure) {
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-                    if (metrics.clicks < 2) {
-                        trophy.current = true;
-                    }
-
+                    trophy.current = metrics.trophy;
                     score.current = parseInt(scoreBounds.level21 - (stopwatch.time()/2 + (metrics.clicks * 50)), 10);
 
-                    if (score.current > scoreThreshold.level21 ) {
-                        levelComplete = true;
-                    }
 
                 } else if (level === 1) {
 
