@@ -145,28 +145,32 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
-                    "trophyGained": trophy.hasIt
+                    "trophyGained": trophy.hasIt,
+                    "metrics": metrics
                 });
             } else if (level === 1) {
                 firebase.database().ref('users/' + userId + '/levels/adv/level2').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
-                    "trophyGained": trophy.hasIt
+                    "trophyGained": trophy.hasIt,
+                    "metrics": metrics
                 });
             } else if (level === 2) {
                 firebase.database().ref('users/' + userId + '/levels/adv/level3').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
-                    "trophyGained": trophy.hasIt
+                    "trophyGained": trophy.hasIt,
+                    "metrics": metrics
                 });
             } else if (level === 3) {
                 firebase.database().ref('users/' + userId + '/levels/adv/level4').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
-                    "trophyGained": trophy.hasIt
+                    "trophyGained": trophy.hasIt,
+                    "metrics": metrics
                 });
             }
             break;

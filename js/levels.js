@@ -1294,7 +1294,9 @@ function InitiateLevel(group, level, levelStructure) {
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
-                            .call(endLevel);
+                            .call(function () {
+                                endLevel(true);
+                            });
 
                     }
                 });
@@ -1310,13 +1312,10 @@ function InitiateLevel(group, level, levelStructure) {
     function loadLevel7() {
 
         var metrics = [];
-        var i;
-
-        var backgroundColor = new createjs.Shape();
-        backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
-
-        var levelContainer = loadAdvancedLevelsIntroMap(2);
-        var actualLevel = levelContainer.getChildAt(2);
+        metrics.tabs = 0;
+        metrics.edit = 0;
+        metrics.keystroke = 0;
+        metrics.close = 0;
 
         // Create task list. All must be set to true to finish level
         var taskList = [];
@@ -1326,6 +1325,16 @@ function InitiateLevel(group, level, levelStructure) {
         taskList.url = false;
         taskList.abort = false;
         taskList.end = false;
+
+        var i;
+
+        var backgroundColor = new createjs.Shape();
+        backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
+
+        var levelContainer = loadAdvancedLevelsIntroMap(2);
+        var actualLevel = levelContainer.getChildAt(2);
+
+
 
         actualLevel.on("mousedown", function() {
 
@@ -1366,12 +1375,18 @@ function InitiateLevel(group, level, levelStructure) {
                 window.loggingMediator.registerFunction(function(string) {
 
                     if (string === 'tabs') {
+
+                        metrics.tabs++;
+
                         taskList.tabs = true;
                         taskLabel[0].alpha = 1;
                         checkmark[0].alpha = 1;
                     }
 
                     if (string === 'edit') {
+
+                        metrics.edit++;
+
                         taskList.new_tab = true;
                         taskLabel[1].alpha = 1;
                         checkmark[1].alpha = 1;
@@ -1379,6 +1394,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === 'keystroke') {
                         taskList.type++;
+                        metrics.keystroke++;
 
                         if (taskList.type > 8) {
                             taskList.url = true;
@@ -1388,6 +1404,8 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     if (string === 'close' && taskList.url) {
+
+                        metrics.close++;
 
                         taskLabel[3].alpha = 1;
                         checkmark[3].alpha = 1;
@@ -1401,7 +1419,9 @@ function InitiateLevel(group, level, levelStructure) {
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
-                            .call(endLevel);
+                            .call(function () {
+                                endLevel(true);
+                            });
 
                     }
                 });
@@ -1417,6 +1437,17 @@ function InitiateLevel(group, level, levelStructure) {
     function loadLevel8() {
 
         var metrics = [];
+        metrics.phrase = [];
+        metrics.click = 0;
+        metrics.close = 0;
+
+        // Create task list. All must be set to true to finish level
+        var taskList = [];
+        taskList.edit = false;
+        taskList.phrase = "";
+        taskList.abort = false;
+        taskList.end = false;
+
         var i;
 
         var backgroundColor = new createjs.Shape();
@@ -1425,12 +1456,7 @@ function InitiateLevel(group, level, levelStructure) {
         var levelContainer = loadAdvancedLevelsIntroMap(3);
         var actualLevel = levelContainer.getChildAt(4);
 
-        // Create task list. All must be set to true to finish level
-        var taskList = [];
-        taskList.edit = false;
-        taskList.phrase = "";
-        taskList.abort = false;
-        taskList.end = false;
+
 
         actualLevel.on("mousedown", function() {
 
@@ -1497,6 +1523,8 @@ function InitiateLevel(group, level, levelStructure) {
 
             textInput.addEventListener("click", function () {
 
+                metrics.click++;
+
                 taskLabel[0].alpha = 1;
                 checkmark[0].alpha = 1;
 
@@ -1512,6 +1540,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === 'submit' || string === 'close') {
 
+                        metrics.close++;
+
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
                             .call(getTextValue);
@@ -1520,6 +1550,7 @@ function InitiateLevel(group, level, levelStructure) {
                     function getTextValue() {
 
                         taskList.phrase = document.getElementById("inputTextFirst").value;
+                        metrics.phrase.push(taskList.phrase);
 
                         if (taskList.phrase === advThirdInstructions.phrase) {
 
@@ -1556,13 +1587,13 @@ function InitiateLevel(group, level, levelStructure) {
     function loadLevel9() {
 
         var metrics = [];
-        var i;
+        metrics.tabs = 0;
+        metrics.bookmark_add = 0;
+        metrics.new_tab = 0;
+        metrics.bookmarks = 0;
+        metrics.visit_bookmark = 0;
+        metrics.return_to_tabs = 0;
 
-        var backgroundColor = new createjs.Shape();
-        backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
-
-        var levelContainer = loadAdvancedLevelsIntroMap(4);
-        var actualLevel = levelContainer.getChildAt(6);
 
         // Create task list. All must be set to true to finish level
         var taskList = [];
@@ -1573,6 +1604,16 @@ function InitiateLevel(group, level, levelStructure) {
         taskList.select_bookmark = false;
         taskList.tabs_again = false;
         taskList.return = false;
+
+        var i;
+
+        var backgroundColor = new createjs.Shape();
+        backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
+
+        var levelContainer = loadAdvancedLevelsIntroMap(4);
+        var actualLevel = levelContainer.getChildAt(6);
+
+
 
 
         actualLevel.on("mousedown", function() {
@@ -1659,7 +1700,9 @@ function InitiateLevel(group, level, levelStructure) {
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
-                            .call(endLevel);
+                            .call(function () {
+                                endLevel(true);
+                            });
                     }
                 });
             }
@@ -1758,9 +1801,6 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level23 - (stopwatch.time()/4), 10);
 
-                    if (score.current > scoreThreshold.level23) {
-                        levelComplete = true;
-                    }
                 }
 
                 break;
@@ -1781,11 +1821,6 @@ function InitiateLevel(group, level, levelStructure) {
                      }*/
 
                     score.current = parseInt(scoreBounds.level31 - (stopwatch.time()/4), 10);
-
-                    // Have a good score!
-                    if (score.current > scoreThreshold.level31) {
-                        levelComplete = true;
-                    }
                 }
                 else if (level === 1) {
 
@@ -1798,10 +1833,6 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level32 - (stopwatch.time()/4), 10);
 
-                    // Have a good score!
-                    if (score.current > scoreThreshold.level32) {
-                        levelComplete = true;
-                    }
                 }
                 else if (level === 2) {
 
@@ -1814,10 +1845,6 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level33 - (stopwatch.time()/4), 10);
 
-                    // Have a good score!
-                    if (score.current > scoreThreshold.level33) {
-                        levelComplete = true;
-                    }
                 }
                 else if (level === 3) {
 
@@ -1830,10 +1857,6 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level34 - (stopwatch.time()/4), 10);
 
-                    // Have a good score!
-                    if (score.current > scoreThreshold.level34) {
-                        levelComplete = true;
-                    }
                 }
                 break;
         }
