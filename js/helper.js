@@ -448,19 +448,19 @@ function positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage,
     button.overview = new Button(color.green, size, pos, genericText.overview, loadOverviewPage);
     button.overview.icon = new createjs.Bitmap("assets/ic_overview.png");
     button.overview.icon.x = col.width/2 - col.x - 60;
-    button.overview.icon.y = resultsPopup.height + poe.y + 15;
+    button.overview.icon.y = resultsPopup.height + poe.y + 8;
 
     pos.x = col.x + col.width;
     button.replay = new Button(color.green, size, pos, genericText.replay, replayCurrentLevel);
     button.replay.icon = new createjs.Bitmap("assets/ic_replay.png");
     button.replay.icon.x = col.width + (col.width/2 - col.x) - 60;
-    button.replay.icon.y = resultsPopup.height + poe.y + 15;
+    button.replay.icon.y = resultsPopup.height + poe.y + 8;
 
     pos.x = col.x + (2 * col.width);
     button.next = new Button(color.green, size, pos, genericText.next, advanceToNextLevel);
     button.next.icon = new createjs.Bitmap("assets/ic_next.png");
     button.next.icon.x = (2 * col.width) + (col.width - ( (2 * col.x) ));
-    button.next.icon.y = resultsPopup.height + poe.y + 15;
+    button.next.icon.y = resultsPopup.height + poe.y + 8;
 
     return button;
 }
