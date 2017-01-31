@@ -28,10 +28,6 @@ textSize.mini = "400 14px Roboto";
 var evaluationRatio = 130 / 100;
 
 var scoreThreshold = [];
-scoreThreshold.level11 = 20000;
-scoreThreshold.level12 = 20000;
-scoreThreshold.level21 = 20000;
-scoreThreshold.level22 = 20000;
 scoreThreshold.level23 = 5000;
 scoreThreshold.level31 = 20000;
 scoreThreshold.level32 = 20000;

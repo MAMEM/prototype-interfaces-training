@@ -133,7 +133,8 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "trophyGained": trophy.hasIt,
                     "copy": metrics.copy,
                     "paste": metrics.paste,
-                    "click": metrics.click
+                    "click": metrics.click,
+                    "errors": metrics.errors
                 });
             }
 

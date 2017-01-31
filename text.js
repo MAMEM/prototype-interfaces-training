@@ -213,6 +213,7 @@ var genericText =
         lvl5CongrText: "You have been deemed worthy! Now find the treasure!",
         coordinates: "COORDINATES",
         lvl5ScrollDesc: "use the",
+        lvl5coords: "Wrong coordinates! Treasure not found!",
         signedOut: "USER IS SIGNED OUT",
         tasks: "Tasks",
         advQuote1: "Be The Change",
@@ -238,10 +239,11 @@ var advSecondInstructions =
     };
 var advThirdInstructions =
     {
+        zoom: "Zoom in on the piece of paper to reveal the text box",
         editUrl: "Click on the text element",
         typeUrl: "Type the missing phrase:",
         phrase: "See In The World",
-        abort: "Submit",
+        abort: "Press OK",
         taskComplete: "Level completed"
     };
 var advFourthInstructions =

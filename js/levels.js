@@ -976,6 +976,7 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.copy = 0;
         metrics.paste = 0;
         metrics.click = 0;
+        metrics.errors = 0;
 
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.darkBrown).drawRect(0, 0, stage.canvas.width, canvas.height);
@@ -1011,6 +1012,8 @@ function InitiateLevel(group, level, levelStructure) {
         var congratulatoryText = new createjs.Text(genericText.lvl5CongrText, "700 28px Roboto", color.whitePimary);
         congratulatoryText = alignTextToStageCenter(stage, congratulatoryText);
         congratulatoryText.y = 100;
+
+        var wrongCoordsLabel;
 
         var scroll = new createjs.Bitmap("assets/int/scroll.png");
         scroll.x = 80;
@@ -1108,6 +1111,8 @@ function InitiateLevel(group, level, levelStructure) {
 
         submitBtn.on("mousedown", function() {
 
+            stage.removeChild(wrongCoordsLabel);
+
             if (textInput1.value === textElement1.innerHTML && textInput2.value === textElement2.innerHTML){
                 textElement1.style.display = "none";
                 textElement2.style.display = "none";
@@ -1121,12 +1126,19 @@ function InitiateLevel(group, level, levelStructure) {
                 endLevel();
             } else {
 
-                // wrong coordinates, try again.
+                metrics.errors++;
+
+                wrongCoordsLabel = new createjs.Text(genericText.lvl5coords, "500 20px Roboto", color.red);
+                wrongCoordsLabel = alignTextToStageCenter(stage, wrongCoordsLabel);
+                wrongCoordsLabel.y = 150;
+
+                stage.addChild(wrongCoordsLabel);
             }
 
         });
 
         document.addEventListener("copy", function() {
+            stage.removeChild(wrongCoordsLabel);
             metrics.copy++;
         });
 
@@ -1157,13 +1169,11 @@ function InitiateLevel(group, level, levelStructure) {
     function loadLevel6() {
 
         var metrics = [];
-        var i;
-
-        var backgroundColor = new createjs.Shape();
-        backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
-
-        var levelContainer = loadAdvancedLevelsIntroMap(1);
-        var actualLevel = levelContainer.getChildAt(0);
+        metrics.close = 0;
+        metrics.gaze_on = 0;
+        metrics.gaze_off = 0;
+        metrics.general = 0;
+        metrics.settings = 0;
 
         // Create task list. All must be set to true to finish level
         var taskList = [];
@@ -1173,6 +1183,16 @@ function InitiateLevel(group, level, levelStructure) {
         taskList.close = false;
         taskList.gaze_off = false;
         taskList.end = false;
+
+        var i;
+
+        var backgroundColor = new createjs.Shape();
+        backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
+
+        var levelContainer = loadAdvancedLevelsIntroMap(1);
+        var actualLevel = levelContainer.getChildAt(0);
+
+
 
         actualLevel.on("mousedown", function() {
 
@@ -1213,37 +1233,55 @@ function InitiateLevel(group, level, levelStructure) {
                 window.loggingMediator.registerFunction(function(string) {
 
                     if (string === 'settings') {
+
+                        metrics.settings++;
+
                         taskList.settings = true;
                         taskLabel[0].alpha = 1;
                         checkmark[0].alpha = 1;
                     }
 
                     if (string === 'general') {
+
+                        metrics.general++;
+
                         taskList.general = true;
                         taskLabel[1].alpha = 1;
                         checkmark[1].alpha = 1;
                     }
 
                     if (string === 'gaze_on') {
+
+                        metrics.gaze_on++;
+
                         taskList.gaze_on = true;
                         taskLabel[2].alpha = 1;
                         checkmark[2].alpha = 1;
                     }
 
-                    if (string === 'close') { taskList.close = true; }
+                    if (string === 'close') { taskList.close = true; metrics.close++; }
 
                     if (string === 'general' && taskList.gaze_on) {
+
+                        metrics.general++;
+
                         taskLabel[3].alpha = 1;
                         checkmark[3].alpha = 1;
                     }
 
                     if (string === 'gaze_off' && taskList.close) {
+
+                        metrics.gaze_off++;
+
                         taskList.gaze_off = true;
                         taskLabel[4].alpha = 1;
                         checkmark[4].alpha = 1;
                     }
 
                     if (string === 'close' && taskList.gaze_off) {
+
+                        metrics.close++;
+
                         taskList.end = true;
                         taskLabel[5].alpha = 1;
                         checkmark[5].alpha = 1;
@@ -1252,7 +1290,7 @@ function InitiateLevel(group, level, levelStructure) {
                     if (taskList.end) {
                         window.loggingMediator.unregisterFunction();
 
-                        results = [task, metrics];
+                        results = [taskContainer, metrics];
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
@@ -1420,7 +1458,7 @@ function InitiateLevel(group, level, levelStructure) {
                 taskLabel[idx].x = taskLabel[idx].x + 100;
 
                 checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
-                checkmark[idx].x = taskLabel[idx].x + 50;
+                checkmark[idx].x = taskLabel[idx].x - 50;
                 checkmark[idx].y = taskLabel[idx].y - 10;
                 checkmark[idx].alpha = 0;
 
@@ -1458,9 +1496,13 @@ function InitiateLevel(group, level, levelStructure) {
             textInput.style.color = "#4D3D36";
 
             textInput.addEventListener("click", function () {
-                taskList.edit = true;
+
                 taskLabel[0].alpha = 1;
                 checkmark[0].alpha = 1;
+
+                taskList.edit = true;
+                taskLabel[1].alpha = 1;
+                checkmark[1].alpha = 1;
             });
 
             // Start communication with GTW
@@ -1481,24 +1523,24 @@ function InitiateLevel(group, level, levelStructure) {
 
                         if (taskList.phrase === advThirdInstructions.phrase) {
 
-                            taskLabel[1].alpha = 1;
-                            checkmark[1].alpha = 1;
                             taskLabel[2].alpha = 1;
                             checkmark[2].alpha = 1;
                             taskLabel[3].alpha = 1;
                             checkmark[3].alpha = 1;
                             taskLabel[4].alpha = 1;
                             checkmark[4].alpha = 1;
-
-                            /*textInput.style.display = "none";*/
+                            taskLabel[5].alpha = 1;
+                            checkmark[5].alpha = 1;
 
                             window.loggingMediator.unregisterFunction();
 
-                            results = [taskContainer, metrics];
-
                             createjs.Tween.get(actualLevel)
                                 .wait(1000)
-                                .call(endLevel);
+                                .call(function(){
+                                    textInput.style.display = "none";
+                                    results = [taskContainer, metrics];
+                                    endLevel(true);
+                                });
                         }
                     }
                 });
@@ -1707,8 +1749,6 @@ function InitiateLevel(group, level, levelStructure) {
                 }
                 else if (level === 2) {
 
-                    console.log(metrics);
-
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
@@ -1734,11 +1774,13 @@ function InitiateLevel(group, level, levelStructure) {
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
+                    console.log(metrics);
+
                     /*if (metrics.submit === metrics.pass) {
                      trophy.current = true;
                      }*/
 
-                    score.current = parseInt(scoreBounds.level31 - (stopwatch.time()), 10);
+                    score.current = parseInt(scoreBounds.level31 - (stopwatch.time()/4), 10);
 
                     // Have a good score!
                     if (score.current > scoreThreshold.level31) {
@@ -1754,7 +1796,7 @@ function InitiateLevel(group, level, levelStructure) {
                      trophy.current = true;
                      }*/
 
-                    score.current = parseInt(scoreBounds.level32 - (stopwatch.time()), 10);
+                    score.current = parseInt(scoreBounds.level32 - (stopwatch.time()/4), 10);
 
                     // Have a good score!
                     if (score.current > scoreThreshold.level32) {
@@ -1770,7 +1812,7 @@ function InitiateLevel(group, level, levelStructure) {
                      trophy.current = true;
                      }*/
 
-                    score.current = parseInt(scoreBounds.level33 - (stopwatch.time()), 10);
+                    score.current = parseInt(scoreBounds.level33 - (stopwatch.time()/4), 10);
 
                     // Have a good score!
                     if (score.current > scoreThreshold.level33) {
@@ -1786,7 +1828,7 @@ function InitiateLevel(group, level, levelStructure) {
                      trophy.current = true;
                      }*/
 
-                    score.current = parseInt(scoreBounds.level34 - (stopwatch.time()), 10);
+                    score.current = parseInt(scoreBounds.level34 - (stopwatch.time()/4), 10);
 
                     // Have a good score!
                     if (score.current > scoreThreshold.level34) {
