@@ -34,22 +34,22 @@ var levelText = [
     {
         fullTitle: "ADVANCED - 01 Gaze Visualization",
         shortTitle: "Settings - Gaze Visualization",
-        story: "You uncovered the location of the treasure in the previous levels. Now tread through the path accross 4 locations to finally find the treasure, while learning how to use the unique tools GTW has to offer!"
+        story: "You uncovered the location of the treasure in the previous levels. Now tread through the path accross 4 locations to finally find the treasure, while learning how to use the unique tools GTW has to offer! Try following the instructions without making the same action twice to get the trophy!"
     },
     {
         fullTitle: "ADVANCED - 02 URL Typing",
         shortTitle: "URL Typing",
-        story: "Learn how to edit a url on GTW Browser"
+        story: "Learn how to edit a url on GTW Browser. Try following the instructions without making the same action twice to get the trophy!"
     },
     {
         fullTitle: "ADVANCED - 03 Text prediction",
         shortTitle: "Text prediction",
-        story: "Learn how to type using text prediction"
+        story: "Learn how to type using text prediction. Try following the instructions without making the same action twice to get the trophy!"
     },
     {
         fullTitle: "ADVANCED - 04 Bookmarks",
         shortTitle: "Bookmarks",
-        story: "Learn how to bookmark a page"
+        story: "Learn how to bookmark a page. Try following the instructions without making the same action twice to get the trophy!"
     }
 ];
 
