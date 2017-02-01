@@ -1134,7 +1134,7 @@ function InitiateLevel(group, level, levelStructure) {
                 textInput2.value = '';
 
                 results = [levelContainer, metrics];
-                endLevel();
+                endLevel(true);
             } else {
 
                 metrics.errors++;
