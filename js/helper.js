@@ -349,12 +349,6 @@ function calculateNewTrophy(trophy, savedTrophy) {
     return trophy;
 }
 
-function calculateNewMetrics(metrics, savedMetrics) {
-    metrics.countOn = metrics.countOn < savedMetrics.countOn ? metrics.countOn : savedMetrics.countOn;
-    metrics.countOff = metrics.countOff < savedMetrics.countOff ? metrics.countOff : savedMetrics.countOff;
-    return metrics;
-}
-
 function positionResultsElements(score, time, trophy, col, label, separator) {
 
     score.currentValue.x = col.x;

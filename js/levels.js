@@ -699,14 +699,17 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.addChild(levelContainer);
 
-            metrics.trophy = (metrics.hit < 2);
+            metrics.trophy = (metrics.hit < 3);
 
             results = [levelContainer, metrics];
 
             createjs.Tween.get(levelContainer)
                 .wait(3000)
-                .call(endLevel, [true]);
+                .call( function () {
 
+                    endLevel(true);
+
+                });
 
         });
 
@@ -816,7 +819,7 @@ function InitiateLevel(group, level, levelStructure) {
         function launchTrivia() {
 
             var idx = 0;
-            var pointer;
+            var pointer = 0;
 
             var barContainer = new createjs.Container();
 
@@ -856,13 +859,19 @@ function InitiateLevel(group, level, levelStructure) {
             function ask(idx) {
 
                 if (idx < 2) {
-                    pointer = getRandomInt(idx, 0, 3);
+                    pointer = getRandomInt(pointer, 0, 3);
                 } else if (idx < 4) {
-                    pointer = getRandomInt(idx, 4, 7);
+                    pointer = getRandomInt(pointer, 4, 7);
                 } else {
-                    pointer = getRandomInt(idx, 8, 11);
+                    pointer = getRandomInt(pointer, 8, 11);
                 }
-                questionLabel.text = genericText.question + " " + (idx+1) + " / " + questions.total;
+
+                if (idx+1 === 6) {
+                    questionLabel.text = genericText.question + " " + '5' + " / " + questions.total;
+                } else {
+                    questionLabel.text = genericText.question + " " + (idx+1) + " / " + questions.total;
+                }
+
                 questionLabel = alignTextToStageCenter(stage, questionLabel);
                 questionLabel.y = 100;
                 question.text = quizText[pointer].question;
@@ -935,8 +944,10 @@ function InitiateLevel(group, level, levelStructure) {
                                 endLevel(false);
                             }
                         });
+                } else {
+                    ask(idx);
                 }
-                ask(idx);
+
 
             });
             levelContainer.addChild(question, answerA, answerB, answerC, answerD, hint, submitBtn, submitLabel);
@@ -1174,6 +1185,7 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.gaze_off = 0;
         metrics.general = 0;
         metrics.settings = 0;
+        metrics.trophy = false;
 
         // Create task list. All must be set to true to finish level
         var taskList = [];
@@ -1292,6 +1304,9 @@ function InitiateLevel(group, level, levelStructure) {
 
                         results = [taskContainer, metrics];
 
+                        // Gain trophy if the menu closes only 2 times (which means all the steps are performed once)
+                        if (metrics.close < 3 ) { metrics.trophy = true;}
+
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
                             .call(function () {
@@ -1316,6 +1331,7 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.edit = 0;
         metrics.keystroke = 0;
         metrics.close = 0;
+        metrics.trophy = false;
 
         // Create task list. All must be set to true to finish level
         var taskList = [];
@@ -1403,9 +1419,14 @@ function InitiateLevel(group, level, levelStructure) {
                         }
                     }
 
+                    if (string === 'close') {
+                        metrics.close++;
+                    }
+
                     if (string === 'close' && taskList.url) {
 
                         metrics.close++;
+                        if (metrics.close === 1 && metrics.edit === 1) {metrics.trophy = true;}
 
                         taskLabel[3].alpha = 1;
                         checkmark[3].alpha = 1;
@@ -1440,6 +1461,7 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.phrase = [];
         metrics.click = 0;
         metrics.close = 0;
+        metrics.trophy = false;
 
         // Create task list. All must be set to true to finish level
         var taskList = [];
@@ -1554,6 +1576,10 @@ function InitiateLevel(group, level, levelStructure) {
 
                         if (taskList.phrase === advThirdInstructions.phrase) {
 
+                            if (metrics.phrase.length === 1) {
+                                metrics.trophy = true;
+                            }
+
                             taskLabel[2].alpha = 1;
                             checkmark[2].alpha = 1;
                             taskLabel[3].alpha = 1;
@@ -1593,7 +1619,7 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.bookmarks = 0;
         metrics.visit_bookmark = 0;
         metrics.return_to_tabs = 0;
-
+        metrics.trophy = false;
 
         // Create task list. All must be set to true to finish level
         var taskList = [];
@@ -1612,8 +1638,6 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer = loadAdvancedLevelsIntroMap(4);
         var actualLevel = levelContainer.getChildAt(6);
-
-
 
 
         actualLevel.on("mousedown", function() {
@@ -1816,9 +1840,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     console.log(metrics);
 
-                    /*if (metrics.submit === metrics.pass) {
-                     trophy.current = true;
-                     }*/
+                    trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level31 - (stopwatch.time()/4), 10);
                 }
@@ -1827,36 +1849,27 @@ function InitiateLevel(group, level, levelStructure) {
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-                    /*if (metrics.submit === metrics.pass) {
-                     trophy.current = true;
-                     }*/
+                    trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level32 - (stopwatch.time()/4), 10);
-
                 }
                 else if (level === 2) {
 
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-                    /*if (metrics.submit === metrics.pass) {
-                     trophy.current = true;
-                     }*/
+                    trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level33 - (stopwatch.time()/4), 10);
-
                 }
                 else if (level === 3) {
 
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-                    /*if (metrics.submit === metrics.pass) {
-                     trophy.current = true;
-                     }*/
+                    trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level34 - (stopwatch.time()/4), 10);
-
                 }
                 break;
         }
@@ -1921,14 +1934,11 @@ function InitiateLevel(group, level, levelStructure) {
                         levelInformation.score = 0;
                         levelInformation.ms = 999999999999;
                         levelInformation.trophyGained = trophy.hasIt;
-                        levelInformation.countOn = 999999999999;
-                        levelInformation.countOff = 999999999999;
                     }
 
                     score = calculateNewScore(score, levelInformation.score);
                     time = calculateNewTime(time, levelInformation, stopwatch);
                     trophy = calculateNewTrophy(trophy, levelInformation.trophyGained);
-                    metrics = calculateNewMetrics(metrics, levelInformation);
                 }
 
 
