@@ -84,6 +84,8 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "trophyGained": trophy.hasIt,
                     "markers": metrics.points,
                     "eval": metrics.eval,
+                    "countOnTotal": metrics.countOnTotal,
+                    "countOffTotal": metrics.countOffTotal,
                     "intervals": intervals
                 });
 
