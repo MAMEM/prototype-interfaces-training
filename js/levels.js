@@ -1204,8 +1204,6 @@ function InitiateLevel(group, level, levelStructure) {
         var levelContainer = loadAdvancedLevelsIntroMap(1);
         var actualLevel = levelContainer.getChildAt(0);
 
-
-
         actualLevel.on("mousedown", function() {
 
             stage.removeChild(levelContainer);

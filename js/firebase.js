@@ -148,7 +148,13 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
                     "trophyGained": trophy.hasIt,
-                    "metrics": metrics
+                    "metrics": {
+                        "settings": metrics.settings,
+                        "general": metrics.general,
+                        "gaze_on": metrics.gaze_on,
+                        "gaze_off": metrics.gaze_off,
+                        "close": metrics.close
+                    }
                 });
             } else if (level === 1) {
                 firebase.database().ref('users/' + userId + '/levels/adv/level2').set({
@@ -156,7 +162,12 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
                     "trophyGained": trophy.hasIt,
-                    "metrics": metrics
+                    "metrics": {
+                        "tabs": metrics.tabs,
+                        "edit": metrics.edit,
+                        "keystroke": metrics.keystroke,
+                        "close": metrics.close
+                    }
                 });
             } else if (level === 2) {
                 firebase.database().ref('users/' + userId + '/levels/adv/level3').set({
@@ -164,7 +175,11 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
                     "trophyGained": trophy.hasIt,
-                    "metrics": metrics
+                    "metrics": {
+                        "edit": metrics.edit,
+                        "phrase": metrics.phrase,
+                        "abort": metrics.abort
+                    }
                 });
             } else if (level === 3) {
                 firebase.database().ref('users/' + userId + '/levels/adv/level4').set({
@@ -172,7 +187,13 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
                     "trophyGained": trophy.hasIt,
-                    "metrics": metrics
+                    "metrics": {
+                        "bookmark_add": metrics.bookmark_add,
+                        "new_tab": metrics.new_tab,
+                        "bookmarks": metrics.bookmarks,
+                        "visit_bookmark": metrics.visit_bookmark,
+                        "return_to_tabs": metrics.return_to_tabs
+                    }
                 });
             }
             break;
