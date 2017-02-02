@@ -52,8 +52,6 @@ interval.markerFocus = 2000;
 
 interval.markerDuration = 4000;
 
-
-
 var introStoryContainer;
 
 var Button = function (fillColor, size, pos, text, action) {
@@ -72,6 +70,11 @@ var Button = function (fillColor, size, pos, text, action) {
     var self = this;
 
     this.btn.addEventListener("mouseover", function(event) {
+
+        // Send LSL Message
+        if (window.loggingMediator) {
+            SendLSLMessage("event__mouse_over");
+        }
 
         self.btn.hoverFill = new createjs.Shape().set({
             x: self.btn.x,
@@ -105,6 +108,12 @@ var Button = function (fillColor, size, pos, text, action) {
 
 
     this.btn.addEventListener("mouseout", function(event) {
+
+        // Send LSL Message
+        if (window.loggingMediator) {
+            SendLSLMessage("event__mouse_out");
+        }
+
         changeCursor(false);
         createjs.Ticker.removeEventListener("tick", mouseTick);
 

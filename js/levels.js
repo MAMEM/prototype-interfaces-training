@@ -79,6 +79,15 @@ function loadLevel(group, level) {
         stage.addChild(tutorialContainer);
     }
 
+    // Send LSL Message
+    if (window.loggingMediator) {
+
+        if (tutorialContainer) {
+            SendLSLMessage("page_load__level_intro_w_tutorials");
+        } else {
+            SendLSLMessage("page_load__level_intro");
+        }
+    }
 
     function startLevel() {
 
@@ -110,6 +119,11 @@ function loadLevel(group, level) {
         var i = 0;
 
         var timerInterval = setInterval(refreshIntroTimer, 1000);
+
+        // Send LSL Message
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_intro_countdown_start");
+        }
 
         function refreshIntroTimer() {
 
@@ -151,7 +165,6 @@ function InitiateLevel(group, level, levelStructure) {
     }
 
     var results;
-
     switch(group) {
         case 0:
             if (level === 0) {
@@ -185,6 +198,12 @@ function InitiateLevel(group, level, levelStructure) {
     }
 
     function loadLevel1() {
+
+
+        // Send LSL Message
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_basic_1_start");
+        }
 
         var markers = 5;
         var idx = 0;
@@ -231,6 +250,12 @@ function InitiateLevel(group, level, levelStructure) {
                         progressBar.background.y = mousePointer.y + 60;
                     }
                 }
+
+                // Send LSL Message
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_over");
+                }
+
             });
 
             marker[idx].on("mouseout", function() {
@@ -243,6 +268,11 @@ function InitiateLevel(group, level, levelStructure) {
                 progressBar.foreground.scaleX = 0;
                 stage.removeChild(progressBar.foreground, progressBar.background);
                 clearInterval(progressBarInterval);
+
+                // Send LSL Message
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_out");
+                }
             });
 
         }
@@ -284,6 +314,11 @@ function InitiateLevel(group, level, levelStructure) {
                 // Evaluation does not matter, beacuse his performance is top.
                 if (metrics.countOnTotal === metrics.points && metrics.points === markers) {
 
+                    // Send LSL Message
+                    if (window.loggingMediator) {
+                        SendLSLMessage("level_complete_w_trophy");
+                    }
+
                     metrics.trophy = true;
                     results = [marker, metrics, intervals];
                     endLevel(true);
@@ -295,6 +330,11 @@ function InitiateLevel(group, level, levelStructure) {
                     // Level completed (no trophy)
                     if (metrics.eval > (metrics.points-1) / 2) {
 
+                        // Send LSL Message
+                        if (window.loggingMediator) {
+                            SendLSLMessage("level_complete");
+                        }
+
                         results = [marker, metrics, intervals];
                         endLevel(true);
                     }
@@ -302,11 +342,23 @@ function InitiateLevel(group, level, levelStructure) {
 
                         // Level failed (no trophy obviously)
                         if (metrics.points >= (3*markers)-1) {
+                            // Send LSL Message
+                            if (window.loggingMediator) {
+                                SendLSLMessage("level_failed");
+                            }
+
                             results = [marker, metrics, intervals];
                             endLevel(false);
                         }
                         // Add another group of markers
                         else {
+
+                            // Send LSL Message
+                            if (window.loggingMediator) {
+                                SendLSLMessage("level_basic_1__new_markers_batch");
+                                SendLSLMessage("level_basic_1__new_marker");
+                            }
+
                             metrics.points = metrics.points + markers;
                             addMarker(idx);
                         }
@@ -314,6 +366,10 @@ function InitiateLevel(group, level, levelStructure) {
                 }
 
             } else {
+                // Send LSL Message
+                if (window.loggingMediator) {
+                    SendLSLMessage("level_basic_1__new_marker");
+                }
                 // Load another marker
                 addMarker(idx);
             }
@@ -322,6 +378,11 @@ function InitiateLevel(group, level, levelStructure) {
 
 
     function loadLevel2() {
+
+        // Send LSL Message
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_basic_2_start");
+        }
 
         var markers = 8;
 
@@ -384,8 +445,18 @@ function InitiateLevel(group, level, levelStructure) {
 
         function activateMole(elem, i) {
 
+            // Send LSL Message
+            if (window.loggingMediator) {
+                SendLSLMessage("level_basic_2__mole_start");
+            }
+
             elem.image.src = "assets/marker.png";
             elem.on("mouseover", function() {
+
+                // Send LSL Message
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_over");
+                }
 
                 changeCursor(true);
                 metrics.countOn++;
@@ -424,6 +495,12 @@ function InitiateLevel(group, level, levelStructure) {
             });
 
             elem.on("mouseout", function() {
+
+                // Send LSL Message
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_out");
+                }
+
                 changeCursor(false);
                 metrics.countOff++;
                 createjs.Ticker.removeEventListener("tick", mouseTick);
@@ -440,6 +517,12 @@ function InitiateLevel(group, level, levelStructure) {
         }
 
         function disableMole(elem, i) {
+
+            // Send LSL Message
+            if (window.loggingMediator) {
+                SendLSLMessage("level_basic_2__mole_end");
+            }
+
             window.clearTimeout(elem.markerTimeout);
 
             elem.image.src = "assets/marker_disabled.png";
@@ -462,6 +545,12 @@ function InitiateLevel(group, level, levelStructure) {
 
                 // GOT trophy when all targets are successfully hit!
                 if (metrics.hits === metrics.moles) {
+
+                    // Send LSL Message
+                    if (window.loggingMediator) {
+                        SendLSLMessage("level_complete_w_trophy");
+                    }
+
                     metrics.trophy = true;
                     results = [markersContainer, metrics, intervals];
                     endLevel(true);
@@ -471,6 +560,12 @@ function InitiateLevel(group, level, levelStructure) {
 
                     // Level complete - no trophy
                     if (metrics.hits > (metrics.moles/2)) {
+
+                        // Send LSL Message
+                        if (window.loggingMediator) {
+                            SendLSLMessage("level_complete");
+                        }
+
                         results = [markersContainer, metrics, intervals];
                         endLevel(true);
                     }
@@ -478,14 +573,24 @@ function InitiateLevel(group, level, levelStructure) {
 
                         // Level failed (no trophy obviously)
                         if (metrics.moles >= (3*markers)-1) {
+
+                            // Send LSL Message
+                            if (window.loggingMediator) {
+                                SendLSLMessage("level_failed");
+                            }
+
                             results = [markersContainer, metrics, intervals];
                             endLevel(false);
                         }
                         // Add another group of markers
                         else {
 
-                            metrics.moles = metrics.moles + markers;
+                            // Send LSL Message
+                            if (window.loggingMediator) {
+                                SendLSLMessage("level_basic_2__moles_new_batch");
+                            }
 
+                            metrics.moles = metrics.moles + markers;
                             startMoles(index + metrics.moles - markers);
                         }
                     }
@@ -494,6 +599,11 @@ function InitiateLevel(group, level, levelStructure) {
         }
 
         function hit() {
+
+            // Send LSL Message
+            if (window.loggingMediator) {
+                SendLSLMessage("level_basic_2__mole_hit");
+            }
 
             // Calculate the time spent from activation of marker to start of the hover that hits it.
             var time = stopwatch.time();
@@ -506,6 +616,11 @@ function InitiateLevel(group, level, levelStructure) {
     }
 
     function loadLevel3() {
+
+        // Send LSL Message
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_int_1_start");
+        }
 
         // Set height manually in every stage (except splash)
         canvas.height = 2000;
@@ -644,10 +759,20 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.addChild(towerContainer);
 
+            // Send LSL Message
+            if (window.loggingMediator) {
+                SendLSLMessage("level_int_1__tower_instance");
+            }
+
         });
 
         // Listener for the back button, to get user out of tower!
         window.onpopstate = function(event) {
+
+            // Send LSL Message
+            if (window.loggingMediator) {
+                SendLSLMessage("event__browser_back");
+            }
 
             canvas.height = 2000;
 
@@ -660,6 +785,7 @@ function InitiateLevel(group, level, levelStructure) {
 
 
         cave.on("mousedown", function() {
+
             metrics.hit++;
 
             stage.removeChild(levelContainer);
@@ -699,6 +825,11 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.addChild(levelContainer);
 
+            // Send LSL Message
+            if (window.loggingMediator) {
+                SendLSLMessage("level_int_1__cave_instance");
+            }
+
             metrics.trophy = (metrics.hit < 3);
 
             results = [levelContainer, metrics];
@@ -721,6 +852,12 @@ function InitiateLevel(group, level, levelStructure) {
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
 
         document.addEventListener("mousedown", function(){
+
+            // Send LSL Message
+            if (window.loggingMediator) {
+                SendLSLMessage("event__mouse_down");
+            }
+
             metrics.clicks++;
         });
 
@@ -1835,9 +1972,7 @@ function InitiateLevel(group, level, levelStructure) {
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-                    if (metrics.paste < 3) {
-                        trophy.current = true;
-                    }
+                    trophy.current = (metrics.paste < 3);
 
                     score.current = parseInt(scoreBounds.level23 - (stopwatch.time()/4), 10);
 
@@ -1891,8 +2026,6 @@ function InitiateLevel(group, level, levelStructure) {
 
         // Run update to firebase only if threshold is reached
         if (levelComplete) {
-
-            console.log(metrics);
 
             // Check if score is negative, then substitute with zero.
             score.current = score.current > 0 ? score.current : 0;

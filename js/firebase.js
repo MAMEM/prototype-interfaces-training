@@ -225,8 +225,6 @@ function createScoreboard(group, level, col) {
                         if (!userData.hasOwnProperty(key)) continue;
                         if (!userData[key].levels.basic) continue;
 
-
-
                         entity = {
                             name: userData[key].userDetails.name,
                             id: key,
@@ -501,6 +499,5 @@ function createScoreboard(group, level, col) {
 
             stage.addChild(rankingUser[i].pos, rankingUser[i].name, rankingUser[i].score, rankingUser[i].time, rankingUser[i].trophy);
         }
-
     });
 }

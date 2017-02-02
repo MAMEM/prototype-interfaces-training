@@ -627,5 +627,9 @@ function loadOverviewPage() {
         canvas.height = 1100;
         canvas.width = canvas.width - 10;
 
+        // Send LSL Message
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__overview");
+        }
     });
 }
