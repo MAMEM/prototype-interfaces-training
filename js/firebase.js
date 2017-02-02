@@ -176,9 +176,9 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "timeLabel": time.currentFormatted,
                     "trophyGained": trophy.hasIt,
                     "metrics": {
-                        "edit": metrics.edit,
-                        "phrase": metrics.phrase,
-                        "abort": metrics.abort
+                        "click": metrics.click,
+                        "close": metrics.close,
+                        "phrase": metrics.phrase
                     }
                 });
             } else if (level === 3) {
@@ -188,11 +188,12 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "timeLabel": time.currentFormatted,
                     "trophyGained": trophy.hasIt,
                     "metrics": {
+                        "tabs": metrics.tabs,
                         "bookmark_add": metrics.bookmark_add,
                         "new_tab": metrics.new_tab,
                         "bookmarks": metrics.bookmarks,
-                        "visit_bookmark": metrics.visit_bookmark,
-                        "return_to_tabs": metrics.return_to_tabs
+                        "select_bookmark": metrics.select_bookmark,
+                        "return_to_tabs": metrics.tabs_again
                     }
                 });
             }

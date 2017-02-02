@@ -1303,7 +1303,7 @@ function InitiateLevel(group, level, levelStructure) {
                         results = [taskContainer, metrics];
 
                         // Gain trophy if the menu closes only 2 times (which means all the steps are performed once)
-                        if (metrics.close < 3 ) { metrics.trophy = true;}
+                        metrics.trophy = (metrics.settings < 3 );
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
@@ -1347,8 +1347,6 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer = loadAdvancedLevelsIntroMap(2);
         var actualLevel = levelContainer.getChildAt(2);
-
-
 
         actualLevel.on("mousedown", function() {
 
@@ -1423,8 +1421,10 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === 'close' && taskList.url) {
 
+                        metrics.trophy = (metrics.edit === 1);
+
                         metrics.close++;
-                        if (metrics.close === 1 && metrics.edit === 1) {metrics.trophy = true;}
+
 
                         taskLabel[3].alpha = 1;
                         checkmark[3].alpha = 1;
@@ -1574,9 +1574,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                         if (taskList.phrase === advThirdInstructions.phrase) {
 
-                            if (metrics.phrase.length === 1) {
-                                metrics.trophy = true;
-                            }
+                            metrics.trophy = (metrics.phrase.length === 1);
 
                             taskLabel[2].alpha = 1;
                             checkmark[2].alpha = 1;
@@ -1615,8 +1613,8 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.bookmark_add = 0;
         metrics.new_tab = 0;
         metrics.bookmarks = 0;
-        metrics.visit_bookmark = 0;
-        metrics.return_to_tabs = 0;
+        metrics.select_bookmark = 0;
+        metrics.tabs_again = 0;
         metrics.trophy = false;
 
         // Create task list. All must be set to true to finish level
@@ -1676,36 +1674,56 @@ function InitiateLevel(group, level, levelStructure) {
                 window.loggingMediator.registerFunction(function(string) {
 
                     if (string === "tabs") {
+
+                        metrics.tabs++;
+
                         taskList.tabs = true;
                         taskLabel[0].alpha = 1;
                         checkmark[0].alpha = 1;
                     }
 
                     if (string === "bookmark_add") {
+
+                        metrics.bookmark_add++;
+
                         taskList.bookmark = true;
                         taskLabel[1].alpha = 1;
                         checkmark[1].alpha = 1;
                     }
 
                     if (string === "new_tab") {
+
+                        metrics.new_tab++;
+
                         taskList.new_tab = true;
                         taskLabel[2].alpha = 1;
                         checkmark[2].alpha = 1;
                     }
 
                     if (string === "bookmarks") {
+
+                        metrics.bookmarks++;
+
                         taskList.open_bookmarks = true;
                         taskLabel[3].alpha = 1;
                         checkmark[3].alpha = 1;
                     }
 
                     if (string === "open_bookmark") {
+
+                        metrics.select_bookmark++;
+
                         taskList.select_bookmark = true;
                         taskLabel[4].alpha = 1;
                         checkmark[4].alpha = 1;
                     }
 
                     if (taskList.select_bookmark && string === "tabs") {
+
+                        metrics.tabs_again++;
+
+                        metrics.trophy = (metrics.new_tab === 1 && metrics.bookmarks === 1 && metrics.select_bookmark === 1);
+
                         taskList.tabs_again = true;
                         taskLabel[5].alpha = 1;
                         checkmark[5].alpha = 1;
@@ -1836,8 +1854,6 @@ function InitiateLevel(group, level, levelStructure) {
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-                    console.log(metrics);
-
                     trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level31 - (stopwatch.time()/4), 10);
@@ -1867,7 +1883,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     trophy.current = metrics.trophy;
 
-                    score.current = parseInt(scoreBounds.level34 - (stopwatch.time()/4), 10);
+                    score.current = parseInt(scoreBounds.level34 - (stopwatch.time()/6), 10);
                 }
                 break;
         }
@@ -1875,6 +1891,8 @@ function InitiateLevel(group, level, levelStructure) {
 
         // Run update to firebase only if threshold is reached
         if (levelComplete) {
+
+            console.log(metrics);
 
             // Check if score is negative, then substitute with zero.
             score.current = score.current > 0 ? score.current : 0;
