@@ -316,7 +316,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     // Send LSL Message
                     if (window.loggingMediator) {
-                        SendLSLMessage("level_complete_w_trophy");
+                        SendLSLMessage("level_complete");
+                        SendLSLMessage("trophy");
                     }
 
                     metrics.trophy = true;
@@ -548,7 +549,9 @@ function InitiateLevel(group, level, levelStructure) {
 
                     // Send LSL Message
                     if (window.loggingMediator) {
-                        SendLSLMessage("level_complete_w_trophy");
+                        SendLSLMessage("level_complete");
+                        SendLSLMessage("trophy");
+
                     }
 
                     metrics.trophy = true;
@@ -831,12 +834,21 @@ function InitiateLevel(group, level, levelStructure) {
             }
 
             metrics.trophy = (metrics.hit < 3);
+            if (metrics.trophy) {
+                if (window.loggingMediator) {
+                    SendLSLMessage("trophy");
+                }
+            }
 
             results = [levelContainer, metrics];
 
             createjs.Tween.get(levelContainer)
                 .wait(3000)
                 .call( function () {
+
+                    if (window.loggingMediator) {
+                        SendLSLMessage("level_complete");
+                    }
 
                     endLevel(true);
 
@@ -864,6 +876,11 @@ function InitiateLevel(group, level, levelStructure) {
     }
 
     function loadLevel4() {
+
+        // Send LSL Message
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_int_2_start");
+        }
 
         var levelContainer = new createjs.Container();
 
@@ -996,10 +1013,28 @@ function InitiateLevel(group, level, levelStructure) {
             function ask(idx) {
 
                 if (idx < 2) {
+
+                    // Send LSL Message
+                    if (window.loggingMediator) {
+                        SendLSLMessage("level_int_2__question_asked_easy");
+                    }
+
                     pointer = getRandomInt(pointer, 0, 3);
                 } else if (idx < 4) {
+
+                    // Send LSL Message
+                    if (window.loggingMediator) {
+                        SendLSLMessage("level_int_2__question_asked_med");
+                    }
+
                     pointer = getRandomInt(pointer, 4, 7);
                 } else {
+
+                    // Send LSL Message
+                    if (window.loggingMediator) {
+                        SendLSLMessage("level_int_2__question_asked_hard");
+                    }
+
                     pointer = getRandomInt(pointer, 8, 11);
                 }
 
@@ -1030,6 +1065,11 @@ function InitiateLevel(group, level, levelStructure) {
 
             submitBtn.addEventListener("mousedown", function (e) {
 
+                // Send LSL Message
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_down");
+                }
+
                 // Check GAZETHEWEB INPUT TYPE
                 metrics.submit++;
 
@@ -1040,10 +1080,20 @@ function InitiateLevel(group, level, levelStructure) {
 
                 if (textInput.value === quizText[pointer].correct) {
 
+                    // Send LSL Message
+                    if (window.loggingMediator) {
+                        SendLSLMessage("level_int_2__answer_correct");
+                    }
+
                     barElement.graphics.beginFill(color.barGreen).drawRect(0, 0, 60, 12).endFill();
                     metrics.pass++;
 
                 } else {
+
+                    // Send LSL Message
+                    if (window.loggingMediator) {
+                        SendLSLMessage("level_int_2__answer_wrong");
+                    }
 
                     barElement.graphics.beginFill(color.barRed).drawRect(0, 0, 60, 12).endFill();
                     metrics.fail++;
@@ -1055,6 +1105,12 @@ function InitiateLevel(group, level, levelStructure) {
                 stage.addChild(barContainer);
 
                 if (metrics.fail > 2) {
+
+                    // Send LSL Message
+                    if (window.loggingMediator) {
+                        SendLSLMessage("level_failed");
+                    }
+
                     stage.removeChild(barContainer);
                     textInput.style.display = "none";
                     results = [levelContainer, metrics];
@@ -1063,8 +1119,12 @@ function InitiateLevel(group, level, levelStructure) {
 
                 if (idx === questions.total) {
 
-                    if (metrics.fail === 0 ) {
-                        metrics.trophy = true;
+                    metrics.trophy = (metrics.fail === 0);
+
+                    if (metrics.trophy) {
+                        if (window.loggingMediator) {
+                            SendLSLMessage("trophy");
+                        }
                     }
 
                     createjs.Tween.get(levelContainer)
@@ -1076,8 +1136,18 @@ function InitiateLevel(group, level, levelStructure) {
                             results = [levelContainer, metrics];
 
                             if (metrics.pass > metrics.fail) {
+
+                                // Send LSL Message
+                                if (window.loggingMediator) {
+                                    SendLSLMessage("level_complete");
+                                }
+
                                 endLevel(true);
                             } else {
+                                // Send LSL Message
+                                if (window.loggingMediator) {
+                                    SendLSLMessage("level_failed");
+                                }
                                 endLevel(false);
                             }
                         });
@@ -1104,6 +1174,10 @@ function InitiateLevel(group, level, levelStructure) {
 
     function loadLevel5() {
 
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_int_3_start");
+        }
+
         var levelContainer = new createjs.Container();
 
         var textInput1 = document.getElementById('inputTextFirst');
@@ -1125,6 +1199,7 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.paste = 0;
         metrics.click = 0;
         metrics.errors = 0;
+        metrics.trophy = false;
 
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.darkBrown).drawRect(0, 0, stage.canvas.width, canvas.height);
@@ -1241,6 +1316,11 @@ function InitiateLevel(group, level, levelStructure) {
 
         globe.on("mousedown", function() {
 
+            if (window.loggingMediator) {
+                SendLSLMessage("event__mouse_down");
+                SendLSLMessage("level_int_3__map_on");
+            }
+
             createjs.Tween.get(submitBtn).to({
                 alpha:1
             }, 600);
@@ -1259,6 +1339,11 @@ function InitiateLevel(group, level, levelStructure) {
 
         submitBtn.on("mousedown", function() {
 
+            if (window.loggingMediator) {
+                SendLSLMessage("event__mouse_down");
+                SendLSLMessage("level_int_3__coords_submit");
+            }
+
             stage.removeChild(wrongCoordsLabel);
 
             if (textInput1.value === textElement1.innerHTML && textInput2.value === textElement2.innerHTML){
@@ -1270,9 +1355,27 @@ function InitiateLevel(group, level, levelStructure) {
                 textInput1.value = '';
                 textInput2.value = '';
 
+                metrics.trophy = (metrics.paste < 3);
+
+                if (metrics.trophy) {
+                    if (window.loggingMediator) {
+                        SendLSLMessage("trophy");
+                    }
+                }
+
+
+                if (window.loggingMediator) {
+                    SendLSLMessage("level_int_3__coords_correct");
+                    SendLSLMessage("level_complete");
+                }
+
                 results = [levelContainer, metrics];
                 endLevel(true);
             } else {
+
+                if (window.loggingMediator) {
+                    SendLSLMessage("level_int_3__coords_wrong");
+                }
 
                 metrics.errors++;
 
@@ -1286,19 +1389,32 @@ function InitiateLevel(group, level, levelStructure) {
         });
 
         document.addEventListener("copy", function() {
+
+            if (window.loggingMediator) {
+                SendLSLMessage("event__copy");
+            }
+
             stage.removeChild(wrongCoordsLabel);
             metrics.copy++;
         });
 
         document.addEventListener("paste", function() {
+
+            if (window.loggingMediator) {
+                SendLSLMessage("event__paste");
+            }
+
             metrics.paste++;
         });
 
         document.addEventListener("mousedown", function() {
+
+            if (window.loggingMediator) {
+                SendLSLMessage("event__mouse_down");
+            }
+
             metrics.click++;
         });
-
-
 
         levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratulatoryText, scroll, scrollTitle, scrollDesc, cpIcon, globe, clickLabel, map, submitBtn, submitLabel);
         levelContainer.alpha = 0;
@@ -1315,6 +1431,10 @@ function InitiateLevel(group, level, levelStructure) {
     }
 
     function loadLevel6() {
+
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_adv_1_start");
+        }
 
         var metrics = [];
         metrics.close = 0;
@@ -1342,6 +1462,10 @@ function InitiateLevel(group, level, levelStructure) {
         var actualLevel = levelContainer.getChildAt(0);
 
         actualLevel.on("mousedown", function() {
+
+            if (window.loggingMediator) {
+                SendLSLMessage("event__mouse_down");
+            }
 
             stage.removeChild(levelContainer);
 
@@ -1381,6 +1505,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === 'settings') {
 
+                        SendLSLMessage("level_adv_1__msg_settings");
+
                         metrics.settings++;
 
                         taskList.settings = true;
@@ -1389,6 +1515,8 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     if (string === 'general') {
+
+                        SendLSLMessage("level_adv_1__msg_general");
 
                         metrics.general++;
 
@@ -1399,6 +1527,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === 'gaze_on') {
 
+                        SendLSLMessage("level_adv_1__msg_gaze_on");
+
                         metrics.gaze_on++;
 
                         taskList.gaze_on = true;
@@ -1406,9 +1536,17 @@ function InitiateLevel(group, level, levelStructure) {
                         checkmark[2].alpha = 1;
                     }
 
-                    if (string === 'close') { taskList.close = true; metrics.close++; }
+                    if (string === 'close') {
+
+                        SendLSLMessage("level_adv_1__msg_close");
+
+                        taskList.close = true;
+                        metrics.close++;
+                    }
 
                     if (string === 'general' && taskList.gaze_on) {
+
+                        SendLSLMessage("level_adv_1__msg_general");
 
                         metrics.general++;
 
@@ -1417,6 +1555,8 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     if (string === 'gaze_off' && taskList.close) {
+
+                        SendLSLMessage("level_adv_1__msg_gaze_off");
 
                         metrics.gaze_off++;
 
@@ -1427,6 +1567,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === 'close' && taskList.gaze_off) {
 
+                        SendLSLMessage("level_adv_1__msg_close");
+
                         metrics.close++;
 
                         taskList.end = true;
@@ -1435,16 +1577,24 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     if (taskList.end) {
-                        window.loggingMediator.unregisterFunction();
+
 
                         results = [taskContainer, metrics];
 
                         // Gain trophy if the menu closes only 2 times (which means all the steps are performed once)
                         metrics.trophy = (metrics.settings < 3 );
+                        if (metrics.trophy) {
+                            SendLSLMessage("trophy");
+                        }
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
                             .call(function () {
+                                if (window.loggingMediator) {
+                                    SendLSLMessage("level_complete");
+                                }
+
+                                window.loggingMediator.unregisterFunction();
                                 endLevel(true);
                             });
 
@@ -1460,6 +1610,10 @@ function InitiateLevel(group, level, levelStructure) {
     }
 
     function loadLevel7() {
+
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_adv_2_start");
+        }
 
         var metrics = [];
         metrics.tabs = 0;
@@ -1486,6 +1640,10 @@ function InitiateLevel(group, level, levelStructure) {
         var actualLevel = levelContainer.getChildAt(2);
 
         actualLevel.on("mousedown", function() {
+
+            if (window.loggingMediator) {
+                SendLSLMessage("event__mouse_down");
+            }
 
             stage.removeChild(levelContainer);
 
@@ -1525,6 +1683,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === 'tabs') {
 
+                        SendLSLMessage("level_adv_2__msg_tabs");
+
                         metrics.tabs++;
 
                         taskList.tabs = true;
@@ -1534,6 +1694,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === 'edit') {
 
+                        SendLSLMessage("level_adv_2__msg_edit");
+
                         metrics.edit++;
 
                         taskList.new_tab = true;
@@ -1542,6 +1704,9 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     if (string === 'keystroke') {
+
+                        SendLSLMessage("level_adv_2__msg_keystroke");
+
                         taskList.type++;
                         metrics.keystroke++;
 
@@ -1553,15 +1718,20 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     if (string === 'close') {
+
+                        SendLSLMessage("level_adv_2__msg_close");
+
                         metrics.close++;
                     }
 
                     if (string === 'close' && taskList.url) {
 
                         metrics.trophy = (metrics.edit === 1);
+                        if (metrics.trophy) {
+                            SendLSLMessage("trophy");
+                        }
 
                         metrics.close++;
-
 
                         taskLabel[3].alpha = 1;
                         checkmark[3].alpha = 1;
@@ -1569,13 +1739,15 @@ function InitiateLevel(group, level, levelStructure) {
                         taskLabel[4].alpha = 1;
                         checkmark[4].alpha = 1;
 
-                        window.loggingMediator.unregisterFunction();
-
                         results = [taskContainer, metrics];
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
                             .call(function () {
+
+                                SendLSLMessage("level_complete");
+
+                                window.loggingMediator.unregisterFunction();
                                 endLevel(true);
                             });
 
@@ -1591,6 +1763,10 @@ function InitiateLevel(group, level, levelStructure) {
     }
 
     function loadLevel8() {
+
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_adv_3_start");
+        }
 
         var metrics = [];
         metrics.phrase = [];
@@ -1712,6 +1888,11 @@ function InitiateLevel(group, level, levelStructure) {
                         if (taskList.phrase === advThirdInstructions.phrase) {
 
                             metrics.trophy = (metrics.phrase.length === 1);
+                            if (metrics.trophy) {
+                                if (window.loggingMediator) {
+                                    SendLSLMessage("trophy");
+                                }
+                            }
 
                             taskLabel[2].alpha = 1;
                             checkmark[2].alpha = 1;
@@ -1744,6 +1925,10 @@ function InitiateLevel(group, level, levelStructure) {
     }
 
     function loadLevel9() {
+
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_adv_4_start");
+        }
 
         var metrics = [];
         metrics.tabs = 0;
@@ -1859,8 +2044,6 @@ function InitiateLevel(group, level, levelStructure) {
 
                         metrics.tabs_again++;
 
-                        metrics.trophy = (metrics.new_tab === 1 && metrics.bookmarks === 1 && metrics.select_bookmark === 1);
-
                         taskList.tabs_again = true;
                         taskLabel[5].alpha = 1;
                         checkmark[5].alpha = 1;
@@ -1878,6 +2061,14 @@ function InitiateLevel(group, level, levelStructure) {
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
                             .call(function () {
+
+                                metrics.trophy = (metrics.new_tab === 1 && metrics.bookmarks === 1 && metrics.select_bookmark === 1);
+                                if (metrics.trophy) {
+                                    if (window.loggingMediator) {
+                                        SendLSLMessage("trophy");
+                                    }
+                                }
+
                                 endLevel(true);
                             });
                     }
@@ -1972,7 +2163,7 @@ function InitiateLevel(group, level, levelStructure) {
                     stage.removeChild(results[0]); // remove container
                     metrics = results[1];
 
-                    trophy.current = (metrics.paste < 3);
+                    trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level23 - (stopwatch.time()/4), 10);
 
