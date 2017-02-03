@@ -1789,9 +1789,12 @@ function InitiateLevel(group, level, levelStructure) {
         var levelContainer = loadAdvancedLevelsIntroMap(3);
         var actualLevel = levelContainer.getChildAt(4);
 
-
-
         actualLevel.on("mousedown", function() {
+
+
+            if (window.loggingMediator) {
+                SendLSLMessage("event__mouse_down");
+            }
 
             stage.removeChild(levelContainer);
 
@@ -1856,6 +1859,11 @@ function InitiateLevel(group, level, levelStructure) {
 
             textInput.addEventListener("click", function () {
 
+
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_down");
+                }
+
                 metrics.click++;
 
                 taskLabel[0].alpha = 1;
@@ -1873,6 +1881,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === 'submit' || string === 'close') {
 
+                        SendLSLMessage("level_adv_3__msg_close");
+
                         metrics.close++;
 
                         createjs.Tween.get(actualLevel)
@@ -1889,9 +1899,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                             metrics.trophy = (metrics.phrase.length === 1);
                             if (metrics.trophy) {
-                                if (window.loggingMediator) {
-                                    SendLSLMessage("trophy");
-                                }
+                                SendLSLMessage("trophy");
                             }
 
                             taskLabel[2].alpha = 1;
@@ -1908,6 +1916,9 @@ function InitiateLevel(group, level, levelStructure) {
                             createjs.Tween.get(actualLevel)
                                 .wait(1000)
                                 .call(function(){
+
+                                    SendLSLMessage("level_complete");
+
                                     textInput.style.display = "none";
                                     results = [taskContainer, metrics];
                                     endLevel(true);
@@ -1957,8 +1968,11 @@ function InitiateLevel(group, level, levelStructure) {
         var levelContainer = loadAdvancedLevelsIntroMap(4);
         var actualLevel = levelContainer.getChildAt(6);
 
-
         actualLevel.on("mousedown", function() {
+
+            if (window.loggingMediator) {
+                SendLSLMessage("event__mouse_down");
+            }
 
             stage.removeChild(levelContainer);
 
@@ -1997,6 +2011,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === "tabs") {
 
+                        SendLSLMessage("level_adv_4__msg_tabs");
+
                         metrics.tabs++;
 
                         taskList.tabs = true;
@@ -2005,6 +2021,8 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     if (string === "bookmark_add") {
+
+                        SendLSLMessage("level_adv_4__msg_bookmark_add");
 
                         metrics.bookmark_add++;
 
@@ -2015,6 +2033,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === "new_tab") {
 
+                        SendLSLMessage("level_adv_4__msg_new_tab");
+
                         metrics.new_tab++;
 
                         taskList.new_tab = true;
@@ -2023,6 +2043,8 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     if (string === "bookmarks") {
+
+                        SendLSLMessage("level_adv_4__msg_bookmarks");
 
                         metrics.bookmarks++;
 
@@ -2033,6 +2055,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (string === "open_bookmark") {
 
+                        SendLSLMessage("level_adv_4__msg_open_bookmark");
+
                         metrics.select_bookmark++;
 
                         taskList.select_bookmark = true;
@@ -2041,6 +2065,8 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     if (taskList.select_bookmark && string === "tabs") {
+
+                        SendLSLMessage("level_adv_4__msg_tabs_again");
 
                         metrics.tabs_again++;
 
@@ -2051,16 +2077,20 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (taskList.tabs_again && string === "tab0") {
 
+                        SendLSLMessage("level_adv_4__msg_tab0");
+
                         taskList.return = true;
                         taskLabel[6].alpha = 1;
                         checkmark[6].alpha = 1;
 
-                        window.loggingMediator.unregisterFunction();
+
                         results = [taskContainer, metrics];
 
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
                             .call(function () {
+
+                                window.loggingMediator.unregisterFunction();
 
                                 metrics.trophy = (metrics.new_tab === 1 && metrics.bookmarks === 1 && metrics.select_bookmark === 1);
                                 if (metrics.trophy) {
@@ -2314,6 +2344,11 @@ function InitiateLevel(group, level, levelStructure) {
                 outroStoryContainer = loadLvlOutroStory(poe, true);
             }
 
+            if (window.loggingMediator) {
+                SendLSLMessage("page_load__level_results");
+            }
+
+
         }
         else {
 
@@ -2335,16 +2370,31 @@ function InitiateLevel(group, level, levelStructure) {
             button.replay.icon.y = btnPos.y + btnSize.y/2 - 27;
 
             stage.addChild(button.replay.btn, button.replay.icon, button.replay.label);
+
+
+            if (window.loggingMediator) {
+                SendLSLMessage("page_load__level_failed_text");
+            }
+
         }
         stage.addChild(outroStoryContainer);
     }
 
     function replayCurrentLevel() {
+
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__level_replay");
+        }
+
         loadLevel(group, level);
     }
 
     // Increment levels! (to load next)
     function advanceToNextLevel() {
+
+        if (window.loggingMediator) {
+            SendLSLMessage("page_load__next_level");
+        }
 
         switch(group) {
             case 0:

@@ -212,6 +212,10 @@ function loadOverviewPage() {
 
                 s[i].on("mouseover", function() {
 
+                    if (window.loggingMediator) {
+                        SendLSLMessage("event__mouse_over");
+                    }
+
                     createjs.Ticker.addEventListener("tick", mouseTick);
 
                     this.hoverFill = new createjs.Shape().set({
@@ -242,6 +246,11 @@ function loadOverviewPage() {
                 });
 
                 s[i].on("mouseout", function() {
+
+                    if (window.loggingMediator) {
+                        SendLSLMessage("event__mouse_out");
+                    }
+
                     createjs.Ticker.removeEventListener("tick", mouseTick);
                     createjs.Tween.removeTweens(this.hoverFill);
                     overviewBasicGroupContainer.removeChild(this.hoverFill);
@@ -386,6 +395,10 @@ function loadOverviewPage() {
 
                 s[i].on("mouseover", function () {
 
+                    if (window.loggingMediator) {
+                        SendLSLMessage("event__mouse_over");
+                    }
+
                     createjs.Ticker.addEventListener("tick", mouseTick);
 
                     this.hoverFill = new createjs.Shape().set({
@@ -416,6 +429,11 @@ function loadOverviewPage() {
                 });
 
                 s[i].on("mouseout", function () {
+
+                    if (window.loggingMediator) {
+                        SendLSLMessage("event__mouse_out");
+                    }
+
                     createjs.Ticker.removeEventListener("tick", mouseTick);
                     overviewIntGroupContainer.removeChild(this.hoverFill);
                     createjs.Tween.removeTweens(this.hoverFill);
@@ -436,14 +454,11 @@ function loadOverviewPage() {
                 overviewIntGroupContainer.addChild(lock[i]);
 
             }
-
-
             overviewIntGroupContainer.addChild(s[i]);
 
             overviewIntGroupContainer.addChild(intTileTitle[i]);
             if (intLevelScore[i]) {overviewIntGroupContainer.addChild(intLevelScore[i], intLevelTime[i]);}
             if (intLevelTrophy[i]) {overviewIntGroupContainer.addChild(intLevelTrophy[i]);}
-
         }
 
         // ADVANCED
@@ -561,6 +576,10 @@ function loadOverviewPage() {
 
                 s[i].on("mouseover", function () {
 
+                    if (window.loggingMediator) {
+                        SendLSLMessage("event__mouse_over");
+                    }
+
                     createjs.Ticker.addEventListener("tick", mouseTick);
 
                     this.hoverFill = new createjs.Shape().set({
@@ -591,6 +610,11 @@ function loadOverviewPage() {
                 });
 
                 s[i].on("mouseout", function () {
+
+                    if (window.loggingMediator) {
+                        SendLSLMessage("event__mouse_out");
+                    }
+
                     createjs.Ticker.removeEventListener("tick", mouseTick);
                     overviewAdvGroupContainer.removeChild(this.hoverFill);
                     createjs.Tween.removeTweens(this.hoverFill);
