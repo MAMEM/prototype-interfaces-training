@@ -1,0 +1,74 @@
+LSL Dictionary
+-------------------
+
+page_load__overview: Overview page loaded.
+page_load__level_intro: Level intro loaded.
+page_load__level_intro_countdown_start: The countdown to start the level has begun.
+page_load__level_basic_1_start: BASIC-1 has started.
+page_load__level_basic_2_start: BASIC-2 has started.
+page_load__level_int_1_start: INT-1 has started.
+page_load__level_int_2_start: INT-2 has started.
+page_load__level_int_3_start: INT-3 has started.
+page_load__level_adv_1_start: ADV-1 has started.
+page_load__level_adv_2_start: ADV-2 has started.
+page_load__level_adv_3_start: ADV-3 has started.
+page_load__level_adv_4_start: ADV-4 has started.
+
+page_load__level_results: Open results page.
+page_load__level_failed_text: Openg page that tells user to replay the level.
+page_load__level_replay: Initiated level load for replaying.
+page_load__next_level: Initiated action to go to next level.
+
+level_basic_1__new_marker: New marker added to BASIC-1
+level_basic_1__new_markers_batch: Based on evaluation, another batch of markers was added.
+
+level_basic_2__mole_start: Mole appeared.
+level_basic_2__mole_end: Mole dissapeared. Time's up.
+level_basic_2__moles_new_batch: Add new batch of moles based on eval.
+level_basic_2__mole_hit: Mole HIT.
+
+level_int_1__tower_instance: Got inside the tower.
+level_int_1__cave_instance: Got inside the cave.
+
+level_int_2__question_asked_easy: Loaded easy question.
+level_int_2__question_asked_med: Loaded medium question.
+level_int_2__question_asked_hard: Loaded hard question.
+level_int_2__answer_correct: Answered correctly.
+level_int_2__answer_wrong: Didn't answer correct.
+
+level_int_3__map_on: Clicked on globe to show the map.
+level_int_3__coords_submit: Coordinates submitted.
+level_int_3__coords_correct: Coordinates submitted are correct.
+level_int_3__coords_wrong: Coordinates submitted are wrong.
+
+level_adv_1__msg_settings: Opened GTW Settings View.
+level_adv_1__msg_general: Opened GTW General Settings View.
+level_adv_1__msg_gaze_on: Activated Gaze mode.
+level_adv_1__msg_gaze_off: Deactivated Gaze mode.
+level_adv_1__msg_close: Closed any instance of GTW Interface.
+
+level_adv_2__msg_tabs: Opened GTW Tabs View.
+level_adv_2__msg_edit: Started editing a URL.
+level_adv_2__msg_keystroke: Keys are pressed on the GTW Keyboard.
+level_adv_2__msg_close: Closed any instance of GTW Interface.
+
+level_adv_3__msg_close: Closed any instance of GTW Interface.
+
+level_adv_4__msg_tabs: Opened GTW Tabs View.
+level_adv_4__msg_bookmark_add: Added current page as Bookmark.
+level_adv_4__msg_new_tab: Added new GTW Tab.
+level_adv_4__msg_bookmarks: Accessed the Bookmarks View of GTW.
+level_adv_4__msg_open_bookmark: Loaded the saved bookmark.
+level_adv_4__msg_tabs_again: Returned to GTW Tabs View.
+level_adv_4__msg_tab0: Returned to First tab of GTW.
+
+trophy: Got a trophy.
+level_complete: The level is complete.
+level_failed: The level has failed.
+
+
+event__mouse_over: The cursor is on top of an element.
+event__mouse_out: The cursor is now out of bounds of the previous element.
+event__mouse_down: The hand cursor action (left click) has been fired.
+event__browser_back: The BACK button of the browser has been pressed.
+event__copy: Pasted text.

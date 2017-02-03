@@ -670,6 +670,12 @@ function loadAdvancedLevelsIntroMap(level) {
     return container;
 }
 
+function composeFeedback() {
+
+    /*if (user.age < )*/
+
+}
+
 function getRandomInt(idx, min, max) {
     var newVal = Math.floor(Math.random() * (max - min + 1)) + min;
 
