@@ -29,4 +29,5 @@ This web app saves data to a Firebase database. To change the domain and set it 
 All text in the application is localizable. Just change the string values inside the **text.js** file with the one
 in your preferred language.
 
-## LSL Command Glossary
+## LSL Message Glossary
+All LSL Messages are documented inside **LSL_Messages_Dictionary.txt**.
