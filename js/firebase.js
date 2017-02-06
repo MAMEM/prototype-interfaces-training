@@ -12,8 +12,7 @@ function loginUser() {
                 currentUser.updateProfile({
                     displayName: user.name,
                     gender: user.gender,
-                    age: user.age,
-                    exp: user.exp
+                    age: user.age
                 });
             }
 
@@ -41,8 +40,7 @@ function loginUser() {
                         currentUser.updateProfile({
                             displayName: user.name,
                             gender: user.gender,
-                            age: user.age,
-                            exp: user.exp
+                            age: user.age
                         });
                     }
 
