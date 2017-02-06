@@ -1,11 +1,47 @@
 var firebaseUsernameHUD;
 
+
+
+function registerUser() {
+
+    firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(function() {
+
+        var currentUser =  firebase.auth().currentUser;
+
+        if (currentUser != null) {
+
+            user.name = user.firstName + " " + user.lastName;
+
+            // When saving data on first level, save name too (to be used on scoreboard).
+            firebase.database().ref('users/' + currentUser.uid + '/userDetails').set({
+                "name": user.firstName + " " + user.lastName,
+                "firstName": user.firstName,
+                "lastName": user.lastName,
+                "gender": user.gender,
+                "age": user.age
+            });
+
+            firebaseUsernameHUD = new createjs.Text(user.name, "18px Roboto", color.textRegular);
+            firebaseUsernameHUD.x = parseInt(stage.canvas.width-20, 10);
+            firebaseUsernameHUD.y = 20;
+            firebaseUsernameHUD.textAlign = "right";
+            stage.addChild(firebaseUsernameHUD);
+
+            personalizedFeedback = createFeedback(user.firstName);
+
+        } else {
+            return genericText.signedOut;
+        }
+
+    }, function(error) { return error.code; });
+}
+
+
 function loginUser() {
 
     firebase.auth().signInWithEmailAndPassword(user.email, user.password).then(function() {
 
         var currentUser =  firebase.auth().currentUser;
-
         if (currentUser != null) {
 
             return firebase.database().ref('/users/' + currentUser.uid).once('value').then(function(snapshot) {
@@ -22,50 +58,15 @@ function loginUser() {
                 firebaseUsernameHUD.textAlign = "right";
                 stage.addChild(firebaseUsernameHUD);
 
+                personalizedFeedback = createFeedback(user.firstName);
+
             });
 
         } else {
             return genericText.signedOut;
         }
 
-    }, function(error) {
-
-        if (error.code == 'auth/user-not-found') {
-
-            firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(function() {
-
-                var currentUser =  firebase.auth().currentUser;
-
-                if (currentUser != null) {
-
-                    user.name = user.firstName + " " + user.lastName;
-
-                    // When saving data on first level, save name too (to be used on scoreboard).
-                    firebase.database().ref('users/' + currentUser.uid + '/userDetails').set({
-                        "name": user.firstName + " " + user.lastName,
-                        "firstName": user.firstName,
-                        "lastName": user.lastName,
-                        "gender": user.gender,
-                        "age": user.age
-                    });
-
-                    firebaseUsernameHUD = new createjs.Text(user.name, "18px Roboto", color.textRegular);
-                    firebaseUsernameHUD.x = parseInt(stage.canvas.width-20, 10);
-                    firebaseUsernameHUD.y = 20;
-                    firebaseUsernameHUD.textAlign = "right";
-                    stage.addChild(firebaseUsernameHUD);
-
-
-                } else {
-                    return genericText.signedOut;
-                }
-
-            }, function(error) {
-                return error.code;
-            });
-        }
-    });
-
+    }, function(error) { return error.code; });
 }
 
 function updateUserData(group, level, userId, score, time, trophy, metrics, intervals) {
@@ -73,11 +74,6 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
     switch(group) {
         case 0:
             if (level === 0) {
-
-                // When saving data on first level, save name too (to be used on scoreboard).
-                firebase.database().ref('users/' + userId + '/userDetails').set({
-                    "name": user.firstName + " " + user.lastName
-                });
 
                 firebase.database().ref('users/' + userId + '/levels/basic/level1').set({
                     "score": score.current,
@@ -226,6 +222,7 @@ function createScoreboard(group, level, col) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
                         if (!userData[key].levels.basic) continue;
+                        if (!userData[key].levels.basic.level1) continue;
 
                         entity = {
                             name: userData[key].userDetails.name,

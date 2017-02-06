@@ -31,7 +31,13 @@ document.getElementById("registerButton").onclick = function() {
     // Create Fullname
     user.name = user.firstName + " " + user.lastName;
 
-    init();
+    // Preload libs
+    var queue = new createjs.LoadQueue(true);
+    queue.loadFile({src:"https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i", type:createjs.AbstractLoader.CSS});
+    queue.on("complete", function(){
+        registerUser();
+        init();
+    });
 };
 
 
@@ -46,27 +52,22 @@ document.getElementById("loginButton").onclick = function() {
 
     document.getElementById("startingInfoArea").style.display = "none";
 
-    init();
-};
-
-function init() {
-
-
-
     // Preload libs
     var queue = new createjs.LoadQueue(true);
     queue.loadFile({src:"https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i", type:createjs.AbstractLoader.CSS});
     queue.on("complete", function(){
-        // Get a reference to the database service
-        var database = firebase.database();
         loginUser();
-
-        createjs.Ticker.setFPS(60);
-        createjs.Ticker.addEventListener("tick", tick);
-
-        resizeCanvas();
-        renderGame();
+        init();
     });
+};
+
+function init() {
+
+    createjs.Ticker.setFPS(60);
+    createjs.Ticker.addEventListener("tick", tick);
+
+    resizeCanvas();
+    renderGame();
 }
 
 function renderGame() {
@@ -168,7 +169,14 @@ function loadOverviewPage() {
         var levelCompleted = 0;
 
         if (snapshot.val()) {
+
+
+
             for (i=0; i<2; i++) {
+
+                if (!snapshot.val().levels) {
+                    break;
+                }
 
                 if (snapshot.val().levels.basic[Object.keys(snapshot.val().levels.basic)[i]]) {
 
@@ -344,9 +352,15 @@ function loadOverviewPage() {
         trophyCount = 0;
 
         if (snapshot.val()) {
-            if (snapshot.val().levels.int) {
 
-                for (i=0; i<3; i++) {
+
+            for (i=0; i<3; i++) {
+
+                if (!snapshot.val().levels) {
+                    break;
+                }
+
+                if (snapshot.val().levels.int) {
 
                     if (snapshot.val().levels.int[Object.keys(snapshot.val().levels.int)[i]]) {
                         levelCompleted++;
@@ -527,9 +541,14 @@ function loadOverviewPage() {
         trophyCount = 0;
 
         if (snapshot.val()) {
-            if (snapshot.val().levels.adv) {
 
-                for (i=0; i<4; i++) {
+
+            for (i=0; i<4; i++) {
+
+                if (!snapshot.val().levels) {
+                    break;
+                }
+                if (snapshot.val().levels.adv) {
 
                     if (snapshot.val().levels.adv[Object.keys(snapshot.val().levels.adv)[i]]) {
                         levelCompleted++;

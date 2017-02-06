@@ -2282,35 +2282,38 @@ function InitiateLevel(group, level, levelStructure) {
             firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
 
                 if (snapshot.val()) {
-                    var levelInformation = [];
 
-                    if (group === 0) {
+                    if (snapshot.val().levels){
 
-                        if (snapshot.val().levels.basic) {
-                            levelInformation = snapshot.val().levels.basic[Object.keys(snapshot.val().levels.basic)[level]];
+                        var levelInformation = [];
+
+                        if (group === 0) {
+
+                            if (snapshot.val().levels.basic) {
+                                levelInformation = snapshot.val().levels.basic[Object.keys(snapshot.val().levels.basic)[level]];
+                            }
+                        } else if (group === 1) {
+                            if (snapshot.val().levels.int) {
+                                levelInformation = snapshot.val().levels.int[Object.keys(snapshot.val().levels.int)[level]];
+                            }
+                        } else if (group === 2) {
+                            if (snapshot.val().levels.adv) {
+                                levelInformation = snapshot.val().levels.adv[Object.keys(snapshot.val().levels.adv)[level]];
+                            }
                         }
-                    } else if (group === 1) {
-                        if (snapshot.val().levels.int) {
-                            levelInformation = snapshot.val().levels.int[Object.keys(snapshot.val().levels.int)[level]];
+
+                        if (!levelInformation || levelInformation.length === 0) {
+                            levelInformation = [];
+                            levelInformation.score = 0;
+                            levelInformation.ms = 999999999999;
+                            levelInformation.trophyGained = trophy.hasIt;
                         }
-                    } else if (group === 2) {
-                        if (snapshot.val().levels.adv) {
-                            levelInformation = snapshot.val().levels.adv[Object.keys(snapshot.val().levels.adv)[level]];
-                        }
+
+                        score = calculateNewScore(score, levelInformation.score);
+                        time = calculateNewTime(time, levelInformation, stopwatch);
+                        trophy = calculateNewTrophy(trophy, levelInformation.trophyGained);
                     }
-
-                    if (!levelInformation || levelInformation.length === 0) {
-                        levelInformation = [];
-                        levelInformation.score = 0;
-                        levelInformation.ms = 999999999999;
-                        levelInformation.trophyGained = trophy.hasIt;
-                    }
-
-                    score = calculateNewScore(score, levelInformation.score);
-                    time = calculateNewTime(time, levelInformation, stopwatch);
-                    trophy = calculateNewTrophy(trophy, levelInformation.trophyGained);
                 }
-
 
                 var positionedResults = positionResultsElements(score, time, trophy, col, label, separator);
                 score = positionedResults[0];
