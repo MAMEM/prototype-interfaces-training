@@ -7,7 +7,51 @@ var canvas = document.getElementById('canvas'),
 var stage = new createjs.Stage("canvas");
 var mousePointer = new createjs.Shape();
 
+document.getElementById("registerButton").onclick = function() {
+
+    user.firstName = document.getElementById("firstNameInput").value;
+    user.lastName = document.getElementById("lastNameInput").value;
+    user.email = document.getElementById("emailInput").value;
+    user.password = document.getElementById("passInput").value;
+    user.gender = document.getElementById("genderInput").value;
+    user.age = document.getElementById("ageInput").value;
+
+    if (!user.email || !user.password || !user.firstName || !user.lastName || !user.gender || !user.age) {
+        alert('Please fill in all Register fields!');
+        return 0;
+    }
+
+    if (user.password.length < 6) {
+        alert('Password should be longer than 6 chars!');
+        return 0;
+    }
+
+    document.getElementById("startingInfoArea").style.display = "none";
+
+    // Create Fullname
+    user.name = user.firstName + " " + user.lastName;
+
+    init();
+};
+
+
+document.getElementById("loginButton").onclick = function() {
+    user.email = document.getElementById("emailLoginInput").value;
+    user.password = document.getElementById("passLoginInput").value;
+
+    if (!user.email || !user.password) {
+        alert('Please fill in all Register fields!');
+        return 0;
+    }
+
+    document.getElementById("startingInfoArea").style.display = "none";
+
+    init();
+};
+
 function init() {
+
+
 
     // Preload libs
     var queue = new createjs.LoadQueue(true);

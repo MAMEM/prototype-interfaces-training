@@ -8,19 +8,21 @@ function loginUser() {
 
         if (currentUser != null) {
 
-            if (!currentUser.displayName) {
-                currentUser.updateProfile({
-                    displayName: user.name,
-                    gender: user.gender,
-                    age: user.age
-                });
-            }
+            return firebase.database().ref('/users/' + currentUser.uid).once('value').then(function(snapshot) {
 
-            firebaseUsernameHUD = new createjs.Text(user.name, "18px Roboto", color.textRegular);
-            firebaseUsernameHUD.x = parseInt(stage.canvas.width-20, 10);
-            firebaseUsernameHUD.y = 20;
-            firebaseUsernameHUD.textAlign = "right";
-            stage.addChild(firebaseUsernameHUD);
+                user.firstName = snapshot.val().userDetails.firstName;
+                user.lastName = snapshot.val().userDetails.lastName;
+                user.name = snapshot.val().userDetails.name;
+                user.gender = snapshot.val().userDetails.gender;
+                user.age = snapshot.val().userDetails.age;
+
+                firebaseUsernameHUD = new createjs.Text(user.name, "18px Roboto", color.textRegular);
+                firebaseUsernameHUD.x = parseInt(stage.canvas.width-20, 10);
+                firebaseUsernameHUD.y = 20;
+                firebaseUsernameHUD.textAlign = "right";
+                stage.addChild(firebaseUsernameHUD);
+
+            });
 
         } else {
             return genericText.signedOut;
@@ -36,13 +38,16 @@ function loginUser() {
 
                 if (currentUser != null) {
 
-                    if (!currentUser.displayName) {
-                        currentUser.updateProfile({
-                            displayName: user.name,
-                            gender: user.gender,
-                            age: user.age
-                        });
-                    }
+                    user.name = user.firstName + " " + user.lastName;
+
+                    // When saving data on first level, save name too (to be used on scoreboard).
+                    firebase.database().ref('users/' + currentUser.uid + '/userDetails').set({
+                        "name": user.firstName + " " + user.lastName,
+                        "firstName": user.firstName,
+                        "lastName": user.lastName,
+                        "gender": user.gender,
+                        "age": user.age
+                    });
 
                     firebaseUsernameHUD = new createjs.Text(user.name, "18px Roboto", color.textRegular);
                     firebaseUsernameHUD.x = parseInt(stage.canvas.width-20, 10);
@@ -60,7 +65,6 @@ function loginUser() {
             });
         }
     });
-
 
 }
 

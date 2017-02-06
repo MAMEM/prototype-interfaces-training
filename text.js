@@ -1,5 +1,7 @@
 var randomFeedbackFlag = 10;
 
+var user = [];
+
 var personalizedFeedback = {
 
     youngMale: {
