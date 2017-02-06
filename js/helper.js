@@ -57,12 +57,10 @@ function changeCursor(hover) {
 
         mousePointer.graphics.clear();
         mousePointer.graphics.beginFill(color.cursor).drawCircle(0, 0, 50);
-
     }
 
     stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
     stage.update();
-
 }
 
 function mouseTick() {
@@ -165,7 +163,6 @@ function loadLvlIntroStory(script) {
     stage.addChild(introStoryContainer);
 
     return introStoryContainer;
-
 }
 
 function loadLvlOutroStory(poe, completion) {
@@ -177,24 +174,27 @@ function loadLvlOutroStory(poe, completion) {
 
     var bubbleText;
     var face;
+    var textString;
 
     if (completion) {
 
         if (completion === 'trophy') {
 
-            bubbleText = new createjs.Text(textString.levelSuperComplete, "500 18px Roboto", color.textRegular);
+            textString = composeFeedback('positive');
+            bubbleText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
             face = new createjs.Bitmap("assets/face-happy.png");
-
         }
         else {
 
-            bubbleText = new createjs.Text(textString.levelComplete, "500 18px Roboto", color.textRegular);
+            textString = composeFeedback('neutral');
+            bubbleText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
             face = new createjs.Bitmap("assets/face-default.png");
         }
 
     } else {
 
-        bubbleText = new createjs.Text(textString.levelIncomplete, "500 18px Roboto", color.textRegular);
+        textString = composeFeedback('negative');
+        bubbleText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
         face = new createjs.Bitmap("assets/face-sad.png");
     }
 
@@ -266,7 +266,7 @@ function initializeResultsValues(group, level, stopwatch, score, time, trophy) {
     trophy.desc = new createjs.Text(trophy.info.description, "14px Roboto", color.whiteHint);
     trophy.hasIt = trophy.current;
 
-    score.saved = "No score";
+    score.saved = genericText.noScore;
     score.previousValue = new createjs.Text(score.saved, "Italic 20px Roboto", color.whiteSecondary);
     score.currentValue = new createjs.Text(score.current, "Italic 20px Roboto", color.yellow);
 
@@ -670,10 +670,90 @@ function loadAdvancedLevelsIntroMap(level) {
     return container;
 }
 
-function composeFeedback() {
+function composeFeedback(type) {
 
-    /*if (user.age < )*/
+    var textString;
+    switch(type) {
+        case 'positive':
 
+            if(user.age > 45 ) {
+                // Old
+                if (user.gender === 'm') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldMale.positive.length-1);
+                    textString = personalizedFeedback.oldMale.positive[randomFeedbackFlag];
+                }
+                else if (user.gender === 'f') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldFemale.positive.length-1);
+                    textString = personalizedFeedback.oldFemale.positive[randomFeedbackFlag];
+                }
+
+            } else {
+                // Young
+                if (user.gender === 'm') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngMale.positive.length-1);
+                    textString = personalizedFeedback.youngMale.positive[randomFeedbackFlag];
+                }
+                else if (user.gender === 'f') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngFemale.positive.length-1);
+                    textString = personalizedFeedback.youngFemale.positive[randomFeedbackFlag];
+                }
+            }
+
+            break;
+        case 'neutral':
+
+            if(user.age > 45 ) {
+                // Old
+                if (user.gender === 'm') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldMale.neutral.length-1);
+                    textString = personalizedFeedback.oldMale.neutral[randomFeedbackFlag];
+                }
+                else if (user.gender === 'f') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldFemale.neutral.length-1);
+                    textString = personalizedFeedback.oldFemale.neutral[randomFeedbackFlag];
+                }
+
+            } else {
+                // Young
+                if (user.gender === 'm') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngMale.neutral.length-1);
+                    textString = personalizedFeedback.youngMale.neutral[randomFeedbackFlag];
+                }
+                else if (user.gender === 'f') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngFemale.neutral.length-1);
+                    textString = personalizedFeedback.youngFemale.neutral[randomFeedbackFlag];
+                }
+            }
+
+            break;
+        case 'negative':
+
+            if(user.age > 45 ) {
+                // Old
+                if (user.gender === 'm') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldMale.negative.length-1);
+                    textString = personalizedFeedback.oldMale.negative[randomFeedbackFlag];
+                }
+                else if (user.gender === 'f') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldFemale.negative.length-1);
+                    textString = personalizedFeedback.oldFemale.negative[randomFeedbackFlag];
+                }
+
+            } else {
+                // Young
+                if (user.gender === 'm') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngMale.negative.length-1);
+                    textString = personalizedFeedback.youngMale.negative[randomFeedbackFlag];
+                }
+                else if (user.gender === 'f') {
+                    randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngFemale.negative.length-1);
+                    textString = personalizedFeedback.youngFemale.negative[randomFeedbackFlag];
+                }
+            }
+
+            break;
+    }
+    return textString;
 }
 
 function getRandomInt(idx, min, max) {

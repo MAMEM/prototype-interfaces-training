@@ -1,9 +1,76 @@
-var textString = [];
+var randomFeedbackFlag = 10;
 
-textString.levelSuperComplete = 'Wow ' + user.firstName + ', great score! You also got the trophy!';
-textString.levelComplete = user.firstName + ', you completed the level. You can try replaying it in order to earn the trophy.';
-textString.levelIncomplete = user.firstName + ', you can do better than that! Please try again.';
+var personalizedFeedback = {
 
+    youngMale: {
+
+        positive: [
+            "Wow " + user.firstName + ", great score! You also got the trophy!",
+            user.firstName + ", you're really great! You finished the level with the most effective way, gaining you the trophy!",
+            "Your skills are unmatched " + user.firstName + " ! Nice work earning the trophy!"
+        ],
+        neutral: [
+            user.firstName + ", you completed the level. You can try replaying it in order to earn the trophy.",
+            "Congratulations on completing the level " + user.firstName + '. Try playing it again to earn the trophy.',
+            "Your score was good " + user.firstName + '. Try to step up your game a bit to earn the trophy.'
+        ],
+        negative: [
+            user.firstName + ', you can do better than that! Please try again.',
+            user.firstName + ', you can do better than that! Please try again.'
+        ]
+    },
+
+    oldMale: {
+
+        positive: [
+            "Wow " + user.firstName + ", great score! You also got the trophy!",
+            user.firstName + ", you're really great! You finished the level with the most effective way, gaining you the trophy!",
+            "Your skills are unmatched " + user.firstName + " ! Nice work earning the trophy!"
+        ],
+        neutral: [
+            user.firstName + ", you completed the level. You can try replaying it in order to earn the trophy.",
+            "Congratulations on completing the level " + user.firstName + '. Try playing it again to earn the trophy.'
+        ],
+        negative: [
+            user.firstName + ", I'm confident that you can finish the level without breaking a sweat. Please try again.",
+            user.firstName + ", quickly, replay the level! You were very close to finish it!"
+        ]
+    },
+
+    youngFemale: {
+
+        positive: [
+            "Wow " + user.firstName + ", great score! You also got the trophy!",
+            user.firstName + ", you're really great! You finished the level with the most effective way, gaining you the trophy!",
+            "Your skills are unmatched " + user.firstName + " ! Nice work earning the trophy!"
+        ],
+        neutral: [
+            user.firstName + ", you completed the level. You can try replaying it in order to earn the trophy.",
+            "Congratulations on completing the level " + user.firstName + '. Try playing it again to earn the trophy.'
+        ],
+        negative: [
+            user.firstName + ', you can do better than that! Please try again.',
+            user.firstName + ', I am confident that you can complete the level, play it again!'
+        ]
+    },
+
+    oldFemale: {
+
+        positive: [
+            "Wow " + user.firstName + ", great score! You also got the trophy!",
+            user.firstName + ", you're really great! You finished the level with the most effective way, gaining you the trophy!",
+            "You're a fast learner " + user.firstName + " ! Nice work earning the trophy!"
+        ],
+        neutral: [
+            user.firstName + ", you completed the level with time to spare! You can try replaying it though in order to earn the trophy.",
+            "You adapt quickly under pressure " + user.firstName + '! You were "this" close from earning the trophy!'
+        ],
+        negative: [
+            user.firstName + ', you can do better than that! Please try again.',
+            user.firstName + ', I am confident that you can complete the level the next time you play it!'
+        ]
+    }
+};
 
 var levelText = [
     {
@@ -217,7 +284,8 @@ var genericText =
         signedOut: "USER IS SIGNED OUT",
         tasks: "Tasks",
         advQuote1: "Be The Change",
-        advQuote2: "That You Want To"
+        advQuote2: "That You Want To",
+        noScore: "no score"
     };
 
 var advFirstInstructions =
