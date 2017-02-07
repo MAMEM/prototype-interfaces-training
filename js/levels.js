@@ -1295,6 +1295,7 @@ function InitiateLevel(group, level, levelStructure) {
         textInput1.style.border = "5px solid white";
         textInput1.style.padding = "15px";
         textInput1.style.background = "rgba(255,255,255,0.5)";
+        textInput1.style.width = "200px";
 
         textInput2.style.position = "absolute";
         textInput2.style.left = stage.canvas.width - 400 < stage.canvas.width/2 ? stage.canvas.width - 400 + "px": stage.canvas.width/2 + 200 + "px";
@@ -1302,6 +1303,7 @@ function InitiateLevel(group, level, levelStructure) {
         textInput2.style.border = "5px solid white";
         textInput2.style.padding = "15px";
         textInput2.style.background = "rgba(255,255,255,0.5)";
+        textInput2.style.width = "200px";
 
         var submitBtn = new createjs.Bitmap("assets/int/btn-go.png");
         submitBtn.x = stage.canvas.width - 410 < stage.canvas.width/2 ? stage.canvas.width - 410 : stage.canvas.width/2 + 190 ;

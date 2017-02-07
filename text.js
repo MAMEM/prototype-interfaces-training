@@ -3,14 +3,14 @@ var randomFeedbackFlag = 10;
 var user = [];
 var personalizedFeedback;
 
-function createFeedback(name) {
+function createFeedback() {
 
-    var personalizedFeedback = {
+    personalizedFeedback = {
 
         youngMale: {
 
             positive: [
-                "Wow " + name + ", great score! You also got the trophy!",
+                "Wow " + user.firstName + ", great score! You also got the trophy!",
                 user.firstName + ", you're really great! You finished the level with the most effective way, gaining you the trophy!",
                 "Your skills are unmatched " + user.firstName + " ! Nice work earning the trophy!"
             ],
@@ -91,22 +91,22 @@ var levelText = [
     {
         fullTitle: "BASIC - 02 Focus on a sequence of markers",
         shortTitle: "Whack-a-mole!",
-        story: "Try to focus your eyes on each marker when it appears, for a set amount of time!"
+        story: "Try to focus your eyes on each marker when it appears, for a set amount of time! Hit all the markers to earn the trophy!"
     },
     {
         fullTitle: "INTERMEDIATE - 01 Find the wizard",
         shortTitle: "Find the wizard",
-        story: "Scroll through the level to find the wizard using the scroll overlays or the auto scrolling, and use the click emulation button to select the place where he is hiding!"
+        story: "Scroll through the level to find the wizard using the scroll overlays or the auto scrolling, and use the click emulation button to select the place where he is hiding! Visit all locations only once to earn the trophy!"
     },
     {
         fullTitle: "INTERMEDIATE - 02 The Quiz",
         shortTitle: "The quiz",
-        story: "You found the wizard! Now he is challenging you to a quiz test. Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD!"
+        story: "You found the wizard! Now he is challenging you to a quiz test. Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD! Answer correctly to all questions and earn the trophy!"
     },
     {
         fullTitle: "INTERMEDIATE - 03 Find the treasure",
         shortTitle: "The map",
-        story: "Open the map using the click emulation button, then use the GazeTheWeb copy & paste functionality to find the treasure!"
+        story: "Open the map using the click emulation button, then use the GazeTheWeb copy & paste functionality to find the treasure! Be successful at your first try cop & pasting to get the trophy!"
     },
     {
         fullTitle: "ADVANCED - 01 Gaze Visualization",
