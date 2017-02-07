@@ -7,6 +7,9 @@ var canvas = document.getElementById('canvas'),
 var stage = new createjs.Stage("canvas");
 var mousePointer = new createjs.Shape();
 
+var RTL = false;
+var persuasiveDesign = true;
+
 document.getElementById("registerButton").onclick = function() {
 
     user.firstName = document.getElementById("firstNameInput").value;
@@ -63,6 +66,15 @@ document.getElementById("loginButton").onclick = function() {
 
 function init() {
 
+    // Check if RTL is enabled
+    RTL = document.getElementById('rtlCheckbox');
+    RTL = RTL.checked;
+
+    persuasiveDesign = document.getElementById('persuasiveCheckbox');
+    persuasiveDesign = persuasiveDesign.checked;
+
+    console.log(RTL, persuasiveDesign);
+
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", tick);
 
@@ -82,7 +94,6 @@ function renderGame() {
     stage.enableMouseOver();
 
     stage.update();
-
 }
 
 function loadSplashPage() {
@@ -170,8 +181,6 @@ function loadOverviewPage() {
 
         if (snapshot.val()) {
 
-
-
             for (i=0; i<2; i++) {
 
                 if (!snapshot.val().levels) {
@@ -222,7 +231,7 @@ function loadOverviewPage() {
             });
 
             // Discard hover if previous level is not completed.
-            if (levelAvailable[i]) {
+            /*if (levelAvailable[i]) {*/
 
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
@@ -309,7 +318,7 @@ function loadOverviewPage() {
 
                     changeCursor(false);
                 });
-            } else {
+/*            } else {
 
                 s[i].graphics.beginFill(s[i].outColor).drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
 
@@ -319,7 +328,7 @@ function loadOverviewPage() {
                 lock[i].y = s[i].entryY + s[i].y - 58;
 
                 overviewBasicGroupContainer.addChild(lock[i]);
-            }
+            }*/
 
             overviewBasicGroupContainer.addChild(s[i]);
 
@@ -413,7 +422,7 @@ function loadOverviewPage() {
 
 
             // Discard hover if previous level is not completed.
-            if (levelAvailable[i]) {
+            /*if (levelAvailable[i]) {*/
 
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
@@ -500,7 +509,7 @@ function loadOverviewPage() {
 
                 });
 
-            } else {
+          /*  } else {
 
                 s[i].graphics.beginFill(s[i].outColor).drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
 
@@ -511,7 +520,7 @@ function loadOverviewPage() {
 
                 overviewIntGroupContainer.addChild(lock[i]);
 
-            }
+            }*/
             overviewIntGroupContainer.addChild(s[i]);
 
             overviewIntGroupContainer.addChild(intTileTitle[i]);
@@ -598,7 +607,7 @@ function loadOverviewPage() {
             });
 
             // Discard hover if previous level is not completed.
-            if (levelAvailable[i]) {
+            /*if (levelAvailable[i]) {*/
 
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
@@ -683,10 +692,9 @@ function loadOverviewPage() {
                     createjs.Tween.removeTweens(this.hoverFill);
 
                     changeCursor(false);
-
                 });
 
-            } else {
+            /*} else {
 
                 s[i].graphics.beginFill(s[i].outColor).drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
 
@@ -697,7 +705,7 @@ function loadOverviewPage() {
 
                 overviewAdvGroupContainer.addChild(lock[i]);
 
-            }
+            }*/
 
             overviewAdvGroupContainer.addChild(s[i]);
 
@@ -705,7 +713,6 @@ function loadOverviewPage() {
             if (advLevelScore[i]) {overviewAdvGroupContainer.addChild(advLevelScore[i], advLevelTime[i]);}
             if (advLevelTrophy[i]) {overviewAdvGroupContainer.addChild(advLevelTrophy[i]);}
         }
-
 
         overviewContainer.addChild(title, subtitle, basicLabel, basicCompletedLabel, basicTrophiesLabel, intLabel, intCompletedLabel, intTrophiesLabel, advLabel, advCompletedLabel, advTrophiesLabel);
         stage.addChild(overviewContainer, overviewBasicGroupContainer, overviewIntGroupContainer, overviewAdvGroupContainer);

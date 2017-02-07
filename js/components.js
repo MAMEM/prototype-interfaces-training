@@ -124,7 +124,7 @@ var Button = function (fillColor, size, pos, text, action) {
 
     });
 
-    this.label = new createjs.Text(text, "500 32px Roboto", color.whitePimary);
+    this.label = new createjs.Text(text, "500 28px Roboto", color.whitePimary);
     this.label = centerElement(size, pos, this.label);
 
     return this;

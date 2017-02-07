@@ -121,8 +121,14 @@ function loadLvlStructure(fullTitle, shortTitle) {
     smallSeparator.graphics.drawRect(poe, 216, mainTitleBounds.width + 100, 1);
     smallSeparator.graphics.endFill();
 
+    var btnSize = [], btnPos = [];
+    btnSize.x = 200; btnSize.y = 60;
+    btnPos.x = stage.canvas.width - btnSize.x;
+    btnPos.y = 50;
+    var abortBtn = new Button(color.gray, btnSize, btnPos, genericText.abort, loadOverviewPage);
+
     var levelStructureContainer = new createjs.Container();
-    levelStructureContainer.addChild(polygon, bigSeparator, levelTitle, timer.icon, timer.text, mainTitle, smallSeparator);
+    levelStructureContainer.addChild(polygon, bigSeparator, levelTitle, timer.icon, timer.text, mainTitle, smallSeparator, abortBtn.btn, abortBtn.label);
     stage.addChild(levelStructureContainer);
 
     return levelStructureContainer;

@@ -295,7 +295,8 @@ var genericText =
         tasks: "Tasks",
         advQuote1: "Be The Change",
         advQuote2: "That You Want To",
-        noScore: "no score"
+        noScore: "no score",
+        abort: "Abort"
     };
 
 var advFirstInstructions =
