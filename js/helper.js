@@ -112,14 +112,6 @@ function loadLvlStructure(fullTitle, shortTitle) {
     var mainTitle = new createjs.Text(shortTitle, "48px Roboto", color.green);
     mainTitle = alignTextToStageCenter(stage, mainTitle);
     mainTitle.y = 160;
-    var mainTitleBounds = mainTitle.getBounds();
-
-    var poe = window.innerWidth/2 - mainTitleBounds.width/2 - 60;
-
-    var smallSeparator = new createjs.Shape();
-    smallSeparator.graphics.beginFill(color.gray);
-    smallSeparator.graphics.drawRect(poe, 216, mainTitleBounds.width + 100, 1);
-    smallSeparator.graphics.endFill();
 
     var btnSize = [], btnPos = [];
     btnSize.x = 200; btnSize.y = 60;
@@ -128,7 +120,7 @@ function loadLvlStructure(fullTitle, shortTitle) {
     var abortBtn = new Button(color.gray, btnSize, btnPos, genericText.abort, loadOverviewPage);
 
     var levelStructureContainer = new createjs.Container();
-    levelStructureContainer.addChild(polygon, bigSeparator, levelTitle, timer.icon, timer.text, mainTitle, smallSeparator, abortBtn.btn, abortBtn.label);
+    levelStructureContainer.addChild(polygon, bigSeparator, levelTitle, timer.icon, timer.text, mainTitle, abortBtn.btn, abortBtn.label);
     stage.addChild(levelStructureContainer);
 
     return levelStructureContainer;
@@ -147,6 +139,11 @@ function loadLvlIntroStory(script) {
     bubbleText.y = speechBubbleContainer.y + 20;
     bubbleText.lineWidth = speechBubbleContainer.width - 40;
     bubbleText.lineHeight = 26;
+
+    if (RTL) {
+        bubbleText.textAlign = "right";
+        bubbleText.x = window.innerWidth - speechBubbleContainer.x - 20;
+    }
 
     var textBounds = bubbleText.getBounds();
     speechBubbleContainer.height = textBounds.height + 60;
@@ -208,6 +205,11 @@ function loadLvlOutroStory(poe, completion) {
     bubbleText.y = speechBubbleContainer.y + 40;
     bubbleText.lineWidth = speechBubbleContainer.width - 40;
     bubbleText.lineHeight = 26;
+
+    if (RTL) {
+        bubbleText.textAlign = "right";
+        bubbleText.x = window.innerWidth - speechBubbleContainer.x - 20;
+    }
 
     var textBounds = bubbleText.getBounds();
     speechBubbleContainer.height = textBounds.height + 60;
@@ -383,14 +385,17 @@ function positionResultsElements(score, time, trophy, col, label, separator) {
     trophy.desc.y = col.y + 64;
     trophy.desc.lineWidth = col.width - col.x;
 
-
     label.score = new createjs.Text(genericText.score.toUpperCase(), "700 24px Roboto", color.whitePimary);
     label.score.x = col.x;
     label.score.y = col.y;
+    if (RTL) {
+        label.score.textAlign = "right";
+        label.score.x = (col.width);
+    }
 
     separator.score = new createjs.Shape();
     separator.score.graphics.beginFill(color.whitePimary);
-    separator.score.graphics.drawRect(label.score.x, col.y + 30, col.width - col.x, 2);
+    separator.score.graphics.drawRect(col.x, col.y + 30, col.width - col.x, 2);
     separator.score.graphics.endFill();
 
     label.currentScore = new createjs.Text(genericText.newScore, "700 14px Roboto", color.whiteSecondary);
@@ -406,10 +411,15 @@ function positionResultsElements(score, time, trophy, col, label, separator) {
     label.time = new createjs.Text(genericText.time.toUpperCase(), "700 24px Roboto", color.whitePimary);
     label.time.x = col.x + col.width;
     label.time.y = col.y;
+    if (RTL) {
+        label.time.textAlign = "right";
+        label.time.x = (2* col.width);
+    }
+
 
     separator.time = new createjs.Shape();
     separator.time.graphics.beginFill(color.whitePimary);
-    separator.time.graphics.drawRect(label.time.x, col.y + 30, col.width - col.x, 2);
+    separator.time.graphics.drawRect(col.x + col.width, col.y + 30, col.width - col.x, 2);
     separator.time.graphics.endFill();
 
     label.currentTime = new createjs.Text(genericText.newScore, "700 14px Roboto", color.whiteSecondary);
@@ -425,10 +435,15 @@ function positionResultsElements(score, time, trophy, col, label, separator) {
     label.rewards = new createjs.Text(genericText.rewards.toUpperCase(), "700 24px Roboto", color.whitePimary);
     label.rewards.x = col.x + (2 * col.width);
     label.rewards.y = col.y;
+    if (RTL) {
+        label.rewards.textAlign = "right";
+        label.rewards.x = (3* col.width);
+    }
+
 
     separator.rewards = new createjs.Shape();
     separator.rewards.graphics.beginFill(color.whitePimary);
-    separator.rewards.graphics.drawRect(label.rewards.x, col.y + 30, col.width - col.x, 2);
+    separator.rewards.graphics.drawRect(col.x + (2 * col.width), col.y + 30, col.width - col.x, 2);
     separator.rewards.graphics.endFill();
 
     return [score, time, trophy, label, separator];

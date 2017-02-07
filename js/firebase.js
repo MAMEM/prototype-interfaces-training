@@ -219,10 +219,14 @@ function createScoreboard(group, level, col) {
                     trophyPath.level = "level1";
 
                     for (key in userData) {
+
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels) continue;
                         if (!userData[key].levels.basic) continue;
                         if (!userData[key].levels.basic.level1) continue;
+
+                        console.log(userData[key]);
 
                         entity = {
                             name: userData[key].userDetails.name,
@@ -241,6 +245,8 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
+                        if (userData[key].userDetails) continue;
+                        if (!userData[key].levels) continue;
                         if (!userData[key].levels.basic) continue;
                         if (!userData[key].levels.basic.level2) continue;
 
@@ -266,7 +272,9 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels) continue;
                         if (!userData[key].levels.int) continue;
+                        if (!userData[key].levels.int.level1) continue;
 
                         entity = {
                             name: userData[key].userDetails.name,
@@ -285,6 +293,7 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels) continue;
                         if (!userData[key].levels.int) continue;
                         if (!userData[key].levels.int.level2) continue;
 
@@ -305,6 +314,7 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels) continue;
                         if (!userData[key].levels.int) continue;
                         if (!userData[key].levels.int.level3) continue;
 
@@ -330,7 +340,9 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels) continue;
                         if (!userData[key].levels.adv) continue;
+                        if (!userData[key].levels.adv.level1) continue;
 
                         entity = {
                             name: userData[key].userDetails.name,
@@ -349,6 +361,7 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels) continue;
                         if (!userData[key].levels.adv) continue;
                         if (!userData[key].levels.adv.level2) continue;
 
@@ -369,6 +382,7 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels) continue;
                         if (!userData[key].levels.adv) continue;
                         if (!userData[key].levels.adv.level3) continue;
 
@@ -388,6 +402,7 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
+                        if (!userData[key].levels) continue;
                         if (!userData[key].levels.adv) continue;
                         if (!userData[key].levels.adv.level4) continue;
 
