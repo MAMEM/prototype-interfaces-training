@@ -3,6 +3,8 @@ var randomFeedbackFlag = 10;
 var user = [];
 var personalizedFeedback;
 
+
+// Translate everything inside " " but be careful to not change what is inside + +.
 function createFeedback() {
 
     personalizedFeedback = {
@@ -81,7 +83,7 @@ function createFeedback() {
 }
 
 
-
+// Translate all phrases inside " "
 var levelText = [
     {
         fullTitle: "BASIC - 01 Focus on the markers",
@@ -130,6 +132,8 @@ var levelText = [
     }
 ];
 
+
+// In here translate only the 'question' and 'answer' fields (NO answer_en).
 var quizText = [
     {
         question: "Which of the following is a traditional Greek dish?",
@@ -137,8 +141,12 @@ var quizText = [
         answer2: "spaghetti",
         answer3: "pizza",
         answer4: "burger",
-        correct: "moussaka",
-        cat: "Easy"
+        answer1_en: "moussaka", // Don't translate this!
+        answer2_en: "spaghetti", // Don't translate this!
+        answer3_en: "pizza", // Don't translate this!
+        answer4_en: "burger", // Don't translate this!
+        correct: "moussaka", // Don't translate this!
+        cat: "Easy" // Don't translate this!
     },
     {
         question: "Who is the son of Daedalus?",
@@ -146,8 +154,12 @@ var quizText = [
         answer2: "theseus",
         answer3: "icarus",
         answer4: "menelaus",
-        correct: "icarus",
-        cat: "Easy"
+        answer1_en: "minoas", // Don't translate this!
+        answer2_en: "theseus", // Don't translate this!
+        answer3_en: "icarus", // Don't translate this!
+        answer4_en: "menelaus", // Don't translate this!
+        correct: "icarus", // Don't translate this!
+        cat: "Easy" // Don't translate this!
     },
     {
         question: "What was the color of the ‘Baywatch’ lifeguard swimsuit?",
@@ -155,8 +167,12 @@ var quizText = [
         answer2: "red",
         answer3: "green",
         answer4: "white",
-        correct: "red",
-        cat: "Easy"
+        answer1_en: "pink", // Don't translate this!
+        answer2_en: "red", // Don't translate this!
+        answer3_en: "green", // Don't translate this!
+        answer4_en: "white", // Don't translate this!
+        correct: "red", // Don't translate this!
+        cat: "Easy" // Don't translate this!
     },
     {
         question: "In honor of which goddess was the Acropolis of Athens built?",
@@ -164,8 +180,12 @@ var quizText = [
         answer2: "ira",
         answer3: "artemis",
         answer4: "athena",
-        correct: "athena",
-        cat: "Easy"
+        answer1_en: "aphrodite", // Don't translate this!
+        answer2_en: "ira", // Don't translate this!
+        answer3_en: "artemis", // Don't translate this!
+        answer4_en: "athena", // Don't translate this!
+        correct: "athena", // Don't translate this!
+        cat: "Easy" // Don't translate this!
     },
     {
         question: "Who is considered as the founder of Medicine?",
@@ -173,8 +193,12 @@ var quizText = [
         answer2: "hieronymus",
         answer3: "xenophon",
         answer4: "demosthenes",
-        correct: "hippocrates",
-        cat: "Intermediate"
+        answer1_en: "hippocrates", // Don't translate this!
+        answer2_en: "hieronymus", // Don't translate this!
+        answer3_en: "xenophon", // Don't translate this!
+        answer4_en: "demosthenes", // Don't translate this!
+        correct: "hippocrates", // Don't translate this!
+        cat: "Intermediate" // Don't translate this!
     },
     {
         question: "Which team won the national football league in 2014?",
@@ -182,8 +206,12 @@ var quizText = [
         answer2: "panathinaikos",
         answer3: "aek",
         answer4: "paok",
-        correct: "olympiacos",
-        cat: "Intermediate"
+        answer1_en: "olympiacos", // Don't translate this!
+        answer2_en: "panathinaikos", // Don't translate this!
+        answer3_en: "aek", // Don't translate this!
+        answer4_en: "paok", // Don't translate this!
+        correct: "olympiacos", // Don't translate this!
+        cat: "Intermediate" // Don't translate this!
     },
     {
         question: "Which was the host country of Euro 2004?",
@@ -191,8 +219,12 @@ var quizText = [
         answer2: "england",
         answer3: "greece",
         answer4: "portugal",
-        correct: "portugal",
-        cat: "Intermediate"
+        answer1_en: "italy", // Don't translate this!
+        answer2_en: "england", // Don't translate this!
+        answer3_en: "greece", // Don't translate this!
+        answer4_en: "portugal", // Don't translate this!
+        correct: "portugal", // Don't translate this!
+        cat: "Intermediate" // Don't translate this!
     },
     {
         question: "He is considered as the father of History",
@@ -200,8 +232,12 @@ var quizText = [
         answer2: "eratosthenes",
         answer3: "pausanias",
         answer4: "pericles",
-        correct: "herodotus",
-        cat: "Intermediate"
+        answer1_en: "herodotus", // Don't translate this!
+        answer2_en: "eratosthenes", // Don't translate this!
+        answer3_en: "pausanias", // Don't translate this!
+        answer4_en: "pericles", // Don't translate this!
+        correct: "herodotus", // Don't translate this!
+        cat: "Intermediate" // Don't translate this!
     },
     {
         question: "Who cut off Vincent van Gogh's ear?",
@@ -209,8 +245,12 @@ var quizText = [
         answer2: "himself",
         answer3: "his mother",
         answer4: "his father",
-        correct: "himself",
-        cat: "Advanced"
+        answer1_en: "a thief", // Don't translate this!
+        answer2_en: "himself", // Don't translate this!
+        answer3_en: "his mother", // Don't translate this!
+        answer4_en: "his father", // Don't translate this!
+        correct: "himself", // Don't translate this!
+        cat: "Advanced" // Don't translate this!
     },
     {
         question: "Which country launched the cultivation of coffee?",
@@ -218,8 +258,12 @@ var quizText = [
         answer2: "brazil",
         answer3: "colombia",
         answer4: "mexico",
-        correct: "arabia",
-        cat: "Advanced"
+        answer1_en: "arabia", // Don't translate this!
+        answer2_en: "brazil", // Don't translate this!
+        answer3_en: "colombia", // Don't translate this!
+        answer4_en: "mexico", // Don't translate this!
+        correct: "arabia", // Don't translate this!
+        cat: "Advanced" // Don't translate this!
     },
     {
         question: "Cleopatra used to bathe in...",
@@ -227,8 +271,12 @@ var quizText = [
         answer2: "coconut oil",
         answer3: "water",
         answer4: "olive oil",
-        correct: "milk",
-        cat: "Advanced"
+        answer1_en: "milk", // Don't translate this!
+        answer2_en: "coconut oil", // Don't translate this!
+        answer3_en: "water", // Don't translate this!
+        answer4_en: "olive oil", // Don't translate this!
+        correct: "milk", // Don't translate this!
+        cat: "Advanced" // Don't translate this!
     },
     {
         question: "Where was Che Guevara born?",
@@ -236,11 +284,16 @@ var quizText = [
         answer2: "cuba",
         answer3: "argentina",
         answer4: "colombia",
-        correct: "argentina",
-        cat: "Advanced"
+        answer1_en: "brazil", // Don't translate this!
+        answer2_en: "cuba", // Don't translate this!
+        answer3_en: "argentina", // Don't translate this!
+        answer4_en: "colombia", // Don't translate this!
+        correct: "argentina", // Don't translate this!
+        cat: "Advanced" // Don't translate this!
     }
 ];
 
+// Translate all phrases inside " "
 var genericText =
     {
         gazeTheWeb: "Gaze The Web",
@@ -299,6 +352,8 @@ var genericText =
         abort: "Abort"
     };
 
+
+// Translate all phrases inside " "
 var advFirstInstructions =
     {
         openSettings: "Open Settings",
@@ -336,6 +391,8 @@ var advFourthInstructions =
         taskComplete: "Return to game tab"
     };
 
+
+// Translate only the 'title' and 'description' fields.
 var trophiesArray = [
     {
         group: 'basic',

@@ -1049,16 +1049,16 @@ function InitiateLevel(group, level, levelStructure) {
                 question.text = quizText[pointer].question;
                 question = alignTextToStageCenter(stage, question);
                 question.y = papyrus.y + 100;
-                answerA.text = "1) " + quizText[pointer].answer1;
-                answerA.x = (stage.canvas.width/2) - 100;
+                answerA.text = "1) " + quizText[pointer].answer1_en + " / " + quizText[pointer].answer1;
+                answerA.x = (stage.canvas.width/2) - 200;
                 answerA.y = papyrus.y + 150;
-                answerB.text = "2) " + quizText[pointer].answer2;
-                answerB.x = (stage.canvas.width/2) - 100;
+                answerB.text = "2) " + quizText[pointer].answer2_en + " / " + quizText[pointer].answer2;
+                answerB.x = (stage.canvas.width/2) - 200;
                 answerB.y = papyrus.y + 180;
-                answerC.text = "3) " + quizText[pointer].answer3;
+                answerC.text = "3) " + quizText[pointer].answer3_en + " / " + quizText[pointer].answer3;
                 answerC.x = (stage.canvas.width/2) + 60;
                 answerC.y = papyrus.y + 150;
-                answerD.text = "4) " + quizText[pointer].answer4;
+                answerD.text = "4) " + quizText[pointer].answer4_en + " / " + quizText[pointer].answer4;
                 answerD.x = (stage.canvas.width/2) + 60;
                 answerD.y = papyrus.y + 180;
             }
