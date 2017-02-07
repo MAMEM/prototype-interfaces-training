@@ -4,6 +4,8 @@ var canvas = document.getElementById('canvas'),
 
 //window.addEventListener('resize', resizeCanvas, false);
 
+var currentUrl = window.location.href;
+
 var stage = new createjs.Stage("canvas");
 var mousePointer = new createjs.Shape();
 
@@ -268,8 +270,6 @@ function loadOverviewPage() {
                     basicLevelTime[i].y = 280;
                     basicLevelTime[i].textAlign = "center";
                 }
-
-
 
                 // Add labels to tiles
                 basicTileTitle[i] = new createjs.Text(levelText[i].shortTitle, "700 18px Roboto", "rgba(0,0,0,0.87)");

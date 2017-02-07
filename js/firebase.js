@@ -30,10 +30,15 @@ function registerUser() {
             personalizedFeedback = createFeedback(user.firstName);
 
         } else {
+
             return genericText.signedOut;
         }
 
-    }, function(error) { return error.code; });
+    }, function(error) {
+        alert(error.code);
+        window.location.href = currentUrl;
+        return error.code;
+    });
 }
 
 
@@ -66,7 +71,11 @@ function loginUser() {
             return genericText.signedOut;
         }
 
-    }, function(error) { return error.code; });
+    }, function(error) {
+        alert(error.code);
+        window.location.href = currentUrl;
+        return error.code;
+    });
 }
 
 function updateUserData(group, level, userId, score, time, trophy, metrics, intervals) {
