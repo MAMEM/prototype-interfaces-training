@@ -137,9 +137,7 @@ function loadLevel(group, level) {
                 stage.removeChild(startingLabel);
 
                 var title = levelStructure.getChildAt(5);
-                var line = levelStructure.getChildAt(6);
                 levelStructure.removeChild(title);
-                levelStructure.removeChild(line);
 
                 InitiateLevel(group, level, levelStructure);
             }
@@ -860,6 +858,7 @@ function InitiateLevel(group, level, levelStructure) {
             forest, bush1, bush2, bush3, bush4);
         stage.addChild(levelContainer);
         stage.setChildIndex(levelContainer, 0);
+
 
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
 

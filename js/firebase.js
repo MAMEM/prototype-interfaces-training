@@ -436,6 +436,11 @@ function createScoreboard(group, level, col) {
         rankingsLabels.title.y = col.y + 100;
         rankingsLabels.title.textAlign = "left";
 
+        if (RTL) {
+            rankingsLabels.title.textAlign = "right";
+            rankingsLabels.title.x = (3 * col.width);
+        }
+
         rankingsLabels.posLabel = new createjs.Text("#", "400 22px Roboto", color.whitePimary);
         rankingsLabels.posLabel.x = col.x + 5;
         rankingsLabels.posLabel.y = col.y + 130;
