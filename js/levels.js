@@ -1179,7 +1179,6 @@ function InitiateLevel(group, level, levelStructure) {
             createjs.Tween.get(levelContainer).to({alpha:1}, 1000);
         } else {
             levelContainer.addChild(questionLabel);
-
         }
 
         stage.addChild(levelContainer);
@@ -1434,16 +1433,24 @@ function InitiateLevel(group, level, levelStructure) {
             metrics.click++;
         });
 
-        levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratulatoryText, scroll, scrollTitle, scrollDesc, cpIcon, globe, clickLabel, map, submitBtn, submitLabel);
-        levelContainer.alpha = 0;
+
+        if (pDesign) {
+            levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratulatoryText, scroll, scrollTitle, scrollDesc, cpIcon, globe, clickLabel, map, submitBtn, submitLabel);
+            levelContainer.alpha = 0;
+
+            createjs.Tween.get(levelContainer).to({alpha:1}, 1000).call(function () {
+                textElement1.style.display = "block";
+                textElement2.style.display = "block";
+            });
+
+        } else {
+            levelContainer.addChild(cpIcon, clickLabel, submitBtn, submitLabel);
+            textElement1.style.display = "block";
+            textElement2.style.display = "block";
+        }
 
         stage.addChild(levelContainer);
         stage.setChildIndex(levelContainer, 0);
-
-        createjs.Tween.get(levelContainer).to({alpha:1}, 1000).call(function () {
-            textElement1.style.display = "block";
-            textElement2.style.display = "block";
-        });
 
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
     }
