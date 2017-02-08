@@ -16,6 +16,11 @@ document.getElementById("registerButton").onclick = function() {
 
     user.firstName = document.getElementById("firstNameInput").value;
     user.lastName = document.getElementById("lastNameInput").value;
+
+    // Capitalize First letter of Last name and First name
+    user.firstName = user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1);
+    user.lastName = user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1);
+
     user.email = document.getElementById("emailInput").value;
     user.password = document.getElementById("passInput").value;
     user.gender = document.getElementById("genderInput").value;
