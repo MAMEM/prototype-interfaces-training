@@ -1321,38 +1321,71 @@ function InitiateLevel(group, level, levelStructure) {
         textInput2.style.width = "200px";
 
         var submitBtn = new createjs.Bitmap("assets/int/btn-go.png");
+
+        var submitLabel = new createjs.Text(genericText.clickMe, "700 28px Roboto", color.darkBrown);
+
         submitBtn.x = stage.canvas.width - 410 < stage.canvas.width/2 ? stage.canvas.width - 410 : stage.canvas.width/2 + 190 ;
         submitBtn.y = stage.canvas.height - 150;
         submitBtn.alpha = 0;
 
-        var submitLabel = new createjs.Text(genericText.clickMe, "700 28px Roboto", color.darkBrown);
         submitLabel.x = submitBtn.x + 60;
         submitLabel.y = submitBtn.y + 20;
         submitLabel.alpha = 0;
 
 
-        globe.on("mousedown", function() {
+        if (!pDesign) {
+            submitBtn = new createjs.Bitmap("assets/int/btn-go-simple.png");
 
-            if (window.loggingMediator) {
-                SendLSLMessage("event__mouse_down");
-                SendLSLMessage("level_int_3__map_on");
-            }
+            submitBtn.x = stage.canvas.width - 410 < stage.canvas.width/2 ? stage.canvas.width - 410 : stage.canvas.width/2 + 190 ;
+            submitBtn.y = stage.canvas.height - 150;
 
-            createjs.Tween.get(submitBtn).to({
-                alpha:1
-            }, 600);
+            textInput1.style.border = "5px solid #50BAA6";
+            textInput2.style.border = "5px solid #50BAA6";
 
-            createjs.Tween.get(submitLabel).to({
-                alpha:1
-            }, 600);
+            submitBtn.alpha = 1;
+            submitLabel.alpha = 1;
+            submitLabel.color = "#fff";
+        }
 
-            createjs.Tween.get(map).to({
-                alpha:1
-            }, 600).call(function () {
-                textInput1.style.display = "block";
-                textInput2.style.display = "block";
+
+
+        if(pDesign) {
+
+            globe.on("mousedown", function() {
+
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_down");
+                    SendLSLMessage("level_int_3__map_on");
+                }
+
+                createjs.Tween.get(submitBtn).to({
+                    alpha:1
+                }, 600);
+
+                createjs.Tween.get(submitLabel).to({
+                    alpha:1
+                }, 600);
+
+                createjs.Tween.get(map).to({
+                    alpha:1
+                }, 600).call(function () {
+                    textInput1.style.display = "block";
+                    textInput2.style.display = "block";
+                });
             });
-        });
+
+        } else {
+
+            clickLabel.visible = false;
+
+            textInput1.style.display = "block";
+            textInput2.style.display = "block";
+
+            submitBtn.alpha = 1;
+            submitLabel.alpha = 1;
+        }
+
+
 
         submitBtn.on("mousedown", function() {
 
@@ -1444,7 +1477,7 @@ function InitiateLevel(group, level, levelStructure) {
             });
 
         } else {
-            levelContainer.addChild(cpIcon, clickLabel, submitBtn, submitLabel);
+            levelContainer.addChild(scrollTitle, scrollDesc, cpIcon, clickLabel, submitBtn, submitLabel);
             textElement1.style.display = "block";
             textElement2.style.display = "block";
         }
