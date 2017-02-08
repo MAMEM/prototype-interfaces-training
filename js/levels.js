@@ -942,27 +942,35 @@ function InitiateLevel(group, level, levelStructure) {
         papyrus.y = stage.canvas.height - 440;
         papyrus.alpha = 0;
 
-        createjs.Tween.get(papyrus)
-            .wait(5000)
-            .to({alpha:1}, 1000)
-            .call(launchTrivia);
+        if (pDesign) {
+            createjs.Tween.get(papyrus)
+                .wait(5000)
+                .to({alpha:1}, 1000)
+                .call(launchTrivia);
 
-        createjs.Tween.get(congratTextA)
-            .wait(5000)
-            .to({alpha: 0, visible:false}, 500)
-            .call(function(){
-                levelContainer.removeChild(congratTextA);
-                createjs.Tween.get(questionLabel)
-                    .to({alpha: 1}, 500)
+            createjs.Tween.get(congratTextA)
+                .wait(5000)
+                .to({alpha: 0, visible:false}, 500)
+                .call(function(){
+                    levelContainer.removeChild(congratTextA);
+                    createjs.Tween.get(questionLabel)
+                        .to({alpha: 1}, 500)
 
-            });
+                });
 
-        createjs.Tween.get(congratTextB)
-            .wait(5000)
-            .to({alpha: 0, visible:false}, 500)
-            .call(function(){
-                levelContainer.removeChild(congratTextB);
-            });
+            createjs.Tween.get(congratTextB)
+                .wait(5000)
+                .to({alpha: 0, visible:false}, 500)
+                .call(function(){
+                    levelContainer.removeChild(congratTextB);
+                });
+
+        }
+        else {
+            questionLabel.color = color.darkBrown;
+            questionLabel.alpha = 1;
+            launchTrivia();
+        }
 
         function launchTrivia() {
 
@@ -987,14 +995,25 @@ function InitiateLevel(group, level, levelStructure) {
             var inputDomElement = new createjs.DOMElement('inputTextFirst');
             inputDomElement.visible = true;
 
-
-            var submitBtn = new createjs.Bitmap("assets/int/btn-go.png");
-            submitBtn.x = stage.canvas.width/2;
-            submitBtn.y = stage.canvas.height - 190;
+            var submitBtn;
 
             var submitLabel = new createjs.Text(genericText.clickMe, "700 24px Roboto", color.darkBrown);
             submitLabel.x = stage.canvas.width/2 + 70;
             submitLabel.y = stage.canvas.height - 170;
+
+            if (pDesign) {
+                submitBtn = new createjs.Bitmap("assets/int/btn-go.png");
+            }
+            else {
+                submitBtn = new createjs.Bitmap("assets/int/btn-go-simple.png");
+                textInput.style.border = "5px solid #50BAA6";
+                submitLabel.y = stage.canvas.height - 166;
+                submitLabel.x = stage.canvas.width/2 + 66;
+                submitLabel.color = "#fff";
+            }
+
+            submitBtn.x = stage.canvas.width/2;
+            submitBtn.y = stage.canvas.height - 190;
 
             var question = new createjs.Text(" ", "700 24px Roboto", color.darkBrown);
             var answerA = new createjs.Text(" ", "400 10px Roboto", color.darkBrown);
@@ -1154,14 +1173,17 @@ function InitiateLevel(group, level, levelStructure) {
             levelContainer.addChild(question, answerA, answerB, answerC, answerD, hint, submitBtn, submitLabel);
         }
 
+        if (pDesign) {
+            levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratTextA, congratTextB, papyrus, questionLabel);
+            levelContainer.alpha = 0;
+            createjs.Tween.get(levelContainer).to({alpha:1}, 1000);
+        } else {
+            levelContainer.addChild(questionLabel);
 
-        levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratTextA, congratTextB, papyrus, questionLabel);
-        levelContainer.alpha = 0;
+        }
 
         stage.addChild(levelContainer);
         stage.setChildIndex(levelContainer, 0);
-
-        createjs.Tween.get(levelContainer).to({alpha:1}, 1000);
 
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
     }
@@ -2388,7 +2410,7 @@ function InitiateLevel(group, level, levelStructure) {
             btnSize.x = speechBubble.drawWidth - 200;
             btnPos.x = speechBubble.x + 100;
             btnSize.y = 120;
-            btnPos.y = speechBubble.y + speechBubble.drawHeight + 80;
+            btnPos.y = stage.canvas.height - 300;
 
             var button = [];
             button.replay = new Button(color.green, btnSize, btnPos, genericText.replay, replayCurrentLevel);
