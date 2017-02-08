@@ -231,7 +231,7 @@ function loadLvlOutroStory(poe, completion) {
 
     if (RTL) {
         bubbleText.textAlign = "right";
-        bubbleText.x = window.innerWidth - speechBubbleContainer.x - 20;
+        bubbleText.x = window.innerWidth - 200;
     }
 
     var textBounds = bubbleText.getBounds();

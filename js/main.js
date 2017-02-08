@@ -80,8 +80,6 @@ function init() {
     pDesign = document.getElementById('persuasiveCheckbox');
     pDesign = pDesign.checked;
 
-    console.log(RTL, pDesign);
-
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", tick);
 

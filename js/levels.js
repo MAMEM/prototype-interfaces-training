@@ -1454,16 +1454,24 @@ function InitiateLevel(group, level, levelStructure) {
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
 
-        var levelContainer = loadAdvancedLevelsIntroMap(1);
-        var actualLevel = levelContainer.getChildAt(0);
+        if (pDesign) {
+            var levelContainer = loadAdvancedLevelsIntroMap(1);
+            var actualLevel = levelContainer.getChildAt(0);
 
-        actualLevel.on("mousedown", function() {
+            actualLevel.on("mousedown", function() {
 
-            if (window.loggingMediator) {
-                SendLSLMessage("event__mouse_down");
-            }
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_down");
+                }
 
-            stage.removeChild(levelContainer);
+                stage.removeChild(levelContainer);
+                startTheLevel();
+            });
+        }
+        else { startTheLevel(); }
+
+
+        function startTheLevel() {
 
             var taskContainer = new createjs.Container();
 
@@ -1597,7 +1605,8 @@ function InitiateLevel(group, level, levelStructure) {
                     }
                 });
             }
-        });
+
+        }
 
         stage.addChild(levelContainer);
         stage.addChild(backgroundColor);
@@ -1632,17 +1641,23 @@ function InitiateLevel(group, level, levelStructure) {
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
 
-        var levelContainer = loadAdvancedLevelsIntroMap(2);
-        var actualLevel = levelContainer.getChildAt(2);
+        if (pDesign) {
+            var levelContainer = loadAdvancedLevelsIntroMap(2);
+            var actualLevel = levelContainer.getChildAt(2);
 
-        actualLevel.on("mousedown", function() {
+            actualLevel.on("mousedown", function() {
 
-            if (window.loggingMediator) {
-                SendLSLMessage("event__mouse_down");
-            }
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_down");
+                }
+                stage.removeChild(levelContainer);
+                startTheLevel();
+            });
+        }
+        else { startTheLevel(); }
 
-            stage.removeChild(levelContainer);
 
+        function startTheLevel() {
             var taskContainer = new createjs.Container();
 
             var tasksLabel = new createjs.Text(genericText.tasks, "700 34px Roboto", color.whitePimary);
@@ -1750,7 +1765,7 @@ function InitiateLevel(group, level, levelStructure) {
                     }
                 });
             }
-        });
+        }
 
         stage.addChild(levelContainer);
         stage.addChild(backgroundColor);
@@ -1782,17 +1797,19 @@ function InitiateLevel(group, level, levelStructure) {
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
 
-        var levelContainer = loadAdvancedLevelsIntroMap(3);
-        var actualLevel = levelContainer.getChildAt(4);
+        if (pDesign) {
+            var levelContainer = loadAdvancedLevelsIntroMap(3);
+            var actualLevel = levelContainer.getChildAt(4);
+            actualLevel.on("mousedown", function() {
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_down");
+                }
+                stage.removeChild(levelContainer);
+                startTheLevel();
+            });
+        } else { startTheLevel(); }
 
-        actualLevel.on("mousedown", function() {
-
-
-            if (window.loggingMediator) {
-                SendLSLMessage("event__mouse_down");
-            }
-
-            stage.removeChild(levelContainer);
+        function startTheLevel() {
 
             var taskContainer = new createjs.Container();
 
@@ -1923,7 +1940,7 @@ function InitiateLevel(group, level, levelStructure) {
                     }
                 });
             }
-        });
+        }
 
         stage.addChild(backgroundColor);
         stage.addChild(levelContainer);
@@ -1961,16 +1978,20 @@ function InitiateLevel(group, level, levelStructure) {
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
 
-        var levelContainer = loadAdvancedLevelsIntroMap(4);
-        var actualLevel = levelContainer.getChildAt(6);
+        if (pDesign) {
+            var levelContainer = loadAdvancedLevelsIntroMap(4);
+            var actualLevel = levelContainer.getChildAt(6);
+            actualLevel.on("mousedown", function() {
 
-        actualLevel.on("mousedown", function() {
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_down");
+                }
+                stage.removeChild(levelContainer);
+                startTheLevel();
+            });
+        } else { startTheLevel(); }
 
-            if (window.loggingMediator) {
-                SendLSLMessage("event__mouse_down");
-            }
-
-            stage.removeChild(levelContainer);
+        function startTheLevel() {
 
             var taskContainer = new createjs.Container();
 
@@ -2100,7 +2121,7 @@ function InitiateLevel(group, level, levelStructure) {
                     }
                 });
             }
-        });
+        }
 
         stage.addChild(backgroundColor);
         stage.addChild(levelContainer);
