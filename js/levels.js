@@ -634,6 +634,9 @@ function InitiateLevel(group, level, levelStructure) {
         backgroundColor.graphics.beginFill(color.brown).drawRect(0, 0, stage.canvas.width, canvas.height);
 
         var villageTextA = new createjs.Text(genericText.lvl3ScrollDownA, "700 24px Roboto", color.whitePimary);
+        if (!pDesign) {
+            villageTextA = new createjs.Text(genericText.arrScrollDown, "700 24px Roboto", color.whitePimary);
+        }
         villageTextA.x = 300;
         villageTextA.y = 130;
         villageTextA.textAlign = "center";
@@ -710,6 +713,18 @@ function InitiateLevel(group, level, levelStructure) {
         bush4.y = stage.canvas.height - 200;
 
 
+        if (!pDesign) {
+
+            cave = new createjs.Bitmap("assets/int/wizard.png");
+            cave.x = 80;
+            cave.y = stage.canvas.height - 400;
+
+            tower = new createjs.Bitmap("assets/int/wizard.png");
+            tower.x = stage.canvas.width - 480;
+            tower.y = 800;
+
+        }
+
         tower.on("mousedown", function() {
 
             metrics.hit++;
@@ -720,38 +735,55 @@ function InitiateLevel(group, level, levelStructure) {
 
             resizeCanvas();
 
-            var towerFloor = new createjs.Shape();
-            towerFloor.graphics.beginFill(color.brown).drawRect(0, 0, stage.canvas.width, parseInt(2*(canvas.height/3),10));
-            var towerWall = new createjs.Shape();
-            towerWall.graphics.beginFill("#3E2723").drawRect(0, parseInt(2*(canvas.height/3),10), stage.canvas.width, canvas.height);
+            var arrow, arrowLabel;
 
-            var fireplace = new createjs.Bitmap("assets/int/fireplace.png");
-            fireplace.x = stage.canvas.width - 500;
-            fireplace.y = parseInt((canvas.height/3),10) - 239;
+            if (pDesign) {
 
-            var frame = new createjs.Bitmap("assets/int/frame.png");
-            frame.x = 200;
-            frame.y = 50;
+                var towerFloor = new createjs.Shape();
+                towerFloor.graphics.beginFill(color.brown).drawRect(0, 0, stage.canvas.width, parseInt(2*(canvas.height/3),10));
+                var towerWall = new createjs.Shape();
+                towerWall.graphics.beginFill("#3E2723").drawRect(0, parseInt(2*(canvas.height/3),10), stage.canvas.width, canvas.height);
 
-            var table = new createjs.Bitmap("assets/int/table.png");
-            table.x = 250;
-            table.y = canvas.height - 350;
+                var fireplace = new createjs.Bitmap("assets/int/fireplace.png");
+                fireplace.x = stage.canvas.width - 500;
+                fireplace.y = parseInt((canvas.height/3),10) - 239;
 
-            var brb = new createjs.Text(genericText.lvl3BRB, "500 20px Roboto", color.whitePimary);
-            brb.x = fireplace.x + 180;
-            brb.y = fireplace.y + 220;
-            brb.textAlign = "center";
-            brb.rotation = -8;
+                var frame = new createjs.Bitmap("assets/int/frame.png");
+                frame.x = 200;
+                frame.y = 50;
 
-            var arrow = new createjs.Bitmap("assets/arrow.png");
-            arrow.x = 100;
-            arrow.y = window.innerHeight * (55/100);
-            arrow.rotation = -180;
-            var arrowLabel = new createjs.Text(genericText.arrBackBtn, "500 32px Roboto", color.whitePimary);
-            arrowLabel.x = 40;
-            arrowLabel.y = arrow.y + 40;
+                var table = new createjs.Bitmap("assets/int/table.png");
+                table.x = 250;
+                table.y = canvas.height - 350;
 
-            towerContainer.addChild(towerFloor, towerWall, fireplace, frame, table, brb, arrow, arrowLabel);
+                var brb = new createjs.Text(genericText.lvl3BRB, "500 20px Roboto", color.whitePimary);
+                brb.x = fireplace.x + 180;
+                brb.y = fireplace.y + 220;
+                brb.textAlign = "center";
+                brb.rotation = -8;
+
+                arrow = new createjs.Bitmap("assets/arrow.png");
+                arrow.x = 100;
+                arrow.y = window.innerHeight * (55/100);
+                arrow.rotation = -180;
+                arrowLabel = new createjs.Text(genericText.arrBackBtn, "500 32px Roboto", color.whitePimary);
+                arrowLabel.x = 40;
+                arrowLabel.y = arrow.y + 40;
+
+                towerContainer.addChild(towerFloor, towerWall, fireplace, frame, table, brb, arrow, arrowLabel);
+
+            } else {
+
+                arrow = new createjs.Bitmap("assets/arrow.png");
+                arrow.x = 100;
+                arrow.y = window.innerHeight * (55/100);
+                arrow.rotation = -180;
+                arrowLabel = new createjs.Text(genericText.arrBackBtn, "500 32px Roboto", color.green);
+                arrowLabel.x = 40;
+                arrowLabel.y = arrow.y + 40;
+
+                towerContainer.addChild(arrow, arrowLabel);
+            }
 
             stage.addChild(towerContainer);
 
@@ -786,45 +818,49 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.removeChild(levelContainer);
 
-            var backgroundColor = new createjs.Shape();
-            backgroundColor.graphics.beginFill(color.darkBrown).drawRect(0, 0, stage.canvas.width, canvas.height);
+            if (pDesign) {
+                var backgroundColor = new createjs.Shape();
+                backgroundColor.graphics.beginFill(color.darkBrown).drawRect(0, 0, stage.canvas.width, canvas.height);
 
-            var caveFloor = new createjs.Bitmap("assets/int/cave-floor.png");
-            caveFloor.x = (stage.canvas.width/2) - 550;
-            caveFloor.y = stage.canvas.height - 300;
+                var caveFloor = new createjs.Bitmap("assets/int/cave-floor.png");
+                caveFloor.x = (stage.canvas.width/2) - 550;
+                caveFloor.y = stage.canvas.height - 300;
 
-            var rocksL = new createjs.Bitmap("assets/int/stones-l.png");
-            rocksL.x = (stage.canvas.width/2) - 500;
-            rocksL.y = stage.canvas.height - 120;
+                var rocksL = new createjs.Bitmap("assets/int/stones-l.png");
+                rocksL.x = (stage.canvas.width/2) - 500;
+                rocksL.y = stage.canvas.height - 120;
 
-            var rocksR = new createjs.Bitmap("assets/int/stones-r.png");
-            rocksR.x = (stage.canvas.width/2) + 100;
-            rocksR.y = stage.canvas.height - 120;
+                var rocksR = new createjs.Bitmap("assets/int/stones-r.png");
+                rocksR.x = (stage.canvas.width/2) + 100;
+                rocksR.y = stage.canvas.height - 120;
 
-            var torchL = new createjs.Bitmap("assets/int/torch-l.png");
-            torchL.x = -23;
-            torchL.y = 110;
+                var torchL = new createjs.Bitmap("assets/int/torch-l.png");
+                torchL.x = -23;
+                torchL.y = 110;
 
-            var torchR = new createjs.Bitmap("assets/int/torch-r.png");
-            torchR.x = stage.canvas.width - 98;
-            torchR.y = 110;
+                var torchR = new createjs.Bitmap("assets/int/torch-r.png");
+                torchR.x = stage.canvas.width - 98;
+                torchR.y = 110;
 
-            var fire = new createjs.Bitmap("assets/int/fire.png");
-            fire.x = (stage.canvas.width/2) - 200;
-            fire.y = stage.canvas.height - 350;
+                var fire = new createjs.Bitmap("assets/int/fire.png");
+                fire.x = (stage.canvas.width/2) - 200;
+                fire.y = stage.canvas.height - 350;
 
-            var wizard = new createjs.Bitmap("assets/int/wizard.png");
-            wizard.x = stage.canvas.width/2;
-            wizard.y = stage.canvas.height - 500;
+                var wizard = new createjs.Bitmap("assets/int/wizard.png");
+                wizard.x = stage.canvas.width/2;
+                wizard.y = stage.canvas.height - 500;
 
-            levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard);
+                levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard);
 
-            stage.addChild(levelContainer);
+                stage.addChild(levelContainer);
 
-            // Send LSL Message
-            if (window.loggingMediator) {
-                SendLSLMessage("level_int_1__cave_instance");
+                // Send LSL Message
+                if (window.loggingMediator) {
+                    SendLSLMessage("level_int_1__cave_instance");
+                }
             }
+
+
 
             metrics.trophy = (metrics.hit < 3);
             if (metrics.trophy) {
@@ -835,25 +871,48 @@ function InitiateLevel(group, level, levelStructure) {
 
             results = [levelContainer, metrics];
 
-            createjs.Tween.get(levelContainer)
-                .wait(3000)
-                .call( function () {
-
-                    if (window.loggingMediator) {
-                        SendLSLMessage("level_complete");
-                    }
-
-                    endLevel(true);
-
-                });
-
+            if (pDesign) {
+                createjs.Tween.get(levelContainer)
+                    .wait(3000)
+                    .call( function () {
+                        if (window.loggingMediator) {
+                            SendLSLMessage("level_complete");
+                        }
+                        endLevel(true);
+                    });
+            }
+            else {
+                if (window.loggingMediator) {
+                    SendLSLMessage("level_complete");
+                }
+                endLevel(true);
+            }
         });
 
-        levelContainer.addChild(backgroundColor, river, village, villageTextA, villageTextB, villageTitle, tower, towerTitle, towerSelect, towerSelectIcon, cave, caveTitle, caveSelect, caveSelectIcon,
-            forest, bush1, bush2, bush3, bush4);
+
+        if (pDesign) {
+            levelContainer.addChild(backgroundColor, river, village, villageTextA, villageTextB, villageTitle, tower, towerTitle, towerSelect, towerSelectIcon, cave, caveTitle, caveSelect, caveSelectIcon,
+                forest, bush1, bush2, bush3, bush4);
+        } else {
+
+            towerSelectIcon = new createjs.Bitmap("assets/ic_hand_green.png");
+            towerSelectIcon.x = stage.canvas.width - 250;
+            towerSelectIcon.y = 1210;
+
+            caveSelectIcon = new createjs.Bitmap("assets/ic_hand_green.png");
+            caveSelectIcon.x = 400;
+            caveSelectIcon.y = stage.canvas.height - 80;
+
+            villageTextA.color = color.green;
+            villageTextB.color = color.green;
+            towerSelect.color = color.green;
+            caveSelect.color = color.green;
+
+            levelContainer.addChild(villageTextA, villageTextB, tower, towerSelect, towerSelectIcon, cave, caveSelect, caveSelectIcon);
+        }
+
         stage.addChild(levelContainer);
         stage.setChildIndex(levelContainer, 0);
-
 
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
 
@@ -1332,23 +1391,6 @@ function InitiateLevel(group, level, levelStructure) {
         submitLabel.y = submitBtn.y + 20;
         submitLabel.alpha = 0;
 
-
-        if (!pDesign) {
-            submitBtn = new createjs.Bitmap("assets/int/btn-go-simple.png");
-
-            submitBtn.x = stage.canvas.width - 410 < stage.canvas.width/2 ? stage.canvas.width - 410 : stage.canvas.width/2 + 190 ;
-            submitBtn.y = stage.canvas.height - 150;
-
-            textInput1.style.border = "5px solid #50BAA6";
-            textInput2.style.border = "5px solid #50BAA6";
-
-            submitBtn.alpha = 1;
-            submitLabel.alpha = 1;
-            submitLabel.color = "#fff";
-        }
-
-
-
         if(pDesign) {
 
             globe.on("mousedown", function() {
@@ -1375,6 +1417,16 @@ function InitiateLevel(group, level, levelStructure) {
             });
 
         } else {
+
+            submitBtn = new createjs.Bitmap("assets/int/btn-go-simple.png");
+
+            submitBtn.x = stage.canvas.width - 410 < stage.canvas.width/2 ? stage.canvas.width - 410 : stage.canvas.width/2 + 190 ;
+            submitBtn.y = stage.canvas.height - 150;
+
+            textInput1.style.border = "5px solid #50BAA6";
+            textInput2.style.border = "5px solid #50BAA6";
+
+            submitLabel.color = "#fff";
 
             clickLabel.visible = false;
 

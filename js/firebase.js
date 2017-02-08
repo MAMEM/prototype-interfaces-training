@@ -233,8 +233,6 @@ function createScoreboard(group, level, col) {
                         if (!userData[key].levels.basic) continue;
                         if (!userData[key].levels.basic.level1) continue;
 
-                        console.log(userData[key]);
-
                         entity = {
                             name: userData[key].userDetails.name,
                             id: key,
