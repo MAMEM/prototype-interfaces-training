@@ -13,68 +13,68 @@ function createFeedback() {
 
             positive: [
                 "Wow " + user.firstName + ", great score! You also got the trophy!",
-                user.firstName + ", you're really great! You finished the level with the most effective way, gaining you the trophy!",
-                "Your skills are unmatched " + user.firstName + " ! Nice work earning the trophy!"
+                user.firstName + ", you scored really great! You finished the level very effectively, gaining you the trophy!",
+                "Your performance is the best, " + user.firstName + "! Nice work earning the trophy!"
             ],
             neutral: [
-                user.firstName + ", you completed the level. You can try replaying it in order to earn the trophy.",
-                "Congratulations on completing the level " + user.firstName + '. Try playing it again to earn the trophy.',
-                "Your score was good " + user.firstName + '. Try to step up your game a bit to earn the trophy.'
+                user.firstName + ", you completed the level. You can replay the level and score better so you earn the trophy.",
+                "Congratulations on completing the level, " + user.firstName + '. Score better next time, and the trophy is yours!',
+                "Your gameplay was quite effective, " + user.firstName + '. Try to be better to win the trophy.'
             ],
             negative: [
-                user.firstName + ', you can do better than that! Please try again.',
-                user.firstName + ', you can do better than that! Please try again.'
+                user.firstName + ', you can score higher than that! Please try again to win the trophy.',
+                "You can be more effective, " + user.firstName + '! Try again and earn that trophy!'
             ]
         },
 
         oldMale: {
 
             positive: [
-                "Wow " + user.firstName + ", great score! You also got the trophy!",
-                user.firstName + ", you're really great! You finished the level with the most effective way, gaining you the trophy!",
-                "Your skills are unmatched " + user.firstName + " ! Nice work earning the trophy!"
+                "Wow, " + user.firstName + ", great score! You have won the trophy!",
+                user.firstName + ", you scored really great! You finished the level very effectively, gaining you the trophy!",
+                "Your performance is the best, " + user.firstName + "! Nice work earning the trophy!"
             ],
             neutral: [
-                user.firstName + ", you completed the level. You can try replaying it in order to earn the trophy.",
-                "Congratulations on completing the level " + user.firstName + '. Try playing it again to earn the trophy.'
+                user.firstName + ", you completed the level. I am sure you can replay it and then win the trophy.",
+                "Congratulations on completing the level " + user.firstName + '. If you keep on improving like this, the trophy will be yours! So replay!'
             ],
             negative: [
-                user.firstName + ", I'm confident that you can finish the level without breaking a sweat. Please try again.",
-                user.firstName + ", quickly, replay the level! You were very close to finish it!"
+                user.firstName + ", I'm confident that you can score better. Please try again.",
+                user.firstName + ", replay the level! You were getting closer to setting a great score!"
             ]
         },
 
         youngFemale: {
 
             positive: [
-                "Wow " + user.firstName + ", great score! You also got the trophy!",
-                user.firstName + ", you're really great! You finished the level with the most effective way, gaining you the trophy!",
-                "Your skills are unmatched " + user.firstName + " ! Nice work earning the trophy!"
+                "Wow, " + user.firstName + ", great score! You have won the trophy!",
+                user.firstName + ", you scored really great! You finished the level very effectively, gaining you the trophy!",
+                "Your performance is the best, " + user.firstName + "! Nice work earning the trophy!"
             ],
             neutral: [
-                user.firstName + ", you completed the level. You can try replaying it in order to earn the trophy.",
-                "Congratulations on completing the level " + user.firstName + '. Try playing it again to earn the trophy.'
+                user.firstName + ", you completed the level. Without too much effort, you might score better and win the trophy.",
+                "Congratulations on completing the level, " + user.firstName + '. If you try a little harder, you could certainly get a fantastic score!'
             ],
             negative: [
-                user.firstName + ', you can do better than that! Please try again.',
-                user.firstName + ', I am confident that you can complete the level, play it again!'
+                user.firstName + ', you may have to keep on practicing, but you could improve your score! Please try again.',
+                user.firstName + ', winning the trophy is possible with a lot of practicing. Just keep on going!'
             ]
         },
 
         oldFemale: {
 
             positive: [
-                "Wow " + user.firstName + ", great score! You also got the trophy!",
-                user.firstName + ", you're really great! You finished the level with the most effective way, gaining you the trophy!",
-                "You're a fast learner " + user.firstName + " ! Nice work earning the trophy!"
+                "Wow " + user.firstName + ", great score! Everybody will be proud that you have won the trophy!",
+                user.firstName + ", you're a really fast learner! You became skillful quickly, gaining you the trophy!",
+                "You're a fast learner, " + user.firstName + "! Nice work earning the trophy!"
             ],
             neutral: [
-                user.firstName + ", you completed the level with time to spare! You can try replaying it though in order to earn the trophy.",
-                "You adapt quickly under pressure " + user.firstName + '! You were "this" close from earning the trophy!'
+                user.firstName + ", you completed the level with time to spare! You can replay, and make everyone proud by winning the trophy.",
+                "You are learning quickly, " + user.firstName + '! Doctors will be happy when you score even better!'
             ],
             negative: [
-                user.firstName + ', you can do better than that! Please try again.',
-                user.firstName + ', I am confident that you can complete the level the next time you play it!'
+                user.firstName + ', if you keep on improving, you could get a great score and make everyone proud!',
+                user.firstName + ', hard practice will earn you that trophy! Everybody would love it if you score better!'
             ]
         }
     };
