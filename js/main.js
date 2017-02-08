@@ -10,7 +10,7 @@ var stage = new createjs.Stage("canvas");
 var mousePointer = new createjs.Shape();
 
 var RTL = false;
-var persuasiveDesign = true;
+var pDesign = false;
 
 document.getElementById("registerButton").onclick = function() {
 
@@ -77,10 +77,10 @@ function init() {
     RTL = document.getElementById('rtlCheckbox');
     RTL = RTL.checked;
 
-    persuasiveDesign = document.getElementById('persuasiveCheckbox');
-    persuasiveDesign = persuasiveDesign.checked;
+    pDesign = document.getElementById('persuasiveCheckbox');
+    pDesign = pDesign.checked;
 
-    console.log(RTL, persuasiveDesign);
+    console.log(RTL, pDesign);
 
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", tick);
@@ -119,17 +119,18 @@ function loadSplashPage() {
     pos.x = window.innerWidth/2 - size.x/2;
     pos.y = 550;
 
-    var playBtn = new Button(color.green, size, pos, genericText.play, loadOverviewPage);
-
     var wizard = new createjs.Bitmap("assets/int/wizard.png");
     wizard.x = (stage.canvas.width/2) -91;
     wizard.y = stage.canvas.height/4;
+
+    if (!pDesign) { wizard.visible = false; pos.y = 300;}
+
+    var playBtn = new Button(color.green, size, pos, genericText.play, loadOverviewPage);
 
     var splashContainer = new createjs.Container();
     splashContainer.addChild(title, subtitle, playBtn.btn, playBtn.label, wizard);
 
     stage.addChild(splashContainer);
-
 }
 
 
@@ -249,6 +250,7 @@ function loadOverviewPage() {
             // Discard hover if previous level is not completed.
             /*if (levelAvailable[i]) {*/
 
+            if (pDesign) {
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
                     basicLevelTrophy[i] = new createjs.Bitmap("assets/trophies/basic-level"+ (i+1) +"-on.png");
@@ -275,74 +277,75 @@ function loadOverviewPage() {
                     basicLevelTime[i].y = 280;
                     basicLevelTime[i].textAlign = "center";
                 }
+            }
+            else { s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill(); }
 
-                // Add labels to tiles
-                basicTileTitle[i] = new createjs.Text(levelText[i].shortTitle, "700 18px Roboto", "rgba(0,0,0,0.87)");
-                basicTileTitle[i].lineWidth = width;
-                basicTileTitle[i].lineHeight = 22;
-                basicTileTitle[i].x = poe + s[i].x + width/2;
-                basicTileTitle[i].y = 210;
-                basicTileTitle[i].textAlign = "center";
+            // Add labels to tiles
+            basicTileTitle[i] = new createjs.Text(levelText[i].shortTitle, "700 18px Roboto", "rgba(0,0,0,0.87)");
+            basicTileTitle[i].lineWidth = width;
+            basicTileTitle[i].lineHeight = 22;
+            basicTileTitle[i].x = poe + s[i].x + width/2;
+            basicTileTitle[i].y = 210;
+            basicTileTitle[i].textAlign = "center";
 
+            s[i].on("mouseover", function() {
 
-                s[i].on("mouseover", function() {
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_over");
+                }
 
-                    if (window.loggingMediator) {
-                        SendLSLMessage("event__mouse_over");
-                    }
+                createjs.Ticker.addEventListener("tick", mouseTick);
 
-                    createjs.Ticker.addEventListener("tick", mouseTick);
-
-                    this.hoverFill = new createjs.Shape().set({
-                        x: this.x + this.entryX,
-                        y: this.y + this.entryY,
-                        scaleX: 0,
-                        scaleY: 0,
-                        regX: this.regX,
-                        regY: this.regY
-                    });
-
-                    this.hoverFill.graphics
-                        .beginFill(this.overColor)
-                        .drawRect(poe, this.entryY, width, height);
-
-                    overviewBasicGroupContainer.addChild(this.hoverFill);
-
-                    createjs.Tween.get(this.hoverFill)
-                        .to({
-                            scaleX:1,
-                            scaleY:1,
-                            x: this.x + this.regX,
-                            y: this.y
-                        }, interval.normal, createjs.Ease.quadInOut)
-                        .call(loadLevel, [0, this.i]);
-
-                    changeCursor(true);
+                this.hoverFill = new createjs.Shape().set({
+                    x: this.x + this.entryX,
+                    y: this.y + this.entryY,
+                    scaleX: 0,
+                    scaleY: 0,
+                    regX: this.regX,
+                    regY: this.regY
                 });
 
-                s[i].on("mouseout", function() {
+                this.hoverFill.graphics
+                    .beginFill(this.overColor)
+                    .drawRect(poe, this.entryY, width, height);
 
-                    if (window.loggingMediator) {
-                        SendLSLMessage("event__mouse_out");
-                    }
+                overviewBasicGroupContainer.addChild(this.hoverFill);
 
-                    createjs.Ticker.removeEventListener("tick", mouseTick);
-                    createjs.Tween.removeTweens(this.hoverFill);
-                    overviewBasicGroupContainer.removeChild(this.hoverFill);
+                createjs.Tween.get(this.hoverFill)
+                    .to({
+                        scaleX:1,
+                        scaleY:1,
+                        x: this.x + this.regX,
+                        y: this.y
+                    }, interval.normal, createjs.Ease.quadInOut)
+                    .call(loadLevel, [0, this.i]);
 
-                    changeCursor(false);
-                });
-/*            } else {
+                changeCursor(true);
+            });
 
-                s[i].graphics.beginFill(s[i].outColor).drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+            s[i].on("mouseout", function() {
 
-                // Add a lock
-                lock[i] = new createjs.Bitmap("assets/ic_lock.png");
-                lock[i].x = s[i].entryX + s[i].x - 58;
-                lock[i].y = s[i].entryY + s[i].y - 58;
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_out");
+                }
 
-                overviewBasicGroupContainer.addChild(lock[i]);
-            }*/
+                createjs.Ticker.removeEventListener("tick", mouseTick);
+                createjs.Tween.removeTweens(this.hoverFill);
+                overviewBasicGroupContainer.removeChild(this.hoverFill);
+
+                changeCursor(false);
+            });
+            /*            } else {
+
+             s[i].graphics.beginFill(s[i].outColor).drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+
+             // Add a lock
+             lock[i] = new createjs.Bitmap("assets/ic_lock.png");
+             lock[i].x = s[i].entryX + s[i].x - 58;
+             lock[i].y = s[i].entryY + s[i].y - 58;
+
+             overviewBasicGroupContainer.addChild(lock[i]);
+             }*/
 
             overviewBasicGroupContainer.addChild(s[i]);
 
@@ -375,8 +378,6 @@ function loadOverviewPage() {
         trophyCount = 0;
 
         if (snapshot.val()) {
-
-
             for (i=0; i<3; i++) {
 
                 if (!snapshot.val().levels) {
@@ -395,12 +396,9 @@ function loadOverviewPage() {
                     } else {
                         levelAvailable[i+1] = false;
                     }
-
                 }
             }
         }
-
-
 
         lock = [];
         var overviewIntGroupContainer = new createjs.Container();
@@ -438,6 +436,8 @@ function loadOverviewPage() {
             // Discard hover if previous level is not completed.
             /*if (levelAvailable[i]) {*/
 
+            if (pDesign) {
+
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
                     intLevelTrophy[i] = new createjs.Bitmap("assets/trophies/int-level"+ (i+1) +"-on.png");
@@ -465,76 +465,78 @@ function loadOverviewPage() {
                     intLevelTime[i].textAlign = "center";
                 }
 
-                // Add labels to tiles
-                intTileTitle[i] = new createjs.Text(levelText[i+2].shortTitle, "700 18px Roboto", "rgba(0,0,0,0.87)");
-                intTileTitle[i].lineWidth = width;
-                intTileTitle[i].lineHeight = 22;
-                intTileTitle[i].x = poe + s[i].x + width/2;
-                intTileTitle[i].y = 490;
-                intTileTitle[i].textAlign = "center";
+            } else { s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill(); }
+
+            // Add labels to tiles
+            intTileTitle[i] = new createjs.Text(levelText[i+2].shortTitle, "700 18px Roboto", "rgba(0,0,0,0.87)");
+            intTileTitle[i].lineWidth = width;
+            intTileTitle[i].lineHeight = 22;
+            intTileTitle[i].x = poe + s[i].x + width/2;
+            intTileTitle[i].y = 490;
+            intTileTitle[i].textAlign = "center";
 
 
-                s[i].on("mouseover", function () {
+            s[i].on("mouseover", function () {
 
-                    if (window.loggingMediator) {
-                        SendLSLMessage("event__mouse_over");
-                    }
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_over");
+                }
 
-                    createjs.Ticker.addEventListener("tick", mouseTick);
+                createjs.Ticker.addEventListener("tick", mouseTick);
 
-                    this.hoverFill = new createjs.Shape().set({
-                        x: this.x + this.entryX,
-                        y: this.y + this.entryY,
-                        scaleX: 0,
-                        scaleY: 0,
-                        regX: this.regX,
-                        regY: this.regY
-                    });
-
-                    this.hoverFill.graphics
-                        .beginFill(this.overColor)
-                        .drawRect(poe, this.entryY, width, height);
-
-                    overviewIntGroupContainer.addChild(this.hoverFill);
-
-                    createjs.Tween.get(this.hoverFill)
-                        .to({
-                            scaleX:1,
-                            scaleY:1,
-                            x: this.x + this.regX,
-                            y: this.y
-                        }, interval.normal, createjs.Ease.quadInOut)
-                        .call(loadLevel, [1, this.i]);
-
-                    changeCursor(true);
+                this.hoverFill = new createjs.Shape().set({
+                    x: this.x + this.entryX,
+                    y: this.y + this.entryY,
+                    scaleX: 0,
+                    scaleY: 0,
+                    regX: this.regX,
+                    regY: this.regY
                 });
 
-                s[i].on("mouseout", function () {
+                this.hoverFill.graphics
+                    .beginFill(this.overColor)
+                    .drawRect(poe, this.entryY, width, height);
 
-                    if (window.loggingMediator) {
-                        SendLSLMessage("event__mouse_out");
-                    }
+                overviewIntGroupContainer.addChild(this.hoverFill);
 
-                    createjs.Ticker.removeEventListener("tick", mouseTick);
-                    overviewIntGroupContainer.removeChild(this.hoverFill);
-                    createjs.Tween.removeTweens(this.hoverFill);
+                createjs.Tween.get(this.hoverFill)
+                    .to({
+                        scaleX:1,
+                        scaleY:1,
+                        x: this.x + this.regX,
+                        y: this.y
+                    }, interval.normal, createjs.Ease.quadInOut)
+                    .call(loadLevel, [1, this.i]);
 
-                    changeCursor(false);
+                changeCursor(true);
+            });
 
-                });
+            s[i].on("mouseout", function () {
 
-          /*  } else {
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_out");
+                }
 
-                s[i].graphics.beginFill(s[i].outColor).drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+                createjs.Ticker.removeEventListener("tick", mouseTick);
+                overviewIntGroupContainer.removeChild(this.hoverFill);
+                createjs.Tween.removeTweens(this.hoverFill);
 
-                // Add a lock
-                lock[i] = new createjs.Bitmap("assets/ic_lock.png");
-                lock[i].x = s[i].entryX + s[i].x - 58;
-                lock[i].y = s[i].entryY + s[i].y - 58;
+                changeCursor(false);
 
-                overviewIntGroupContainer.addChild(lock[i]);
+            });
 
-            }*/
+            /*  } else {
+
+             s[i].graphics.beginFill(s[i].outColor).drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+
+             // Add a lock
+             lock[i] = new createjs.Bitmap("assets/ic_lock.png");
+             lock[i].x = s[i].entryX + s[i].x - 58;
+             lock[i].y = s[i].entryY + s[i].y - 58;
+
+             overviewIntGroupContainer.addChild(lock[i]);
+
+             }*/
             overviewIntGroupContainer.addChild(s[i]);
 
             overviewIntGroupContainer.addChild(intTileTitle[i]);
@@ -623,6 +625,8 @@ function loadOverviewPage() {
             // Discard hover if previous level is not completed.
             /*if (levelAvailable[i]) {*/
 
+            if (pDesign) {
+
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
                     advLevelTrophy[i] = new createjs.Bitmap("assets/trophies/adv-level"+ (i+1) +"-on.png");
@@ -647,79 +651,82 @@ function loadOverviewPage() {
                     advLevelTime[i].textAlign = "center";
                 }
 
-
-                // Add labels to tiles
-                advTileTitle[i] = new createjs.Text(levelText[i+5].shortTitle, "700 18px Roboto", "rgba(0,0,0,0.87)");
-                advTileTitle[i].lineWidth = width;
-                advTileTitle[i].lineHeight = 22;
-                advTileTitle[i].x = poe + s[i].x + width/2;
-                advTileTitle[i].y = 790;
-                advTileTitle[i].textAlign = "center";
-
-
                 advLevelTrophy[i].x = poe + s[i].x + width/2 - 14;
                 advLevelTrophy[i].y = 890;
 
-                s[i].on("mouseover", function () {
+            } else { s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill(); }
 
-                    if (window.loggingMediator) {
-                        SendLSLMessage("event__mouse_over");
-                    }
 
-                    createjs.Ticker.addEventListener("tick", mouseTick);
+            // Add labels to tiles
+            advTileTitle[i] = new createjs.Text(levelText[i+5].shortTitle, "700 18px Roboto", "rgba(0,0,0,0.87)");
+            advTileTitle[i].lineWidth = width;
+            advTileTitle[i].lineHeight = 22;
+            advTileTitle[i].x = poe + s[i].x + width/2;
+            advTileTitle[i].y = 790;
+            advTileTitle[i].textAlign = "center";
 
-                    this.hoverFill = new createjs.Shape().set({
-                        x: this.x + this.entryX,
-                        y: this.y + this.entryY,
-                        scaleX: 0,
-                        scaleY: 0,
-                        regX: this.regX,
-                        regY: this.regY
-                    });
 
-                    this.hoverFill.graphics
-                        .beginFill(this.overColor)
-                        .drawRect(poe, this.entryY, width, height);
 
-                    overviewAdvGroupContainer.addChild(this.hoverFill);
+            s[i].on("mouseover", function () {
 
-                    createjs.Tween.get(this.hoverFill)
-                        .to({
-                            scaleX:1,
-                            scaleY:1,
-                            x: this.x + this.regX,
-                            y: this.y
-                        }, interval.normal, createjs.Ease.quadInOut)
-                        .call(loadLevel, [2, this.i]);
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_over");
+                }
 
-                    changeCursor(true);
+                createjs.Ticker.addEventListener("tick", mouseTick);
+
+                this.hoverFill = new createjs.Shape().set({
+                    x: this.x + this.entryX,
+                    y: this.y + this.entryY,
+                    scaleX: 0,
+                    scaleY: 0,
+                    regX: this.regX,
+                    regY: this.regY
                 });
 
-                s[i].on("mouseout", function () {
+                this.hoverFill.graphics
+                    .beginFill(this.overColor)
+                    .drawRect(poe, this.entryY, width, height);
 
-                    if (window.loggingMediator) {
-                        SendLSLMessage("event__mouse_out");
-                    }
+                overviewAdvGroupContainer.addChild(this.hoverFill);
 
-                    createjs.Ticker.removeEventListener("tick", mouseTick);
-                    overviewAdvGroupContainer.removeChild(this.hoverFill);
-                    createjs.Tween.removeTweens(this.hoverFill);
+                createjs.Tween.get(this.hoverFill)
+                    .to({
+                        scaleX:1,
+                        scaleY:1,
+                        x: this.x + this.regX,
+                        y: this.y
+                    }, interval.normal, createjs.Ease.quadInOut)
+                    .call(loadLevel, [2, this.i]);
 
-                    changeCursor(false);
-                });
+                changeCursor(true);
+            });
+
+            s[i].on("mouseout", function () {
+
+                if (window.loggingMediator) {
+                    SendLSLMessage("event__mouse_out");
+                }
+
+                createjs.Ticker.removeEventListener("tick", mouseTick);
+                overviewAdvGroupContainer.removeChild(this.hoverFill);
+                createjs.Tween.removeTweens(this.hoverFill);
+
+                changeCursor(false);
+            });
 
             /*} else {
 
-                s[i].graphics.beginFill(s[i].outColor).drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+             s[i].graphics.beginFill(s[i].outColor).drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
 
-                // Add a lock
-                lock[i] = new createjs.Bitmap("assets/ic_lock.png");
-                lock[i].x = s[i].entryX + s[i].x - 58;
-                lock[i].y = s[i].entryY + s[i].y - 58;
+             // Add a lock
+             lock[i] = new createjs.Bitmap("assets/ic_lock.png");
+             lock[i].x = s[i].entryX + s[i].x - 58;
+             lock[i].y = s[i].entryY + s[i].y - 58;
 
-                overviewAdvGroupContainer.addChild(lock[i]);
+             overviewAdvGroupContainer.addChild(lock[i]);
 
-            }*/
+             }*/
 
             overviewAdvGroupContainer.addChild(s[i]);
 
@@ -728,7 +735,14 @@ function loadOverviewPage() {
             if (advLevelTrophy[i]) {overviewAdvGroupContainer.addChild(advLevelTrophy[i]);}
         }
 
-        overviewContainer.addChild(title, subtitle, basicLabel, basicCompletedLabel, basicTrophiesLabel, intLabel, intCompletedLabel, intTrophiesLabel, advLabel, advCompletedLabel, advTrophiesLabel);
+
+        if (pDesign) {
+            overviewContainer.addChild(title, subtitle, basicLabel, basicCompletedLabel, basicTrophiesLabel, intLabel, intCompletedLabel, intTrophiesLabel, advLabel, advCompletedLabel, advTrophiesLabel);
+        }
+        else {
+            overviewContainer.addChild(title, subtitle, basicLabel, basicCompletedLabel, intLabel, intCompletedLabel, advLabel, advCompletedLabel);
+        }
+
         stage.addChild(overviewContainer, overviewBasicGroupContainer, overviewIntGroupContainer, overviewAdvGroupContainer);
 
         // Set height manually in every stage (except splash)

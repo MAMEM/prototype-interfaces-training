@@ -119,6 +119,11 @@ function loadLvlStructure(fullTitle, shortTitle) {
     btnPos.y = 50;
     var abortBtn = new Button(color.gray, btnSize, btnPos, genericText.abort, loadOverviewPage);
 
+    if(!pDesign) {
+        timer.icon.visible = false;
+        timer.text.visible = false;
+    }
+
     var levelStructureContainer = new createjs.Container();
     levelStructureContainer.addChild(polygon, bigSeparator, levelTitle, timer.icon, timer.text, mainTitle, abortBtn.btn, abortBtn.label);
     stage.addChild(levelStructureContainer);
@@ -160,6 +165,12 @@ function loadLvlIntroStory(script) {
     face.x = window.innerWidth - face.image.width - 200;
     face.y = sb.y + speechBubbleContainer.height;
 
+    if(!pDesign) {
+        face.visible = false;
+        bubbleText.visible = false;
+        sb.visible = false;
+    }
+
     introStoryContainer = new createjs.Container();
 
     introStoryContainer.addChild(sb, bubbleText, face);
@@ -183,20 +194,32 @@ function loadLvlOutroStory(poe, completion) {
 
         if (completion === 'trophy') {
 
-            textString = composeFeedback('positive');
+            if (pDesign)
+            { textString = composeFeedback('positive'); }
+            else
+            { textString = defaultFeedback.positive; }
+
             bubbleText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
             face = new createjs.Bitmap("assets/face-happy.png");
+
         }
         else {
+            if (pDesign)
+            { textString = composeFeedback('neutral'); }
+            else
+            { textString = defaultFeedback.neutral; }
 
-            textString = composeFeedback('neutral');
             bubbleText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
             face = new createjs.Bitmap("assets/face-default.png");
         }
 
     } else {
 
-        textString = composeFeedback('negative');
+        if (pDesign)
+        { textString = composeFeedback('negative'); }
+        else
+        { textString = defaultFeedback.negative; }
+
         bubbleText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
         face = new createjs.Bitmap("assets/face-sad.png");
     }
@@ -226,6 +249,13 @@ function loadLvlOutroStory(poe, completion) {
     face.y = 5;
 
     var outroStoryContainer = new createjs.Container();
+
+    if(!pDesign) {
+        sb.visible = false;
+        face.visible = false;
+        bubbleText = alignTextToStageCenter(stage, bubbleText);
+        bubbleText.y = stage.canvas.height/2 - 100;
+    }
 
     outroStoryContainer.addChild(sb, bubbleText, face);
 

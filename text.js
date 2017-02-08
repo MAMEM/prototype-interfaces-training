@@ -6,7 +6,7 @@ var personalizedFeedback;
 var defaultFeedback = [];
 defaultFeedback.positive = "You have finished the level, and can proceed to the next.";
 defaultFeedback.neutral = "You have finished the level, and can play again or proceed to the next level.";
-defaultFeedback.negative = "You have not completed the level succesfully. You can play again or proceed to the next level.";
+defaultFeedback.negative = "You have not completed the level successfully. You can play again or proceed to the next level.";
 
 // Translate everything inside " " but be careful to not change what is inside + +.
 function createFeedback() {

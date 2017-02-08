@@ -10,8 +10,6 @@ function registerUser() {
 
         if (currentUser != null) {
 
-            user.name = user.firstName + " " + user.lastName;
-
             // When saving data on first level, save name too (to be used on scoreboard).
             firebase.database().ref('users/' + currentUser.uid + '/userDetails').set({
                 "name": user.firstName + " " + user.lastName,
@@ -480,7 +478,11 @@ function createScoreboard(group, level, col) {
         rankingsLabels.separator.graphics.drawRect(col.x, col.y + 158, (3 * col.width) - col.x, 2);
         rankingsLabels.separator.graphics.endFill();
 
-        stage.addChild(rankingsLabels.title, rankingsLabels.posLabel, rankingsLabels.nameLabel, rankingsLabels.scoreLabel, rankingsLabels.timeLabel, rankingsLabels.rewardsLabel,  rankingsLabels.separator);
+        if (pDesign) {
+            stage.addChild(rankingsLabels.title, rankingsLabels.posLabel, rankingsLabels.nameLabel, rankingsLabels.scoreLabel, rankingsLabels.timeLabel, rankingsLabels.rewardsLabel,  rankingsLabels.separator);
+        }
+
+
 
         var pos = [rankingsLabels.posLabel.x, rankingsLabels.nameLabel.x, rankingsLabels.scoreLabel.x, rankingsLabels.timeLabel.x, rankingsLabels.rewardsLabel.x];
 
@@ -525,7 +527,8 @@ function createScoreboard(group, level, col) {
             rankingUser[i].trophy.x = pos[4];
             rankingUser[i].trophy.y = col.y + 170 + (i*20);
 
-            stage.addChild(rankingUser[i].pos, rankingUser[i].name, rankingUser[i].score, rankingUser[i].time, rankingUser[i].trophy);
+            if (pDesign) { stage.addChild(rankingUser[i].pos, rankingUser[i].name, rankingUser[i].score, rankingUser[i].time, rankingUser[i].trophy); }
+
         }
     });
 }
