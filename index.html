@@ -29,13 +29,13 @@
         <div class="six columns">
             <div class="six columns">
                 <label>
-                    <input type="checkbox" checked id="persuasiveCheckbox">
+                    <input type="checkbox" id="persuasiveCheckbox" checked>
                     <span class="label-body">Persuasive Design</span>
                 </label>
             </div>
             <div class="six columns">
                 <label>
-                    <input type="checkbox" id="rtlCheckbox">
+                    <input type="checkbox" id="rtlCheckbox" checked>
                     <span class="label-body">RTL Text</span>
                 </label>
             </div>
@@ -57,7 +57,7 @@
                             <label for="emailInput">E-mail</label>
                             <input class="u-full-width" type="email" placeholder="e.g. user@mail.com" id="emailInput">
                             <label for="passInput">Password</label>
-                            <input class="u-full-width" type="email" placeholder="6 characters minimum!" id="passInput">
+                            <input class="u-full-width" type="text" placeholder="6 characters minimum!" id="passInput">
                         </div>
 
                         <div class="twelve columns">
@@ -74,18 +74,25 @@
 
                         <div class="twelve columns">
                             <div class="six columns">
-                                <label for="genderInput">Gender</label>
-                                <select class="u-full-width" id="genderInput">
-                                    <option value="m">Male</option>
-                                    <option value="f">Female</option>
-                                </select>
+                                <label>Gender</label>
+                                <div class="twelve columns">
+                                    <form>
+                                        <div class="six columns">
+                                            <label for="maleRadioBtn">Male</label>
+                                            <input type="radio" name="day" value="m" id="maleRadioBtn" checked>
+                                        </div>
+                                        <div class="six columns">
+                                            <label for="femaleRadioBtn">Female</label>
+                                            <input type="radio" name="day" value="f" id="femaleRadioBtn">
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                             <div class="six columns">
                                 <label for="ageInput">Age</label>
                                 <input class="u-full-width" type="text" placeholder="e.g. 34" id="ageInput">
                             </div>
                         </div>
-
                     </div>
 
                 </form>
@@ -103,7 +110,7 @@
                             <label for="emailLoginInput">E-mail</label>
                             <input class="u-full-width" type="email" placeholder="e.g. user@mail.com" id="emailLoginInput">
                             <label for="passLoginInput">Password</label>
-                            <input class="u-full-width" type="email" placeholder="e.g. 123456" id="passLoginInput">
+                            <input class="u-full-width" type="text" placeholder="e.g. 123456" id="passLoginInput">
                         </div>
                     </div>
                 </form>
@@ -129,7 +136,7 @@
 
 <script type="text/javascript" src="js/libs/ScaleBitmap.js"></script>
 
-<script type="text/javascript" src="text.js"></script>
+<script type="text/javascript" src="text-hebrew.js"></script>
 
 <script type="text/javascript" src="js/helper.js"></script>
 

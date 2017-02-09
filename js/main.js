@@ -2,7 +2,7 @@
 var canvas = document.getElementById('canvas'),
     context = canvas.getContext('2d');
 
-//window.addEventListener('resize', resizeCanvas, false);
+/*window.addEventListener('resize', resizeCanvas, false);*/
 
 var currentUrl = window.location.href;
 
@@ -23,7 +23,13 @@ document.getElementById("registerButton").onclick = function() {
 
     user.email = document.getElementById("emailInput").value;
     user.password = document.getElementById("passInput").value;
-    user.gender = document.getElementById("genderInput").value;
+
+    if (document.getElementById("maleRadioBtn").checked) {
+        user.gender = "m";
+    } else {
+        user.gender = "f";
+    }
+
     user.age = document.getElementById("ageInput").value;
 
     if (!user.email || !user.password || !user.firstName || !user.lastName || !user.gender || !user.age) {
@@ -129,6 +135,7 @@ function loadSplashPage() {
     splashContainer.addChild(title, subtitle, playBtn.btn, playBtn.label, wizard);
 
     stage.addChild(splashContainer);
+
 }
 
 
@@ -744,12 +751,13 @@ function loadOverviewPage() {
         stage.addChild(overviewContainer, overviewBasicGroupContainer, overviewIntGroupContainer, overviewAdvGroupContainer);
 
         // Set height manually in every stage (except splash)
-        canvas.height = 1100;
         canvas.width = canvas.width - 10;
+        canvas.height = 1100;
 
         // Send LSL Message
         if (window.loggingMediator) {
             SendLSLMessage("page_load__overview");
         }
+
     });
 }

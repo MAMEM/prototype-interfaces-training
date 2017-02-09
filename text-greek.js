@@ -56,29 +56,29 @@ function createFeedback() {
                 "Η απόδοση σου είναι από τις καλύτερες, " + user.firstName + "! Συγχαρητήρια, κέρδισες το τρόπαιο!"
             ],
             neutral: [
-                user.firstName + ", you completed the level. Without too much effort, you might score better and win the trophy.",
-                "Congratulations on completing the level, " + user.firstName + '. If you try a little harder, you could certainly get a fantastic score!'
+                user.firstName + ", ολοκλήρωσες το επίπεδο. Πιστεύω πως χωρίς ιδιαίτερη προσπάθεια θα πετύχεις καλύτερο σκορ και θα κερδίσεις το τρόπαιο.",
+                "Συγχαρητήρια, ολοκλήρωσες το επίπεδο " + user.firstName + '. Αν προσπαθήσεις λίγο περισσότερο σίγουρα θα επιτύχεις ένα φανταστικό σκορ!'
             ],
             negative: [
-                user.firstName + ', you may have to keep on practicing, but you could improve your score! Please try again.',
-                user.firstName + ', winning the trophy is possible with a lot of practicing. Just keep on going!'
+                user.firstName + ', μπορεί να χρειάζεσαι εξάσκηση, αλλά θα βελτιώσεις σίγουρα το σκορ σου. Προσπάθησε ξανά!',
+                user.firstName + ', το να κερδίσεις το τρόπαιο είναι εφικτό με αρκετή εξάσκηση! Συνέχισε έτσι!'
             ]
         },
 
         oldFemale: {
 
             positive: [
-                "Wow " + user.firstName + ", great score! Everybody will be proud that you have won the trophy!",
-                user.firstName + ", you're a really fast learner! You became skillful quickly, gaining you the trophy!",
-                "You're a fast learner, " + user.firstName + "! Nice work earning the trophy!"
+                "Ουάου " + user.firstName + ", πολύ καλό σκορ! Όλοι θα πρέπει να είναι περήφανοι που κέρδισες το τρόπαιο!",
+                user.firstName + ", μαθαίνεις γρήγορα! Απέκτησες πολύ γρήγορα τις δεξιότητες που σε οδήγησαν στο τρόπαιο!",
+                "Μαθαίνεις γρήγορα, " + user.firstName + "! Συγχαρητήρια, κέρδισες το τρόπαιο!"
             ],
             neutral: [
-                user.firstName + ", you completed the level with time to spare! You can replay, and make everyone proud by winning the trophy.",
-                "You are learning quickly, " + user.firstName + '! Doctors will be happy when you score even better!'
+                user.firstName + ", ολοκλήρωσες το επίπεδο αρκετά γρήγορα! Μπορείς να το ξαναπαίξεις και να κάνεις όλους να τρίβουν τα μάτια τους, κερδίζοντας το τρόπαιο!",
+                "Μαθαίνεις γρήγορα, " + user.firstName + '! Οι γιατροί σου θα ενθουσιαστούν όταν δουν νέο ακόμα καλύτερο σκορ!'
             ],
             negative: [
-                user.firstName + ', if you keep on improving, you could get a great score and make everyone proud!',
-                user.firstName + ', hard practice will earn you that trophy! Everybody would love it if you score better!'
+                user.firstName + ', συνέχισε να βελτιώνεσαι. Θα καταφέρεις ένα μεγάλο σκορ και όλοι θα μείνει με το στόμα ανοιχτό!',
+                user.firstName + ', με συνεχόμενη εξάσκηση θα καταφέρεις να αποκτήσεις αυτό το τρόπαιο! Όλοι θα χαρούν αν κάνεις καλύτερο σκορ!'
             ]
         }
     };
@@ -90,49 +90,49 @@ function createFeedback() {
 // Translate all phrases inside " "
 var levelText = [
     {
-        fullTitle: "BASIC - 01 Focus on the markers",
-        shortTitle: "Focus on the markers",
-        story: "Try to focus your eyes on a series of markers. Get the trophy by focusing on each marker only once!"
+        fullTitle: "ΒΑΣΙΚΟ - 01 Εστίασε στους δείκτες",
+        shortTitle: "Εστίασε στους δείκτες",
+        story: "Προσπάθησε να εστιάσεις το βλέμα σου στους δείκτες. Κέρδισε το τρόπαιο εστιάζοντας σε κάθε δείκτη μόνο μια φορά!"
     },
     {
-        fullTitle: "BASIC - 02 Focus on a sequence of markers",
+        fullTitle: "ΒΑΣΙΚΟ - 02 Εστίασε σε μια σειρά από δείκτες",
         shortTitle: "Whack-a-mole!",
-        story: "Try to focus your eyes on each marker when it appears, for a set amount of time! Hit all the markers to earn the trophy!"
+        story: "Προσπάθησε να εστιάσεις το βλέμα σου σε κάθε δείκτη όταν αυτός εμφανίζεται, για ένα χρονικό διάστημα. Εστίασε σε όλους τους δείκτες και κέρδισε το τρόπαιο!"
     },
     {
-        fullTitle: "INTERMEDIATE - 01 Find the wizard",
-        shortTitle: "Find the wizard",
-        story: "Scroll through the level to find the wizard using the scroll overlays or the auto scrolling, and use the click emulation button to select the place where he is hiding! Visit all locations only once to earn the trophy!"
+        fullTitle: "ΕΝΔΙΑΜΕΣΟ - 01 Βρές το μάγο",
+        shortTitle: "Βρές το μάγο",
+        story: "Μετακινήσου πάνω κάτω στο επίπεδο ώσπου να βρεις το μάγο, χρησιμοποιώντας τα κουμπιά κύλισης ή την αυτόματη κύλιση, καθώς και το κουμπί εξομείωσης κλικ για να επιλέξεις το μέρος στο οποίο κρύβεται ο μάγος! Επισκέψου όλες τις τοποθεσίες για να κερδίσεις το τρόπαιο!"
     },
     {
-        fullTitle: "INTERMEDIATE - 02 The Quiz",
-        shortTitle: "The quiz",
-        story: "You found the wizard! Now he is challenging you to a quiz test. Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD! Answer correctly to all questions and earn the trophy!"
+        fullTitle: "ΕΝΔΙΑΜΕΣΟ - 02 Παιχνίδι ερωτήσεων",
+        shortTitle: "Παιχνίδι ερωτήσεων",
+        story: "Βρήκες το μάγο! Σε προκαλλεί σε ένα παιχνίδι ερωτήσεων. Χρησιμοποίησε το κουμπί για ZOOM για να δεις τις διαθέσιμες απαντήσεις και πληκτρολόγησε τες σωστά χρησιμοποιόντας το πληκτρολογιο του GazeTheWeb! Απάντησε σωστά σε όλες τις ερωτήσεις για να κερδίσεις το τρόπαιο!"
     },
     {
-        fullTitle: "INTERMEDIATE - 03 Find the treasure",
-        shortTitle: "The map",
-        story: "Open the map using the click emulation button, then use the GazeTheWeb copy & paste functionality to find the treasure! Be successful at your first try cop & pasting to get the trophy!"
+        fullTitle: "ΕΝΔΙΑΜΕΣΟ - 03 Ψάξε το θησαυρό",
+        shortTitle: "Ο χάρτης",
+        story: "Άνοιξε το χάρτη με τη βοήθεια του κουμπιού εξομοίωσης κλικ και στη συνέχεια με τη λειτουργία αντιγραφής & επικόλλησης, βάλε τις συντεταγμένες στο χάρτη για να εντοπίσεις το θησαυρό! Χρησιμοποίησε τη λειτουργία αντιγραφής και επικόλλησης μόνο 2 φορές για να κερδίσεις το τρόπαιο!"
     },
     {
-        fullTitle: "ADVANCED - 01 Gaze Visualization",
-        shortTitle: "Settings - Gaze Visualization",
-        story: "You uncovered the location of the treasure in the previous levels. Now tread through the path accross 4 locations to finally find the treasure, while learning how to use the unique tools GTW has to offer! Try following the instructions without making the same action twice to get the trophy!"
+        fullTitle: "ΠΡΟΧΩΡΗΜΕΝΟ - 01 Οπτικοποίηση βλέματος",
+        shortTitle: "Ρυθμίσεις - Οπτικοποίηση Βλέματος",
+        story: "Στα προηγούμενα επίπεδα ανακάλυψες τις συντεταγμένες του θησαυρού! Τώρα ψάξε ανάμεσα στις 4 τοποθεσίες για να βρεις το θησαυρό, καθώς θα μαθαίνεις πως να χρησιμοποιείς τις μοναδικές λειτουργίες του GazeTheWeb! Προσπάθησε να ακολουθήσεις τις οδηγίες χωρίς να επαναλάβεις το ίδιο βήμα δεύτερη φορά, για να κερδίσεις το τρόπαιο!"
     },
     {
-        fullTitle: "ADVANCED - 02 URL Typing",
-        shortTitle: "URL Typing",
-        story: "Learn how to edit a url on GTW Browser. Try following the instructions without making the same action twice to get the trophy!"
+        fullTitle: "ΠΡΟΧΩΡΗΜΕΝΟ - 02 Πληκτρολόγηση διέυθυνσης του ίντερνετ",
+        shortTitle: "Πληκτρολόγηση διέυθυνσης του ίντερνετ",
+        story: "Μάθε πως να επεξεργάζεσαι μια διεύθυνση του ίντερνετ. Προσπάθησε να ακολουθήσεις τις οδηγίες χωρίς να επαναλάβεις το ίδιο βήμα δεύτερη φορά, για να κερδίσεις το τρόπαιο!"
     },
     {
-        fullTitle: "ADVANCED - 03 Text prediction",
-        shortTitle: "Text prediction",
-        story: "Learn how to type using text prediction. Try following the instructions without making the same action twice to get the trophy!"
+        fullTitle: "ΠΡΟΧΩΡΗΜΕΝΟ - 03 Πρόβλεψη κειμένου",
+        shortTitle: "Πρόβλεψη κειμένου",
+        story: "Μάθε πως να πληκτρολογείς χρησιμοποιώντας την πρόβλεψη κειμένου. Προσπάθησε να ακολουθήσεις τις οδηγίες χωρίς να επαναλάβεις το ίδιο βήμα δεύτερη φορά, για να κερδίσεις το τρόπαιο!"
     },
     {
-        fullTitle: "ADVANCED - 04 Bookmarks",
-        shortTitle: "Bookmarks",
-        story: "Learn how to bookmark a page. Try following the instructions without making the same action twice to get the trophy!"
+        fullTitle: "ΠΡΟΧΩΡΗΜΕΝΟ - 04 Σελιδοδείκτες",
+        shortTitle: "Σελιδοδείκτες",
+        story: "Μάθε πως να διαχειρίζεσαι τους σελιδοδείκτες. Προσπάθησε να ακολουθήσεις τις οδηγίες χωρίς να επαναλάβεις το ίδιο βήμα δεύτερη φορά, για να κερδίσεις το τρόπαιο!"
     }
 ];
 
@@ -140,11 +140,11 @@ var levelText = [
 // In here translate only the 'question' and 'answer' fields (NO answer_en).
 var quizText = [
     {
-        question: "Which of the following is a traditional Greek dish?",
-        answer1: "moussaka",
-        answer2: "spaghetti",
-        answer3: "pizza",
-        answer4: "burger",
+        question: "Ποιό από τα παρακάτω είναι παραδοσιακό φαγητό της Ελλάδας;",
+        answer1: "Μουσακάς",
+        answer2: "Μακαρόνια",
+        answer3: "Πίτσα",
+        answer4: "Μπέργκερ",
         answer1_en: "moussaka", // Don't translate this!
         answer2_en: "spaghetti", // Don't translate this!
         answer3_en: "pizza", // Don't translate this!
@@ -153,11 +153,11 @@ var quizText = [
         cat: "Easy" // Don't translate this!
     },
     {
-        question: "Who is the son of Daedalus?",
-        answer1: "minoas",
-        answer2: "theseus",
-        answer3: "icarus",
-        answer4: "menelaus",
+        question: "Ποιός ήταν ο γιος του Δαίδαλου;",
+        answer1: "Μίνωας",
+        answer2: "Θησέας",
+        answer3: "Ίκαρος",
+        answer4: "Μενέλαος",
         answer1_en: "minoas", // Don't translate this!
         answer2_en: "theseus", // Don't translate this!
         answer3_en: "icarus", // Don't translate this!
@@ -166,11 +166,11 @@ var quizText = [
         cat: "Easy" // Don't translate this!
     },
     {
-        question: "What was the color of the ‘Baywatch’ lifeguard swimsuit?",
-        answer1: "pink",
-        answer2: "red",
-        answer3: "green",
-        answer4: "white",
+        question: "Τι χρώμα μαγιώ φορούσαν οι ναυαγοσώστες του Baywatch;",
+        answer1: "Ροζ",
+        answer2: "Κόκκινο",
+        answer3: "Πράσινο",
+        answer4: "Λευκό",
         answer1_en: "pink", // Don't translate this!
         answer2_en: "red", // Don't translate this!
         answer3_en: "green", // Don't translate this!
@@ -179,11 +179,11 @@ var quizText = [
         cat: "Easy" // Don't translate this!
     },
     {
-        question: "In honor of which goddess was the Acropolis of Athens built?",
-        answer1: "aphrodite",
-        answer2: "ira",
-        answer3: "artemis",
-        answer4: "athena",
+        question: "Προς τιμήν ποιάς θεάς χτίστηκε η Ακρόπολη;",
+        answer1: "Αφροδίτη",
+        answer2: "Ήρα",
+        answer3: "Άρτεμις",
+        answer4: "Αθηνά",
         answer1_en: "aphrodite", // Don't translate this!
         answer2_en: "ira", // Don't translate this!
         answer3_en: "artemis", // Don't translate this!
@@ -192,11 +192,11 @@ var quizText = [
         cat: "Easy" // Don't translate this!
     },
     {
-        question: "Who is considered as the founder of Medicine?",
-        answer1: "hippocrates",
-        answer2: "hieronymus",
-        answer3: "xenophon",
-        answer4: "demosthenes",
+        question: "Ποιός θεωρείται πως είναι ο πατέρας της Ιατρικής;",
+        answer1: "Ιπποκράτης",
+        answer2: "Ιερώνυμος",
+        answer3: "Ξενοφών",
+        answer4: "Δημοσθένης",
         answer1_en: "hippocrates", // Don't translate this!
         answer2_en: "hieronymus", // Don't translate this!
         answer3_en: "xenophon", // Don't translate this!
@@ -205,11 +205,11 @@ var quizText = [
         cat: "Intermediate" // Don't translate this!
     },
     {
-        question: "Which team won the national football league in 2014?",
-        answer1: "olympiacos",
-        answer2: "panathinaikos",
-        answer3: "aek",
-        answer4: "paok",
+        question: "Ποιά ομάδα ποδοσφαίρου κατέκτησε το πρωτάθλημα του 2014?",
+        answer1: "Ολυμπιακός",
+        answer2: "Παναθηναικός",
+        answer3: "ΑΕΚ",
+        answer4: "ΠΑΟΚ",
         answer1_en: "olympiacos", // Don't translate this!
         answer2_en: "panathinaikos", // Don't translate this!
         answer3_en: "aek", // Don't translate this!
@@ -218,11 +218,11 @@ var quizText = [
         cat: "Intermediate" // Don't translate this!
     },
     {
-        question: "Which was the host country of Euro 2004?",
-        answer1: "italy",
-        answer2: "england",
-        answer3: "greece",
-        answer4: "portugal",
+        question: "Σε ποιά χώρα έγινε το Ευρωπαικό πρωτάθλημα του 2004 το οποίο κατέκτησε η Ελλάδα?",
+        answer1: "Ιταλία",
+        answer2: "Αγγλία",
+        answer3: "Ελλάδα",
+        answer4: "Πορτογαλία",
         answer1_en: "italy", // Don't translate this!
         answer2_en: "england", // Don't translate this!
         answer3_en: "greece", // Don't translate this!
@@ -231,11 +231,11 @@ var quizText = [
         cat: "Intermediate" // Don't translate this!
     },
     {
-        question: "He is considered as the father of History",
-        answer1: "herodotus",
-        answer2: "eratosthenes",
-        answer3: "pausanias",
-        answer4: "pericles",
+        question: "Θεωρείται ως ο σημαντικότερος ιστορικός της αρχαιότητας",
+        answer1: "Ηρόδοτος",
+        answer2: "Ερατοσθένης",
+        answer3: "Παυσανίας",
+        answer4: "Περικλής",
         answer1_en: "herodotus", // Don't translate this!
         answer2_en: "eratosthenes", // Don't translate this!
         answer3_en: "pausanias", // Don't translate this!
@@ -305,7 +305,7 @@ var genericText =
         play: "Play",
         replay: "Replay",
         levelSelect: "Select level",
-        basic: "BASIC",
+        basic: "ΒΑΣΙΚΟ",
         intermediate: "INTERMEDIATE",
         advanced: "ADVANCED",
         completed: "COMPLETED",
