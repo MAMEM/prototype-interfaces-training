@@ -2272,8 +2272,6 @@ function InitiateLevel(group, level, levelStructure) {
 
         trophy.current = false;
 
-        window.dispatchEvent(new Event('resize'));
-
         switch(group) {
             case 0:
                 if (level === 0) {

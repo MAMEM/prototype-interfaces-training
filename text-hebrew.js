@@ -5,7 +5,7 @@ var personalizedFeedback;
 
 var defaultFeedback = [];
 defaultFeedback.positive = "סיימתם את השלב בהצלחה, אתם יכולים להמשיך לשלב הבא";
-defaultFeedback.neutral = " סיימתם את השלב בהצלחה, אתם יכולים לשחק שוב או להמשיך לשלב הבא ";
+defaultFeedback.neutral = "סיימתם את השלב בהצלחה, אתם יכולים לשחק שוב או להמשיך לשלב הבא";
 defaultFeedback.negative = "לא סיימתם את השלב בהצלחה";
 
 // Translate everything inside " " but be careful to not change what is inside + +.
@@ -16,9 +16,9 @@ function createFeedback() {
         youngMale: {
 
             positive: [
-                "!ציון טוב, זכית גם בגביע "+ user.firstName +" Wow",
-                "קיבלת ציון ממש טוב! סיימת את השלב בצורה מוצלחת וקיבלת את הגביע " + user.firstName ,
-                "!הביצוע שלך הכי טוב " + user.firstName + " ,הרווחת את הגביע"
+                "ציון טוב, זכית גם בגביע "+ user.firstName +" Wow",
+                "קיבלת ציון ממש טוב, סיימת את השלב בצורה מוצלחת וקיבלת את הגביע " + user.firstName ,
+                "הביצוע שלך הכי טוב " + user.firstName + " ,הרווחת את הגביע"
             ],
             neutral: [
                 "סיימת את השלב. ניתן לבצע שוב את השלב ולזכות בגביע " + user.firstName ,
@@ -26,17 +26,17 @@ function createFeedback() {
                 'נסה להשתפר כדי לזכות בגביע,'+ user.firstName + " הביצוע שלך היה מוצלח"
             ],
             negative: [
-                'אתה יכול לבצע טוב יותר! נסה שוב כדי לקבל את הגביע,' + user.firstName ,
-                "!נסה שוב כדי להרוויח את הגביע " + user.firstName + 'אתה יכול לבצע טוב יותר'
+                'אתה יכול לבצע טוב יותר. נסה שוב כדי לקבל את הגביע,' + user.firstName ,
+                "נסה שוב כדי להרוויח את הגביע " + user.firstName + 'אתה יכול לבצע טוב יותר'
             ]
         },
 
         oldMale: {
 
             positive: [
-                "!ציון טוב, זכית גם בגביע " + user.firstName +" Wow",
-                "קיבלת ציון ממש טוב! סיימת את השלב בצורה מוצלחת וקיבלת את הגביע " + user.firstName ,
-                "!הביצוע שלך הכי טוב"  + user.firstName + " ,הרווחת את הגביע"
+                "ציון טוב, זכית גם בגביע " + user.firstName +" Wow",
+                "קיבלת ציון ממש טוב. סיימת את השלב בצורה מוצלחת וקיבלת את הגביע " + user.firstName ,
+                "הביצוע שלך הכי טוב"  + user.firstName + " ,הרווחת את הגביע"
             ],
             neutral: [
                 "סיימת את השלב. ניתן לבצע שוב את השלב ולזכות בגביע " + user.firstName ,
@@ -44,16 +44,16 @@ function createFeedback() {
             ],
             negative: [
                 "אנו בטוחים שאתה יכול לקבל ציון טוב יותר, נסה שוב " +  user.firstName,
-                "!נסה שוב את השלב, היית קרוב לקבל ציון טוב"  + user.firstName
+                "נסה שוב את השלב, היית קרוב לקבל ציון טוב"  + user.firstName
             ]
         },
 
         youngFemale: {
 
             positive: [
-                "!ציון טוב, זכית גם בגביע "+ user.firstName +" Wow",
-                "קיבלת ציון ממש טוב! סיימת את השלב בצורה מוצלחת וקיבלת את הגביע " + user.firstName ,
-                "!הביצוע שלך הכי טוב " + user.firstName + " ,הרווחת את הגביע"
+                "ציון טוב, זכית גם בגביע "+ user.firstName +" Wow",
+                "קיבלת ציון ממש טוב. סיימת את השלב בצורה מוצלחת וקיבלת את הגביע " + user.firstName ,
+                "הביצוע שלך הכי טוב " + user.firstName + " ,הרווחת את הגביע"
             ],
             neutral: [
                 "סיימת את השלב. ניתן לבצע שוב את השלב ולזכות בגביע " + user.firstName ,
@@ -61,24 +61,24 @@ function createFeedback() {
             ],
             negative: [
                 "אנו בטוחים שאת יכולה לקבל ציון טוב יותר, נסי שוב " +  user.firstName,
-                "!נסי שוב את השלב, היית קרובה לקבל ציון טוב " + user.firstName
+                "נסי שוב את השלב, היית קרובה לקבל ציון טוב " + user.firstName
             ]
         },
 
         oldFemale: {
 
             positive: [
-                "!ציון טוב, זכית גם בגביע "+ user.firstName +" Wow",
-                "קיבלת ציון ממש טוב! סיימת את השלב בצורה מוצלחת וקיבלת את הגביע " + user.firstName ,
-                "!הביצוע שלך הכי טוב"  + user.firstName + " ,הרווחת את הגביע"
+                "ציון טוב, זכית גם בגביע "+ user.firstName +" Wow",
+                "קיבלת ציון ממש טוב. סיימת את השלב בצורה מוצלחת וקיבלת את הגביע " + user.firstName ,
+                "הביצוע שלך הכי טוב"  + user.firstName + " ,הרווחת את הגביע"
             ],
             neutral: [
                 "סיימת את השלב. ניתן לבצע שוב את השלב ולזכות בגביע " + user.firstName ,
-                ' אם תקבלי ציון טוב יותר בפעם הבאה, תקבל גביע'+ user.firstName  + " ברכות על סיום השלב"
+                'אם תקבלי ציון טוב יותר בפעם הבאה, תקבל גביע'+ user.firstName  + " ברכות על סיום השלב" 
             ],
             negative: [
                 "אנו בטוחים שאת יכולה לקבל ציון טוב יותר, נסי שוב " +  user.firstName,
-                "!נסי שוב את השלב, היית קרובה לקבל ציון טוב " + user.firstName
+                "נסי שוב את השלב, היית קרובה לקבל ציון טוב " + user.firstName
             ]
         }
     };
@@ -97,42 +97,42 @@ var levelText = [
     {
         fullTitle: "בסיסי - 02 התמקדות בסדרה של סימנים",
         shortTitle: "הכה את החפרפרת",
-        story: "!נסו להתמקד עם העיניים על כל סמן כאשר הוא מופיע למשך פרק זמן מוגדר. הכו את כל הסמנים להרוויח את הגביע"
+        story: "נסו להתמקד עם העיניים על כל סמן כאשר הוא מופיע למשך פרק זמן מוגדר. הכו את כל הסמנים להרוויח את הגביע"
     },
     {
         fullTitle: "בינוני - 01 מצא את הקוסם",
         shortTitle: "מצא את הקוסם",
-        story: " יש לגלול את המסך כדי למצוא את המכשף באמצעות כפתורי הגלילה או הגלילה אוטומטית, ולהשתמש בלחצן כדי לסמן את המקום בו הקוסם מתחבא! בקרו בכל המקומות רק פעם !אחת כדי להרוויח את הגביע"
+        story: " יש לגלול את המסך כדי למצוא את המכשף באמצעות כפתורי הגלילה או הגלילה אוטומטית, ולהשתמש בלחצן כדי לסמן את המקום בו הקוסם מתחבא! בקרו בכל המקומות רק פעם אחת כדי להרוויח את הגביע"
     },
     {
         fullTitle: "בינוני - 02 חידון",
         shortTitle: "החידון",
-        story: " מצאתם את הקוסם! עכשיו הוא מזמין אתכם לשחק בחידון. השתמשו בלחצני ההגדלה\הקטנה כדי לראות את התשובות והקלידו את התשובה הנכונה לכל שאלה באמצעות המקלדת. !תשובה נכונה לכל השאלות ותרוויחו את הגביע"
+        story: " מצאתם את הקוסם! עכשיו הוא מזמין אתכם לשחק בחידון. השתמשו בלחצני ההגדלה\\הקטנה כדי לראות את התשובות והקלידו את התשובה הנכונה לכל שאלה באמצעות המקלדת. תשובה נכונה לכל השאלות ותרוויחו את הגביע"
     },
     {
         fullTitle: "בינוני - 03 מצא את האוצר",
         shortTitle: "המפה",
-        story: " !יש לפתוח את המפה באמצעות הלחצן, ואז להשתמש באפשרויות העתק והדבק כדי למצוא את האוצר! הצליחו בניסיון הראשון כדי לקבל את הגביע"
+        story: " יש לפתוח את המפה באמצעות הלחצן, ואז להשתמש באפשרויות העתק והדבק כדי למצוא את האוצר. הצליחו בניסיון הראשון כדי לקבל את הגביע"
     },
     {
         fullTitle: "מתקדם - 01 ויזואליזציה למבט",
         shortTitle: "הגדרות – ויזואליזציה למבט",
-        story: " חשפתם את מיקומו של האוצר ברמות הקודמות. עכשיו יש לעבור בנתיב עם ארבעה מוקדים כדי למצוא את האוצר, תוך כדי למידה כיצד להשתמש בכלים ייחודיים של התוכנה. נסו לפעול !על פי ההוראות מבלי לבצע את אותה פעולה פעמיים כדי לקבל את הגביע"
+        story: " חשפתם את מיקומו של האוצר ברמות הקודמות. עכשיו יש לעבור בנתיב עם ארבעה מוקדים כדי למצוא את האוצר, תוך כדי למידה כיצד להשתמש בכלים ייחודיים של התוכנה. נסו לפעול על פי ההוראות מבלי לבצע את אותה פעולה פעמיים כדי לקבל את הגביע"
     },
     {
         fullTitle: "מתקדם - 02 הקלדת כתובת",
         shortTitle: "הקלדת כתובת",
-        story: " !למדו כיצד לערוך כתובת אינטרנט בדפדפן. נסו לפעול על פי ההוראות מבלי לבצע את אותה פעולה פעמיים כדי לקבל את הגביע"
+        story: " למדו כיצד לערוך כתובת אינטרנט בדפדפן. נסו לפעול על פי ההוראות מבלי לבצע את אותה פעולה פעמיים כדי לקבל את הגביע"
     },
     {
         fullTitle: "מתקדם - 03 ניבוי כתיבה",
         shortTitle: "ניבוי כתיבה",
-        story: " !למדו כיצד לכתוב עם ניבוי טקסט. נסו לפעול על פי ההוראות מבלי לבצע את אותה פעולה פעמיים כדי לקבל את הגביע"
+        story: " למדו כיצד לכתוב עם ניבוי טקסט. נסו לפעול על פי ההוראות מבלי לבצע את אותה פעולה פעמיים כדי לקבל את הגביע"
     },
     {
         fullTitle: "מתקדם - 04 סימניות",
         shortTitle: " סימניות",
-        story: " !למדו כיצד ליצור סימניה. נסו לפעול על פי ההוראות מבלי לבצע את אותה פעולה פעמיים כדי לקבל את הגביע"
+        story: " למדו כיצד ליצור סימניה. נסו לפעול על פי ההוראות מבלי לבצע את אותה פעולה פעמיים כדי לקבל את הגביע"
     }
 ];
 
@@ -199,9 +199,9 @@ var quizText = [
         answer4: "הרשבי",
         answer1_en: "even gvirol", // Don't translate this!
         answer2_en: "zigmond freud", // Don't translate this!
-        answer3_en: "rabbi moshe ben maimon", // Don't translate this!
-        answer4_en: "rabbi shimon bar yohai", // Don't translate this!
-        correct: "rabbi moshe ben maimon", // Don't translate this!
+        answer3_en: "rambam", // Don't translate this!
+        answer4_en: "rashbi", // Don't translate this!
+        correct: "rambam", // Don't translate this!
         cat: "Intermediate" // Don't translate this!
     },
     {
@@ -236,11 +236,11 @@ var quizText = [
         answer2: "שמעון בר כוכבא",
         answer3: "משה דיין",
         answer4: "דויד בן גוריון",
-        answer1_en: "joseph ben matthias", // Don't translate this!
-        answer2_en: "shimon bar kochba", // Don't translate this!
-        answer3_en: "moshe dayan", // Don't translate this!
-        answer4_en: "david ben gurion", // Don't translate this!
-        correct: "joseph ben matthias", // Don't translate this!
+        answer1_en: "joseph", // Don't translate this!
+        answer2_en: "shimon", // Don't translate this!
+        answer3_en: "moshe", // Don't translate this!
+        answer4_en: "david", // Don't translate this!
+        correct: "joseph", // Don't translate this!
         cat: "Intermediate" // Don't translate this!
     },
     {
@@ -340,7 +340,7 @@ var genericText =
         lvl4CongrTextA: "כל הכבוד, מצאתם אותי",
         lvl4CongrTextB: "המבחן האמיתי מתחיל עכשיו",
         lvl4ScrollDesc: "השתמשו בלחצן הזום כדי לקרוא את התשובות הזמינות, ולאחר מכן הקלידו את התשובה למטה",
-        clickMe: "לחץ עלי!",
+        clickMe: "לחץ עלי",
         latitude: "קו רוחב",
         longitude: "קו אורך",
         answer: "תשובה",
@@ -401,55 +401,55 @@ var trophiesArray = [
     {
         group: 'basic',
         level: 'level1',
-        title: "!מדהים",
-        description: "!לסיים את השלב כאשר מתמקדים בכל סמן פעם אחת בלבד"
+        title: "מדהים",
+        description: "לסיים את השלב כאשר מתמקדים בכל סמן פעם אחת בלבד"
     },
     {
         group: 'basic',
         level: 'level2',
-        title: "!מדהים",
-        description: "!ללא פספוס של אף סמן"
+        title: "מדהים",
+        description: "ללא פספוס של אף סמן"
     },
     {
         group: 'int',
         level: 'level1',
-        title: "!מהר מאוד",
-        description: "!ברק מכה פעם אחת בלבד באותו המקום"
+        title: "מהר מאוד",
+        description: "ברק מכה פעם אחת בלבד באותו המקום"
     },
     {
         group: 'int',
         level: 'level2',
-        title: "!מעולה",
-        description: "!וואו! ידע כללי מרשים"
+        title: "מעולה",
+        description: "וואו! ידע כללי מרשים"
     },
     {
         group: 'int',
         level: 'level3',
-        title: "!מצוין",
-        description: "!מצאתם את האוצר בפעם אחת"
+        title: "מצוין",
+        description: "מצאתם את האוצר בפעם אחת"
     },
     {
         group: 'adv',
         level: 'level1',
-        title: "!כל הכבוד",
-        description: "!אתם מעולים"
+        title: "כל הכבוד",
+        description: "אתם מעולים"
     },
     {
         group: 'adv',
         level: 'level2',
-        title: "!יפה מאוד",
-        description: "!אתם טובים מאוד"
+        title: "יפה מאוד",
+        description: "אתם טובים מאוד"
     },
     {
         group: 'adv',
         level: 'level3',
-        title: "!מדהים",
-        description: "!ביצוע מרשים"
+        title: "מדהים",
+        description: "ביצוע מרשים"
     },
     {
         group: 'adv',
         level: 'level4',
         title: "גאונים",
-        description: "!אתם אלופי הסימניות"
+        description: "אתם אלופי הסימניות"
     }
 ];
