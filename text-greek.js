@@ -344,55 +344,55 @@ var genericText =
         latitude: "Γεωγραφικό πλάτος",
         longitude: "Γεωγραφικό μήκος",
         answer: "Απάντηση",
-        lvl5CongrText: "You have been deemed worthy! Now find the treasure!",
-        coordinates: "COORDINATES",
-        lvl5ScrollDesc: "use the",
-        lvl5coords: "Wrong coordinates! Treasure not found!",
-        signedOut: "USER IS SIGNED OUT",
-        tasks: "Tasks",
+        lvl5CongrText: "Άξιος! Τώρα βρες το θησαυρό!",
+        coordinates: "ΣΥΝΤΕΤΑΓΜΕΝΕΣ",
+        lvl5ScrollDesc: "χρησιμοποιησε το",
+        lvl5coords: "Λάθος συντεταγμένες! Δεν υπάρχει θησαυρός εκεί!",
+        signedOut: "Ο ΧΡΗΣΤΗΣ ΑΠΟΣΥΝΔΕΘΗΚΕ",
+        tasks: "Ενέργειες",
         advQuote1: "Be The Change",
         advQuote2: "That You Want To",
-        noScore: "no score",
-        abort: "Abort"
+        noScore: "δεν υπάρχει σκόρ",
+        abort: "Διακοπή"
     };
 
 
 // Translate all phrases inside " "
 var advFirstInstructions =
     {
-        openSettings: "Open Settings",
-        generalSettings: "Go to General Settings",
-        enableGaze: "Enable Gaze Visualization",
-        generalSettingsAgain: "Go to General Settings again",
-        disableGaze: "Disable Gaze Visualization",
-        taskComplete: "Level completed"
+        openSettings: "Άνοιξε τα Settings",
+        generalSettings: "Πήγαινε στα General Settings",
+        enableGaze: "Ενεργοποίησε το Gaze Visualization",
+        generalSettingsAgain: "Πήγαινε στα General Settings ξανά",
+        disableGaze: "Απενεργοποίησε το Gaze Visualization",
+        taskComplete: "Ολοκλήρωση επιπέδου"
     };
 var advSecondInstructions =
     {
-        openTabs: "Open Tab manager",
-        editUrl: "Edit url",
-        typeUrl: "Type 'www.mamem.eu'",
-        abort: "Abort",
-        taskComplete: "Level completed"
+        openTabs: "Άνοιξε τη διαχείριση καρτελών",
+        editUrl: "Επεξεργάσου τη διεύθυνση",
+        typeUrl: "Γράψε 'www.mamem.eu'",
+        abort: "Ακύρωση",
+        taskComplete: "Ολοκλήρωση επιπέδου"
     };
 var advThirdInstructions =
     {
-        zoom: "Zoom in on the piece of paper to reveal the text box",
-        editUrl: "Click on the text element",
-        typeUrl: "Type the missing phrase:",
+        zoom: "Κάνε ζοομ στο κομμάτι χαρτί για να αποκαλυφθεί το πλαίσιο κειμένου",
+        editUrl: "Κάνε κλικ στο πλαίσιο κειμένου ",
+        typeUrl: "Πληκτρολόγησε τη φράση που λείπει:",
         phrase: "See In The World",
-        abort: "Press OK",
-        taskComplete: "Level completed"
+        abort: "Πάτα OK",
+        taskComplete: "Ολοκλήρωση επιπέδου"
     };
 var advFourthInstructions =
     {
-        openTabs: "Open Tab manager",
-        bookmark: "Bookmark Current Tab",
-        add: "Add a New Tab",
-        openBookmarks: "Go to Bookmarks",
-        selectBookmark: "Select Saved bookmark",
-        openTabsAgain: "Open Tab manager again",
-        taskComplete: "Return to game tab"
+        openTabs: "Άνοιξε τη διαχείριση καρτελών",
+        bookmark: "Αποθήκευσε στους σελιδοδείκτες τη σελίδα",
+        add: "Ανοίξτε καινούρια καρτέλα",
+        openBookmarks: "Πήγαινε στη διαχείριση σελιδοδεικτών",
+        selectBookmark: "Επέλεξε τον αποθηκευμένο σελιδοδείκτη",
+        openTabsAgain: "Άνοιξε τη διαχείριση καρτελών ξανά",
+        taskComplete: "Επιστροφή στην καρτέλα του παιχνιδιού"
     };
 
 
@@ -401,55 +401,55 @@ var trophiesArray = [
     {
         group: 'basic',
         level: 'level1',
-        title: "Unflinching!",
-        description: "Clear the level focusing on the markers only once."
+        title: "Ατρόμητος!",
+        description: "Τελείωσες το επίπεδο εστιάζοντας σε κάθε δείκτη μόνο μια φορά!"
     },
     {
         group: 'basic',
         level: 'level2',
-        title: "Sharpshooter!",
-        description: "Don't miss any marker."
+        title: "Σκοπευτής!",
+        description: "Εστίασες σε όλους τους δείκτες!"
     },
     {
         group: 'int',
         level: 'level1',
-        title: "The Flash!",
-        description: "Lightning strikes only once in the same place."
+        title: "Η αστραπή!",
+        description: "Ο κεραυνός χτυπά μόνο 1 φορά στο ίδιο μέρος!"
     },
     {
         group: 'int',
         level: 'level2',
-        title: "Scholar!",
-        description: "Whoa! You're really knowledgeable."
+        title: "Λόγιος!",
+        description: "Πω πω! Είσαι στ'αλήθεια γνώστης!"
     },
     {
         group: 'int',
         level: 'level3',
-        title: "Charted!",
-        description: "You found the treasure at one fell swoop."
+        title: "Χαρτογραφημένος!",
+        description: "Βρήκες τις συντεταγμένες για το θησαυρό μονομιάς!"
     },
     {
         group: 'adv',
         level: 'level1',
-        title: "Gaze all the things!",
-        description: "You really like to see how everything works."
+        title: "'Βλέπω τα πάντα!'",
+        description: "Σου αρέσει πραγματικά να εξερευνείς πως δουλεύουν τα πάντα!"
     },
     {
         group: 'adv',
         level: 'level2',
-        title: "Navigator!",
-        description: "You are the captain of the GTW ship. Toot-toot!"
+        title: "Πλοηγός!",
+        description: "Είσαι ο καπετάνιος του πλοίου 'GTW'! ΤΟΥΤ ΤΟΥΤ!"
     },
     {
         group: 'adv',
         level: 'level3',
-        title: "Automaton!",
-        description: "You are transcending the boundaries of human nature."
+        title: "Ανδροειδές!",
+        description: "Έχεις υπερβεί τα όρια της ανθρώπινης φύσης!"
     },
     {
         group: 'adv',
         level: 'level4',
-        title: "Librarian!",
-        description: "You have been awarded the honorary title of Bookmark master!"
+        title: "Βιβλιοθηκάριος!",
+        description: "Σου απονέμεται ο τιμητικός τίτλος του πλοιάρχου!"
     }
 ];
