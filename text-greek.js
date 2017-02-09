@@ -16,44 +16,44 @@ function createFeedback() {
         youngMale: {
 
             positive: [
-                "Wow " + user.firstName + ", great score! You also got the trophy!",
-                user.firstName + ", you scored really great! You finished the level very effectively, gaining you the trophy!",
-                "Your performance is the best, " + user.firstName + "! Nice work earning the trophy!"
+                "Ουάου " + user.firstName + ", πολύ καλό σκορ! Επίσης κέρδισες το τρόπαιο!",
+                user.firstName + ", έκανες πολύ καλό σκορ! Τελείωσες το επίπεδο αποτελεσματικά, κερδίζοντας το τρόπαιο!",
+                "Η απόδοση σου είναι από τις καλύτερες, " + user.firstName + "! Συγχαρητήρια, κέρδισες το τρόπαιο!"
             ],
             neutral: [
-                user.firstName + ", you completed the level. You can replay the level and score better so you earn the trophy.",
-                "Congratulations on completing the level, " + user.firstName + '. Score better next time, and the trophy is yours!',
-                "Your gameplay was quite effective, " + user.firstName + '. Try to be better to win the trophy.'
+                user.firstName + ", ολοκλήρωσες το επίπεδο. Μπορείς να το επαναλάβεις έτσι ώστε να κάνεις καλύτερο σκορ και να κερδίσεις το τρόπαιο.",
+                "Συγχαρητήρια, ολοκλήρωσες το επίπεδο, " + user.firstName + '. Την επόμενη φορά προσπάθησε να κάνεις καλύτερο σκορ και το τρόπαιο θα είναι δικό σου!',
+                "Έπαιξες αρκετά αποτελεσματικά, " + user.firstName + '. Προσπάθησε να βελτιωθείς ώστε να κερδίσεις το τρόπαιο.'
             ],
             negative: [
-                user.firstName + ', you can score higher than that! Please try again to win the trophy.',
-                "You can be more effective, " + user.firstName + '! Try again and earn that trophy!'
+                user.firstName + ', μπορείς να κάνεις μεγαλύτερο σκορ απο αυτό! Δοκίμασε ξανά και προσπάθησε να κερδίσεις το τρόπαιο!',
+                "Μπορείς να παίξεις και πιο αποτελεσματικά, " + user.firstName + '! Δοκίμασε ξανά και κέρδισε αυτό το τρόπαιο!'
             ]
         },
 
         oldMale: {
 
             positive: [
-                "Wow, " + user.firstName + ", great score! You have won the trophy!",
-                user.firstName + ", you scored really great! You finished the level very effectively, gaining you the trophy!",
-                "Your performance is the best, " + user.firstName + "! Nice work earning the trophy!"
+                "Ουάου " + user.firstName + ", πολύ καλό σκορ! Κέρδισες το τρόπαιο!",
+                user.firstName + ", έκανες πολύ καλό σκορ! Τελείωσες το επίπεδο αποτελεσματικά, κερδίζοντας το τρόπαιο!",
+                "Η απόδοση σου είναι από τις καλύτερες, " + user.firstName + "! Συγχαρητήρια, κέρδισες το τρόπαιο!"
             ],
             neutral: [
-                user.firstName + ", you completed the level. I am sure you can replay it and then win the trophy.",
-                "Congratulations on completing the level " + user.firstName + '. If you keep on improving like this, the trophy will be yours! So replay!'
+                user.firstName + ", ολοκλήρωσες το επίπεδο. Είμαι σίγουρος ότι μπορείς να το ξαναπαίξεις ώστε να κερδίσεις το τρόπαιο.",
+                "Συγχαρητήρια, ολοκλήρωσες το επίπεδο " + user.firstName + '. Εάν συνεχίσεις να βελτιώνεσαι έτσι, το τρόπαιο θα γίνει δικό σου! Παίξε ξανά!'
             ],
             negative: [
-                user.firstName + ", I'm confident that you can score better. Please try again.",
-                user.firstName + ", replay the level! You were getting closer to setting a great score!"
+                user.firstName + ", είμαι βέβαιος ότι μπορείς να πετύχεις καλύτερο σκορ. Προσπάθησε ξανά.",
+                user.firstName + ", παίξε ξανά το επίπεδο! Ήσουν πολύ κοντά στο να κάνεις ένα πολύ καλό σκορ!"
             ]
         },
 
         youngFemale: {
 
             positive: [
-                "Wow, " + user.firstName + ", great score! You have won the trophy!",
-                user.firstName + ", you scored really great! You finished the level very effectively, gaining you the trophy!",
-                "Your performance is the best, " + user.firstName + "! Nice work earning the trophy!"
+                "Ουάου " + user.firstName + ", πολύ καλό σκορ! Κέρδισες το τρόπαιο!",
+                user.firstName + ", έκανες πολύ καλό σκορ! Τελείωσες το επίπεδο αποτελεσματικά, κερδίζοντας το τρόπαιο!",
+                "Η απόδοση σου είναι από τις καλύτερες, " + user.firstName + "! Συγχαρητήρια, κέρδισες το τρόπαιο!"
             ],
             neutral: [
                 user.firstName + ", you completed the level. Without too much effort, you might score better and win the trophy.",
