@@ -18,7 +18,7 @@ function loadLevel(group, level) {
         case 0:
             // No need to add tutorials, for the basic levels. There is no interface involved!
 
-            canvas.height = window.innerHeight - 20;
+            canvas.height = window.innerHeight;
 
             if (level === 1) {
                 textPointer = 1;
@@ -26,7 +26,7 @@ function loadLevel(group, level) {
             break;
         case 1:
 
-            canvas.height = window.innerHeight - 20;
+            canvas.height = window.innerHeight;
 
             if (level === 0) {
                 textPointer = 2;
@@ -45,7 +45,7 @@ function loadLevel(group, level) {
             break;
         case 2:
 
-            canvas.height = window.innerHeight - 20;
+            canvas.height = window.innerHeight;
 
             if (level === 0) { textPointer = 5; }
             else if (level === 1) { textPointer = 6; }
@@ -98,8 +98,8 @@ function loadLevel(group, level) {
 
 
         // Set height manually in every stage (except splash)
-        canvas.width = window.innerWidth - 20;
-        canvas.height = window.innerHeight - 20;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
         var startingLabel = new createjs.Text(genericText.startingIn, "700 20px Roboto", color.gray);
         startingLabel = alignTextToStageCenter(stage, startingLabel);
@@ -619,7 +619,8 @@ function InitiateLevel(group, level, levelStructure) {
         }
 
         // Set height manually in every stage (except splash)
-        canvas.height = 2000;
+        stage.canvas.height = 2000;
+        window.innerHeight = 768;
 
         var levelContainer = new createjs.Container();
         var towerContainer =  new createjs.Container();
@@ -631,7 +632,7 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.clicks = 0;
 
         var backgroundColor = new createjs.Shape();
-        backgroundColor.graphics.beginFill(color.brown).drawRect(0, 0, stage.canvas.width, canvas.height);
+        backgroundColor.graphics.beginFill(color.brown).drawRect(0, 0, stage.canvas.width, stage.canvas.height);
 
         var villageTextA = new createjs.Text(genericText.lvl3ScrollDownA, "700 24px Roboto", color.whitePimary);
         if (!pDesign) {
@@ -1823,7 +1824,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                         metrics.edit++;
 
-                        taskList.new_tab = true;
+                        taskList.edit = true;
                         taskLabel[1].alpha = 1;
                         checkmark[1].alpha = 1;
                     }
@@ -1845,13 +1846,16 @@ function InitiateLevel(group, level, levelStructure) {
                     if (string === 'close') {
 
                         SendLSLMessage("level_adv_2__msg_close");
-
                         metrics.close++;
                     }
+
+                    console.log(string);
+                    console.log(taskList);
 
                     if (string === 'close' && taskList.url) {
 
                         metrics.trophy = (metrics.edit === 1);
+
                         if (metrics.trophy) {
                             SendLSLMessage("trophy");
                         }
@@ -1875,7 +1879,6 @@ function InitiateLevel(group, level, levelStructure) {
                                 window.loggingMediator.unregisterFunction();
                                 endLevel(true);
                             });
-
                     }
                 });
             }
@@ -2268,6 +2271,8 @@ function InitiateLevel(group, level, levelStructure) {
         poe.y = 70;
 
         trophy.current = false;
+
+        window.dispatchEvent(new Event('resize'));
 
         switch(group) {
             case 0:

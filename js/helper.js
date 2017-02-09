@@ -4,11 +4,11 @@ function tick(event)
 }
 
 function resizeCanvas() {
-    canvas.width = window.innerWidth - 20;
-    canvas.height = window.innerHeight - 20;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    stage.canvas.width = window.innerWidth - 20;
-    stage.canvas.height = window.innerHeight - 20;
+    stage.canvas.width = window.innerWidth;
+    stage.canvas.height = window.innerHeight;
 }
 
 function moveHandler()
