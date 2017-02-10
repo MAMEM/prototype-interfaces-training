@@ -32,6 +32,7 @@ function loadLevel(group, level) {
                 textPointer = 2;
                 tutorialContainer = addTutorials(textPointer);
                 canvas.height = 1400;
+                window.scrollTo(0,0);
             }
             else if (level === 1) {
                 textPointer = 3;
