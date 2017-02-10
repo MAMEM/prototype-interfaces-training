@@ -113,7 +113,7 @@ function loadLevel(group, level) {
 
         var i = 0;
 
-        var timerInterval = setInterval(refreshIntroTimer, 1000);
+        timerInterval = setInterval(refreshIntroTimer, 1000);
 
         // Send LSL Message
         if (window.loggingMediator) {
@@ -418,7 +418,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         stage.addChild(markersContainer);
 
-        var currentMarker = [];
+
         var idx = 0;
 
         startMoles(index);
@@ -430,10 +430,10 @@ function InitiateLevel(group, level, levelStructure) {
 
                 idx = getRandomInt(idx, 0,5);
 
-                currentMarker[i] = markersContainer.getChildAt(idx);
-                createjs.Tween.get(currentMarker[i])
+                level2CurrentMarker[i] = markersContainer.getChildAt(idx);
+                createjs.Tween.get(level2CurrentMarker[i])
                     .wait(interval.markerDuration * (i-index))
-                    .call(activateMole, [currentMarker[i], i]);
+                    .call(activateMole, [level2CurrentMarker[i], i]);
             }
         }
 
@@ -1716,7 +1716,6 @@ function InitiateLevel(group, level, levelStructure) {
                                 window.loggingMediator.unregisterFunction();
                                 endLevel(true);
                             });
-
                     }
                 });
             }
@@ -2257,6 +2256,11 @@ function InitiateLevel(group, level, levelStructure) {
         timer.text = stopwatch.update();
         clearInterval(levelTimerInterval);
 
+        var abortBtn = levelStructure.getChildAt(5);
+        var abortLabel = levelStructure.getChildAt(6);
+        levelStructure.removeChild(abortBtn);
+        levelStructure.removeChild(abortLabel);
+
         var outroStoryContainer;
         var scoreInfoContainer = new createjs.Container();
         var metrics;
@@ -2362,7 +2366,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     trophy.current = metrics.trophy;
 
-                    score.current = parseInt(scoreBounds.level33 - (stopwatch.time()/4), 10);
+                    score.current = parseInt(scoreBounds.level33 - (stopwatch.time()/6), 10);
                 }
                 else if (level === 3) {
 
@@ -2390,7 +2394,7 @@ function InitiateLevel(group, level, levelStructure) {
             resultsPopup.graphics.beginFill(color.blue).drawRect(poe.x, poe.y + 100, resultsPopup.width, resultsPopup.height);
             resultsPopup.shadow = new createjs.Shadow(color.gray, 0, 2, 4);
 
-            if (!pDesign) {resultsPopup.visible = false};
+            if (!pDesign) {resultsPopup.visible = false;}
 
             stage.addChild(resultsPopup);
 

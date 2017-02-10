@@ -18,7 +18,6 @@ color.barGreen = "#64DD17";
 color.barYellow = "#FFEB3B";
 color.barRed = "#F44336";
 
-
 color.textRegular = "rgba(0,0,0,0.87)";
 
 var textSize = [];
@@ -26,13 +25,6 @@ textSize.mini = "400 14px Roboto";
 
 // S-shaped curve Evaluation ratio
 var evaluationRatio = 130 / 100;
-
-var scoreThreshold = [];
-scoreThreshold.level23 = 5000;
-scoreThreshold.level31 = 20000;
-scoreThreshold.level32 = 20000;
-scoreThreshold.level33 = 20000;
-scoreThreshold.level34 = 20000;
 
 var scoreBounds = [];
 scoreBounds.level11 = 100000;
@@ -49,10 +41,13 @@ var interval = [];
 interval.normal = 1500;
 interval.markerHover = 3000;
 interval.markerFocus = 2000;
-
 interval.markerDuration = 4000;
 
 var introStoryContainer;
+
+var timerInterval = false;
+
+var level2CurrentMarker = [];
 
 var Button = function (fillColor, size, pos, text, action) {
 

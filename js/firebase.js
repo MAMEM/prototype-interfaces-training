@@ -250,7 +250,6 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
-                        if (userData[key].userDetails) continue;
                         if (!userData[key].levels) continue;
                         if (!userData[key].levels.basic) continue;
                         if (!userData[key].levels.basic.level2) continue;

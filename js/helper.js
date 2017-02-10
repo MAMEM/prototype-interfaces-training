@@ -67,6 +67,22 @@ function mouseTick() {
     mousePointer.rotation++;
 }
 
+function abortLevel() {
+
+    if (timerInterval) {
+
+        console.log("Countdown interval deleted");
+
+        clearInterval(timerInterval);
+        timerInterval = false;
+    }
+
+    // Delete level intervals
+
+
+    loadOverviewPage();
+}
+
 function createProgressBarElement(mousePointer) {
     var progressBar = [];
 
@@ -117,7 +133,7 @@ function loadLvlStructure(fullTitle, shortTitle) {
     btnSize.x = 200; btnSize.y = 60;
     btnPos.x = stage.canvas.width - btnSize.x;
     btnPos.y = 50;
-    var abortBtn = new Button(color.gray, btnSize, btnPos, genericText.abort, loadOverviewPage);
+    var abortBtn = new Button(color.gray, btnSize, btnPos, genericText.abort, abortLevel);
 
     if(!pDesign) {
         timer.icon.visible = false;
