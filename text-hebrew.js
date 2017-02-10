@@ -377,7 +377,6 @@ var advSecondInstructions =
     };
 var advThirdInstructions =
     {
-        zoom: "התקרבו באמצעות כפתור הזום כדי לראות את הטקסט",
         editUrl: "לחצו על אלמנט הטקסט",
         typeUrl: "הקלידו את המשפט הבא:",
         phrase: "See In The World",

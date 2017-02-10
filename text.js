@@ -377,7 +377,6 @@ var advSecondInstructions =
     };
 var advThirdInstructions =
     {
-        zoom: "Zoom in on the piece of paper to reveal the text box",
         editUrl: "Click on the text element",
         typeUrl: "Type the missing phrase:",
         phrase: "See In The World",

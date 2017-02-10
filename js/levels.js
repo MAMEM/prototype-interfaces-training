@@ -398,7 +398,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         var col = [];
         col.x = 60;
-        col.width = (window.innerWidth - 90)/cols;
+        col.width = (window.innerWidth - 120)/cols;
         var poe = 2 * (window.innerWidth - (col.width * 3));
 
         var marker;
@@ -1967,7 +1967,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             var quoteSecondLine = new createjs.Text(genericText.advQuote2, "500 24px Roboto", "#4D3D36");
             quoteSecondLine.x = quoteDoc.x + 55;
-            quoteSecondLine.y = 2 * quoteDoc.y;
+            quoteSecondLine.y = quoteFirstLine.y + 70;
 
             taskContainer.addChild(quoteDoc, quoteFirstLine, quoteSecondLine);
             stage.addChild(taskContainer);
@@ -1977,7 +1977,7 @@ function InitiateLevel(group, level, levelStructure) {
             textInput.style.position = "absolute";
             textInput.placeholder = " ";
             textInput.style.left = quoteDoc.x + 50 + "px";
-            textInput.style.top = "410px";
+            textInput.style.top = "440px";
             textInput.style.border = "none";
             textInput.style.padding = "15px";
             textInput.style.width = "210px";

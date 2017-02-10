@@ -205,7 +205,7 @@ var quizText = [
         cat: "Intermediate" // Don't translate this!
     },
     {
-        question: "Ποιά ομάδα ποδοσφαίρου κατέκτησε το πρωτάθλημα του 2014?",
+        question: "Ποιά ομάδα ποδοσφαίρου κατέκτησε το πρωτάθλημα του 2014;",
         answer1: "Ολυμπιακός",
         answer2: "Παναθηναικός",
         answer3: "ΑΕΚ",
@@ -218,7 +218,7 @@ var quizText = [
         cat: "Intermediate" // Don't translate this!
     },
     {
-        question: "Σε ποιά χώρα έγινε το Ευρωπαικό πρωτάθλημα του 2004 το οποίο κατέκτησε η Ελλάδα?",
+        question: "Σε ποιά χώρα έγινε το Ευρωπαικό πρωτάθλημα του 2004 το οποίο κατέκτησε η Ελλάδα;",
         answer1: "Ιταλία",
         answer2: "Αγγλία",
         answer3: "Ελλάδα",
@@ -377,7 +377,6 @@ var advSecondInstructions =
     };
 var advThirdInstructions =
     {
-        zoom: "Κάνε ζοομ στο κομμάτι χαρτί για να αποκαλυφθεί το πλαίσιο κειμένου",
         editUrl: "Κάνε κλικ στο πλαίσιο κειμένου ",
         typeUrl: "Πληκτρολόγησε τη φράση που λείπει:",
         phrase: "See In The World",
