@@ -2541,7 +2541,7 @@ function InitiateLevel(group, level, levelStructure) {
                 createScoreboard(group, level, col);
 
                 // Footer navigation buttons
-                var button = positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage, replayCurrentLevel, advanceToNextLevel);
+                var button = positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage, replayCurrentLevel, advanceToNextLevel, group, level);
 
                 if (pDesign) {
                     scoreInfoContainer.addChild(resultsPopup, label.score, separator.score, label.currentScore, label.previousScore, label.time, separator.time, label.currentTime, label.previousTime, label.rewards, separator.rewards, score.currentValue, score.previousValue, time.currentValue, time.previousValue, trophy.title, trophy.img, trophy.desc, button.overview.btn, button.overview.icon, button.overview.label, button.replay.btn, button.replay.icon, button.replay.label, button.next.btn, button.next.icon, button.next.label);
