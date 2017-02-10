@@ -998,7 +998,7 @@ function InitiateLevel(group, level, levelStructure) {
         questionLabel.alpha = 0;
 
         var papyrus = new createjs.Bitmap("assets/int/papyrus.png");
-        papyrus.x = (stage.canvas.width/2) - 364;
+        papyrus.x = (stage.canvas.width/2) - 512;
         papyrus.y = stage.canvas.height - 440;
         papyrus.alpha = 0;
 
