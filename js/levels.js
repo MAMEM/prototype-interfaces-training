@@ -1960,15 +1960,15 @@ function InitiateLevel(group, level, levelStructure) {
 
             var quoteDoc = new createjs.Bitmap("assets/adv/doc-after.png");
             quoteDoc.x = 130;
-            quoteDoc.y = 160;
+            quoteDoc.y = 220;
 
             var quoteFirstLine = new createjs.Text(genericText.advQuote1, "500 24px Roboto", "#4D3D36");
             quoteFirstLine.x = quoteDoc.x + 60;
-            quoteFirstLine.y = 230;
+            quoteFirstLine.y = quoteDoc.y + 70;
 
             var quoteSecondLine = new createjs.Text(genericText.advQuote2, "500 24px Roboto", "#4D3D36");
             quoteSecondLine.x = quoteDoc.x + 55;
-            quoteSecondLine.y = 320;
+            quoteSecondLine.y = 2 * quoteDoc.y;
 
             taskContainer.addChild(quoteDoc, quoteFirstLine, quoteSecondLine);
             stage.addChild(taskContainer);
@@ -1988,7 +1988,6 @@ function InitiateLevel(group, level, levelStructure) {
             textInput.style.color = "#4D3D36";
 
             textInput.addEventListener("click", function () {
-
 
                 if (window.loggingMediator) {
                     SendLSLMessage("event__mouse_down");
@@ -2320,7 +2319,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     trophy.current = metrics.trophy;
 
-                    score.current = parseInt(scoreBounds.level22 - (stopwatch.time()/4 + (metrics.fail * 200)), 10);
+                    score.current = parseInt(scoreBounds.level22 - (stopwatch.time()/8 + (metrics.fail * 200)), 10);
                 }
                 else if (level === 2) {
 
@@ -2330,7 +2329,6 @@ function InitiateLevel(group, level, levelStructure) {
                     trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level23 - (stopwatch.time()/4), 10);
-
                 }
 
                 break;
