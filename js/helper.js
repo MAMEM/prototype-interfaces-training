@@ -69,16 +69,20 @@ function mouseTick() {
 
 function abortLevel() {
 
+    // Delete countdown interval
     if (timerInterval) {
-
         console.log("Countdown interval deleted");
-
         clearInterval(timerInterval);
         timerInterval = false;
     }
 
-    // Delete level intervals
-
+    // Delete BASIC 2 tweens if active
+    var  i;
+    if (level2CurrentMarker){
+        for (i in level2CurrentMarker) {
+            createjs.Tween.removeTweens(level2CurrentMarker[i]);
+        }
+    }
 
     loadOverviewPage();
 }
