@@ -1598,12 +1598,22 @@ function InitiateLevel(group, level, levelStructure) {
 
             var taskLabel = [];
             var checkmark = [];
+            var icon = [];
+
+            var icons = {
+                0: "assets/adv/ic_adv_settings.png",
+                1: "assets/adv/ic_adv_go.png",
+                2: "assets/adv/ic_adv_toggle_on.png",
+                3: "assets/adv/ic_adv_go.png",
+                4: "assets/adv/ic_adv_toggle_off.png"
+            };
+
             var idx = 0;
             for (i in advFirstInstructions) {
 
                 taskLabel[idx] = new createjs.Text(advFirstInstructions[i], "400 28px Roboto", color.whitePimary);
                 taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
-                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
+                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 80;
                 taskLabel[idx].alpha = 0.54;
 
                 checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
@@ -1611,7 +1621,16 @@ function InitiateLevel(group, level, levelStructure) {
                 checkmark[idx].y = taskLabel[idx].y - 10;
                 checkmark[idx].alpha = 0;
 
-                taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                var bounds = taskLabel[idx].getBounds();
+                if (icons[idx]) {
+                    icon[idx] = new createjs.Bitmap(icons[idx]);
+                    icon[idx].y = taskLabel[idx].y - 10;
+                    icon[idx].x = taskLabel[idx].x + bounds.width + 30;
+
+                    taskContainer.addChild(taskLabel[idx], checkmark[idx], icon[idx]);
+                } else {
+                    taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                }
                 idx++;
             }
 
@@ -1782,12 +1801,21 @@ function InitiateLevel(group, level, levelStructure) {
 
             var taskLabel = [];
             var checkmark = [];
+            var icon = [];
+
+            var icons = {
+                0: "assets/adv/ic_adv_tabs.png",
+                1: "assets/adv/ic_adv_edit.png",
+
+                3: "assets/adv/ic_adv_close.png"
+            };
+
             var idx = 0;
             for (i in advSecondInstructions) {
 
                 taskLabel[idx] = new createjs.Text(advSecondInstructions[i], "400 28px Roboto", color.whitePimary);
                 taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
-                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
+                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 80;
                 taskLabel[idx].alpha = 0.54;
 
                 checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
@@ -1795,7 +1823,16 @@ function InitiateLevel(group, level, levelStructure) {
                 checkmark[idx].y = taskLabel[idx].y - 10;
                 checkmark[idx].alpha = 0;
 
-                taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                var bounds = taskLabel[idx].getBounds();
+                if (icons[idx]) {
+                    icon[idx] = new createjs.Bitmap(icons[idx]);
+                    icon[idx].y = taskLabel[idx].y - 10;
+                    icon[idx].x = taskLabel[idx].x + bounds.width + 30;
+
+                    taskContainer.addChild(taskLabel[idx], checkmark[idx], icon[idx]);
+                } else {
+                    taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                }
                 idx++;
             }
 
@@ -1939,12 +1976,18 @@ function InitiateLevel(group, level, levelStructure) {
 
             var taskLabel = [];
             var checkmark = [];
+            var icon = [];
+
+            var icons = {
+                3: "assets/adv/ic_adv_ok.png"
+            };
+
             var idx = 0;
             for (i in advThirdInstructions) {
 
                 taskLabel[idx] = new createjs.Text(advThirdInstructions[i], "400 28px Roboto", color.whitePimary);
                 taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
-                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
+                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 80;
                 taskLabel[idx].alpha = 0.54;
                 taskLabel[idx].x = taskLabel[idx].x + 100;
 
@@ -1953,8 +1996,18 @@ function InitiateLevel(group, level, levelStructure) {
                 checkmark[idx].y = taskLabel[idx].y - 10;
                 checkmark[idx].alpha = 0;
 
-                taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                var bounds = taskLabel[idx].getBounds();
+                if (icons[idx]) {
+                    icon[idx] = new createjs.Bitmap(icons[idx]);
+                    icon[idx].y = taskLabel[idx].y - 10;
+                    icon[idx].x = taskLabel[idx].x + bounds.width + 30;
+
+                    taskContainer.addChild(taskLabel[idx], checkmark[idx], icon[idx]);
+                } else {
+                    taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                }
                 idx++;
+
             }
 
             var quoteDoc = new createjs.Bitmap("assets/adv/doc-after.png");
@@ -2118,12 +2171,23 @@ function InitiateLevel(group, level, levelStructure) {
 
             var taskLabel = [];
             var checkmark = [];
+            var icon = [];
+
+            var icons = {
+                0: "assets/adv/ic_adv_tabs.png",
+                1: "assets/adv/ic_adv_bookmark.png",
+                2: "assets/adv/ic_adv_new_tab.png",
+                3: "assets/adv/ic_adv_bookmarks.png",
+                4: "assets/adv/ic_adv_go.png",
+                5: "assets/adv/ic_adv_tabs.png"
+            };
+
             var idx = 0;
             for (i in advFourthInstructions) {
 
                 taskLabel[idx] = new createjs.Text(advFourthInstructions[i], "400 28px Roboto", color.whitePimary);
                 taskLabel[idx] = alignTextToStageCenter(stage, taskLabel[idx]);
-                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 60;
+                taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 80;
                 taskLabel[idx].alpha = 0.54;
 
                 checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
@@ -2131,8 +2195,18 @@ function InitiateLevel(group, level, levelStructure) {
                 checkmark[idx].y = taskLabel[idx].y - 10;
                 checkmark[idx].alpha = 0;
 
-                taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                var bounds = taskLabel[idx].getBounds();
+                if (icons[idx]) {
+                    icon[idx] = new createjs.Bitmap(icons[idx]);
+                    icon[idx].y = taskLabel[idx].y - 10;
+                    icon[idx].x = taskLabel[idx].x + bounds.width + 30;
+
+                    taskContainer.addChild(taskLabel[idx], checkmark[idx], icon[idx]);
+                } else {
+                    taskContainer.addChild(taskLabel[idx], checkmark[idx]);
+                }
                 idx++;
+
             }
             stage.addChild(taskContainer);
 
