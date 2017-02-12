@@ -84,6 +84,20 @@ function abortLevel() {
         }
     }
 
+    var textInput1 = document.getElementById('inputTextFirst');
+    textInput1.style.display = "none";
+    textInput1.className = "elementRemoved";
+
+    var textInput2 = document.getElementById('inputTextSecond');
+    textInput2.style.display = "none";
+    textInput2.className = "elementRemoved";
+
+    var textElement1 = document.getElementById('caveLatText');
+    textElement1.style.display = "none";
+    textElement1.classList.remove("textStyle");
+    var textElement2 = document.getElementById('caveLngText');
+    textElement2.classList.remove("textStyle");
+
     loadOverviewPage();
 }
 

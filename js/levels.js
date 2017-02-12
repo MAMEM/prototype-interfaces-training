@@ -942,6 +942,7 @@ function InitiateLevel(group, level, levelStructure) {
         var textInput = document.getElementById('inputTextFirst');
         textInput.placeholder = genericText.answer;
         textInput.style.display = "none";
+        textInput.className = "elementAdded";
 
         var metrics = [];
         metrics.click = 0;
@@ -1187,6 +1188,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     stage.removeChild(barContainer);
                     textInput.style.display = "none";
+                    textInput.className = "elementRemoved";
                     results = [levelContainer, metrics];
                     endLevel(false);
                 }
@@ -1207,6 +1209,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                             stage.removeChild(barContainer);
                             textInput.style.display = "none";
+                            textInput.className = "elementRemoved";
                             results = [levelContainer, metrics];
 
                             if (metrics.pass > metrics.fail) {
@@ -1259,16 +1262,20 @@ function InitiateLevel(group, level, levelStructure) {
         var textInput1 = document.getElementById('inputTextFirst');
         textInput1.placeholder = genericText.latitude;
         textInput1.style.display = "none";
+        textInput1.className = "elementAdded";
 
         var textInput2 = document.getElementById('inputTextSecond');
         textInput2.placeholder = genericText.longitude;
         textInput2.style.display = "none";
+        textInput2.className = "elementAdded";
 
         var textElement1 = document.getElementById('caveLatText');
         textElement1.style.display = "none";
+        textElement1.className = "textStyle";
 
         var textElement2 = document.getElementById('caveLngText');
         textElement2.style.display = "none";
+        textElement2.className = "textStyle";
 
         var metrics = [];
         metrics.copy = 0;
@@ -1455,9 +1462,13 @@ function InitiateLevel(group, level, levelStructure) {
                 textElement2.style.display = "none";
                 textInput1.style.display = "none";
                 textInput2.style.display = "none";
-
                 textInput1.value = '';
                 textInput2.value = '';
+
+                textInput1.className = "elementRemoved";
+                textInput2.className = "elementRemoved";
+                textElement1.classList.remove("textStyle");
+                textElement2.classList.remove("textStyle");
 
                 metrics.trophy = (metrics.paste < 3);
 
