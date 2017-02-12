@@ -2111,6 +2111,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                         metrics.close++;
 
+                        // Important wait to get the value
                         createjs.Tween.get(actualLevel)
                             .wait(1000)
                             .call(getTextValue);
@@ -2121,7 +2122,24 @@ function InitiateLevel(group, level, levelStructure) {
                         taskList.phrase = document.getElementById("inputTextFirst").value;
                         metrics.phrase.push(taskList.phrase);
 
-                        if (taskList.phrase === advThirdInstructions.phrase) {
+                        taskList.phrase = taskList.phrase.trim();
+
+                        var inputPhrase = taskList.phrase.split(" ");
+                        var correctPhrase = advThirdInstructions.phrase.split(" ");
+                        var equalFlag = false;
+
+                        if (inputPhrase.length === correctPhrase.length) {
+                            for (i=0; i< inputPhrase.length; i++) {
+
+                                equalFlag = (inputPhrase[i].toUpperCase() === correctPhrase[i].toUpperCase());
+
+                                if (equalFlag === false) {
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (equalFlag) {
 
                             metrics.trophy = (metrics.phrase.length === 1);
                             if (metrics.trophy) {
@@ -2134,8 +2152,6 @@ function InitiateLevel(group, level, levelStructure) {
                             checkmark[3].alpha = 1;
                             taskLabel[4].alpha = 1;
                             checkmark[4].alpha = 1;
-                            taskLabel[5].alpha = 1;
-                            checkmark[5].alpha = 1;
 
                             window.loggingMediator.unregisterFunction();
 
