@@ -2059,6 +2059,7 @@ function InitiateLevel(group, level, levelStructure) {
             textInput.style.fontSize = "24px";
             textInput.style.fontWeight = "500";
             textInput.style.color = "#4D3D36";
+            textInput.className = "elementAdded";
 
             textInput.addEventListener("click", function () {
 
@@ -2122,6 +2123,7 @@ function InitiateLevel(group, level, levelStructure) {
                                     SendLSLMessage("level_complete");
 
                                     textInput.style.display = "none";
+                                    textInput.className = "elementRemoved";
                                     results = [taskContainer, metrics];
                                     endLevel(true);
                                 });
