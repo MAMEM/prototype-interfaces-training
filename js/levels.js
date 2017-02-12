@@ -1581,8 +1581,11 @@ function InitiateLevel(group, level, levelStructure) {
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
 
+        var levelContainer;
+
         if (pDesign) {
-            var levelContainer = loadAdvancedLevelsIntroMap(1);
+
+            levelContainer = loadAdvancedLevelsIntroMap(1);
             var actualLevel = levelContainer.getChildAt(0);
 
             actualLevel.on("mousedown", function() {
@@ -1592,6 +1595,7 @@ function InitiateLevel(group, level, levelStructure) {
                 }
 
                 stage.removeChild(levelContainer);
+
                 startTheLevel();
             });
         }
@@ -1613,11 +1617,11 @@ function InitiateLevel(group, level, levelStructure) {
             var icon = [];
 
             var icons = {
-                0: "assets/adv/ic_adv_settings.png",
-                1: "assets/adv/ic_adv_go.png",
-                2: "assets/adv/ic_adv_toggle_on.png",
-                3: "assets/adv/ic_adv_go.png",
-                4: "assets/adv/ic_adv_toggle_off.png"
+                0: "assets/advanced/ic_adv_settings.png",
+                1: "assets/advanced/ic_adv_go.png",
+                2: "assets/advanced/ic_adv_toggle_on.png",
+                3: "assets/advanced/ic_adv_go.png",
+                4: "assets/advanced/ic_adv_toggle_off.png"
             };
 
             var idx = 0;
@@ -1628,7 +1632,7 @@ function InitiateLevel(group, level, levelStructure) {
                 taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 80;
                 taskLabel[idx].alpha = 0.54;
 
-                checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
+                checkmark[idx] = new createjs.Bitmap("assets/advanced/checkmark.png");
                 checkmark[idx].x = taskLabel[idx].x - 50;
                 checkmark[idx].y = taskLabel[idx].y - 10;
                 checkmark[idx].alpha = 0;
@@ -1753,8 +1757,8 @@ function InitiateLevel(group, level, levelStructure) {
 
         }
 
-        stage.addChild(levelContainer);
         stage.addChild(backgroundColor);
+        stage.addChild(levelContainer);
         stage.setChildIndex(backgroundColor, 0);
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
     }
@@ -1786,8 +1790,11 @@ function InitiateLevel(group, level, levelStructure) {
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
 
+        var levelContainer;
+
         if (pDesign) {
-            var levelContainer = loadAdvancedLevelsIntroMap(2);
+
+            levelContainer = loadAdvancedLevelsIntroMap(2);
             var actualLevel = levelContainer.getChildAt(2);
 
             actualLevel.on("mousedown", function() {
@@ -1816,10 +1823,10 @@ function InitiateLevel(group, level, levelStructure) {
             var icon = [];
 
             var icons = {
-                0: "assets/adv/ic_adv_tabs.png",
-                1: "assets/adv/ic_adv_edit.png",
+                0: "assets/advanced/ic_adv_tabs.png",
+                1: "assets/advanced/ic_adv_edit.png",
 
-                3: "assets/adv/ic_adv_close.png"
+                3: "assets/advanced/ic_adv_close.png"
             };
 
             var idx = 0;
@@ -1830,7 +1837,7 @@ function InitiateLevel(group, level, levelStructure) {
                 taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 80;
                 taskLabel[idx].alpha = 0.54;
 
-                checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
+                checkmark[idx] = new createjs.Bitmap("assets/advanced/checkmark.png");
                 checkmark[idx].x = taskLabel[idx].x - 50;
                 checkmark[idx].y = taskLabel[idx].y - 10;
                 checkmark[idx].alpha = 0;
@@ -1932,8 +1939,8 @@ function InitiateLevel(group, level, levelStructure) {
             }
         }
 
-        stage.addChild(levelContainer);
         stage.addChild(backgroundColor);
+        stage.addChild(levelContainer);
         stage.setChildIndex(backgroundColor, 0);
         stage.setChildIndex( mousePointer, stage.getNumChildren()-1);
     }
@@ -1962,8 +1969,10 @@ function InitiateLevel(group, level, levelStructure) {
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
 
+        var levelContainer;
+
         if (pDesign) {
-            var levelContainer = loadAdvancedLevelsIntroMap(3);
+            levelContainer = loadAdvancedLevelsIntroMap(3);
             var actualLevel = levelContainer.getChildAt(4);
             actualLevel.on("mousedown", function() {
                 if (window.loggingMediator) {
@@ -1991,7 +2000,7 @@ function InitiateLevel(group, level, levelStructure) {
             var icon = [];
 
             var icons = {
-                3: "assets/adv/ic_adv_ok.png"
+                3: "assets/advanced/ic_adv_ok.png"
             };
 
             var idx = 0;
@@ -2003,7 +2012,7 @@ function InitiateLevel(group, level, levelStructure) {
                 taskLabel[idx].alpha = 0.54;
                 taskLabel[idx].x = taskLabel[idx].x + 100;
 
-                checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
+                checkmark[idx] = new createjs.Bitmap("assets/advanced/checkmark.png");
                 checkmark[idx].x = taskLabel[idx].x - 50;
                 checkmark[idx].y = taskLabel[idx].y - 10;
                 checkmark[idx].alpha = 0;
@@ -2022,7 +2031,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             }
 
-            var quoteDoc = new createjs.Bitmap("assets/adv/doc-after.png");
+            var quoteDoc = new createjs.Bitmap("assets/advanced/doc-after.png");
             quoteDoc.x = 130;
             quoteDoc.y = 220;
 
@@ -2158,8 +2167,10 @@ function InitiateLevel(group, level, levelStructure) {
         var backgroundColor = new createjs.Shape();
         backgroundColor.graphics.beginFill(color.blue).drawRect(0, 0, stage.canvas.width, canvas.height);
 
+        var levelContainer;
+
         if (pDesign) {
-            var levelContainer = loadAdvancedLevelsIntroMap(4);
+            levelContainer = loadAdvancedLevelsIntroMap(4);
             var actualLevel = levelContainer.getChildAt(6);
             actualLevel.on("mousedown", function() {
 
@@ -2186,12 +2197,12 @@ function InitiateLevel(group, level, levelStructure) {
             var icon = [];
 
             var icons = {
-                0: "assets/adv/ic_adv_tabs.png",
-                1: "assets/adv/ic_adv_bookmark.png",
-                2: "assets/adv/ic_adv_new_tab.png",
-                3: "assets/adv/ic_adv_bookmarks.png",
-                4: "assets/adv/ic_adv_go.png",
-                5: "assets/adv/ic_adv_tabs.png"
+                0: "assets/advanced/ic_adv_tabs.png",
+                1: "assets/advanced/ic_adv_bookmark.png",
+                2: "assets/advanced/ic_adv_new_tab.png",
+                3: "assets/advanced/ic_adv_bookmarks.png",
+                4: "assets/advanced/ic_adv_go.png",
+                5: "assets/advanced/ic_adv_tabs.png"
             };
 
             var idx = 0;
@@ -2202,7 +2213,7 @@ function InitiateLevel(group, level, levelStructure) {
                 taskLabel[idx].y = (idx === 0) ? 160 : taskLabel[idx-1].y + 80;
                 taskLabel[idx].alpha = 0.54;
 
-                checkmark[idx] = new createjs.Bitmap("assets/adv/checkmark.png");
+                checkmark[idx] = new createjs.Bitmap("assets/advanced/checkmark.png");
                 checkmark[idx].x = taskLabel[idx].x - 50;
                 checkmark[idx].y = taskLabel[idx].y - 10;
                 checkmark[idx].alpha = 0;

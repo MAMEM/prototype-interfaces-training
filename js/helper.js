@@ -664,35 +664,35 @@ function loadAdvancedLevelsIntroMap(level) {
     label.textAlign = "center";
     var hand = new createjs.Bitmap("assets/ic_hand.png");
 
-    var lvl1 = new createjs.Bitmap("assets/adv/lvl1.png");
+    var lvl1 = new createjs.Bitmap("assets/advanced/lvl1.png");
     lvl1.x = 80;
     lvl1.y = 80;
-    var lvl1Marker = new createjs.Bitmap("assets/adv/place_off.png");
+    var lvl1Marker = new createjs.Bitmap("assets/advanced/place_off.png");
     lvl1Marker.x = (elemSize.x/2) + lvl1.x - 21;
     lvl1Marker.y = elemSize.y;
 
-    var lvl2 = new createjs.Bitmap("assets/adv/lvl2.png");
+    var lvl2 = new createjs.Bitmap("assets/advanced/lvl2.png");
     lvl2.regX = elemSize.x;
     lvl2.x = stage.canvas.width - 80;
     lvl2.y = 80;
-    var lvl2Marker = new createjs.Bitmap("assets/adv/place_off.png");
+    var lvl2Marker = new createjs.Bitmap("assets/advanced/place_off.png");
     lvl2Marker.x = lvl2.x - (elemSize.x/2) - 21;
     lvl2Marker.y = elemSize.y;
 
-    var lvl3 = new createjs.Bitmap("assets/adv/lvl3.png");
+    var lvl3 = new createjs.Bitmap("assets/advanced/lvl3.png");
     lvl3.regY = elemSize.y;
     lvl3.x = 80;
     lvl3.y = stage.canvas.height - 20;
-    var lvl3Marker = new createjs.Bitmap("assets/adv/place_off.png");
+    var lvl3Marker = new createjs.Bitmap("assets/advanced/place_off.png");
     lvl3Marker.x = (elemSize.x/2) + lvl3.x - 21;
     lvl3Marker.y = lvl3.y - 100;
 
-    var lvl4 = new createjs.Bitmap("assets/adv/lvl4.png");
+    var lvl4 = new createjs.Bitmap("assets/advanced/lvl4.png");
     lvl4.regX = elemSize.x;
     lvl4.regY = elemSize.y;
     lvl4.x = stage.canvas.width - 80;
     lvl4.y = stage.canvas.height - 20;
-    var lvl4Marker = new createjs.Bitmap("assets/adv/place_off.png");
+    var lvl4Marker = new createjs.Bitmap("assets/advanced/place_off.png");
     lvl4Marker.x = lvl4.x - (elemSize.x/2) - 21;
     lvl4Marker.y = lvl4.y - 100;
 
@@ -708,7 +708,7 @@ function loadAdvancedLevelsIntroMap(level) {
             hand.x = 380;
             hand.y = elemSize.y + 66;
 
-            lvl1Marker = new createjs.Bitmap("assets/adv/place_on.png");
+            lvl1Marker = new createjs.Bitmap("assets/advanced/place_on.png");
             lvl1Marker.x = (elemSize.x/2) + lvl1.x - 21;
             lvl1Marker.y = elemSize.y;
 
@@ -724,7 +724,7 @@ function loadAdvancedLevelsIntroMap(level) {
             hand.x = stage.canvas.width - 300;
             hand.y = elemSize.y + 66;
 
-            lvl2Marker = new createjs.Bitmap("assets/adv/place_on.png");
+            lvl2Marker = new createjs.Bitmap("assets/advanced/place_on.png");
             lvl2Marker.x = lvl2.x - (elemSize.x/2) - 21;
             lvl2Marker.y = elemSize.y;
 
@@ -740,7 +740,7 @@ function loadAdvancedLevelsIntroMap(level) {
             hand.x = 380;
             hand.y = stage.canvas.height - 60;
 
-            lvl3Marker = new createjs.Bitmap("assets/adv/place_on.png");
+            lvl3Marker = new createjs.Bitmap("assets/advanced/place_on.png");
             lvl3Marker.x = (elemSize.x/2) + lvl3.x - 21;
             lvl3Marker.y = lvl3.y - 100;
 
@@ -756,7 +756,7 @@ function loadAdvancedLevelsIntroMap(level) {
             hand.x = stage.canvas.width - 300;
             hand.y = stage.canvas.height - 60;
 
-            lvl4Marker = new createjs.Bitmap("assets/adv/place_on.png");
+            lvl4Marker = new createjs.Bitmap("assets/advanced/place_on.png");
             lvl4Marker.x = lvl4.x - (elemSize.x/2) - 21;
             lvl4Marker.y = lvl4.y - 100;
 
