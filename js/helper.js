@@ -84,13 +84,20 @@ function abortLevel() {
         }
     }
 
+
+    // Delete dummy events
+    document.getElementById("inputTextFirst").removeEventListener("click", spawnElement());
+    document.getElementById("inputTextSecond").removeEventListener("click", spawnElement());
+
     var textInput1 = document.getElementById('inputTextFirst');
     textInput1.style.display = "none";
     textInput1.className = "elementRemoved";
+    // Delete dummy event
 
     var textInput2 = document.getElementById('inputTextSecond');
     textInput2.style.display = "none";
     textInput2.className = "elementRemoved";
+
 
     var textElement1 = document.getElementById('caveLatText');
     textElement1.style.display = "none";
@@ -861,6 +868,10 @@ function getRandomInt(idx, min, max) {
     }
 
     return newVal;
+}
+
+function spawnElement() {
+    
 }
 
 function Stopwatch(text) {

@@ -942,7 +942,7 @@ function InitiateLevel(group, level, levelStructure) {
         var textInput = document.getElementById('inputTextFirst');
         textInput.placeholder = genericText.answer;
         textInput.style.display = "none";
-        textInput.className = "elementAdded";
+
 
         var metrics = [];
         metrics.click = 0;
@@ -1045,6 +1045,9 @@ function InitiateLevel(group, level, levelStructure) {
             hint = alignTextToStageCenter(stage, hint);
             hint.y = papyrus.y + 220;
 
+            // Attach an event handler to input to trick GTW and spawn the "T" overlay
+            document.getElementById("inputTextFirst").addEventListener("click", spawnElement());
+
             textInput.style.display = "block";
             textInput.style.position = "absolute";
             textInput.style.width = "150px";
@@ -1053,6 +1056,8 @@ function InitiateLevel(group, level, levelStructure) {
             textInput.style.border = "5px solid white";
             textInput.style.padding = "15px";
             textInput.style.background = "rgba(255,255,255,0.5)";
+            textInput.className = "elementAdded";
+
 
             var inputDomElement = new createjs.DOMElement('inputTextFirst');
             inputDomElement.visible = true;
@@ -1187,6 +1192,9 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     stage.removeChild(barContainer);
+
+                    // Delete dummy event
+                    document.getElementById("inputTextFirst").removeEventListener("click", spawnElement());
                     textInput.style.display = "none";
                     textInput.className = "elementRemoved";
                     results = [levelContainer, metrics];
@@ -1208,6 +1216,9 @@ function InitiateLevel(group, level, levelStructure) {
                         .call(function(){
 
                             stage.removeChild(barContainer);
+
+                            // Delete dummy event
+                            document.getElementById("inputTextFirst").removeEventListener("click", spawnElement());
                             textInput.style.display = "none";
                             textInput.className = "elementRemoved";
                             results = [levelContainer, metrics];
@@ -1421,7 +1432,15 @@ function InitiateLevel(group, level, levelStructure) {
                     alpha:1
                 }, 600).call(function () {
                     textInput1.style.display = "block";
+                    textInput1.className = "elementAdded";
+                    // Attach an event handler to input to trick GTW and spawn the "T" overlay
+                    document.getElementById("inputTextFirst").addEventListener("click", spawnElement());
+
                     textInput2.style.display = "block";
+                    textInput2.className = "elementAdded";
+                    // Attach an event handler to input to trick GTW and spawn the "T" overlay
+                    document.getElementById("inputTextSecond").addEventListener("click", spawnElement());
+
                 });
             });
 
@@ -1469,6 +1488,10 @@ function InitiateLevel(group, level, levelStructure) {
                 textInput2.className = "elementRemoved";
                 textElement1.classList.remove("textStyle");
                 textElement2.classList.remove("textStyle");
+
+                // Delete dummy events
+                document.getElementById("inputTextFirst").removeEventListener("click", spawnElement());
+                document.getElementById("inputTextSecond").removeEventListener("click", spawnElement());
 
                 metrics.trophy = (metrics.paste < 3);
 

@@ -346,7 +346,7 @@ var genericText =
         answer: "Απάντηση",
         lvl5CongrText: "Άξιος! Τώρα βρες το θησαυρό!",
         coordinates: "ΣΥΝΤΕΤΑΓΜΕΝΕΣ",
-        lvl5ScrollDesc: "χρησιμοποιησε το",
+        lvl5ScrollDesc: "χρησιμοποίησε το",
         lvl5coords: "Λάθος συντεταγμένες! Δεν υπάρχει θησαυρός εκεί!",
         signedOut: "Ο ΧΡΗΣΤΗΣ ΑΠΟΣΥΝΔΕΘΗΚΕ",
         tasks: "Ενέργειες",
