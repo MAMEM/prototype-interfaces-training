@@ -333,7 +333,7 @@ var genericText =
         lvl3ScrollDownA: "Μετακινήσου προς τα κάτω ακολουθώντας το ποτάμι",
         lvl3ScrollDownB: "για να βρείς το μάγο",
         lvl3Village: "ΧΩΡΙΟ",
-        lvl3BRB: "επιστρέφω αμέσως!",
+        lvl3BRB: "επιστρέφω!",
         lvl3Tower: "ΠΥΡΓΟΣ ΤΟΥ ΜΑΓΟΥ",
         lvl3Cave: "ΣΠΗΛΙΑ",
         lvl3Select: "Επέλεξε με, με",

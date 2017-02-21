@@ -15,11 +15,11 @@ var pDesign = false;
 document.getElementById("registerButton").onclick = function() {
 
     user.firstName = document.getElementById("firstNameInput").value;
-    user.lastName = document.getElementById("lastNameInput").value;
+    user.nickname = document.getElementById("nicknameInput").value;
 
     // Capitalize First letter of Last name and First name
     user.firstName = user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1);
-    user.lastName = user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1);
+    user.nickname = user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1);
 
     user.email = document.getElementById("emailInput").value;
     user.password = document.getElementById("passInput").value;
@@ -32,7 +32,7 @@ document.getElementById("registerButton").onclick = function() {
 
     user.age = document.getElementById("ageInput").value;
 
-    if (!user.email || !user.password || !user.firstName || !user.lastName || !user.gender || !user.age) {
+    if (!user.email || !user.password || !user.firstName || !user.nickname || !user.gender || !user.age) {
         alert('Please fill in all Register fields!');
         return 0;
     }
@@ -43,9 +43,6 @@ document.getElementById("registerButton").onclick = function() {
     }
 
     document.getElementById("startingInfoArea").style.display = "none";
-
-    // Create Fullname
-    user.name = user.firstName + " " + user.lastName;
 
     // Preload libs
     var queue = new createjs.LoadQueue(true);
@@ -60,8 +57,9 @@ document.getElementById("registerButton").onclick = function() {
 document.getElementById("loginButton").onclick = function() {
     user.email = document.getElementById("emailLoginInput").value;
     user.password = document.getElementById("passLoginInput").value;
+    user.firstName = document.getElementById("firstNameInputLogin").value;
 
-    if (!user.email || !user.password) {
+    if (!user.email || !user.password || !user.firstName) {
         alert('Please fill in all Register fields!');
         return 0;
     }
@@ -205,7 +203,7 @@ function loadOverviewPage() {
 
             for (i=0; i<2; i++) {
 
-                if (!snapshot.val().levels) {
+                if (!snapshot.val().levels || !snapshot.val().levels.basic) {
                     break;
                 }
 

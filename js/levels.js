@@ -806,7 +806,15 @@ function InitiateLevel(group, level, levelStructure) {
 
             canvas.height = 2000;
 
+
             stage.removeChild(towerContainer);
+
+            if (!pDesign) {
+                tower.visible = false;
+                towerSelect.visible = false;
+                towerSelectIcon.visible = false;
+            }
+
             stage.addChild(levelContainer);
             stage.setChildIndex(levelContainer, 0);
 

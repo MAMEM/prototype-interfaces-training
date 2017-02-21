@@ -12,14 +12,12 @@ function registerUser() {
 
             // When saving data on first level, save name too (to be used on scoreboard).
             firebase.database().ref('users/' + currentUser.uid + '/userDetails').set({
-                "name": user.firstName + " " + user.lastName,
-                "firstName": user.firstName,
-                "lastName": user.lastName,
+                "nickname": user.nickname,
                 "gender": user.gender,
                 "age": user.age
             });
 
-            firebaseUsernameHUD = new createjs.Text(user.name, "18px Roboto", color.textRegular);
+            firebaseUsernameHUD = new createjs.Text(user.firstName, "18px Roboto", color.textRegular);
             firebaseUsernameHUD.x = parseInt(stage.canvas.width-20, 10);
             firebaseUsernameHUD.y = 20;
             firebaseUsernameHUD.textAlign = "right";
@@ -49,13 +47,11 @@ function loginUser() {
 
             return firebase.database().ref('/users/' + currentUser.uid).once('value').then(function(snapshot) {
 
-                user.firstName = snapshot.val().userDetails.firstName;
-                user.lastName = snapshot.val().userDetails.lastName;
-                user.name = snapshot.val().userDetails.name;
+                user.nickname = snapshot.val().userDetails.nickname;
                 user.gender = snapshot.val().userDetails.gender;
                 user.age = snapshot.val().userDetails.age;
 
-                firebaseUsernameHUD = new createjs.Text(user.name, "18px Roboto", color.textRegular);
+                firebaseUsernameHUD = new createjs.Text(user.firstName, "18px Roboto", color.textRegular);
                 firebaseUsernameHUD.x = parseInt(stage.canvas.width-20, 10);
                 firebaseUsernameHUD.y = 20;
                 firebaseUsernameHUD.textAlign = "right";
@@ -234,7 +230,7 @@ function createScoreboard(group, level, col) {
                         if (!userData[key].levels.basic.level1) continue;
 
                         entity = {
-                            name: userData[key].userDetails.name,
+                            nickname: userData[key].userDetails.nickname,
                             id: key,
                             score: userData[key].levels.basic.level1.score,
                             time: userData[key].levels.basic.level1.timeLabel,
@@ -255,7 +251,7 @@ function createScoreboard(group, level, col) {
                         if (!userData[key].levels.basic.level2) continue;
 
                         entity = {
-                            name: userData[key].userDetails.name,
+                            nickname: userData[key].userDetails.nickname,
                             id: key,
                             score: userData[key].levels.basic.level2.score,
                             time: userData[key].levels.basic.level2.timeLabel,
@@ -281,7 +277,7 @@ function createScoreboard(group, level, col) {
                         if (!userData[key].levels.int.level1) continue;
 
                         entity = {
-                            name: userData[key].userDetails.name,
+                            nickname: userData[key].userDetails.nickname,
                             id: key,
                             score: userData[key].levels.int.level1.score,
                             time: userData[key].levels.int.level1.timeLabel,
@@ -302,7 +298,7 @@ function createScoreboard(group, level, col) {
                         if (!userData[key].levels.int.level2) continue;
 
                         entity = {
-                            name: userData[key].userDetails.name,
+                            nickname: userData[key].userDetails.nickname,
                             id: key,
                             score: userData[key].levels.int.level2.score,
                             time: userData[key].levels.int.level2.timeLabel,
@@ -323,7 +319,7 @@ function createScoreboard(group, level, col) {
                         if (!userData[key].levels.int.level3) continue;
 
                         entity = {
-                            name: userData[key].userDetails.name,
+                            nickname: userData[key].userDetails.nickname,
                             id: key,
                             score: userData[key].levels.int.level3.score,
                             time: userData[key].levels.int.level3.timeLabel,
@@ -349,7 +345,7 @@ function createScoreboard(group, level, col) {
                         if (!userData[key].levels.adv.level1) continue;
 
                         entity = {
-                            name: userData[key].userDetails.name,
+                            nickname: userData[key].userDetails.nickname,
                             id: key,
                             score: userData[key].levels.adv.level1.score,
                             time: userData[key].levels.adv.level1.timeLabel,
@@ -370,7 +366,7 @@ function createScoreboard(group, level, col) {
                         if (!userData[key].levels.adv.level2) continue;
 
                         entity = {
-                            name: userData[key].userDetails.name,
+                            nickname: userData[key].userDetails.nickname,
                             id: key,
                             score: userData[key].levels.adv.level2.score,
                             time: userData[key].levels.adv.level2.timeLabel,
@@ -391,7 +387,7 @@ function createScoreboard(group, level, col) {
                         if (!userData[key].levels.adv.level3) continue;
 
                         entity = {
-                            name: userData[key].userDetails.name,
+                            nickname: userData[key].userDetails.nickname,
                             id: key,
                             score: userData[key].levels.adv.level3.score,
                             time: userData[key].levels.adv.level3.timeLabel,
@@ -411,7 +407,7 @@ function createScoreboard(group, level, col) {
                         if (!userData[key].levels.adv.level4) continue;
 
                         entity = {
-                            name: userData[key].userDetails.name,
+                            nickname: userData[key].userDetails.nickname,
                             id: key,
                             score: userData[key].levels.adv.level4.score,
                             time: userData[key].levels.adv.level4.timeLabel,
@@ -497,13 +493,13 @@ function createScoreboard(group, level, col) {
 
             if (firebaseUser.uid === users[i].id) {
                 rankingUser[i].pos = new createjs.Text(i+1, "500 18px Roboto", color.yellow);
-                rankingUser[i].name = new createjs.Text(users[i].name, "400 18px Roboto", color.yellow);
+                rankingUser[i].nickname = new createjs.Text(users[i].nickname, "400 18px Roboto", color.yellow);
                 rankingUser[i].score = new createjs.Text(users[i].score, "400 18px Roboto", color.yellow);
                 rankingUser[i].time = new createjs.Text(users[i].time, "400 18px Roboto", color.yellow);
 
             } else {
                 rankingUser[i].pos = new createjs.Text(i+1, "400 18px Roboto", color.whitePimary);
-                rankingUser[i].name = new createjs.Text(users[i].name, "300 18px Roboto", color.whitePimary);
+                rankingUser[i].nickname = new createjs.Text(users[i].nickname, "300 18px Roboto", color.whitePimary);
                 rankingUser[i].score = new createjs.Text(users[i].score, "300 18px Roboto", color.whitePimary);
                 rankingUser[i].time = new createjs.Text(users[i].time, "300 18px Roboto", color.whitePimary);
 
@@ -512,9 +508,9 @@ function createScoreboard(group, level, col) {
             rankingUser[i].pos.x = pos[0];
             rankingUser[i].pos.y = col.y + 170 + (i*20);
             rankingUser[i].pos.textAlign = "left";
-            rankingUser[i].name.x = pos[1];
-            rankingUser[i].name.y = col.y + 170 + (i*20);
-            rankingUser[i].name.textAlign = "left";
+            rankingUser[i].nickname.x = pos[1];
+            rankingUser[i].nickname.y = col.y + 170 + (i*20);
+            rankingUser[i].nickname.textAlign = "left";
             rankingUser[i].score.x = pos[2];
             rankingUser[i].score.y = col.y + 170 + (i*20);
             rankingUser[i].score.textAlign = "left";
@@ -524,7 +520,7 @@ function createScoreboard(group, level, col) {
             rankingUser[i].trophy.x = pos[4];
             rankingUser[i].trophy.y = col.y + 170 + (i*20);
 
-            if (pDesign) { stage.addChild(rankingUser[i].pos, rankingUser[i].name, rankingUser[i].score, rankingUser[i].time, rankingUser[i].trophy); }
+            if (pDesign) { stage.addChild(rankingUser[i].pos, rankingUser[i].nickname, rankingUser[i].score, rankingUser[i].time, rankingUser[i].trophy); }
 
         }
     });
