@@ -1107,7 +1107,12 @@ function InitiateLevel(group, level, levelStructure) {
                         SendLSLMessage("level_int_2__question_asked_easy");
                     }
 
-                    pointer = getRandomInt(pointer, 0, 3);
+                    if (gameTypeElems) {
+                        pointer = getRandomInt(pointer, 0, 1);
+                    } else {
+                        pointer = getRandomInt(pointer, 0, 3);
+                    }
+
                 } else if (idx < 4) {
 
                     // Send LSL Message
@@ -1115,7 +1120,13 @@ function InitiateLevel(group, level, levelStructure) {
                         SendLSLMessage("level_int_2__question_asked_med");
                     }
 
-                    pointer = getRandomInt(pointer, 4, 7);
+                    if (gameTypeElems) {
+                        pointer = getRandomInt(pointer, 2, 3);
+                    } else {
+                        pointer = getRandomInt(pointer, 4, 7);
+                    }
+
+
                 } else {
 
                     // Send LSL Message
@@ -1123,7 +1134,13 @@ function InitiateLevel(group, level, levelStructure) {
                         SendLSLMessage("level_int_2__question_asked_hard");
                     }
 
-                    pointer = getRandomInt(pointer, 8, 11);
+                    if (gameTypeElems) {
+                        pointer = 4;
+                    } else {
+                        pointer = getRandomInt(pointer, 8, 11);
+                    }
+
+
                 }
 
                 if (idx+1 === 6) {

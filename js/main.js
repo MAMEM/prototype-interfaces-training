@@ -11,9 +11,8 @@ var mousePointer = new createjs.Shape();
 
 var RTL = false;
 var gameTypeFull = false;
-var gameTypeElems = false;
 var gameTypeBare = false;
-
+var gameTypeElems = false;
 
 document.getElementById("registerButton").onclick = function() {
 

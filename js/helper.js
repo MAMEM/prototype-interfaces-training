@@ -212,6 +212,14 @@ function loadLvlIntroStory(script) {
         sb.visible = false;
     }
 
+    if (gameTypeElems) {
+        face.visible = false;
+        /*bubbleText.visible = false;*/
+        bubbleText = alignTextToStageCenter(stage, bubbleText);
+        bubbleText.y = stage.canvas.height/2 - 150;
+        sb.visible = false;
+    }
+
     introStoryContainer = new createjs.Container();
 
     introStoryContainer.addChild(sb, bubbleText, face);
