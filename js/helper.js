@@ -298,6 +298,13 @@ function loadLvlOutroStory(poe, completion) {
         bubbleText.y = stage.canvas.height/2 - 100;
     }
 
+    if(gameTypeElems) {
+        sb.visible = false;
+        face.visible = false;
+        bubbleText.visible = false;
+    }
+
+    outroStoryContainer.addChild(sb, bubbleText, face);
 
     return outroStoryContainer;
 }
@@ -870,7 +877,7 @@ function getRandomInt(idx, min, max) {
 }
 
 function spawnElement() {
-    
+
 }
 
 

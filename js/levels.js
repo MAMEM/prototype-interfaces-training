@@ -2540,7 +2540,7 @@ function InitiateLevel(group, level, levelStructure) {
             resultsPopup.graphics.beginFill(color.blue).drawRect(poe.x, poe.y + 100, resultsPopup.width, resultsPopup.height);
             resultsPopup.shadow = new createjs.Shadow(color.gray, 0, 2, 4);
 
-            if (!gameTypeFull) {resultsPopup.visible = false;}
+            resultsPopup.visible = !gameTypeBare;
 
             stage.addChild(resultsPopup);
 
@@ -2630,6 +2630,7 @@ function InitiateLevel(group, level, levelStructure) {
 
 
             // Load Outro Story
+
             if (trophy.current || trophy.hasIt) {
                 outroStoryContainer = loadLvlOutroStory(poe, 'trophy');
             } else {
