@@ -636,7 +636,7 @@ function InitiateLevel(group, level, levelStructure) {
         backgroundColor.graphics.beginFill(color.brown).drawRect(0, 0, stage.canvas.width, stage.canvas.height);
 
         var villageTextA = new createjs.Text(genericText.lvl3ScrollDownA, "700 24px Roboto", color.whitePimary);
-        if (!pDesign) {
+        if (!gameTypeFull) {
             villageTextA = new createjs.Text(genericText.arrScrollDown, "700 24px Roboto", color.whitePimary);
         }
         villageTextA.x = 300;
@@ -715,7 +715,7 @@ function InitiateLevel(group, level, levelStructure) {
         bush4.y = stage.canvas.height - 200;
 
 
-        if (!pDesign) {
+        if (!gameTypeFull) {
 
             cave = new createjs.Bitmap("assets/int/wizard.png");
             cave.x = 80;
@@ -739,7 +739,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             var arrow, arrowLabel;
 
-            if (pDesign) {
+            if (gameTypeFull) {
 
                 var towerFloor = new createjs.Shape();
                 towerFloor.graphics.beginFill(color.brown).drawRect(0, 0, stage.canvas.width, parseInt(2*(canvas.height/3),10));
@@ -809,7 +809,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.removeChild(towerContainer);
 
-            if (!pDesign) {
+            if (!gameTypeFull) {
                 tower.visible = false;
                 towerSelect.visible = false;
                 towerSelectIcon.visible = false;
@@ -828,7 +828,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.removeChild(levelContainer);
 
-            if (pDesign) {
+            if (gameTypeFull) {
                 var backgroundColor = new createjs.Shape();
                 backgroundColor.graphics.beginFill(color.darkBrown).drawRect(0, 0, stage.canvas.width, canvas.height);
 
@@ -881,7 +881,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             results = [levelContainer, metrics];
 
-            if (pDesign) {
+            if (gameTypeFull) {
                 createjs.Tween.get(levelContainer)
                     .wait(3000)
                     .call( function () {
@@ -900,7 +900,7 @@ function InitiateLevel(group, level, levelStructure) {
         });
 
 
-        if (pDesign) {
+        if (gameTypeFull) {
             levelContainer.addChild(backgroundColor, river, village, villageTextA, villageTextB, villageTitle, tower, towerTitle, towerSelect, towerSelectIcon, cave, caveTitle, caveSelect, caveSelectIcon,
                 forest, bush1, bush2, bush3, bush4);
         } else {
@@ -1012,7 +1012,7 @@ function InitiateLevel(group, level, levelStructure) {
         papyrus.y = stage.canvas.height - 440;
         papyrus.alpha = 0;
 
-        if (pDesign) {
+        if (gameTypeFull) {
             createjs.Tween.get(papyrus)
                 .wait(5000)
                 .to({alpha:1}, 1000)
@@ -1076,7 +1076,7 @@ function InitiateLevel(group, level, levelStructure) {
             submitLabel.x = stage.canvas.width/2 + 70;
             submitLabel.y = stage.canvas.height - 170;
 
-            if (pDesign) {
+            if (gameTypeFull) {
                 submitBtn = new createjs.Bitmap("assets/int/btn-go.png");
             }
             else {
@@ -1256,7 +1256,7 @@ function InitiateLevel(group, level, levelStructure) {
             levelContainer.addChild(question, answerA, answerB, answerC, answerD, hint, submitBtn, submitLabel);
         }
 
-        if (pDesign) {
+        if (gameTypeFull) {
             levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratTextA, congratTextB, papyrus, questionLabel);
             levelContainer.alpha = 0;
             createjs.Tween.get(levelContainer).to({alpha:1}, 1000);
@@ -1419,7 +1419,7 @@ function InitiateLevel(group, level, levelStructure) {
         submitLabel.y = submitBtn.y + 20;
         submitLabel.alpha = 0;
 
-        if(pDesign) {
+        if(gameTypeFull) {
 
             globe.on("mousedown", function() {
 
@@ -1563,7 +1563,7 @@ function InitiateLevel(group, level, levelStructure) {
         });
 
 
-        if (pDesign) {
+        if (gameTypeFull) {
             levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratulatoryText, scroll, scrollTitle, scrollDesc, cpIcon, globe, clickLabel, map, submitBtn, submitLabel);
             levelContainer.alpha = 0;
 
@@ -1614,7 +1614,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer;
 
-        if (pDesign) {
+        if (gameTypeFull) {
 
             levelContainer = loadAdvancedLevelsIntroMap(1);
             var actualLevel = levelContainer.getChildAt(0);
@@ -1823,7 +1823,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer;
 
-        if (pDesign) {
+        if (gameTypeFull) {
 
             levelContainer = loadAdvancedLevelsIntroMap(2);
             var actualLevel = levelContainer.getChildAt(2);
@@ -2002,7 +2002,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer;
 
-        if (pDesign) {
+        if (gameTypeFull) {
             levelContainer = loadAdvancedLevelsIntroMap(3);
             var actualLevel = levelContainer.getChildAt(4);
             actualLevel.on("mousedown", function() {
@@ -2218,7 +2218,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer;
 
-        if (pDesign) {
+        if (gameTypeFull) {
             levelContainer = loadAdvancedLevelsIntroMap(4);
             var actualLevel = levelContainer.getChildAt(6);
             actualLevel.on("mousedown", function() {
@@ -2540,7 +2540,7 @@ function InitiateLevel(group, level, levelStructure) {
             resultsPopup.graphics.beginFill(color.blue).drawRect(poe.x, poe.y + 100, resultsPopup.width, resultsPopup.height);
             resultsPopup.shadow = new createjs.Shadow(color.gray, 0, 2, 4);
 
-            if (!pDesign) {resultsPopup.visible = false;}
+            if (!gameTypeFull) {resultsPopup.visible = false;}
 
             stage.addChild(resultsPopup);
 
@@ -2615,7 +2615,7 @@ function InitiateLevel(group, level, levelStructure) {
                 // Footer navigation buttons
                 var button = positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage, replayCurrentLevel, advanceToNextLevel, group, level);
 
-                if (pDesign) {
+                if (gameTypeFull) {
                     scoreInfoContainer.addChild(resultsPopup, label.score, separator.score, label.currentScore, label.previousScore, label.time, separator.time, label.currentTime, label.previousTime, label.rewards, separator.rewards, score.currentValue, score.previousValue, time.currentValue, time.previousValue, trophy.title, trophy.img, trophy.desc, button.overview.btn, button.overview.icon, button.overview.label, button.replay.btn, button.replay.icon, button.replay.label, button.next.btn, button.next.icon, button.next.label);
                 } else  {
                     scoreInfoContainer.addChild(button.overview.btn, button.overview.icon, button.overview.label, button.replay.btn, button.replay.icon, button.replay.label, button.next.btn, button.next.icon, button.next.label);

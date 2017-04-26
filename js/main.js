@@ -10,7 +10,9 @@ var stage = new createjs.Stage("canvas");
 var mousePointer = new createjs.Shape();
 
 var RTL = false;
-var pDesign = false;
+var gameTypeFull = false;
+var gameTypeBare = false;
+var gameTypeElems = false;
 
 document.getElementById("registerButton").onclick = function() {
 
@@ -81,8 +83,9 @@ function init() {
     RTL = document.getElementById('rtlCheckbox');
     RTL = RTL.checked;
 
-    pDesign = document.getElementById('persuasiveCheckbox');
-    pDesign = pDesign.checked;
+    gameTypeFull = document.getElementById('persuasiveRadioBtn').checked;
+    gameTypeBare = document.getElementById('persuasiveRadioBtn').checked;
+    gameTypeElems = document.getElementById('persuasiveRadioBtn').checked;
 
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", tick);
@@ -125,7 +128,7 @@ function loadSplashPage() {
     wizard.x = (stage.canvas.width/2) -91;
     wizard.y = stage.canvas.height/4;
 
-    if (!pDesign) { wizard.visible = false; pos.y = 300;}
+    if (!gameTypeFull) { wizard.visible = false; pos.y = 300;}
 
     var playBtn = new Button(color.green, size, pos, genericText.play, loadOverviewPage);
 
@@ -253,7 +256,7 @@ function loadOverviewPage() {
             // Discard hover if previous level is not completed.
             /*if (levelAvailable[i]) {*/
 
-            if (pDesign) {
+            if (gameTypeFull) {
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
                     basicLevelTrophy[i] = new createjs.Bitmap("assets/trophies/basic-level"+ (i+1) +"-on.png");
@@ -439,7 +442,7 @@ function loadOverviewPage() {
             // Discard hover if previous level is not completed.
             /*if (levelAvailable[i]) {*/
 
-            if (pDesign) {
+            if (gameTypeFull) {
 
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
@@ -628,7 +631,7 @@ function loadOverviewPage() {
             // Discard hover if previous level is not completed.
             /*if (levelAvailable[i]) {*/
 
-            if (pDesign) {
+            if (gameTypeFull) {
 
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
@@ -739,7 +742,7 @@ function loadOverviewPage() {
         }
 
 
-        if (pDesign) {
+        if (gameTypeFull) {
             overviewContainer.addChild(title, subtitle, basicLabel, basicCompletedLabel, basicTrophiesLabel, intLabel, intCompletedLabel, intTrophiesLabel, advLabel, advCompletedLabel, advTrophiesLabel);
         }
         else {

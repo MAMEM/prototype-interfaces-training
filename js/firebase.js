@@ -471,7 +471,7 @@ function createScoreboard(group, level, col) {
         rankingsLabels.separator.graphics.drawRect(col.x, col.y + 158, (3 * col.width) - col.x, 2);
         rankingsLabels.separator.graphics.endFill();
 
-        if (pDesign) {
+        if (gameTypeFull) {
             stage.addChild(rankingsLabels.title, rankingsLabels.posLabel, rankingsLabels.nameLabel, rankingsLabels.scoreLabel, rankingsLabels.timeLabel, rankingsLabels.rewardsLabel,  rankingsLabels.separator);
         }
 
@@ -520,7 +520,7 @@ function createScoreboard(group, level, col) {
             rankingUser[i].trophy.x = pos[4];
             rankingUser[i].trophy.y = col.y + 170 + (i*20);
 
-            if (pDesign) { stage.addChild(rankingUser[i].pos, rankingUser[i].nickname, rankingUser[i].score, rankingUser[i].time, rankingUser[i].trophy); }
+            if (gameTypeFull) { stage.addChild(rankingUser[i].pos, rankingUser[i].nickname, rankingUser[i].score, rankingUser[i].time, rankingUser[i].trophy); }
 
         }
     });
