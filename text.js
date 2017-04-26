@@ -324,7 +324,7 @@ var genericText =
         hit: "HIT!",
         arrScrollUp: "Scroll up",
         arrScrollDown: "Scroll down",
-        arrBackBtn: "Go back",
+        arrBackBtn: "Now press the Go-Back button!",
         arrScrollBtn: "Auto scrolling",
         clickEmu: "Click emulation",
         zoomBtn: "Zoom",

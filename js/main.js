@@ -19,9 +19,9 @@ document.getElementById("registerButton").onclick = function() {
     user.firstName = document.getElementById("firstNameInput").value;
     user.nickname = document.getElementById("nicknameInput").value;
 
-    // Capitalize First letter of Last name and First name
+    // Capitalize First letter First name
     user.firstName = user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1);
-    user.nickname = user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1);
+    /*user.nickname = user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1);*/
 
     user.email = document.getElementById("emailInput").value;
     user.password = document.getElementById("passInput").value;
@@ -60,6 +60,7 @@ document.getElementById("loginButton").onclick = function() {
     user.email = document.getElementById("emailLoginInput").value;
     user.password = document.getElementById("passLoginInput").value;
     user.firstName = document.getElementById("firstNameInputLogin").value;
+    user.firstName = user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1);
 
     if (!user.email || !user.password || !user.firstName) {
         alert('Please fill in all Register fields!');

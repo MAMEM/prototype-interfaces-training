@@ -324,7 +324,7 @@ var genericText =
         hit: "ΕΠΙΤΥΧΙΑ!",
         arrScrollUp: "Μετακίνηση προς τα πάνω",
         arrScrollDown: "Μετακίνηση προς τα κάτω",
-        arrBackBtn: "Επιστροφή",
+        arrBackBtn: "Τώρα πάτα το κουμπί της Επιστροφής!",
         arrScrollBtn: "Αυτόματη μετακίνηση",
         clickEmu: "Εξομοίωση κλικ",
         zoomBtn: "Ζουμ",
