@@ -636,7 +636,7 @@ function InitiateLevel(group, level, levelStructure) {
         backgroundColor.graphics.beginFill(color.brown).drawRect(0, 0, stage.canvas.width, stage.canvas.height);
 
         var villageTextA = new createjs.Text(genericText.lvl3ScrollDownA, "700 24px Roboto", color.whitePimary);
-        if (gameTypeBare) {
+        if (gameTypeStripped) {
             villageTextA = new createjs.Text(genericText.arrScrollDown, "700 24px Roboto", color.whitePimary);
         }
         villageTextA.x = 300;
@@ -715,7 +715,7 @@ function InitiateLevel(group, level, levelStructure) {
         bush4.y = stage.canvas.height - 200;
 
 
-        if (gameTypeBare) {
+        if (gameTypeStripped) {
 
             cave = new createjs.Bitmap("assets/int/wizard.png");
             cave.x = 80;
@@ -739,7 +739,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             var arrow, arrowLabel;
 
-            if (!gameTypeBare) {
+            if (!gameTypeStripped) {
 
                 var towerFloor = new createjs.Shape();
                 towerFloor.graphics.beginFill(color.brown).drawRect(0, 0, stage.canvas.width, parseInt(2*(canvas.height/3),10));
@@ -809,7 +809,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.removeChild(towerContainer);
 
-            if (gameTypeBare) {
+            if (gameTypeStripped) {
                 tower.visible = false;
                 towerSelect.visible = false;
                 towerSelectIcon.visible = false;
@@ -828,7 +828,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.removeChild(levelContainer);
 
-            if (!gameTypeBare) {
+            if (!gameTypeStripped) {
                 var backgroundColor = new createjs.Shape();
                 backgroundColor.graphics.beginFill(color.darkBrown).drawRect(0, 0, stage.canvas.width, canvas.height);
 
@@ -881,7 +881,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             results = [levelContainer, metrics];
 
-            if (!gameTypeBare) {
+            if (!gameTypeStripped) {
                 createjs.Tween.get(levelContainer)
                     .wait(3000)
                     .call( function () {
@@ -900,7 +900,7 @@ function InitiateLevel(group, level, levelStructure) {
         });
 
 
-        if (!gameTypeBare) {
+        if (!gameTypeStripped) {
             levelContainer.addChild(backgroundColor, river, village, villageTextA, villageTextB, villageTitle, tower, towerTitle, towerSelect, towerSelectIcon, cave, caveTitle, caveSelect, caveSelectIcon,
                 forest, bush1, bush2, bush3, bush4);
         } else {
@@ -1012,7 +1012,7 @@ function InitiateLevel(group, level, levelStructure) {
         papyrus.y = stage.canvas.height - 440;
         papyrus.alpha = 0;
 
-        if (!gameTypeBare) {
+        if (!gameTypeStripped) {
             createjs.Tween.get(papyrus)
                 .wait(5000)
                 .to({alpha:1}, 1000)
@@ -1076,7 +1076,7 @@ function InitiateLevel(group, level, levelStructure) {
             submitLabel.x = stage.canvas.width/2 + 70;
             submitLabel.y = stage.canvas.height - 170;
 
-            if (!gameTypeBare) {
+            if (!gameTypeStripped) {
                 submitBtn = new createjs.Bitmap("assets/int/btn-go.png");
             }
             else {
@@ -1107,11 +1107,13 @@ function InitiateLevel(group, level, levelStructure) {
                         SendLSLMessage("level_int_2__question_asked_easy");
                     }
 
-                    if (gameTypeElems) {
-                        pointer = getRandomInt(pointer, 0, 1);
-                    } else {
-                        pointer = getRandomInt(pointer, 0, 3);
-                    }
+                    pointer = getRandomInt(pointer, 0, 1);
+
+                    /*if (gameTypeElems) {
+                     pointer = getRandomInt(pointer, 0, 1);
+                     } else {
+                     pointer = getRandomInt(pointer, 0, 3);
+                     }*/
 
                 } else if (idx < 4) {
 
@@ -1120,11 +1122,13 @@ function InitiateLevel(group, level, levelStructure) {
                         SendLSLMessage("level_int_2__question_asked_med");
                     }
 
-                    if (gameTypeElems) {
-                        pointer = getRandomInt(pointer, 2, 3);
-                    } else {
-                        pointer = getRandomInt(pointer, 4, 7);
-                    }
+                    pointer = getRandomInt(pointer, 2, 3);
+
+                    /*if (gameTypeElems) {
+                     pointer = getRandomInt(pointer, 2, 3);
+                     } else {
+                     pointer = getRandomInt(pointer, 4, 7);
+                     }*/
 
 
                 } else {
@@ -1134,11 +1138,13 @@ function InitiateLevel(group, level, levelStructure) {
                         SendLSLMessage("level_int_2__question_asked_hard");
                     }
 
-                    if (gameTypeElems) {
-                        pointer = 4;
-                    } else {
-                        pointer = getRandomInt(pointer, 8, 11);
-                    }
+                    pointer = 4;
+
+                    /*if (gameTypeElems) {
+                     pointer = 4;
+                     } else {
+                     pointer = getRandomInt(pointer, 8, 11);
+                     }*/
 
 
                 }
@@ -1154,18 +1160,20 @@ function InitiateLevel(group, level, levelStructure) {
                 question.text = quizText[pointer].question;
                 question = alignTextToStageCenter(stage, question);
                 question.y = papyrus.y + 100;
-                answerA.text = quizText[pointer].answer1_en + " / " + quizText[pointer].answer1;
+
+                answerA.text =  toggleQuizTranslations ? quizText[pointer].answer1_en + " / " + quizText[pointer].answer1 : quizText[pointer].answer1_en;
                 answerA.x = (stage.canvas.width/2) - 200;
                 answerA.y = papyrus.y + 150;
-                answerB.text = quizText[pointer].answer2_en + " / " + quizText[pointer].answer2;
+                answerB.text =  toggleQuizTranslations ? quizText[pointer].answer2_en + " / " + quizText[pointer].answer2 : quizText[pointer].answer2_en;
                 answerB.x = (stage.canvas.width/2) - 200;
                 answerB.y = papyrus.y + 180;
-                answerC.text = quizText[pointer].answer3_en + " / " + quizText[pointer].answer3;
+                answerC.text =  toggleQuizTranslations ? quizText[pointer].answer3_en + " / " + quizText[pointer].answer3 : quizText[pointer].answer3_en;
                 answerC.x = (stage.canvas.width/2) + 60;
                 answerC.y = papyrus.y + 150;
-                answerD.text = quizText[pointer].answer4_en + " / " + quizText[pointer].answer4;
+                answerD.text =  toggleQuizTranslations ? quizText[pointer].answer4_en + " / " + quizText[pointer].answer4 : quizText[pointer].answer4_en;
                 answerD.x = (stage.canvas.width/2) + 60;
                 answerD.y = papyrus.y + 180;
+
             }
 
             submitBtn.addEventListener("mousedown", function (e) {
@@ -1273,7 +1281,7 @@ function InitiateLevel(group, level, levelStructure) {
             levelContainer.addChild(question, answerA, answerB, answerC, answerD, hint, submitBtn, submitLabel);
         }
 
-        if (!gameTypeBare) {
+        if (!gameTypeStripped) {
             levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratTextA, congratTextB, papyrus, questionLabel);
             levelContainer.alpha = 0;
             createjs.Tween.get(levelContainer).to({alpha:1}, 1000);
@@ -1436,7 +1444,7 @@ function InitiateLevel(group, level, levelStructure) {
         submitLabel.y = submitBtn.y + 20;
         submitLabel.alpha = 0;
 
-        if(!gameTypeBare) {
+        if(!gameTypeStripped) {
 
             globe.on("mousedown", function() {
 
@@ -1580,7 +1588,7 @@ function InitiateLevel(group, level, levelStructure) {
         });
 
 
-        if (!gameTypeBare) {
+        if (!gameTypeStripped) {
             levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratulatoryText, scroll, scrollTitle, scrollDesc, cpIcon, globe, clickLabel, map, submitBtn, submitLabel);
             levelContainer.alpha = 0;
 
@@ -1631,7 +1639,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer;
 
-        if (!gameTypeBare) {
+        if (!gameTypeStripped) {
 
             levelContainer = loadAdvancedLevelsIntroMap(1);
             var actualLevel = levelContainer.getChildAt(0);
@@ -1840,7 +1848,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer;
 
-        if (!gameTypeBare) {
+        if (!gameTypeStripped) {
 
             levelContainer = loadAdvancedLevelsIntroMap(2);
             var actualLevel = levelContainer.getChildAt(2);
@@ -2019,7 +2027,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer;
 
-        if (!gameTypeBare) {
+        if (!gameTypeStripped) {
             levelContainer = loadAdvancedLevelsIntroMap(3);
             var actualLevel = levelContainer.getChildAt(4);
             actualLevel.on("mousedown", function() {
@@ -2235,7 +2243,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         var levelContainer;
 
-        if (!gameTypeBare) {
+        if (!gameTypeStripped) {
             levelContainer = loadAdvancedLevelsIntroMap(4);
             var actualLevel = levelContainer.getChildAt(6);
             actualLevel.on("mousedown", function() {
@@ -2557,7 +2565,7 @@ function InitiateLevel(group, level, levelStructure) {
             resultsPopup.graphics.beginFill(color.blue).drawRect(poe.x, poe.y + 100, resultsPopup.width, resultsPopup.height);
             resultsPopup.shadow = new createjs.Shadow(color.gray, 0, 2, 4);
 
-            resultsPopup.visible = !gameTypeBare;
+            resultsPopup.visible = !gameTypeStripped;
 
             stage.addChild(resultsPopup);
 
@@ -2632,7 +2640,7 @@ function InitiateLevel(group, level, levelStructure) {
                 // Footer navigation buttons
                 var button = positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage, replayCurrentLevel, advanceToNextLevel, group, level);
 
-                if (!gameTypeBare) {
+                if (!gameTypeStripped) {
                     scoreInfoContainer.addChild(resultsPopup, label.score, separator.score, label.currentScore, label.previousScore, label.time, separator.time, label.currentTime, label.previousTime, label.rewards, separator.rewards, score.currentValue, score.previousValue, time.currentValue, time.previousValue, trophy.title, trophy.img, trophy.desc, button.overview.btn, button.overview.icon, button.overview.label, button.replay.btn, button.replay.icon, button.replay.label, button.next.btn, button.next.icon, button.next.label);
                 } else  {
                     scoreInfoContainer.addChild(button.overview.btn, button.overview.icon, button.overview.label, button.replay.btn, button.replay.icon, button.replay.label, button.next.btn, button.next.icon, button.next.label);

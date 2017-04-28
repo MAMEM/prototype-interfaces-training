@@ -160,7 +160,7 @@ function loadLvlStructure(fullTitle, shortTitle) {
     btnPos.y = 50;
     var abortBtn = new Button(color.gray, btnSize, btnPos, genericText.abort, abortLevel);
 
-    if(gameTypeBare) {
+    if(gameTypeStripped) {
         timer.icon.visible = false;
         timer.text.visible = false;
     }
@@ -206,9 +206,10 @@ function loadLvlIntroStory(script) {
     face.x = window.innerWidth - face.image.width - 200;
     face.y = sb.y + speechBubbleContainer.height;
 
-    if(gameTypeBare) {
+    if(gameTypeStripped) {
         face.visible = false;
-        bubbleText.visible = false;
+        bubbleText = alignTextToStageCenter(stage, bubbleText);
+        bubbleText.y = stage.canvas.height/2 - 150;
         sb.visible = false;
     }
 
@@ -243,7 +244,7 @@ function loadLvlOutroStory(poe, completion) {
 
         if (completion === 'trophy') {
 
-            if (!gameTypeBare)
+            if (!gameTypeStripped)
             { textString = composeFeedback('positive'); }
             else
             { textString = defaultFeedback.positive; }
@@ -253,7 +254,7 @@ function loadLvlOutroStory(poe, completion) {
 
         }
         else {
-            if (!gameTypeBare)
+            if (!gameTypeStripped)
             { textString = composeFeedback('neutral'); }
             else
             { textString = defaultFeedback.neutral; }
@@ -264,7 +265,7 @@ function loadLvlOutroStory(poe, completion) {
 
     } else {
 
-        if (!gameTypeBare)
+        if (!gameTypeStripped)
         { textString = composeFeedback('negative'); }
         else
         { textString = defaultFeedback.negative; }
@@ -299,7 +300,7 @@ function loadLvlOutroStory(poe, completion) {
 
     var outroStoryContainer = new createjs.Container();
 
-    if(gameTypeBare) {
+    if(gameTypeStripped) {
         sb.visible = false;
         face.visible = false;
         bubbleText = alignTextToStageCenter(stage, bubbleText);
