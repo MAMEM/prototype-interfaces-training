@@ -1779,7 +1779,7 @@ function InitiateLevel(group, level, levelStructure) {
                         checkmark[3].alpha = 1;
                     }
 
-                    if (string === 'gaze_off' && taskList.close) {
+                    if (string === 'gaze_off') {
 
                         SendLSLMessage("level_adv_1__msg_gaze_off");
 
@@ -1825,7 +1825,6 @@ function InitiateLevel(group, level, levelStructure) {
                     }
                 });
             }
-
         }
 
         stage.addChild(backgroundColor);
