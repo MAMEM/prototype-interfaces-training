@@ -92,47 +92,56 @@ var levelText = [
     {
         fullTitle: "BASIC - 01 Focus on the markers",
         shortTitle: "Focus on the markers",
-        story: "Try to focus your eyes on a series of markers. Get the trophy by focusing on each marker only once!"
+        story: "Try to focus your eyes on a series of markers. Get the trophy by focusing on each marker only once!",
+        storyNeutral: "Try to focus your eyes on a series of markers."
     },
     {
         fullTitle: "BASIC - 02 Focus on a sequence of markers",
         shortTitle: "Whack-a-mole!",
-        story: "Try to focus your eyes on each marker when it appears, for a set amount of time! Hit all the markers to earn the trophy!"
+        story: "Try to focus your eyes on each marker when it appears, for a set amount of time! Hit all the markers to earn the trophy!",
+        storyNeutral: "Try to focus your eyes on each marker when it appears, for a set amount of time."
     },
     {
         fullTitle: "INTERMEDIATE - 01 Find the wizard",
         shortTitle: "Find the wizard",
-        story: "Scroll through the level to find the wizard using the scroll overlays or the auto scrolling, and use the click emulation button to select the place where he is hiding! Visit all locations only once to earn the trophy!"
+        story: "Scroll through the level to find the wizard using the scroll overlays or the auto scrolling, and use the click emulation button to select the place where he is hiding! Visit all locations only once to earn the trophy!",
+        storyNeutral: "Scroll through the level to find the wizard using the scroll overlays or the auto scrolling, and use the click emulation button to select him."
     },
     {
         fullTitle: "INTERMEDIATE - 02 The Quiz",
         shortTitle: "The quiz",
-        story: "You found the wizard! Now he is challenging you to a quiz test. Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD! Answer correctly to all questions and earn the trophy!"
+        story: "You found the wizard! Now he is challenging you to a quiz test. Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD! Answer correctly to all questions and earn the trophy!",
+        storyNeutral: "Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD."
     },
     {
         fullTitle: "INTERMEDIATE - 03 Find the treasure",
         shortTitle: "The map",
-        story: "Open the map using the click emulation button, then use the GazeTheWeb copy & paste functionality to find the treasure! Be successful at your first try copy & pasting to get the trophy!"
+        story: "Open the map using the click emulation button, then use the GazeTheWeb copy & paste functionality to find the treasure! Be successful at your first try copy & pasting to get the trophy!",
+        storyNeutral: "Use the GazeTheWeb copy & paste functionality to find the treasure."
     },
     {
         fullTitle: "ADVANCED - 01 Gaze Visualization",
         shortTitle: "Settings - Gaze Visualization",
-        story: "You uncovered the location of the treasure in the previous levels. Now tread through the path accross 4 locations to finally find the treasure, while learning how to use the unique tools GTW has to offer! Try following the instructions without making the same action twice to get the trophy!"
+        story: "You uncovered the location of the treasure in the previous levels. Now tread through the path accross 4 locations to finally find the treasure, while learning how to use the unique tools GTW has to offer! Try following the instructions without making the same action twice to get the trophy!",
+        storyNeutral: "Learning how to use the Gaze Visualization."
     },
     {
         fullTitle: "ADVANCED - 02 URL Typing",
         shortTitle: "URL Typing",
-        story: "Learn how to edit a url on GTW Browser. Try following the instructions without making the same action twice to get the trophy!"
+        story: "Learn how to edit a url on GTW Browser. Try following the instructions without making the same action twice to get the trophy!",
+        storyNeutral: "Learn how to edit a url on GTW Browser."
     },
     {
         fullTitle: "ADVANCED - 03 Text prediction",
         shortTitle: "Text prediction",
-        story: "Learn how to type using text prediction. Try following the instructions without making the same action twice to get the trophy!"
+        story: "Learn how to type using text prediction. Try following the instructions without making the same action twice to get the trophy!",
+        storyNeutral: "Learn how to type using text prediction."
     },
     {
         fullTitle: "ADVANCED - 04 Bookmarks",
         shortTitle: "Bookmarks",
-        story: "Learn how to bookmark a page. Try following the instructions without making the same action twice to get the trophy!"
+        story: "Learn how to bookmark a page. Try following the instructions without making the same action twice to get the trophy!",
+        storyNeutral: "Learn how to bookmark a page."
     }
 ];
 
@@ -347,6 +356,7 @@ var genericText =
         lvl5CongrText: "You have been deemed worthy! Now find the treasure!",
         coordinates: "COORDINATES",
         lvl5ScrollDesc: "use the",
+        lvl5PasteDesc: "to paste, use",
         lvl5coords: "Wrong coordinates! Treasure not found!",
         signedOut: "USER IS SIGNED OUT",
         tasks: "Tasks",
@@ -372,7 +382,7 @@ var advSecondInstructions =
         openTabs: "Open Tab manager",
         editUrl: "Edit url",
         typeUrl: "Type 'www.mamem.eu'",
-        abort: "Abort",
+        abort: "Close",
         taskComplete: "Level completed"
     };
 var advThirdInstructions =

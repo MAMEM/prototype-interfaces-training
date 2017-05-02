@@ -347,6 +347,7 @@ var genericText =
         lvl5CongrText: "נמצאת ראוי, כעת מצא את האוצר",
         coordinates: "קואורדינטות",
         lvl5ScrollDesc: "השתמש ב",
+        lvl5PasteDesc: "to paste, use",
         lvl5coords: "הקואורדינטות שגוי, האוצר לא נמצא",
         signedOut: "המשתמש התנתק",
         tasks: "מטלות",

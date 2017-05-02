@@ -347,6 +347,7 @@ var genericText =
         lvl5CongrText: "Άξιος! Τώρα βρες το θησαυρό!",
         coordinates: "ΣΥΝΤΕΤΑΓΜΕΝΕΣ",
         lvl5ScrollDesc: "χρησιμοποίησε το",
+        lvl5PasteDesc: "to paste, use",
         lvl5coords: "Λάθος συντεταγμένες! Δεν υπάρχει θησαυρός εκεί!",
         signedOut: "Ο ΧΡΗΣΤΗΣ ΑΠΟΣΥΝΔΕΘΗΚΕ",
         tasks: "Ενέργειες",

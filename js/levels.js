@@ -57,7 +57,13 @@ function loadLevel(group, level) {
     }
 
     levelStructure = loadLvlStructure(levelText[textPointer].fullTitle, levelText[textPointer].shortTitle);
-    levelIntro = loadLvlIntroStory(levelText[textPointer].story);
+
+    if (gameTypeStripped) {
+        levelIntro = loadLvlIntroStory(levelText[textPointer].storyNeutral);
+    } else {
+        levelIntro = loadLvlIntroStory(levelText[textPointer].story);
+    }
+
 
     var speechBubble = levelIntro.getChildAt(0);
 
@@ -1383,6 +1389,15 @@ function InitiateLevel(group, level, levelStructure) {
         cpIcon.x = 330;
         cpIcon.y = scrollDesc.y;
 
+        var pasteDesc = new createjs.Text(genericText.lvl5PasteDesc + " ", "500 20px Roboto", color.brown);
+        pasteDesc.x = 280;
+        pasteDesc.y = stage.canvas.height - 90;
+        pasteDesc.textAlign = "center";
+
+        var pasteIcon = new createjs.Bitmap("assets/ic_paste.png");
+        pasteIcon.x = 360;
+        pasteIcon.y = pasteDesc.y - 10;
+
         textElement1.style.position = "absolute";
         textElement1.style.left ="250px";
         textElement1.style.top = stage.canvas.height - 230  + "px";
@@ -1589,7 +1604,7 @@ function InitiateLevel(group, level, levelStructure) {
 
 
         if (!gameTypeStripped) {
-            levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratulatoryText, scroll, scrollTitle, scrollDesc, cpIcon, globe, clickLabel, map, submitBtn, submitLabel);
+            levelContainer.addChild(backgroundColor, caveFloor, rocksL, rocksR, torchL, torchR, fire, wizard, congratulatoryText, scroll, scrollTitle, scrollDesc, cpIcon, globe, clickLabel, map, submitBtn, submitLabel, pasteDesc, pasteIcon);
             levelContainer.alpha = 0;
 
             createjs.Tween.get(levelContainer).to({alpha:1}, 1000).call(function () {
@@ -1598,7 +1613,7 @@ function InitiateLevel(group, level, levelStructure) {
             });
 
         } else {
-            levelContainer.addChild(scrollTitle, scrollDesc, cpIcon, clickLabel, submitBtn, submitLabel);
+            levelContainer.addChild(scrollTitle, scrollDesc, cpIcon, clickLabel, submitBtn, submitLabel, pasteDesc, pasteIcon);
             textElement1.style.display = "block";
             textElement2.style.display = "block";
         }
