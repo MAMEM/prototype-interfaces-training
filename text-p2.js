@@ -112,7 +112,7 @@ var levelText = [
     {
         fullTitle: "INTERMEDIATE - 03 Find the treasure",
         shortTitle: "The map",
-        story: "Open the map using the click emulation button, then use the GazeTheWeb copy & paste functionality to find the treasure! Be successful at your first try cop & pasting to get the trophy!"
+        story: "Open the map using the click emulation button, then use the GazeTheWeb copy & paste functionality to find the treasure! Be successful at your first try copy & pasting to get the trophy!"
     },
     {
         fullTitle: "ADVANCED - 01 Gaze Visualization",

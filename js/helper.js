@@ -209,7 +209,7 @@ function loadLvlIntroStory(script) {
     if(gameTypeStripped) {
         face.visible = false;
         bubbleText = alignTextToStageCenter(stage, bubbleText);
-        bubbleText.y = stage.canvas.height/2 - 150;
+        bubbleText.y = 300;
         sb.visible = false;
     }
 
@@ -217,7 +217,7 @@ function loadLvlIntroStory(script) {
         face.visible = false;
         /*bubbleText.visible = false;*/
         bubbleText = alignTextToStageCenter(stage, bubbleText);
-        bubbleText.y = stage.canvas.height/2 - 150;
+        bubbleText.y = 300;
         sb.visible = false;
     }
 
@@ -553,13 +553,13 @@ function positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage,
 
     button.overview = new Button(color.green, size, pos, genericText.overview, loadOverviewPage);
     button.overview.icon = new createjs.Bitmap("assets/ic_overview.png");
-    button.overview.icon.x = col.width/2 - col.x - 60;
+    button.overview.icon.x = col.width/2 - col.x - 40;
     button.overview.icon.y = resultsPopup.height + poe.y + 8;
 
     pos.x = col.x + col.width;
     button.replay = new Button(color.green, size, pos, genericText.replay, replayCurrentLevel);
     button.replay.icon = new createjs.Bitmap("assets/ic_replay.png");
-    button.replay.icon.x = col.width + (col.width/2 - col.x) - 60;
+    button.replay.icon.x = col.width + (col.width/2 - col.x) - 30;
     button.replay.icon.y = resultsPopup.height + poe.y + 8;
 
     pos.x = col.x + (2 * col.width);
@@ -572,7 +572,6 @@ function positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage,
         button.next.btn.visible = false;
         button.next.label.visible = false;
         button.next.icon.visible = false;
-
     }
 
     return button;
