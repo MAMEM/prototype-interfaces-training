@@ -956,8 +956,7 @@ function InitiateLevel(group, level, levelStructure) {
         var textInput = document.getElementById('inputTextFirst');
         textInput.placeholder = genericText.answer;
         textInput.style.display = "none";
-
-
+        
         var metrics = [];
         metrics.click = 0;
         metrics.submit = 0;
@@ -1197,7 +1196,7 @@ function InitiateLevel(group, level, levelStructure) {
                 barElement.x = (stage.canvas.width/2 - 304/2) + (idx * 61);
                 barElement.y = 160;
 
-                if (textInput.value === quizText[pointer].correct) {
+                if (textInput.value.toUpperCase() === quizText[pointer].correct.toUpperCase()) {
 
                     // Send LSL Message
                     if (window.loggingMediator) {
