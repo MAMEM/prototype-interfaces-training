@@ -14,6 +14,8 @@ var gameTypeFull = false;
 var gameTypeStripped = false;
 var gameTypeElems = false;
 
+var advLevelsEnabled = true;
+
 // options
 var toggleQuizTranslations = false;
 
@@ -90,6 +92,9 @@ function init() {
     gameTypeFull = document.getElementById('persuasiveRadioBtn').checked;
     gameTypeStripped = document.getElementById('bareRadioBtn').checked;
     gameTypeElems = document.getElementById('gameOnlyRadioBtn').checked;
+
+    advLevelsEnabled = document.getElementById('advCheckbox');
+    advLevelsEnabled = advLevelsEnabled.checked;
 
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", tick);
@@ -745,6 +750,12 @@ function loadOverviewPage() {
             if (advLevelTrophy[i]) {overviewAdvGroupContainer.addChild(advLevelTrophy[i]);}
         }
 
+        if (!advLevelsEnabled) {
+            advCompletedLabel.text = "";
+            advLabel.text = "";
+            advTrophiesLabel.text = "";
+        }
+
 
         if (!gameTypeStripped) {
             overviewContainer.addChild(title, subtitle, basicLabel, basicCompletedLabel, basicTrophiesLabel, intLabel, intCompletedLabel, intTrophiesLabel, advLabel, advCompletedLabel, advTrophiesLabel);
@@ -753,7 +764,11 @@ function loadOverviewPage() {
             overviewContainer.addChild(title, subtitle, basicLabel, basicCompletedLabel, intLabel, intCompletedLabel, advLabel, advCompletedLabel);
         }
 
-        stage.addChild(overviewContainer, overviewBasicGroupContainer, overviewIntGroupContainer, overviewAdvGroupContainer);
+        if (advLevelsEnabled) {
+            stage.addChild(overviewContainer, overviewBasicGroupContainer, overviewIntGroupContainer, overviewAdvGroupContainer);
+        } else {
+            stage.addChild(overviewContainer, overviewBasicGroupContainer, overviewIntGroupContainer);
+        }
 
         // Set height manually in every stage (except splash)
         canvas.width = canvas.width - 10;

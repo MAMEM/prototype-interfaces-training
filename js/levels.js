@@ -226,8 +226,8 @@ function InitiateLevel(group, level, levelStructure) {
         function addMarker(idx) {
 
             marker[idx] = new createjs.Bitmap("assets/marker.png");
-            marker[idx].x = getRandomInt(idx, 100, stage.canvas.width - 100);
-            marker[idx].y = getRandomInt(idx, 100, stage.canvas.height - 100);
+            marker[idx].x = getRandomInt(idx, 160, stage.canvas.width - 160);
+            marker[idx].y = getRandomInt(idx, 160, stage.canvas.height - 160);
             stage.addChild(marker[idx]);
 
             marker[idx].on("mouseover", function() {
@@ -956,7 +956,7 @@ function InitiateLevel(group, level, levelStructure) {
         var textInput = document.getElementById('inputTextFirst');
         textInput.placeholder = genericText.answer;
         textInput.style.display = "none";
-        
+
         var metrics = [];
         metrics.click = 0;
         metrics.submit = 0;
