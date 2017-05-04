@@ -574,6 +574,14 @@ function positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage,
         button.next.icon.visible = false;
     }
 
+
+    if (!advLevelsEnabled && group === 1 && level === 2) {
+        button.next.btn.visible = false;
+        button.next.label.visible = false;
+        button.next.icon.visible = false;
+    }
+
+
     return button;
 }
 
