@@ -2445,6 +2445,7 @@ function InitiateLevel(group, level, levelStructure) {
         levelStructure.removeChild(abortBtn);
         levelStructure.removeChild(abortLabel);
 
+
         var outroStoryContainer;
         var scoreInfoContainer = new createjs.Container();
         var metrics;
@@ -2743,7 +2744,12 @@ function InitiateLevel(group, level, levelStructure) {
                 } else if (level === 1) {
                     loadLevel(1, 2);
                 } else {
-                    loadLevel(2, 0);
+
+                    if (!advLevelsEnabled) {
+                        loadCongratulatoryPage();
+                    } else {
+                        loadLevel(2, 0);
+                    }
                 }
 
                 break;
@@ -2756,11 +2762,74 @@ function InitiateLevel(group, level, levelStructure) {
                 } else if (level === 2) {
                     loadLevel(2, 3);
                 } else if (level === 3) {
-                    // disable it!
+
+                    if (advLevelsEnabled) {
+                        loadCongratulatoryPage();
+                    }
                     break;
                 }
 
                 break;
         }
+    }
+
+    function loadCongratulatoryPage() {
+
+        stage.removeAllChildren();
+        stage.removeAllEventListeners("mouseover");
+        stage.removeAllEventListeners("mouseout");
+        stage.addChild(firebaseUsernameHUD);
+        addMousePointer();
+
+        var congratsContainer = new createjs.Container();
+
+        // Create Congratulatory screen
+        var congratsPopup = new createjs.Shape();
+        congratsPopup.height = window.innerHeight - 200;
+        congratsPopup.width = window.innerWidth - 200;
+        congratsPopup.graphics.beginFill(color.green).drawRect(100, 100, congratsPopup.width, congratsPopup.height);
+        congratsPopup.shadow = new createjs.Shadow(color.gray, 0, 2, 4);
+
+        var title = new createjs.Text(genericText.congrats, "700 48px Roboto", "rgba(255,255,255,1)");
+        title = alignTextToStageCenter(stage, title);
+        title.y = 150;
+
+        var separator = new createjs.Shape();
+        separator.graphics.beginFill(color.whitePimary);
+        separator.graphics.drawRect(300, 240, congratsPopup.width - 400, 2);
+        separator.graphics.endFill();
+
+        var desc = new createjs.Text(genericText.treasureFound, "500 36px Roboto", "rgba(255,255,255,1)");
+        desc = alignTextToStageCenter(stage, desc);
+        desc.y = 500;
+
+        var img;
+
+        if (gameTypeStripped) {
+            desc.text = genericText.trainingComplete;
+            img = new createjs.Bitmap("assets/star.png");
+            img.x = (stage.canvas.width/2) -84;
+        } else {
+
+            img = new createjs.Bitmap("assets/treasure.png");
+            img.x = (stage.canvas.width/2) -89;
+        }
+        img.y = 300;
+
+        var size = [], pos = [];
+        size.x = 500;
+        size.y = 100;
+        pos.x = window.innerWidth/2 - size.x/2;
+        pos.y = 600;
+
+        var btn = new Button(color.blue, size, pos, genericText.ok, removeCongratulatoryPage);
+
+        congratsContainer.addChild(congratsPopup, title, separator, img, desc, btn.btn, btn.label);
+
+        function removeCongratulatoryPage() {
+            stage.removeChild(congratsContainer);
+            loadOverviewPage();
+        }
+        stage.addChild(congratsContainer);
     }
 }

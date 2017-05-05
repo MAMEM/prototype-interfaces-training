@@ -568,7 +568,7 @@ function positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage,
     button.next.icon.x = (2 * col.width) + (col.width - ( (2 * col.x) ));
     button.next.icon.y = resultsPopup.height + poe.y + 8;
 
-    if (group === 2 && level === 3) {
+    /*if (group === 2 && level === 3) {
         button.next.btn.visible = false;
         button.next.label.visible = false;
         button.next.icon.visible = false;
@@ -579,7 +579,7 @@ function positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage,
         button.next.btn.visible = false;
         button.next.label.visible = false;
         button.next.icon.visible = false;
-    }
+    }*/
 
 
     return button;

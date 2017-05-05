@@ -354,7 +354,11 @@ var genericText =
         advQuote1: "Be The Change",
         advQuote2: "That You Want To",
         noScore: "δεν υπάρχει σκόρ",
-        abort: "Διακοπή"
+        abort: "Διακοπή",
+        congrats: "CONGRATULATIONS",
+        trainingComplete: "You have completed the training",
+        treasureFound: "You have found the treasure!",
+        ok: "OK"
     };
 
 

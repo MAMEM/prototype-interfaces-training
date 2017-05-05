@@ -354,7 +354,11 @@ var genericText =
         advQuote1: "היו השינוי",
         advQuote2: "שאתם רוצים להיות",
         noScore: "אין ציון",
-        abort: "יציאה"
+        abort: "יציאה",
+        congrats: "CONGRATULATIONS",
+        trainingComplete: "You have completed the training",
+        treasureFound: "You have found the treasure!",
+        ok: "OK"
     };
 
 
