@@ -96,6 +96,9 @@ function init() {
     advLevelsEnabled = document.getElementById('advCheckbox');
     advLevelsEnabled = advLevelsEnabled.checked;
 
+    toggleQuizTranslations = document.getElementById('quizCheckbox');
+    toggleQuizTranslations = toggleQuizTranslations.checked;
+
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", tick);
 

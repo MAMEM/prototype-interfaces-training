@@ -20,3 +20,7 @@ canvas {
     margin: 6px;
     width: 140px;
 }
+
+label, legend {
+    margin-bottom: 0;
+}
