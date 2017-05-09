@@ -965,7 +965,7 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.trophy = false;
 
         var questions = [];
-        questions.total = 5;
+        questions.total = 3;
         questions.idx = questions.total;
 
         var backgroundColor = new createjs.Shape();
@@ -1105,36 +1105,23 @@ function InitiateLevel(group, level, levelStructure) {
 
             function ask(idx) {
 
-                if (idx < 2) {
+                if (idx === 0) {
 
                     // Send LSL Message
                     if (window.loggingMediator) {
                         SendLSLMessage("level_int_2__question_asked_easy");
                     }
 
-                    pointer = getRandomInt(pointer, 0, 1);
+                    pointer = 0;
 
-                    /*if (gameTypeElems) {
-                     pointer = getRandomInt(pointer, 0, 1);
-                     } else {
-                     pointer = getRandomInt(pointer, 0, 3);
-                     }*/
-
-                } else if (idx < 4) {
+                } else if (idx === 1) {
 
                     // Send LSL Message
                     if (window.loggingMediator) {
                         SendLSLMessage("level_int_2__question_asked_med");
                     }
 
-                    pointer = getRandomInt(pointer, 2, 3);
-
-                    /*if (gameTypeElems) {
-                     pointer = getRandomInt(pointer, 2, 3);
-                     } else {
-                     pointer = getRandomInt(pointer, 4, 7);
-                     }*/
-
+                    pointer = 1;
 
                 } else {
 
@@ -1142,22 +1129,13 @@ function InitiateLevel(group, level, levelStructure) {
                     if (window.loggingMediator) {
                         SendLSLMessage("level_int_2__question_asked_hard");
                     }
-
-                    pointer = 4;
-
-                    /*if (gameTypeElems) {
-                     pointer = 4;
-                     } else {
-                     pointer = getRandomInt(pointer, 8, 11);
-                     }*/
-
-
+                    pointer = 2;
                 }
 
-                if (idx+1 === 6) {
-                    questionLabel.text = genericText.question + " " + '5' + " / " + questions.total;
+                if (idx === 2) {
+                    questionLabel.text = genericText.question + " " + '3' + " / " + questions.total;
                 } else {
-                    questionLabel.text = genericText.question + " " + (idx+1) + " / " + questions.total;
+                    questionLabel.text = genericText.question + " " + (pointer+1) + " / " + questions.total;
                 }
 
                 questionLabel = alignTextToStageCenter(stage, questionLabel);
@@ -1193,7 +1171,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                 var barElement = new createjs.Shape();
 
-                barElement.x = (stage.canvas.width/2 - 304/2) + (idx * 61);
+                barElement.x = (stage.canvas.width/2 - 304/2) + ( metrics.submit * 61);
                 barElement.y = 160;
 
                 if (textInput.value.toUpperCase() === quizText[pointer].correct.toUpperCase()) {
@@ -1206,6 +1184,8 @@ function InitiateLevel(group, level, levelStructure) {
                     barElement.graphics.beginFill(color.barGreen).drawRect(0, 0, 60, 12).endFill();
                     metrics.pass++;
 
+                    idx++;
+
                 } else {
 
                     // Send LSL Message
@@ -1217,7 +1197,8 @@ function InitiateLevel(group, level, levelStructure) {
                     metrics.fail++;
                 }
 
-                idx++;
+
+
                 barContainer.addChild(barElement);
                 textInput.value = '';
                 stage.addChild(barContainer);
@@ -1250,7 +1231,7 @@ function InitiateLevel(group, level, levelStructure) {
                     }
 
                     createjs.Tween.get(levelContainer)
-                        .wait(2000)
+                        .wait(500)
                         .call(function(){
 
                             stage.removeChild(barContainer);
@@ -1261,27 +1242,16 @@ function InitiateLevel(group, level, levelStructure) {
                             textInput.className = "elementRemoved";
                             results = [levelContainer, metrics];
 
-                            if (metrics.pass > metrics.fail) {
-
-                                // Send LSL Message
-                                if (window.loggingMediator) {
-                                    SendLSLMessage("level_complete");
-                                }
-
-                                endLevel(true);
-                            } else {
-                                // Send LSL Message
-                                if (window.loggingMediator) {
-                                    SendLSLMessage("level_failed");
-                                }
-                                endLevel(false);
+                            // Send LSL Message
+                            if (window.loggingMediator) {
+                                SendLSLMessage("level_complete");
                             }
+                            endLevel(true);
+
                         });
                 } else {
                     ask(idx);
                 }
-
-
             });
             levelContainer.addChild(question, answerA, answerB, answerC, answerD, hint, submitBtn, submitLabel);
         }

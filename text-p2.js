@@ -149,68 +149,42 @@ var levelText = [
 // In here translate only the 'question' and 'answer' fields (NO answer_en).
 var quizText = [
     {
-        question: "What is the capital city of France?",
-        answer1: "barcelona",
-        answer2: "paris",
-        answer3: "london",
-        answer4: "amsterdam",
-        answer1_en: "barcelona", // Don't translate this!
-        answer2_en: "paris", // Don't translate this!
-        answer3_en: "london", // Don't translate this!
-        answer4_en: "amsterdam", // Don't translate this!
-        correct: "paris", // Don't translate this!
-        cat: "Easy" // Don't translate this!
-    },
-    {
         question: "What is the name of the girlfriend of Mickey Mouse?",
-        answer1: "nano mouse",
-        answer2: "micro mouse",
-        answer3: "minnie mouse",
-        answer4: "mega mouse",
-        answer1_en: "nano mouse", // Don't translate this!
-        answer2_en: "micro mouse", // Don't translate this!
-        answer3_en: "minnie mouse", // Don't translate this!
-        answer4_en: "mega mouse", // Don't translate this!
-        correct: "minnie mouse", // Don't translate this!
+        answer1: "Nano Mouse",
+        answer2: "Micro Mouse",
+        answer3: "Minnie Mouse",
+        answer4: "Mega Mouse",
+        answer1_en: "Nano Mouse", // Don't translate this!
+        answer2_en: "Micro Mouse", // Don't translate this!
+        answer3_en: "Minnie Mouse", // Don't translate this!
+        answer4_en: "Mega Mouse", // Don't translate this!
+        correct: "Minnie Mouse", // Don't translate this!
         cat: "Easy" // Don't translate this!
     },
     {
-        question: "What object fell on the head of Newton that made him discover gravity?",
-        answer1: "a brick",
-        answer2: "an apple",
-        answer3: "a light bulb",
-        answer4: "a balloon",
-        answer1_en: "a brick", // Don't translate this!
-        answer2_en: "an apple", // Don't translate this!
-        answer3_en: "a light bulb", // Don't translate this!
-        answer4_en: "a balloon", // Don't translate this!
-        correct: "an apple", // Don't translate this!
-        cat: "Intermediate" // Don't translate this!
-    },
-    {
-        question: "What is the biggest planet in our Solar System?",
-        answer1: "mercury",
-        answer2: "venus",
-        answer3: "mars",
-        answer4: "jupiter",
-        answer1_en: "mercury", // Don't translate this!
-        answer2_en: "venus", // Don't translate this!
-        answer3_en: "mars", // Don't translate this!
-        answer4_en: "jupiter", // Don't translate this!
-        correct: "jupiter", // Don't translate this!
+        question: "What is the capital city of France?",
+        answer1: "Barcelona",
+        answer2: "Paris",
+        answer3: "London",
+        answer4: "Amsterdam",
+        answer1_en: "Barcelona", // Don't translate this!
+        answer2_en: "Paris", // Don't translate this!
+        answer3_en: "London", // Don't translate this!
+        answer4_en: "Amsterdam", // Don't translate this!
+        correct: "Paris", // Don't translate this!
         cat: "Intermediate" // Don't translate this!
     },
     {
         question: "Who was the first President of the United States?",
-        answer1: "george washington",
-        answer2: "abraham lincoln",
-        answer3: "theodore roosevelt",
-        answer4: "george bush sr.",
-        answer1_en: "george washington", // Don't translate this!
-        answer2_en: "abraham lincoln", // Don't translate this!
-        answer3_en: "theodore roosevelt", // Don't translate this!
-        answer4_en: "george bush sr.", // Don't translate this!
-        correct: "george washington", // Don't translate this!
+        answer1: "Washington",
+        answer2: "Lincoln",
+        answer3: "Roosevelt",
+        answer4: "Bush sr.",
+        answer1_en: "Washington", // Don't translate this!
+        answer2_en: "Lincoln", // Don't translate this!
+        answer3_en: "Roosevelt", // Don't translate this!
+        answer4_en: "Bush sr.", // Don't translate this!
+        correct: "Washington", // Don't translate this!
         cat: "Advanced" // Don't translate this!
     }
 ];

@@ -1,7 +1,5 @@
 var firebaseUsernameHUD;
 
-
-
 function registerUser() {
 
     firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(function() {
