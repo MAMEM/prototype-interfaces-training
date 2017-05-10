@@ -1375,9 +1375,9 @@ function InitiateLevel(group, level, levelStructure) {
         pasteIcon.y = pasteDesc.y - 10;
 
         textElement1.style.position = "absolute";
-        textElement1.style.left ="250px";
+        textElement1.style.left ="166px";
         textElement1.style.top = stage.canvas.height - 230  + "px";
-        textElement1.style.fontSize = "20px";
+        textElement1.style.fontSize = "18px";
         textElement1.style.fontStyle = "Italic";
         textElement1.style.fontWeight = "500";
         textElement1.style.lineHeight = "30px";
@@ -1385,9 +1385,9 @@ function InitiateLevel(group, level, levelStructure) {
         textElement1.style.color = color.darkBrown;
 
         textElement2.style.position = "absolute";
-        textElement2.style.left ="250px";
+        textElement2.style.left ="166px";
         textElement2.style.top = stage.canvas.height - 180  + "px";
-        textElement2.style.fontSize = "20px";
+        textElement2.style.fontSize = "18px";
         textElement2.style.fontStyle = "Italic";
         textElement2.style.fontWeight = "500";
         textElement2.style.lineHeight = "30px";
@@ -1500,7 +1500,7 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.removeChild(wrongCoordsLabel);
 
-            if (textInput1.value === textElement1.innerHTML && textInput2.value === textElement2.innerHTML){
+            if (textInput1.value === "40.6401N" && textInput2.value === "22.9444E"){
                 textElement1.style.display = "none";
                 textElement2.style.display = "none";
                 textInput1.style.display = "none";
