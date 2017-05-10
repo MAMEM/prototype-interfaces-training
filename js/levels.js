@@ -1157,6 +1157,13 @@ function InitiateLevel(group, level, levelStructure) {
                 answerD.x = (stage.canvas.width/2) + 60;
                 answerD.y = papyrus.y + 180;
 
+                if (gameTypeStripped) {
+                    answerA.text = "";
+                    answerC.text = "";
+                    answerD.text = "";
+                    hint.text = genericText.lvl4ScrollDescSV;
+                }
+
             }
 
             submitBtn.addEventListener("mousedown", function (e) {

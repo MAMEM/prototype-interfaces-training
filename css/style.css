@@ -11,10 +11,10 @@ canvas {
 }
 
 .textStyle {
-    font-size:20px;
-    font-style:italic;
-    color:rgb(44,38,34);
-    text-align:left;
+    font-size: 18px;
+    font-style: italic;
+    color: rgb(44,38,34);
+    text-align: left;
     line-height: 26px;
     padding: 12px;
     margin: 6px;

@@ -340,6 +340,7 @@ var genericText =
         lvl4CongrTextA: "כל הכבוד, מצאתם אותי",
         lvl4CongrTextB: "המבחן האמיתי מתחיל עכשיו",
         lvl4ScrollDesc: "השתמשו בלחצן הזום כדי לקרוא את התשובות הזמינות, ולאחר מכן הקלידו את התשובה למטה",
+        lvl4ScrollDescSV: "Use the ZOOM button to read the answer, then type it below!",
         clickMe: "לחץ עלי",
         latitude: "קו רוחב",
         longitude: "קו אורך",

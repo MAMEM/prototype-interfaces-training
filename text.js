@@ -349,6 +349,7 @@ var genericText =
         lvl4CongrTextA: "Congratulations on finding me.",
         lvl4CongrTextB: "Your real test begins now!",
         lvl4ScrollDesc: "Use the ZOOM button to read the available answers, then type the answer below!",
+        lvl4ScrollDescSV: "Use the ZOOM button to read the answer, then type it below!",
         clickMe: "Click me!",
         latitude: "Latitude",
         longitude: "Longitude",

@@ -151,12 +151,12 @@ var quizText = [
     {
         question: "What is the name of the girlfriend of Mickey Mouse?",
         answer1: "Nano Mouse",
-        answer2: "Micro Mouse",
-        answer3: "Minnie Mouse",
+        answer2: "Minnie Mouse",
+        answer3: "Micro Mouse",
         answer4: "Mega Mouse",
         answer1_en: "Nano Mouse", // Don't translate this!
-        answer2_en: "Micro Mouse", // Don't translate this!
-        answer3_en: "Minnie Mouse", // Don't translate this!
+        answer2_en: "Minnie Mouse", // Don't translate this!
+        answer3_en: "Micro Mouse", // Don't translate this!
         answer4_en: "Mega Mouse", // Don't translate this!
         correct: "Minnie Mouse", // Don't translate this!
         cat: "Easy" // Don't translate this!
@@ -176,12 +176,12 @@ var quizText = [
     },
     {
         question: "Who was the first President of the United States?",
-        answer1: "Washington",
-        answer2: "Lincoln",
+        answer1: "Lincoln",
+        answer2: "Washington",
         answer3: "Roosevelt",
         answer4: "Bush sr.",
-        answer1_en: "Washington", // Don't translate this!
-        answer2_en: "Lincoln", // Don't translate this!
+        answer1_en: "Lincoln", // Don't translate this!
+        answer2_en: "Washington", // Don't translate this!
         answer3_en: "Roosevelt", // Don't translate this!
         answer4_en: "Bush sr.", // Don't translate this!
         correct: "Washington", // Don't translate this!
@@ -232,6 +232,7 @@ var genericText =
         lvl4CongrTextA: "Congratulations on finding me.",
         lvl4CongrTextB: "Your real test begins now!",
         lvl4ScrollDesc: "Use the ZOOM button to read the available answers, then type the answer below!",
+        lvl4ScrollDescSV: "Use the ZOOM button to read the answer, then type it below!",
         clickMe: "Click me!",
         latitude: "Latitude",
         longitude: "Longitude",

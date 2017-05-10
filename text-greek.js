@@ -340,6 +340,7 @@ var genericText =
         lvl4CongrTextA: "Συγχαρητήρια! Με βρήκες!",
         lvl4CongrTextB: "Η πραγματική δοκιμασία ξεκινάει τώρα!",
         lvl4ScrollDesc: "Χρησιμοποίησε το κουμπί ZOOM για να διαβάσεις τις διαθέσιμες απαντήσεις και πληκτρολόγησε τη σωστή απάντηση",
+        lvl4ScrollDescSV: "Use the ZOOM button to read the answer, then type it below!",
         clickMe: "Κλικ!",
         latitude: "Γεωγραφικό πλάτος",
         longitude: "Γεωγραφικό μήκος",
