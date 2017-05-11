@@ -1500,7 +1500,10 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.removeChild(wrongCoordsLabel);
 
-            if (textInput1.value === "40.6401N" && textInput2.value === "22.9444E"){
+            var latString = textInput1.value.replace(/\s+/g, '');
+            var lngString  = textInput2.value.replace(/\s+/g, '');
+
+            if (latString === "40.6401N" && lngString === "22.9444E"){
                 textElement1.style.display = "none";
                 textElement2.style.display = "none";
                 textInput1.style.display = "none";
