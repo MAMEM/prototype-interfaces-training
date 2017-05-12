@@ -250,7 +250,7 @@ var genericText =
         abort: "Abort",
         congrats: "CONGRATULATIONS",
         trainingComplete: "You have completed the training",
-        treasureFound: "You have found the treasure!",
+        treasureFound: "You have completed the training and found the treasure!",
         ok: "OK"
     };
 

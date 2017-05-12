@@ -2786,9 +2786,11 @@ function InitiateLevel(group, level, levelStructure) {
         var img;
 
         if (gameTypeStripped) {
+            title.text = " ";
             desc.text = genericText.trainingComplete;
             img = new createjs.Bitmap("assets/star.png");
             img.x = (stage.canvas.width/2) -84;
+            img.visible = false;
         } else {
 
             img = new createjs.Bitmap("assets/treasure.png");
