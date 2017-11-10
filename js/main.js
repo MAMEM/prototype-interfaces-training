@@ -89,12 +89,12 @@ function init() {
     RTL = document.getElementById('rtlCheckbox');
     RTL = RTL.checked;
 
-    gameTypeFull = document.getElementById('persuasiveRadioBtn').checked;
-    gameTypeStripped = document.getElementById('bareRadioBtn').checked;
-    gameTypeElems = document.getElementById('gameOnlyRadioBtn').checked;
+    gameTypeFull = true;
+    gameTypeStripped = false;
+    gameTypeElems = false;
 
-    advLevelsEnabled = document.getElementById('advCheckbox');
-    advLevelsEnabled = advLevelsEnabled.checked;
+    /*advLevelsEnabled = document.getElementById('advCheckbox');*/
+    advLevelsEnabled = true;
 
     toggleQuizTranslations = document.getElementById('quizCheckbox');
     toggleQuizTranslations = toggleQuizTranslations.checked;
