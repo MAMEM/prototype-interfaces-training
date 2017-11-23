@@ -180,35 +180,35 @@ function loadLvlIntroStory(script) {
     textContainer.x = 250;
     textContainer.y = 260;
 
-    var descriptionText = new createjs.Text(script, "500 18px Roboto", color.textRegular);
-    descriptionText = alignTextToStageCenter(stage, descriptionText);
-    /*descriptionText.x = textContainer.x + 20;*/
-    descriptionText.y = textContainer.y + 20;
-    descriptionText.lineWidth = textContainer.width - 40;
-    descriptionText.lineHeight = 26;
+    var scriptText = new createjs.Text(script, "500 18px Roboto", color.textRegular);
+    scriptText = alignTextToStageCenter(stage, scriptText);
+    /*scriptText.x = textContainer.x + 20;*/
+    scriptText.y = textContainer.y + 20;
+    scriptText.lineWidth = textContainer.width - 40;
+    scriptText.lineHeight = 26;
 
     if (RTL) {
-        descriptionText.textAlign = "right";
-        descriptionText.x = window.innerWidth - textContainer.x - 20;
+        scriptText.textAlign = "right";
+        scriptText.x = window.innerWidth - textContainer.x - 20;
     }
 
-    var textBounds = descriptionText.getBounds();
+    var textBounds = scriptText.getBounds();
     textContainer.height = textBounds.height + 60;
 
     if(gameTypeStripped) {
-        descriptionText = alignTextToStageCenter(stage, descriptionText);
-        descriptionText.y = 300;
+        scriptText = alignTextToStageCenter(stage, scriptText);
+        scriptText.y = 300;
     }
 
     if (gameTypeElems) {
-        /*descriptionText.visible = false;*/
-        descriptionText = alignTextToStageCenter(stage, descriptionText);
-        descriptionText.y = 300;
+        /*scriptText.visible = false;*/
+        scriptText = alignTextToStageCenter(stage, scriptText);
+        scriptText.y = 300;
     }
 
     introStoryContainer = new createjs.Container();
 
-    introStoryContainer.addChild(descriptionText);
+    introStoryContainer.addChild(scriptText);
     stage.addChild(introStoryContainer);
 
     return introStoryContainer;
@@ -216,13 +216,12 @@ function loadLvlIntroStory(script) {
 
 function loadLvlOutroStory(poe, completion) {
 
-    var speechBubbleContainer = [];
-    speechBubbleContainer.width = window.innerWidth - 500;
-    speechBubbleContainer.x = 250;
-    speechBubbleContainer.y = poe.y + 40;
+    var textContainer = [];
+    textContainer.width = window.innerWidth - 500;
+    textContainer.x = 250;
+    textContainer.y = poe.y + 40;
 
-    var bubbleText;
-    var face;
+    var scriptText;
     var textString;
 
     if (completion) {
@@ -234,8 +233,7 @@ function loadLvlOutroStory(poe, completion) {
             else
             { textString = defaultFeedback.positive; }
 
-            bubbleText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
-            face = new createjs.Bitmap("assets/face-happy.png");
+            scriptText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
 
         }
         else {
@@ -244,8 +242,7 @@ function loadLvlOutroStory(poe, completion) {
             else
             { textString = defaultFeedback.neutral; }
 
-            bubbleText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
-            face = new createjs.Bitmap("assets/face-default.png");
+            scriptText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
         }
 
     } else {
@@ -255,50 +252,32 @@ function loadLvlOutroStory(poe, completion) {
         else
         { textString = defaultFeedback.negative; }
 
-        bubbleText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
-        face = new createjs.Bitmap("assets/face-sad.png");
+        scriptText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
     }
 
-    bubbleText.x = speechBubbleContainer.x + 20;
-    bubbleText.y = speechBubbleContainer.y + 40;
-    bubbleText.lineWidth = speechBubbleContainer.width - 40;
-    bubbleText.lineHeight = 26;
+    scriptText = alignTextToStageCenter(stage, scriptText);
+    scriptText.y = textContainer.y;
+    scriptText.lineWidth = textContainer.width - 40;
+    scriptText.lineHeight = 26;
 
     if (RTL) {
-        bubbleText.textAlign = "right";
-        bubbleText.x = window.innerWidth - speechBubbleContainer.x - 20;
+        scriptText.textAlign = "right";
+        scriptText.x = window.innerWidth - textContainer.x - 20;
     }
 
-    var textBounds = bubbleText.getBounds();
-    speechBubbleContainer.height = textBounds.height + 60;
-
-    var speechBubble = new Image();
-    speechBubble.onload = function() { stage.update(); };
-    speechBubble.src = "assets/speechBubbleInv.png";
-    var sb = new createjs.ScaleBitmap(speechBubble, new createjs.Rectangle(10, 26, 5, 15));
-    sb.setDrawSize(speechBubbleContainer.width, speechBubbleContainer.height);
-    sb.x = speechBubbleContainer.x;
-    sb.y = speechBubbleContainer.y;
-
-    face.x = window.innerWidth - face.image.width - 100;
-    face.y = 5;
+    var textBounds = scriptText.getBounds();
+    textContainer.height = textBounds.height + 60;
 
     var outroStoryContainer = new createjs.Container();
 
     if(gameTypeStripped) {
-        sb.visible = false;
-        face.visible = false;
-        bubbleText = alignTextToStageCenter(stage, bubbleText);
-        bubbleText.y = stage.canvas.height/2 - 100;
+        scriptText = alignTextToStageCenter(stage, scriptText);
+        scriptText.y = stage.canvas.height/2 - 100;
     }
 
-    if(gameTypeElems) {
-        sb.visible = false;
-        face.visible = false;
-        bubbleText.visible = false;
-    }
+    if(gameTypeElems) { scriptText.visible = false; }
 
-    outroStoryContainer.addChild(sb, bubbleText, face);
+    outroStoryContainer.addChild(scriptText);
 
     return outroStoryContainer;
 }

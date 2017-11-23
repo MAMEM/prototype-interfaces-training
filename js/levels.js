@@ -65,12 +65,10 @@ function loadLevel(group, level) {
     }
 
 
-    var speechBubble = levelIntro.getChildAt(0);
-
     var btnSize = [], btnPos = [];
-    btnSize.x = speechBubble.drawWidth - 200;
-    btnPos.x = speechBubble.x + 100;
-    btnSize.y = 140;
+    btnSize.x = 500;
+    btnPos.x = (stage.canvas.width/2) - (btnSize.x/2);
+    btnSize.y = 120;
     btnPos.y = stage.canvas.height/2;
 
     var nextButton = new Button(color.green, btnSize, btnPos, genericText.start, startLevel);
