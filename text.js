@@ -16,9 +16,9 @@ function createFeedback() {
         youngMale: {
 
             positive: [
-                "Wow " + user.firstName + ", great score! You also got the trophy!",
-                user.firstName + ", you scored really great! You finished the level very effectively, gaining you the trophy!",
-                "Your performance is the best, " + user.firstName + "! Nice work earning the trophy!"
+                "Wow " + user.firstName + ", great score!",
+                user.firstName + ", you scored really great! You finished the level very effectively!",
+                "Your performance is the best, " + user.firstName + "!"
             ],
             neutral: [
                 user.firstName + ", you completed the level. You can replay the level and score better so you earn the trophy.",
@@ -34,9 +34,9 @@ function createFeedback() {
         oldMale: {
 
             positive: [
-                "Wow, " + user.firstName + ", great score! You have won the trophy!",
-                user.firstName + ", you scored really great! You finished the level very effectively, gaining you the trophy!",
-                "Your performance is the best, " + user.firstName + "! Nice work earning the trophy!"
+                "Wow, " + user.firstName + ", great score!",
+                user.firstName + ", you scored really great! You finished the level very effectively!",
+                "Your performance is the best, " + user.firstName + "!"
             ],
             neutral: [
                 user.firstName + ", you completed the level. I am sure you can replay it and then win the trophy.",
@@ -51,9 +51,9 @@ function createFeedback() {
         youngFemale: {
 
             positive: [
-                "Wow, " + user.firstName + ", great score! You have won the trophy!",
-                user.firstName + ", you scored really great! You finished the level very effectively, gaining you the trophy!",
-                "Your performance is the best, " + user.firstName + "! Nice work earning the trophy!"
+                "Wow, " + user.firstName + ", great score!",
+                user.firstName + ", you scored really great! You finished the level very effectively!",
+                "Your performance is the best, " + user.firstName + "!"
             ],
             neutral: [
                 user.firstName + ", you completed the level. Without too much effort, you might score better and win the trophy.",
@@ -68,9 +68,9 @@ function createFeedback() {
         oldFemale: {
 
             positive: [
-                "Wow " + user.firstName + ", great score! Everybody will be proud that you have won the trophy!",
-                user.firstName + ", you're a really fast learner! You became skillful quickly, gaining you the trophy!",
-                "You're a fast learner, " + user.firstName + "! Nice work earning the trophy!"
+                "Wow " + user.firstName + ", great score! Everybody will be proud!",
+                user.firstName + ", you're a really fast learner! You became skillful quickly!",
+                "You're a fast learner, " + user.firstName + "!"
             ],
             neutral: [
                 user.firstName + ", you completed the level with time to spare! You can replay, and make everyone proud by winning the trophy.",
