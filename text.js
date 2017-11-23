@@ -149,159 +149,42 @@ var levelText = [
 // In here translate only the 'question' and 'answer' fields (NO answer_en).
 var quizText = [
     {
-        question: "Which of the following is a traditional Greek dish?",
-        answer1: "moussaka",
-        answer2: "spaghetti",
-        answer3: "pizza",
-        answer4: "burger",
-        answer1_en: "moussaka", // Don't translate this!
-        answer2_en: "spaghetti", // Don't translate this!
-        answer3_en: "pizza", // Don't translate this!
-        answer4_en: "burger", // Don't translate this!
-        correct: "moussaka", // Don't translate this!
+        question: "What is the name of the girlfriend of Mickey Mouse?",
+        answer1: "Nano Mouse",
+        answer2: "Minnie Mouse",
+        answer3: "Micro Mouse",
+        answer4: "Mega Mouse",
+        answer1_en: "Nano Mouse", // Don't translate this!
+        answer2_en: "Minnie Mouse", // Don't translate this!
+        answer3_en: "Micro Mouse", // Don't translate this!
+        answer4_en: "Mega Mouse", // Don't translate this!
+        correct: "Minnie Mouse", // Don't translate this!
         cat: "Easy" // Don't translate this!
     },
     {
-        question: "Who is the son of Daedalus?",
-        answer1: "minoas",
-        answer2: "theseus",
-        answer3: "icarus",
-        answer4: "menelaus",
-        answer1_en: "minoas", // Don't translate this!
-        answer2_en: "theseus", // Don't translate this!
-        answer3_en: "icarus", // Don't translate this!
-        answer4_en: "menelaus", // Don't translate this!
-        correct: "icarus", // Don't translate this!
-        cat: "Easy" // Don't translate this!
-    },
-    {
-        question: "What was the color of the ‘Baywatch’ lifeguard swimsuit?",
-        answer1: "pink",
-        answer2: "red",
-        answer3: "green",
-        answer4: "white",
-        answer1_en: "pink", // Don't translate this!
-        answer2_en: "red", // Don't translate this!
-        answer3_en: "green", // Don't translate this!
-        answer4_en: "white", // Don't translate this!
-        correct: "red", // Don't translate this!
-        cat: "Easy" // Don't translate this!
-    },
-    {
-        question: "In honor of which goddess was the Acropolis of Athens built?",
-        answer1: "aphrodite",
-        answer2: "ira",
-        answer3: "artemis",
-        answer4: "athena",
-        answer1_en: "aphrodite", // Don't translate this!
-        answer2_en: "ira", // Don't translate this!
-        answer3_en: "artemis", // Don't translate this!
-        answer4_en: "athena", // Don't translate this!
-        correct: "athena", // Don't translate this!
-        cat: "Easy" // Don't translate this!
-    },
-    {
-        question: "Who is considered as the founder of Medicine?",
-        answer1: "hippocrates",
-        answer2: "hieronymus",
-        answer3: "xenophon",
-        answer4: "demosthenes",
-        answer1_en: "hippocrates", // Don't translate this!
-        answer2_en: "hieronymus", // Don't translate this!
-        answer3_en: "xenophon", // Don't translate this!
-        answer4_en: "demosthenes", // Don't translate this!
-        correct: "hippocrates", // Don't translate this!
+        question: "What is the capital city of France?",
+        answer1: "Barcelona",
+        answer2: "Paris",
+        answer3: "London",
+        answer4: "Amsterdam",
+        answer1_en: "Barcelona", // Don't translate this!
+        answer2_en: "Paris", // Don't translate this!
+        answer3_en: "London", // Don't translate this!
+        answer4_en: "Amsterdam", // Don't translate this!
+        correct: "Paris", // Don't translate this!
         cat: "Intermediate" // Don't translate this!
     },
     {
-        question: "Which team won the national football league in 2014?",
-        answer1: "olympiacos",
-        answer2: "panathinaikos",
-        answer3: "aek",
-        answer4: "paok",
-        answer1_en: "olympiacos", // Don't translate this!
-        answer2_en: "panathinaikos", // Don't translate this!
-        answer3_en: "aek", // Don't translate this!
-        answer4_en: "paok", // Don't translate this!
-        correct: "olympiacos", // Don't translate this!
-        cat: "Intermediate" // Don't translate this!
-    },
-    {
-        question: "Which was the host country of Euro 2004?",
-        answer1: "italy",
-        answer2: "england",
-        answer3: "greece",
-        answer4: "portugal",
-        answer1_en: "italy", // Don't translate this!
-        answer2_en: "england", // Don't translate this!
-        answer3_en: "greece", // Don't translate this!
-        answer4_en: "portugal", // Don't translate this!
-        correct: "portugal", // Don't translate this!
-        cat: "Intermediate" // Don't translate this!
-    },
-    {
-        question: "He is considered as the father of History",
-        answer1: "herodotus",
-        answer2: "eratosthenes",
-        answer3: "pausanias",
-        answer4: "pericles",
-        answer1_en: "herodotus", // Don't translate this!
-        answer2_en: "eratosthenes", // Don't translate this!
-        answer3_en: "pausanias", // Don't translate this!
-        answer4_en: "pericles", // Don't translate this!
-        correct: "herodotus", // Don't translate this!
-        cat: "Intermediate" // Don't translate this!
-    },
-    {
-        question: "Who cut off Vincent van Gogh's ear?",
-        answer1: "a thief",
-        answer2: "himself",
-        answer3: "his mother",
-        answer4: "his father",
-        answer1_en: "a thief", // Don't translate this!
-        answer2_en: "himself", // Don't translate this!
-        answer3_en: "his mother", // Don't translate this!
-        answer4_en: "his father", // Don't translate this!
-        correct: "himself", // Don't translate this!
-        cat: "Advanced" // Don't translate this!
-    },
-    {
-        question: "Which country launched the cultivation of coffee?",
-        answer1: "arabia",
-        answer2: "brazil",
-        answer3: "colombia",
-        answer4: "mexico",
-        answer1_en: "arabia", // Don't translate this!
-        answer2_en: "brazil", // Don't translate this!
-        answer3_en: "colombia", // Don't translate this!
-        answer4_en: "mexico", // Don't translate this!
-        correct: "arabia", // Don't translate this!
-        cat: "Advanced" // Don't translate this!
-    },
-    {
-        question: "Cleopatra used to bathe in...",
-        answer1: "milk",
-        answer2: "coconut oil",
-        answer3: "water",
-        answer4: "olive oil",
-        answer1_en: "milk", // Don't translate this!
-        answer2_en: "coconut oil", // Don't translate this!
-        answer3_en: "water", // Don't translate this!
-        answer4_en: "olive oil", // Don't translate this!
-        correct: "milk", // Don't translate this!
-        cat: "Advanced" // Don't translate this!
-    },
-    {
-        question: "Where was Che Guevara born?",
-        answer1: "brazil",
-        answer2: "cuba",
-        answer3: "argentina",
-        answer4: "colombia",
-        answer1_en: "brazil", // Don't translate this!
-        answer2_en: "cuba", // Don't translate this!
-        answer3_en: "argentina", // Don't translate this!
-        answer4_en: "colombia", // Don't translate this!
-        correct: "argentina", // Don't translate this!
+        question: "Who was the first President of the United States?",
+        answer1: "Lincoln",
+        answer2: "Washington",
+        answer3: "Roosevelt",
+        answer4: "Bush sr.",
+        answer1_en: "Lincoln", // Don't translate this!
+        answer2_en: "Washington", // Don't translate this!
+        answer3_en: "Roosevelt", // Don't translate this!
+        answer4_en: "Bush sr.", // Don't translate this!
+        correct: "Washington", // Don't translate this!
         cat: "Advanced" // Don't translate this!
     }
 ];
@@ -313,7 +196,7 @@ var genericText =
         subTitle: "Learn how to use the browser",
         play: "Play",
         replay: "Replay",
-        levelSelect: "Select level",
+        levelSelect: "Complete the three level groups to become the master of Gaze the Web!",
         basic: "BASIC",
         intermediate: "INTERMEDIATE",
         advanced: "ADVANCED",
@@ -367,7 +250,7 @@ var genericText =
         abort: "Abort",
         congrats: "CONGRATULATIONS",
         trainingComplete: "You have completed the training",
-        treasureFound: "You have found the treasure!",
+        treasureFound: "You have completed the training and found the treasure!",
         ok: "OK"
     };
 

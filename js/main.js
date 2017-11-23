@@ -277,7 +277,7 @@ function loadOverviewPage() {
                     s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
                     basicLevelTrophy[i] = new createjs.Bitmap("assets/trophies/basic-level"+ (i+1) +"-off.png");
                 }
-                basicLevelTrophy[i].x = poe + s[i].x + width/2 - 14;
+                basicLevelTrophy[i].x = poe + s[i].x + width/2 - 24;
                 basicLevelTrophy[i].y = 310;
 
                 if (levelAvailable[i+1]) {
@@ -464,7 +464,7 @@ function loadOverviewPage() {
                     intLevelTrophy[i] = new createjs.Bitmap("assets/trophies/int-level"+ (i+1) +"-off.png");
                 }
 
-                intLevelTrophy[i].x = poe + s[i].x + width/2 - 14;
+                intLevelTrophy[i].x = poe + s[i].x + width/2 - 24;
                 intLevelTrophy[i].y = 590;
 
                 if (levelAvailable[i+1]) {
@@ -669,7 +669,7 @@ function loadOverviewPage() {
                     advLevelTime[i].textAlign = "center";
                 }
 
-                advLevelTrophy[i].x = poe + s[i].x + width/2 - 14;
+                advLevelTrophy[i].x = poe + s[i].x + width/2 - 24;
                 advLevelTrophy[i].y = 890;
 
             } else { s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill(); }

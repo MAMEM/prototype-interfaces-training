@@ -175,55 +175,40 @@ function loadLvlStructure(fullTitle, shortTitle) {
 function loadLvlIntroStory(script) {
 
     // Add speech bubble & story text
-    var speechBubbleContainer = [];
-    speechBubbleContainer.width = window.innerWidth - 500;
-    speechBubbleContainer.x = 250;
-    speechBubbleContainer.y = 260;
+    var textContainer = [];
+    textContainer.width = window.innerWidth - 500;
+    textContainer.x = 250;
+    textContainer.y = 260;
 
-    var bubbleText = new createjs.Text(script, "500 18px Roboto", color.textRegular);
-    bubbleText.x = speechBubbleContainer.x + 20;
-    bubbleText.y = speechBubbleContainer.y + 20;
-    bubbleText.lineWidth = speechBubbleContainer.width - 40;
-    bubbleText.lineHeight = 26;
+    var descriptionText = new createjs.Text(script, "500 18px Roboto", color.textRegular);
+    descriptionText = alignTextToStageCenter(stage, descriptionText);
+    /*descriptionText.x = textContainer.x + 20;*/
+    descriptionText.y = textContainer.y + 20;
+    descriptionText.lineWidth = textContainer.width - 40;
+    descriptionText.lineHeight = 26;
 
     if (RTL) {
-        bubbleText.textAlign = "right";
-        bubbleText.x = window.innerWidth - speechBubbleContainer.x - 20;
+        descriptionText.textAlign = "right";
+        descriptionText.x = window.innerWidth - textContainer.x - 20;
     }
 
-    var textBounds = bubbleText.getBounds();
-    speechBubbleContainer.height = textBounds.height + 60;
-
-    var speechBubble = new Image();
-    speechBubble.onload = function() { stage.update(); };
-    speechBubble.src = "assets/speechBubble.png";
-    var sb = new createjs.ScaleBitmap(speechBubble, new createjs.Rectangle(12, 12, 5, 10));
-    sb.setDrawSize(speechBubbleContainer.width, speechBubbleContainer.height);
-    sb.x = speechBubbleContainer.x;
-    sb.y = speechBubbleContainer.y;
-
-    var face = new createjs.Bitmap("assets/face-default.png");
-    face.x = window.innerWidth - face.image.width - 200;
-    face.y = sb.y + speechBubbleContainer.height;
+    var textBounds = descriptionText.getBounds();
+    textContainer.height = textBounds.height + 60;
 
     if(gameTypeStripped) {
-        face.visible = false;
-        bubbleText = alignTextToStageCenter(stage, bubbleText);
-        bubbleText.y = 300;
-        sb.visible = false;
+        descriptionText = alignTextToStageCenter(stage, descriptionText);
+        descriptionText.y = 300;
     }
 
     if (gameTypeElems) {
-        face.visible = false;
-        /*bubbleText.visible = false;*/
-        bubbleText = alignTextToStageCenter(stage, bubbleText);
-        bubbleText.y = 300;
-        sb.visible = false;
+        /*descriptionText.visible = false;*/
+        descriptionText = alignTextToStageCenter(stage, descriptionText);
+        descriptionText.y = 300;
     }
 
     introStoryContainer = new createjs.Container();
 
-    introStoryContainer.addChild(sb, bubbleText, face);
+    introStoryContainer.addChild(descriptionText);
     stage.addChild(introStoryContainer);
 
     return introStoryContainer;
