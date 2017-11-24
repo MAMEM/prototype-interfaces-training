@@ -2430,6 +2430,7 @@ function InitiateLevel(group, level, levelStructure) {
         var intervals;
         var score = [];
         var time = [];
+        var accuracy = [];
         var trophy = [];
 
         var poe = [];
@@ -2437,6 +2438,8 @@ function InitiateLevel(group, level, levelStructure) {
         poe.y = 70;
 
         trophy.current = false;
+
+
 
         switch(group) {
             case 0:
@@ -2447,6 +2450,8 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + ((metrics.countOffTotal - metrics.points) * 50)), 10);
                     trophy.current = metrics.trophy;
+
+                    accuracy = (metrics.points / metrics.countOnTotal) * 100;
 
                 } else if (level === 1) {
                     stage.removeChild(results[0]); // remove markers container
@@ -2464,6 +2469,9 @@ function InitiateLevel(group, level, levelStructure) {
                         }
                     }
                     trophy.current = metrics.trophy;
+
+                    accuracy = (metrics.hits / ( metrics.moles + (metrics.moles - metrics.hits))) * 100;
+
                 }
 
                 break;
@@ -2478,6 +2486,10 @@ function InitiateLevel(group, level, levelStructure) {
                     trophy.current = metrics.trophy;
                     score.current = parseInt(scoreBounds.level21 - (stopwatch.time()/2 + (metrics.clicks * 50)), 10);
 
+                    if (metrics.clicks === 1) {accuracy = 100;}
+                    else {
+                        accuracy = (2 / metrics.clicks) * 100;
+                    }
 
                 } else if (level === 1) {
 
@@ -2487,6 +2499,8 @@ function InitiateLevel(group, level, levelStructure) {
                     trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level22 - (stopwatch.time()/8 + (metrics.fail * 200)), 10);
+
+                    accuracy = (metrics.pass / metrics.submit) * 100;
                 }
                 else if (level === 2) {
 
@@ -2496,6 +2510,8 @@ function InitiateLevel(group, level, levelStructure) {
                     trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level23 - (stopwatch.time()/4), 10);
+
+                    accuracy = (6 / (metrics.click)) * 100;
                 }
 
                 break;
@@ -2512,6 +2528,9 @@ function InitiateLevel(group, level, levelStructure) {
                     trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level31 - (stopwatch.time()/4), 10);
+
+                    accuracy = (2 / (metrics.gaze_on + metrics.gaze_off)) * 100;
+
                 }
                 else if (level === 1) {
 
@@ -2521,6 +2540,8 @@ function InitiateLevel(group, level, levelStructure) {
                     trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level32 - (stopwatch.time()/4), 10);
+
+                    accuracy = (12 / (metrics.keystroke)) * 100;
                 }
                 else if (level === 2) {
 
@@ -2530,6 +2551,8 @@ function InitiateLevel(group, level, levelStructure) {
                     trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level33 - (stopwatch.time()/6), 10);
+
+                    accuracy = (1 / (metrics.click)) * 100;
                 }
                 else if (level === 3) {
 
@@ -2539,10 +2562,14 @@ function InitiateLevel(group, level, levelStructure) {
                     trophy.current = metrics.trophy;
 
                     score.current = parseInt(scoreBounds.level34 - (stopwatch.time()/6), 10);
+
+                    accuracy = (2 / (metrics.bookmark_add + metrics.select_bookmark)) * 100;
+
                 }
                 break;
         }
 
+        console.log(accuracy);
 
         // Run update to firebase only if threshold is reached
         if (levelComplete) {
@@ -2561,13 +2588,18 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.addChild(resultsPopup);
 
-            var col = [];
+            var colThirds = [];
+            var colFourths = [];
             var label = [];
             var separator = [];
 
-            col.x = poe.x + 20;
-            col.y = poe.y + 140;
-            col.width = (window.innerWidth - 90)/3;
+            colThirds.x = poe.x + 20;
+            colThirds.y = poe.y + 140;
+            colThirds.width = (window.innerWidth - 90)/3;
+
+            colFourths.x = colThirds.x;
+            colFourths.y = colThirds.y;
+            colFourths.width = (window.innerWidth - 90)/4;
 
             var initVals = initializeResultsValues(group, level, stopwatch, score, time, trophy);
             trophy = initVals[0];
@@ -2613,11 +2645,12 @@ function InitiateLevel(group, level, levelStructure) {
 
                         score = calculateNewScore(score, levelInformation.score);
                         time = calculateNewTime(time, levelInformation, stopwatch);
+
                         trophy = calculateNewTrophy(trophy, levelInformation.trophyGained);
                     }
                 }
 
-                var positionedResults = positionResultsElements(score, time, trophy, col, label, separator);
+                var positionedResults = positionResultsElements(score, time, accuracy, trophy, colFourths, label, separator);
                 score = positionedResults[0];
                 time = positionedResults[1];
                 trophy = positionedResults[2];
@@ -2627,10 +2660,10 @@ function InitiateLevel(group, level, levelStructure) {
                 updateUserData(group, level, userId, score, time, trophy, metrics, intervals);
 
                 // Add Rankings
-                createScoreboard(group, level, col);
+                createScoreboard(group, level, colThirds);
 
                 // Footer navigation buttons
-                var button = positionResultsFooterElements(col, resultsPopup, poe, loadOverviewPage, replayCurrentLevel, advanceToNextLevel, group, level);
+                var button = positionResultsFooterElements(colThirds, resultsPopup, poe, loadOverviewPage, replayCurrentLevel, advanceToNextLevel, group, level);
 
                 if (!gameTypeStripped) {
                     scoreInfoContainer.addChild(resultsPopup, label.score, separator.score, label.currentScore, label.previousScore, label.time, separator.time, label.currentTime, label.previousTime, label.rewards, separator.rewards, score.currentValue, score.previousValue, time.currentValue, time.previousValue, trophy.title, trophy.img, trophy.desc, button.overview.btn, button.overview.icon, button.overview.label, button.replay.btn, button.replay.icon, button.replay.label, button.next.btn, button.next.icon, button.next.label);

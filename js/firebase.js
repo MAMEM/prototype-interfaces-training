@@ -429,7 +429,7 @@ function createScoreboard(group, level, col) {
         }
 
         var rankingsLabels = [];
-        rankingsLabels.title = new createjs.Text(genericText.rankings, "700 24px Roboto", color.whitePimary);
+        rankingsLabels.title = new createjs.Text(genericText.rankings, "700 26px Roboto", color.whitePimary);
         rankingsLabels.title.x = col.x;
         rankingsLabels.title.y = col.y + 100;
         rankingsLabels.title.textAlign = "left";

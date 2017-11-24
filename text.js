@@ -103,20 +103,20 @@ var levelText = [
     },
     {
         fullTitle: "INTERMEDIATE - 01 Find the wizard",
-        shortTitle: "Find the wizard",
-        story: "Scroll through the level to find the wizard using the scroll overlays or the auto scrolling, and use the click emulation button to select the place where he is hiding! Visit all locations only once to earn the trophy!",
+        shortTitle: "Treasure hunt",
+        story: "The wizard knows where the treasure is. Scroll down and visit all locations to find where he is hiding.",
         storyNeutral: "Scroll through the level to find the wizard using the scroll overlays or the auto scrolling, and use the click emulation button to select him."
     },
     {
         fullTitle: "INTERMEDIATE - 02 The Quiz",
         shortTitle: "The quiz",
-        story: "You found the wizard! Now he is challenging you to a quiz test. Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD! Answer correctly to all questions and earn the trophy!",
+        story: "The wizard is challenging you to a quiz test. Use the GazeTheWeb Keyboard to type the correct answer to 3 questions.",
         storyNeutral: "Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD."
     },
     {
         fullTitle: "INTERMEDIATE - 03 Find the treasure",
         shortTitle: "The map",
-        story: "Open the map using the click emulation button, then use the GazeTheWeb copy & paste functionality to find the treasure! Be successful at your first try copy & pasting to get the trophy!",
+        story: "You are about to find where the treasure is. Select each coordinate, copy and then paste them into the map",
         storyNeutral: "Use the GazeTheWeb copy & paste functionality to find the treasure."
     },
     {
