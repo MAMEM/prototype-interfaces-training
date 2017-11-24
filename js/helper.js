@@ -433,10 +433,10 @@ function positionResultsElements(score, time, acc, trophy, col, label, separator
     trophy.img.y = col.y + 40;
 
     trophy.title.x = col.x + (3 * col.width) + 58;
-    trophy.title.y = col.y + 24;
+    trophy.title.y = col.y + 38;
 
     trophy.desc.x = col.x + (3 * col.width) + 58;
-    trophy.desc.y = col.y + 48;
+    trophy.desc.y = col.y + 60;
     trophy.desc.lineWidth = col.width - col.x;
 
     label.score = new createjs.Text(genericText.score.toUpperCase(), "700 26px Roboto", color.whitePimary);
@@ -477,8 +477,17 @@ function positionResultsElements(score, time, acc, trophy, col, label, separator
     label.previousTime.y = col.y + 34;
     label.previousTime.textAlign = "right";
 
+    label.accuracy = new createjs.Text(genericText.accuracy.toUpperCase(), "700 26px Roboto", color.whitePimary);
+    label.accuracy.x = col.x + (2 * col.width);
+    label.accuracy.y = col.y;
+
+    separator.accuracy = new createjs.Shape();
+    separator.accuracy.graphics.beginFill(color.whitePimary);
+    separator.accuracy.graphics.drawRect(col.x + (2*col.width), col.y + 30, col.width - col.x, 2);
+    separator.accuracy.graphics.endFill();
+
     label.rewards = new createjs.Text(genericText.rewards.toUpperCase(), "700 26px Roboto", color.whitePimary);
-    label.rewards.x = col.x + (2 * col.width);
+    label.rewards.x = col.x + (3 * col.width);
     label.rewards.y = col.y;
 
     if (RTL) {
@@ -502,7 +511,7 @@ function positionResultsElements(score, time, acc, trophy, col, label, separator
 
     separator.rewards = new createjs.Shape();
     separator.rewards.graphics.beginFill(color.whitePimary);
-    separator.rewards.graphics.drawRect(col.x + (2 * col.width), col.y + 30, col.width - col.x, 2);
+    separator.rewards.graphics.drawRect(col.x + (3 * col.width), col.y + 30, col.width - col.x, 2);
     separator.rewards.graphics.endFill();
 
     return [score, time, trophy, label, separator];

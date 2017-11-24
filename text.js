@@ -207,6 +207,7 @@ var genericText =
         best: "BEST",
         time: "Time",
         rewards: "Rewards",
+        accuracy: "Accuracy",
         rankings: "RANKINGS - TOP 5",
         name: "Name",
         overview: "Overview",

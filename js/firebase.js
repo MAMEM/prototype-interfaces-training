@@ -459,23 +459,17 @@ function createScoreboard(group, level, col) {
         rankingsLabels.timeLabel.y = col.y + 130;
         rankingsLabels.timeLabel.textAlign = "left";
 
-        rankingsLabels.rewardsLabel = new createjs.Text(genericText.rewards, "400 22px Roboto", color.whitePimary);
-        rankingsLabels.rewardsLabel.x = (2 * col.width) + (3* col.x);
-        rankingsLabels.rewardsLabel.y = col.y + 130;
-        rankingsLabels.rewardsLabel.textAlign = "left";
-
         rankingsLabels.separator = new createjs.Shape();
         rankingsLabels.separator.graphics.beginFill(color.whitePimary);
         rankingsLabels.separator.graphics.drawRect(col.x, col.y + 158, (3 * col.width) - col.x, 2);
         rankingsLabels.separator.graphics.endFill();
 
         if (!gameTypeStripped) {
-            stage.addChild(rankingsLabels.title, rankingsLabels.posLabel, rankingsLabels.nameLabel, rankingsLabels.scoreLabel, rankingsLabels.timeLabel, rankingsLabels.rewardsLabel,  rankingsLabels.separator);
+            stage.addChild(rankingsLabels.title, rankingsLabels.posLabel, rankingsLabels.nameLabel, rankingsLabels.scoreLabel, rankingsLabels.timeLabel, rankingsLabels.separator);
         }
 
 
-
-        var pos = [rankingsLabels.posLabel.x, rankingsLabels.nameLabel.x, rankingsLabels.scoreLabel.x, rankingsLabels.timeLabel.x, rankingsLabels.rewardsLabel.x];
+        var pos = [rankingsLabels.posLabel.x, rankingsLabels.nameLabel.x, rankingsLabels.scoreLabel.x, rankingsLabels.timeLabel.x];
 
         var rankingUser = [];
         for (i=0;i<users.length;i++) {
@@ -485,9 +479,6 @@ function createScoreboard(group, level, col) {
         var i;
         var firebaseUser = firebase.auth().currentUser;
         for (i=0;i<users.length;i++) {
-
-            rankingUser[i].trophy = users[i].trophy ? new createjs.Bitmap("assets/trophies/" + trophyPath.group +"-"+ trophyPath.level +"-on.png") : new createjs.Bitmap("assets/trophies/" + trophyPath.group +"-"+ trophyPath.level +"-off.png") ;
-            rankingUser[i].trophy.setTransform(0,0,0.7,0.7);
 
             if (firebaseUser.uid === users[i].id) {
                 rankingUser[i].pos = new createjs.Text(i+1, "500 18px Roboto", color.yellow);
@@ -500,7 +491,6 @@ function createScoreboard(group, level, col) {
                 rankingUser[i].nickname = new createjs.Text(users[i].nickname, "300 18px Roboto", color.whitePimary);
                 rankingUser[i].score = new createjs.Text(users[i].score, "300 18px Roboto", color.whitePimary);
                 rankingUser[i].time = new createjs.Text(users[i].time, "300 18px Roboto", color.whitePimary);
-
             }
 
             rankingUser[i].pos.x = pos[0];
@@ -515,11 +505,8 @@ function createScoreboard(group, level, col) {
             rankingUser[i].time.x = pos[3];
             rankingUser[i].time.y = col.y + 170 + (i*20);
             rankingUser[i].time.textAlign = "left";
-            rankingUser[i].trophy.x = pos[4];
-            rankingUser[i].trophy.y = col.y + 170 + (i*20);
 
-            if (!gameTypeStripped) { stage.addChild(rankingUser[i].pos, rankingUser[i].nickname, rankingUser[i].score, rankingUser[i].time, rankingUser[i].trophy); }
-
+            if (!gameTypeStripped) { stage.addChild(rankingUser[i].pos, rankingUser[i].nickname, rankingUser[i].score, rankingUser[i].time); }
         }
     });
 }
