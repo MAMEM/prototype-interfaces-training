@@ -203,7 +203,7 @@ var genericText =
         completed: "COMPLETED",
         trophies: "trophies",
         score: "Score",
-        newScore: "NEW",
+        newScore: "CURRENT",
         best: "BEST",
         time: "Time",
         rewards: "Rewards",

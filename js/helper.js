@@ -283,7 +283,7 @@ function loadLvlOutroStory(poe, completion) {
 }
 
 
-function initializeResultsValues(group, level, stopwatch, score, time, trophy) {
+function initializeResultsValues(group, level, stopwatch, score, time, accuracy, trophy) {
 
     var id = 0;
 
@@ -334,7 +334,10 @@ function initializeResultsValues(group, level, stopwatch, score, time, trophy) {
     time.previousValue = new createjs.Text(time.saved, "Italic 20px Roboto", color.whiteSecondary);
     time.currentValue = new createjs.Text(time.currentFormatted, "Italic 20px Roboto", color.yellow);
 
-    return [trophy, score, time];
+    accuracy.TextColor = (accuracy.val === 100) ? color.yellow : color.whiteSecondary;
+    accuracy.stringVal = new createjs.Text(String(accuracy.val)+'%', "Italic 20px Roboto", accuracy.TextColor);
+
+    return [trophy, score, time, accuracy];
 }
 
 function calculateLvl1Intervals(intervals, time, metrics) {
@@ -407,7 +410,7 @@ function calculateNewTrophy(trophy, savedTrophy) {
     return trophy;
 }
 
-function positionResultsElements(score, time, acc, trophy, col, label, separator) {
+function positionResultsElements(score, time, accuracy, trophy, col, label, separator) {
 
     score.currentValue.x = col.x;
     score.currentValue.y = col.y + 48;
@@ -425,9 +428,9 @@ function positionResultsElements(score, time, acc, trophy, col, label, separator
     time.previousValue.y = col.y + 48;
     time.previousValue.textAlign = "right";
 
-    /*acc.currentValue.x = col.x + (2 * col.width);
-    acc.currentValue.y = col.y + 48;
-    acc.currentValue.textAlign = "left";*/
+    accuracy.stringVal.x = col.x + (2 * col.width);
+    accuracy.stringVal.y = col.y + 34;
+    accuracy.stringVal.textAlign = "left";
 
     trophy.img.x = col.x + (3 * col.width);
     trophy.img.y = col.y + 40;
@@ -514,7 +517,7 @@ function positionResultsElements(score, time, acc, trophy, col, label, separator
     separator.rewards.graphics.drawRect(col.x + (3 * col.width), col.y + 30, col.width - col.x, 2);
     separator.rewards.graphics.endFill();
 
-    return [score, time, trophy, label, separator];
+    return [score, time, accuracy, trophy, label, separator];
 
 }
 

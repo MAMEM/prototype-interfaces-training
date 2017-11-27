@@ -2451,7 +2451,7 @@ function InitiateLevel(group, level, levelStructure) {
                     score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + ((metrics.countOffTotal - metrics.points) * 50)), 10);
                     trophy.current = metrics.trophy;
 
-                    accuracy = (metrics.points / metrics.countOnTotal) * 100;
+                    accuracy.val = (metrics.points / metrics.countOnTotal) * 100;
 
                 } else if (level === 1) {
                     stage.removeChild(results[0]); // remove markers container
@@ -2470,7 +2470,7 @@ function InitiateLevel(group, level, levelStructure) {
                     }
                     trophy.current = metrics.trophy;
 
-                    accuracy = (metrics.hits / ( metrics.moles + (metrics.moles - metrics.hits))) * 100;
+                    accuracy.val = (metrics.hits / ( metrics.moles + (metrics.moles - metrics.hits))) * 100;
 
                 }
 
@@ -2486,7 +2486,7 @@ function InitiateLevel(group, level, levelStructure) {
                     trophy.current = metrics.trophy;
                     score.current = parseInt(scoreBounds.level21 - (stopwatch.time()/2 + (metrics.clicks * 50)), 10);
 
-                    if (metrics.clicks === 1) {accuracy = 100;}
+                    if (metrics.clicks === 1) {accuracy.val = 100;}
                     else {
                         accuracy = (2 / metrics.clicks) * 100;
                     }
@@ -2500,7 +2500,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level22 - (stopwatch.time()/8 + (metrics.fail * 200)), 10);
 
-                    accuracy = (metrics.pass / metrics.submit) * 100;
+                    accuracy.val = (metrics.pass / metrics.submit) * 100;
                 }
                 else if (level === 2) {
 
@@ -2511,7 +2511,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level23 - (stopwatch.time()/4), 10);
 
-                    accuracy = (6 / (metrics.click)) * 100;
+                    accuracy.val = (6 / (metrics.click)) * 100;
                 }
 
                 break;
@@ -2529,7 +2529,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level31 - (stopwatch.time()/4), 10);
 
-                    accuracy = (2 / (metrics.gaze_on + metrics.gaze_off)) * 100;
+                    accuracy.val = (2 / (metrics.gaze_on + metrics.gaze_off)) * 100;
 
                 }
                 else if (level === 1) {
@@ -2541,7 +2541,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level32 - (stopwatch.time()/4), 10);
 
-                    accuracy = (12 / (metrics.keystroke)) * 100;
+                    accuracy.val = (12 / (metrics.keystroke)) * 100;
                 }
                 else if (level === 2) {
 
@@ -2552,7 +2552,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level33 - (stopwatch.time()/6), 10);
 
-                    accuracy = (1 / (metrics.click)) * 100;
+                    accuracy.val = (1 / (metrics.click)) * 100;
                 }
                 else if (level === 3) {
 
@@ -2563,7 +2563,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level34 - (stopwatch.time()/6), 10);
 
-                    accuracy = (2 / (metrics.bookmark_add + metrics.select_bookmark)) * 100;
+                    accuracy.val = (2 / (metrics.bookmark_add + metrics.select_bookmark)) * 100;
 
                 }
                 break;
@@ -2599,10 +2599,11 @@ function InitiateLevel(group, level, levelStructure) {
             colFourths.y = colThirds.y;
             colFourths.width = (window.innerWidth - 90)/4;
 
-            var initVals = initializeResultsValues(group, level, stopwatch, score, time, trophy);
+            var initVals = initializeResultsValues(group, level, stopwatch, score, time, accuracy, trophy);
             trophy = initVals[0];
             score = initVals[1];
             time = initVals[2];
+            accuracy = initVals[3];
 
             if (trophy.current) { trophy.hasIt = true; }
             if (trophy.hasIt) {
@@ -2651,9 +2652,10 @@ function InitiateLevel(group, level, levelStructure) {
                 var positionedResults = positionResultsElements(score, time, accuracy, trophy, colFourths, label, separator);
                 score = positionedResults[0];
                 time = positionedResults[1];
-                trophy = positionedResults[2];
-                label = positionedResults[3];
-                separator = positionedResults[4];
+                accuracy = positionedResults[2];
+                trophy = positionedResults[3];
+                label = positionedResults[4];
+                separator = positionedResults[5];
 
                 updateUserData(group, level, userId, score, time, trophy, metrics, intervals);
 
@@ -2664,7 +2666,7 @@ function InitiateLevel(group, level, levelStructure) {
                 var button = positionResultsFooterElements(colThirds, resultsPopup, poe, loadOverviewPage, replayCurrentLevel, advanceToNextLevel, group, level);
 
                 if (!gameTypeStripped) {
-                    scoreInfoContainer.addChild(resultsPopup, label.score, separator.score, label.currentScore, label.previousScore, label.time, separator.time, label.currentTime, label.previousTime, label.accuracy, separator.accuracy, label.rewards, separator.rewards, score.currentValue, score.previousValue, time.currentValue, time.previousValue, trophy.title, trophy.img, trophy.desc, button.overview.btn, button.overview.icon, button.overview.label, button.replay.btn, button.replay.icon, button.replay.label, button.next.btn, button.next.icon, button.next.label);
+                    scoreInfoContainer.addChild(resultsPopup, label.score, separator.score, label.currentScore, label.previousScore, label.time, separator.time, label.currentTime, label.previousTime, label.accuracy, separator.accuracy, label.rewards, separator.rewards, score.currentValue, score.previousValue, time.currentValue, time.previousValue, accuracy.stringVal, trophy.title, trophy.img, trophy.desc, button.overview.btn, button.overview.icon, button.overview.label, button.replay.btn, button.replay.icon, button.replay.label, button.next.btn, button.next.icon, button.next.label);
                 } else  {
                     scoreInfoContainer.addChild(button.overview.btn, button.overview.icon, button.overview.label, button.replay.btn, button.replay.icon, button.replay.label, button.next.btn, button.next.icon, button.next.label);
                 }
