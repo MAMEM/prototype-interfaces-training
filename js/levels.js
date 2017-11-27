@@ -69,7 +69,7 @@ function loadLevel(group, level) {
     btnSize.x = 500;
     btnPos.x = (stage.canvas.width/2) - (btnSize.x/2);
     btnSize.y = 120;
-    btnPos.y = stage.canvas.height/2;
+    btnPos.y = 450;
 
     var nextButton = new Button(color.green, btnSize, btnPos, genericText.start, startLevel);
 

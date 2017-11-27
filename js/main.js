@@ -177,7 +177,7 @@ function loadOverviewPage() {
 
     var overviewContainer = new createjs.Container();
 
-    var subtitle = new createjs.Text(genericText.levelSelect, "32px Roboto", "rgba(0,0,0,0.23)");
+    var subtitle = new createjs.Text(genericText.levelSelect, "32px Roboto", "rgba(0,0,0,0.54)");
     subtitle = alignTextToStageCenter(stage, subtitle);
     subtitle.y = 100;
 

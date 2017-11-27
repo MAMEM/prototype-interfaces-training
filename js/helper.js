@@ -174,26 +174,19 @@ function loadLvlStructure(fullTitle, shortTitle) {
 
 function loadLvlIntroStory(script) {
 
-    // Add speech bubble & story text
-    var textContainer = [];
-    textContainer.width = window.innerWidth - 500;
-    textContainer.x = 250;
-    textContainer.y = 260;
 
     var scriptText = new createjs.Text(script, "500 18px Roboto", color.textRegular);
-    scriptText = alignTextToStageCenter(stage, scriptText);
     /*scriptText.x = textContainer.x + 20;*/
-    scriptText.y = textContainer.y + 20;
-    scriptText.lineWidth = textContainer.width - 40;
+    scriptText.y = 260;
     scriptText.lineHeight = 26;
+    scriptText.lineWidth = (70*stage.canvas.width)/100;
+    scriptText.textAlign = "center";
+    scriptText.x = stage.canvas.width/2;
+
 
     if (RTL) {
         scriptText.textAlign = "right";
-        scriptText.x = window.innerWidth - textContainer.x - 20;
     }
-
-    var textBounds = scriptText.getBounds();
-    textContainer.height = textBounds.height + 60;
 
     if(gameTypeStripped) {
         scriptText = alignTextToStageCenter(stage, scriptText);

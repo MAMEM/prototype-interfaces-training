@@ -92,13 +92,13 @@ var levelText = [
     {
         fullTitle: "BASIC - 01 Focus on the markers",
         shortTitle: "Focus on the markers",
-        story: "Try to focus your eyes on a series of markers. Get the trophy by focusing on each marker only once!",
+        story: "Look at each marker to strike! TIP: Be fast and accurate for extra points!",
         storyNeutral: "Try to focus your eyes on a series of markers."
     },
     {
         fullTitle: "BASIC - 02 Focus on a sequence of markers",
         shortTitle: "Whack-a-mole!",
-        story: "Try to focus your eyes on each marker when it appears, for a set amount of time! Hit all the markers to earn the trophy!",
+        story: "Whack the markers with your eyes! TIP: Be fast and don't miss any marker to score extra points!",
         storyNeutral: "Try to focus your eyes on each marker when it appears, for a set amount of time."
     },
     {
@@ -196,7 +196,7 @@ var genericText =
         subTitle: "Learn how to use the browser",
         play: "Play",
         replay: "Replay",
-        levelSelect: "Complete the three level groups to become the master of Gaze the Web!",
+        levelSelect: "Complete the three groups of levels to become the master of Gaze the Web!",
         basic: "BASIC",
         intermediate: "INTERMEDIATE",
         advanced: "ADVANCED",
