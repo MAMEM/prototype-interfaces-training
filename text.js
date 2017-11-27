@@ -110,7 +110,7 @@ var levelText = [
     {
         fullTitle: "INTERMEDIATE - 02 The Quiz",
         shortTitle: "The quiz",
-        story: "The wizard is challenging you to a quiz test. Use the GazeTheWeb Keyboard to type the correct answer to 3 questions.",
+        story: "The wizard is challenging you to a quiz test. Use the GazeTheWeb Keyboard to type the correct answer to 2 questions.",
         storyNeutral: "Use the ZOOM buttons to see the available answers and type the correct one to each question using the GazeTheWeb KEYBOARD."
     },
     {
@@ -173,7 +173,7 @@ var quizText = [
         answer4_en: "Amsterdam", // Don't translate this!
         correct: "Paris", // Don't translate this!
         cat: "Intermediate" // Don't translate this!
-    },
+    }/*,
     {
         question: "Who was the first President of the United States?",
         answer1: "Lincoln",
@@ -186,7 +186,7 @@ var quizText = [
         answer4_en: "Bush sr.", // Don't translate this!
         correct: "Washington", // Don't translate this!
         cat: "Advanced" // Don't translate this!
-    }
+    }*/
 ];
 
 // Translate all phrases inside " "

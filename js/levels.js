@@ -963,7 +963,7 @@ function InitiateLevel(group, level, levelStructure) {
         metrics.trophy = false;
 
         var questions = [];
-        questions.total = 3;
+        questions.total = 2;
         questions.idx = questions.total;
 
         var backgroundColor = new createjs.Shape();
@@ -1103,32 +1103,15 @@ function InitiateLevel(group, level, levelStructure) {
 
             function ask(idx) {
 
-                if (idx === 0) {
-
-                    // Send LSL Message
-                    if (window.loggingMediator) {
-                        SendLSLMessage("level_int_2__question_asked_easy");
-                    }
-
-                    pointer = 0;
-
-                } else if (idx === 1) {
-
-                    // Send LSL Message
-                    if (window.loggingMediator) {
-                        SendLSLMessage("level_int_2__question_asked_med");
-                    }
-
-                    pointer = 1;
-
-                } else {
-
-                    // Send LSL Message
-                    if (window.loggingMediator) {
-                        SendLSLMessage("level_int_2__question_asked_hard");
-                    }
-                    pointer = 2;
+                // Send LSL Message
+                if (window.loggingMediator) {
+                    SendLSLMessage("level_int_2__question_asked");
                 }
+
+                if (idx === 0) { pointer = 0; }
+                else if (idx === 1) { pointer = 1; }
+                else { pointer = 2; }
+
 
                 if (idx === 2) {
                     questionLabel.text = genericText.question + " " + '3' + " / " + questions.total;
