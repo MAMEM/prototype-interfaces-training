@@ -183,11 +183,6 @@ function loadLvlIntroStory(script) {
     scriptText.textAlign = "center";
     scriptText.x = stage.canvas.width/2;
 
-
-    if (RTL) {
-        scriptText.textAlign = "right";
-    }
-
     if(gameTypeStripped) {
         scriptText = alignTextToStageCenter(stage, scriptText);
         scriptText.y = 300;
