@@ -1056,6 +1056,10 @@ function InitiateLevel(group, level, levelStructure) {
             hint = alignTextToStageCenter(stage, hint);
             hint.y = papyrus.y + 220;
 
+            var zoomBtnIcon = new createjs.Bitmap("assets/btn-zoom.png");
+            zoomBtnIcon.x = hint.x - 90;
+            zoomBtnIcon.y = papyrus.y + 190;
+
             // Attach an event handler to input to trick GTW and spawn the "T" overlay
             document.getElementById("inputTextFirst").addEventListener("click", spawnElement());
 
@@ -1092,6 +1096,10 @@ function InitiateLevel(group, level, levelStructure) {
 
             submitBtn.x = stage.canvas.width/2;
             submitBtn.y = stage.canvas.height - 190;
+
+            var icBtnClick = new createjs.Bitmap("assets/ic_hand.png");
+            icBtnClick.x = submitBtn.x + 100;
+            icBtnClick.y = submitBtn.y;
 
             var question = new createjs.Text(" ", "700 24px Roboto", color.darkBrown);
             var answerA = new createjs.Text(" ", "400 10px Roboto", color.darkBrown);
@@ -1185,8 +1193,6 @@ function InitiateLevel(group, level, levelStructure) {
                     metrics.fail++;
                 }
 
-
-
                 barContainer.addChild(barElement);
                 textInput.value = '';
                 stage.addChild(barContainer);
@@ -1241,7 +1247,7 @@ function InitiateLevel(group, level, levelStructure) {
                     ask(idx);
                 }
             });
-            levelContainer.addChild(question, answerA, answerB, answerC, answerD, hint, submitBtn, submitLabel);
+            levelContainer.addChild(question, answerA, answerB, answerC, answerD, hint, zoomBtnIcon, submitBtn, submitLabel, icBtnClick);
         }
 
         if (!gameTypeStripped) {
@@ -1337,8 +1343,8 @@ function InitiateLevel(group, level, levelStructure) {
         scrollTitle.y = stage.canvas.height - 310;
         scrollTitle.textAlign = "center";
 
-        var scrollDesc = new createjs.Text(genericText.lvl5ScrollDesc + " ", "500 20px Roboto", color.brown);
-        scrollDesc.x = 280;
+        var scrollDesc = new createjs.Text(genericText.lvl5ScrollDesc + " ", "500 20px Roboto", color.red);
+        scrollDesc.x = 255;
         scrollDesc.y = stage.canvas.height - 270;
         scrollDesc.textAlign = "center";
 
@@ -1346,7 +1352,7 @@ function InitiateLevel(group, level, levelStructure) {
         cpIcon.x = 330;
         cpIcon.y = scrollDesc.y;
 
-        var pasteDesc = new createjs.Text(genericText.lvl5PasteDesc + " ", "500 20px Roboto", color.brown);
+        var pasteDesc = new createjs.Text(genericText.lvl5PasteDesc + " ", "500 20px Roboto", color.red);
         pasteDesc.x = 280;
         pasteDesc.y = stage.canvas.height - 90;
         pasteDesc.textAlign = "center";
@@ -2415,10 +2421,17 @@ function InitiateLevel(group, level, levelStructure) {
         var time = [];
         var accuracy = [];
         var trophy = [];
-
+        var resultsPopup;
         var poe = [];
         poe.x = 40;
         poe.y = 70;
+
+        var colThirds = [];
+        var colFourths = [];
+        colThirds.x = poe.x + 20;
+        colThirds.y = poe.y + 140;
+        colFourths.x = colThirds.x;
+        colFourths.y = colThirds.y;
 
         trophy.current = false;
 
@@ -2559,7 +2572,7 @@ function InitiateLevel(group, level, levelStructure) {
             score.current = score.current > 0 ? score.current : 0;
 
             // Create results screen
-            var resultsPopup = new createjs.Shape();
+            resultsPopup = new createjs.Shape();
             resultsPopup.height = window.innerHeight - 200 - poe.y;
             resultsPopup.width = window.innerWidth - 100;
             resultsPopup.graphics.beginFill(color.blue).drawRect(poe.x, poe.y + 100, resultsPopup.width, resultsPopup.height);
@@ -2569,17 +2582,11 @@ function InitiateLevel(group, level, levelStructure) {
 
             stage.addChild(resultsPopup);
 
-            var colThirds = [];
-            var colFourths = [];
+
             var label = [];
             var separator = [];
 
-            colThirds.x = poe.x + 20;
-            colThirds.y = poe.y + 140;
             colThirds.width = (window.innerWidth - 90)/3;
-
-            colFourths.x = colThirds.x;
-            colFourths.y = colThirds.y;
             colFourths.width = (window.innerWidth - 90)/4;
 
             var initVals = initializeResultsValues(group, level, stopwatch, score, time, accuracy, trophy);
@@ -2681,22 +2688,30 @@ function InitiateLevel(group, level, levelStructure) {
             // Load Outro Story
             outroStoryContainer = loadLvlOutroStory(poe, null);
 
-            var speechBubble = outroStoryContainer.getChildAt(0);
-
-            var btnSize = [], btnPos = [];
-            btnSize.x = speechBubble.drawWidth - 200;
-            btnPos.x = speechBubble.x + 100;
-            btnSize.y = 120;
-            btnPos.y = stage.canvas.height - 300;
-
             var button = [];
-            button.replay = new Button(color.green, btnSize, btnPos, genericText.replay, replayCurrentLevel);
+            var size = [], pos = [];
+
+            colThirds.width = (window.innerWidth - 90)/2;
+
+            size.x = colThirds.width - colThirds.x;
+            size.y = 100;
+            pos.x = colThirds.x;
+            pos.y = 300 + poe.y - 20;
+
+            button.overview = new Button(color.green, size, pos, genericText.overview, loadOverviewPage);
+            button.overview.icon = new createjs.Bitmap("assets/ic_overview.png");
+            button.overview.icon.x = colThirds.width/2 - colThirds.x - 40;
+            button.overview.icon.y = 300 + poe.y + 8;
+
+            pos.x = colThirds.x + colThirds.width;
+            button.replay = new Button(color.green, size, pos, genericText.replay, replayCurrentLevel);
             button.replay.icon = new createjs.Bitmap("assets/ic_replay.png");
-            button.replay.icon.x = window.innerWidth/2 - 180;
-            button.replay.icon.y = btnPos.y + btnSize.y/2 - 27;
+            button.replay.icon.x = colThirds.width + (colThirds.width/2 - colThirds.x) - 30;
+            button.replay.icon.y = 300 + poe.y + 8;
 
-            stage.addChild(button.replay.btn, button.replay.icon, button.replay.label);
+            outroStoryContainer.addChild(button.replay.btn, button.replay.icon, button.replay.label, button.overview.btn, button.overview.icon, button.overview.label);
 
+            stage.setChildIndex( outroStoryContainer, stage.getNumChildren()-1);
 
             if (window.loggingMediator) {
                 SendLSLMessage("page_load__level_failed_text");

@@ -175,7 +175,7 @@ function loadLvlStructure(fullTitle, shortTitle) {
 function loadLvlIntroStory(script) {
 
 
-    var scriptText = new createjs.Text(script, "500 18px Roboto", color.textRegular);
+    var scriptText = new createjs.Text(script, "500 22px Roboto", color.textRegular);
     /*scriptText.x = textContainer.x + 20;*/
     scriptText.y = 260;
     scriptText.lineHeight = 26;

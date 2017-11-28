@@ -116,7 +116,7 @@ var levelText = [
     {
         fullTitle: "INTERMEDIATE - 03 Find the treasure",
         shortTitle: "The map",
-        story: "You are about to find where the treasure is. Select each coordinate, copy and then paste them into the map",
+        story: "You are about to find where the treasure is. Select each coordinate, copy and then paste them into the map.",
         storyNeutral: "Use the GazeTheWeb copy & paste functionality to find the treasure."
     },
     {
@@ -240,8 +240,8 @@ var genericText =
         answer: "Answer",
         lvl5CongrText: "You have been deemed worthy! Now find the treasure!",
         coordinates: "COORDINATES",
-        lvl5ScrollDesc: "use the",
-        lvl5PasteDesc: "to paste, use",
+        lvl5ScrollDesc: "Copy: use the",
+        lvl5PasteDesc: "Paste: use the",
         lvl5coords: "Wrong coordinates! Treasure not found!",
         signedOut: "USER IS SIGNED OUT",
         tasks: "Tasks",
