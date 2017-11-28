@@ -11,8 +11,8 @@ function loadLevel(group, level) {
     var levelIntro;
 
     var textPointer = 0;
-    // Add tutorials
-    var tutorialContainer = null;
+
+    canvas.width = window.innerWidth;
 
     switch(group) {
         case 0:
@@ -30,17 +30,12 @@ function loadLevel(group, level) {
 
             if (level === 0) {
                 textPointer = 2;
-                tutorialContainer = addTutorials(textPointer);
-                canvas.height = 1400;
-                window.scrollTo(0,0);
             }
             else if (level === 1) {
                 textPointer = 3;
-                tutorialContainer = addTutorials(textPointer);
             }
             else if (level === 2) {
                 textPointer = 4;
-                tutorialContainer = addTutorials(textPointer);
             }
 
             break;
@@ -75,10 +70,6 @@ function loadLevel(group, level) {
 
     stage.addChild(nextButton.btn, nextButton.label);
 
-    if (tutorialContainer) {
-        stage.addChild(tutorialContainer);
-    }
-
     // Send LSL Message
     if (window.loggingMediator) {
 
@@ -95,11 +86,6 @@ function loadLevel(group, level) {
         stage.removeChild(introStoryContainer);
         stage.removeChild(nextButton.btn);
         stage.removeChild(nextButton.label);
-
-        // Remove tutorial layers if any
-        if (tutorialContainer) {
-            stage.removeChild(tutorialContainer);
-        }
 
 
         // Set height manually in every stage (except splash)
@@ -701,6 +687,25 @@ function InitiateLevel(group, level, levelStructure) {
         river.x = (stage.canvas.width/2) + 50;
         river.y = 0;
 
+        var icAutoScroll = new createjs.Bitmap("assets/ic_auto_scroll.png");
+        icAutoScroll.x = river.x + 84;
+        icAutoScroll.y = 100;
+
+        var autoScrollLabel = new createjs.Text(genericText.lvl3AutoScroll + " ", "500 24px Roboto", color.whitePimary);
+        autoScrollLabel.x = icAutoScroll.x + 160;
+        autoScrollLabel.y = icAutoScroll.y + 16;
+        autoScrollLabel.textAlign = "center";
+
+        var icManualScroll = new createjs.Bitmap("assets/ic_manual_scroll.png");
+        icManualScroll.x = river.x + 80;
+        icManualScroll.y = 200;
+
+        var manualScrollLabel = new createjs.Text(genericText.lvl3ManualScroll + " ", "500 24px Roboto", color.whitePimary);
+        manualScrollLabel.x = icManualScroll.x + 190;
+        manualScrollLabel.y = icManualScroll.y + 10;
+        manualScrollLabel.textAlign = "center";
+
+
         var forest = new createjs.Bitmap("assets/int/forest.png");
         forest.x = (stage.canvas.width) - 400;
         forest.y = 300;
@@ -906,7 +911,7 @@ function InitiateLevel(group, level, levelStructure) {
 
         if (!gameTypeStripped) {
             levelContainer.addChild(backgroundColor, river, village, villageTextA, villageTextB, villageTitle, tower, towerTitle, towerSelect, towerSelectIcon, cave, caveTitle, caveSelect, caveSelectIcon,
-                forest, bush1, bush2, bush3, bush4);
+                forest, bush1, bush2, bush3, bush4, icAutoScroll, icManualScroll, autoScrollLabel, manualScrollLabel);
         } else {
 
             towerSelectIcon = new createjs.Bitmap("assets/ic_hand_green.png");

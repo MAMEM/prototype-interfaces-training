@@ -230,6 +230,8 @@ var genericText =
         lvl3Tower: "WIZARDS TOWER",
         lvl3Cave: "CAVE",
         lvl3Select: "Select me using",
+        lvl3ManualScroll: "to scroll manually",
+        lvl3AutoScroll: "to auto scroll",
         lvl4CongrTextA: "Congratulations on finding me.",
         lvl4CongrTextB: "Your real test begins now!",
         lvl4ScrollDesc: "Use the ZOOM button to read the available answers, then type the answer below!",
