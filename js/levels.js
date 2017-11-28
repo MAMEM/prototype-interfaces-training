@@ -1098,8 +1098,8 @@ function InitiateLevel(group, level, levelStructure) {
             submitBtn.y = stage.canvas.height - 190;
 
             var icBtnClick = new createjs.Bitmap("assets/ic_hand.png");
-            icBtnClick.x = submitBtn.x + 100;
-            icBtnClick.y = submitBtn.y;
+            icBtnClick.x = submitBtn.x + 200;
+            icBtnClick.y = submitBtn.y + 20;
 
             var question = new createjs.Text(" ", "700 24px Roboto", color.darkBrown);
             var answerA = new createjs.Text(" ", "400 10px Roboto", color.darkBrown);
