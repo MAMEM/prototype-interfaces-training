@@ -208,7 +208,7 @@ var genericText =
         time: "Time",
         rewards: "Rewards",
         accuracy: "Accuracy",
-        rankings: "RANKINGS - TOP 5",
+        rankings: "RANKINGS - TOP 3",
         name: "Name",
         overview: "Overview",
         next: "Next",

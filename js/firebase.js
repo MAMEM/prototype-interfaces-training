@@ -424,8 +424,8 @@ function createScoreboard(group, level, col) {
         });
 
         // Keep only top 5
-        if (users.length > 5) {
-            users = users.slice(0,5);
+        if (users.length > 3) {
+            users = users.slice(0,3);
         }
 
         var rankingsLabels = [];
