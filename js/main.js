@@ -3,101 +3,34 @@ var canvas = document.getElementById('canvas'),
     context = canvas.getContext('2d');
 
 /*window.addEventListener('resize', resizeCanvas, false);*/
-
-var currentUrl = window.location.href;
-
 var stage = new createjs.Stage("canvas");
 var mousePointer = new createjs.Shape();
 
+var currentUrl = window.location.href;
+
+var url = new URL(window.location.href);
+user.email = url.searchParams.get("email");
+user.password = url.searchParams.get("pass");
+
 var RTL = false;
-var gameTypeFull = false;
+var gameTypeFull = true;
 var gameTypeStripped = false;
 var gameTypeElems = false;
-
 var advLevelsEnabled = true;
-
-// options
 var toggleQuizTranslations = false;
 
-document.getElementById("registerButton").onclick = function() {
+loginUser();
+init();
 
-    user.firstName = document.getElementById("firstNameInput").value;
-    user.nickname = document.getElementById("nicknameInput").value;
-
-    // Capitalize First letter First name
-    user.firstName = user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1);
-    /*user.nickname = user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1);*/
-
-    user.email = document.getElementById("emailInput").value;
-    user.password = document.getElementById("passInput").value;
-
-    if (document.getElementById("maleRadioBtn").checked) {
-        user.gender = "m";
-    } else {
-        user.gender = "f";
-    }
-
-    user.age = document.getElementById("ageInput").value;
-
-    if (!user.email || !user.password || !user.firstName || !user.nickname || !user.gender || !user.age) {
-        alert('Please fill in all Register fields!');
-        return 0;
-    }
-
-    if (user.password.length < 6) {
-        alert('Password should be longer than 6 chars!');
-        return 0;
-    }
-
-    document.getElementById("startingInfoArea").style.display = "none";
-
-    // Preload libs
-    var queue = new createjs.LoadQueue(true);
-    queue.loadFile({src:"https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i", type:createjs.AbstractLoader.CSS});
-    queue.on("complete", function(){
-        registerUser();
-        init();
-    });
-};
-
-
-document.getElementById("loginButton").onclick = function() {
-    user.email = document.getElementById("emailLoginInput").value;
-    user.password = document.getElementById("passLoginInput").value;
-    user.firstName = document.getElementById("firstNameInputLogin").value;
-    user.firstName = user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1);
-
-    if (!user.email || !user.password || !user.firstName) {
-        alert('Please fill in all Register fields!');
-        return 0;
-    }
-
-    document.getElementById("startingInfoArea").style.display = "none";
-
-    // Preload libs
-    var queue = new createjs.LoadQueue(true);
-    queue.loadFile({src:"https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i", type:createjs.AbstractLoader.CSS});
-    queue.on("complete", function(){
-        loginUser();
-        init();
-    });
-};
+// Preload libs
+var queue = new createjs.LoadQueue(true);
+queue.loadFile({src:"https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i", type:createjs.AbstractLoader.CSS});
+queue.on("complete", function(){
+    loginUser();
+    init();
+});
 
 function init() {
-
-    // Check if RTL is enabled
-    RTL = document.getElementById('rtlCheckbox');
-    RTL = RTL.checked;
-
-    gameTypeFull = true;
-    gameTypeStripped = false;
-    gameTypeElems = false;
-
-    /*advLevelsEnabled = document.getElementById('advCheckbox');*/
-    advLevelsEnabled = true;
-
-    toggleQuizTranslations = document.getElementById('quizCheckbox');
-    toggleQuizTranslations = toggleQuizTranslations.checked;
 
     createjs.Ticker.setFPS(60);
     createjs.Ticker.addEventListener("tick", tick);

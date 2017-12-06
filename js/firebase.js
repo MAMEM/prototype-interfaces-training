@@ -48,6 +48,12 @@ function loginUser() {
                 user.nickname = snapshot.val().userDetails.nickname;
                 user.gender = snapshot.val().userDetails.gender;
                 user.age = snapshot.val().userDetails.age;
+                user.firstName = snapshot.val().userDetails.firstName;
+                user.language = snapshot.val().userDetails.lang;
+                user.quizTranslation = snapshot.val().userDetails.quizTranslation;
+
+                RTL = (user.language === 'hebrew');
+                toggleQuizTranslations = user.quizTranslation;
 
                 firebaseUsernameHUD = new createjs.Text(user.firstName, "18px Roboto", color.textRegular);
                 firebaseUsernameHUD.x = parseInt(stage.canvas.width-20, 10);

@@ -173,20 +173,7 @@ var quizText = [
         answer4_en: "Amsterdam", // Don't translate this!
         correct: "Paris", // Don't translate this!
         cat: "Intermediate" // Don't translate this!
-    }/*,
-    {
-        question: "Who was the first President of the United States?",
-        answer1: "Lincoln",
-        answer2: "Washington",
-        answer3: "Roosevelt",
-        answer4: "Bush sr.",
-        answer1_en: "Lincoln", // Don't translate this!
-        answer2_en: "Washington", // Don't translate this!
-        answer3_en: "Roosevelt", // Don't translate this!
-        answer4_en: "Bush sr.", // Don't translate this!
-        correct: "Washington", // Don't translate this!
-        cat: "Advanced" // Don't translate this!
-    }*/
+    }
 ];
 
 // Translate all phrases inside " "

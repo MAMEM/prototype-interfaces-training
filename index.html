@@ -19,156 +19,19 @@
 <p class="textStyle" style="display: none;" id="caveLngText">Longitude: <b>22.9444E</b> degrees</p>
 
 
-<div id="startingInfoArea" class="container">
-    <div class="row">
-
-        <h1>Enter participants information</h1>
-
-        <h3>Settings</h3>
-
-        <div class="twelve columns">
-
-            <!--<div class="six columns=">
-                <label>Game Type</label>
-                <div class="twelve columns">
-
-                    <form>
-                        <div class="four columns">
-                            <label for="persuasiveRadioBtn">FP</label>
-                            <input type="radio" name="day" value="m" id="persuasiveRadioBtn" checked>
-                        </div>
-                        <div class="four columns">
-                            <label for="bareRadioBtn">SV</label>
-                            <input type="radio" name="day" value="f" id="bareRadioBtn">
-                        </div>
-                        <div class="four columns">
-                            <label for="gameOnlyRadioBtn">GEO</label>
-                            <input type="radio" name="day" value="f" id="gameOnlyRadioBtn">
-                        </div>
-                    </form>
-
-                </div>
-            </div>-->
-
-            <div class="six columns">
-                <label>Layout Settings</label>
-
-                <label>
-                    <input type="checkbox" id="rtlCheckbox">
-                    <span class="label-body">Right-To-Left (RTL) Layout</span>
-                </label>
-
-            </div>
-
-            <div class="six columns">
-                <label>Translation Settings</label>
-
-                <label>
-                    <input type="checkbox" id="quizCheckbox">
-                    <span class="label-body">Translate Quiz questions</span>
-                </label>
-            </div>
-
-        </div>
-
-    </div>
-    <br>
-
-    <div class="twelve columns">
-
-        <div class="six columns">
-
-            <h3>Register participant</h3>
-
-            <form>
-                <div class="row">
-
-                    <div class="twelve columns">
-                        <label for="emailInput">E-mail</label>
-                        <input class="u-full-width" type="email" placeholder="e.g. user@mail.com" id="emailInput">
-                        <label for="passInput">Password</label>
-                        <input class="u-full-width" type="text" placeholder="6 characters minimum!" id="passInput">
-                    </div>
-
-                    <div class="twelve columns">
-                        <label for="nicknameInput">Participants number</label>
-                        <input class="u-full-width" type="text" placeholder="e.g. GS016 or Colibri" id="nicknameInput">
-
-                        <label for="firstNameInput">First Name</label>
-                        <input class="u-full-width" type="text" placeholder="e.g. John" id="firstNameInput">
-                    </div>
-
-                    <div class="twelve columns">
-                        <div class="six columns">
-                            <label>Gender</label>
-                            <div class="twelve columns">
-                                <form>
-                                    <div class="six columns">
-                                        <label for="maleRadioBtn">Male</label>
-                                        <input type="radio" name="day" value="m" id="maleRadioBtn" checked>
-                                    </div>
-                                    <div class="six columns">
-                                        <label for="femaleRadioBtn">Female</label>
-                                        <input type="radio" name="day" value="f" id="femaleRadioBtn">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="six columns">
-                            <label for="ageInput">Age</label>
-                            <input class="u-full-width" type="text" placeholder="e.g. 34" id="ageInput">
-                        </div>
-                    </div>
-                </div>
-
-            </form>
-            <button class="button-primary" id="registerButton">Register</button>
-        </div>
-
-        <div class="six columns">
-
-            <h3>Login participant</h3>
-
-            <form>
-                <div class="row">
-
-                    <div class="twelve columns">
-                        <label for="emailLoginInput">E-mail</label>
-                        <input class="u-full-width" type="email" placeholder="e.g. user@mail.com" id="emailLoginInput" value="s@tu.nl">
-                        <label for="passLoginInput">Password</label>
-                        <input class="u-full-width" type="text" placeholder="e.g. 123456" id="passLoginInput" value="123456">
-                        <label for="firstNameInputLogin">First Name</label>
-                        <input class="u-full-width" type="text" placeholder="e.g. John" id="firstNameInputLogin" value="S">
-                    </div>
-                </div>
-            </form>
-            <button class="button-primary" id="loginButton">Login</button>
-        </div>
-    </div>
-</div>
-
-
-
 <script type="text/javascript" src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
 <script>
     // Initialize Firebase
 
-    // MAMEM Trials
-    /*var config = {
-     apiKey: "AIzaSyC29Yx0QEoGNgCdl4dT8TD4UNbsJcA1zVg",
-     authDomain: "mamem-fbce4.firebaseapp.com",
-     databaseURL: "https://mamem-fbce4.firebaseio.com",
-     storageBucket: "mamem-fbce4.appspot.com"
-     };*/
-
-    // MAMEM phase 2
     var config = {
-        apiKey: "AIzaSyAWPDgOFqFCSAp_IipSLdtBI7fGKKCa8C8",
-        authDomain: "mamem-phase2.firebaseapp.com",
-        databaseURL: "https://mamem-phase2.firebaseio.com",
-        storageBucket: "mamem-phase2.appspot.com"
+        apiKey: "AIzaSyBMa9gSXsoDo27S7P959QZYf3rJBGDGEIA",
+        projectId: "mamem-phase2-fall17"
     };
+    config.authDomain = config.projectId + ".firebaseapp.com";
+    config.databaseURL = "https://" + config.projectId + ".firebaseio.com";
+    config.storageBucket = config.projectId + ".appspot.com";
     firebase.initializeApp(config);
+
 </script>
 
 <script type="text/javascript" src="js/libs/ScaleBitmap.js"></script>
