@@ -82,7 +82,7 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
         case 0:
             if (level === 0) {
 
-                firebase.database().ref('users/' + userId + '/levels/basic/level1').set({
+                firebase.database().ref('users/' + userId + '/training/levels/basic/level1').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
@@ -96,7 +96,7 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
 
 
             } else if (level === 1) {
-                firebase.database().ref('users/' + userId + '/levels/basic/level2').set({
+                firebase.database().ref('users/' + userId + '/training/levels/basic/level2').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
@@ -110,7 +110,7 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
         case 1:
 
             if (level === 0) {
-                firebase.database().ref('users/' + userId + '/levels/int/level1').set({
+                firebase.database().ref('users/' + userId + '/training/levels/int/level1').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
@@ -121,7 +121,7 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     "hits": metrics.hit
                 });
             } else if (level === 1) {
-                firebase.database().ref('users/' + userId + '/levels/int/level2').set({
+                firebase.database().ref('users/' + userId + '/training/levels/int/level2').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
@@ -133,7 +133,7 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                 });
 
             } else if (level === 2) {
-                firebase.database().ref('users/' + userId + '/levels/int/level3').set({
+                firebase.database().ref('users/' + userId + '/training/levels/int/level3').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
@@ -148,7 +148,7 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
             break;
         case 2:
             if (level === 0) {
-                firebase.database().ref('users/' + userId + '/levels/adv/level1').set({
+                firebase.database().ref('users/' + userId + '/training/levels/adv/level1').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
@@ -162,7 +162,7 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     }
                 });
             } else if (level === 1) {
-                firebase.database().ref('users/' + userId + '/levels/adv/level2').set({
+                firebase.database().ref('users/' + userId + '/training/levels/adv/level2').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
@@ -175,7 +175,7 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     }
                 });
             } else if (level === 2) {
-                firebase.database().ref('users/' + userId + '/levels/adv/level3').set({
+                firebase.database().ref('users/' + userId + '/training/levels/adv/level3').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
@@ -187,7 +187,7 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
                     }
                 });
             } else if (level === 3) {
-                firebase.database().ref('users/' + userId + '/levels/adv/level4').set({
+                firebase.database().ref('users/' + userId + '/training/levels/adv/level4').set({
                     "score": score.current,
                     "ms": time.current,
                     "timeLabel": time.currentFormatted,
@@ -210,6 +210,11 @@ function createScoreboard(group, level, col) {
 
     firebase.database().ref("users").once('value').then(function(snapshot) {
         var userData = snapshot.val();
+
+        userData = userData.training;
+
+        console.log(userData);
+
         var key;
         var entity = [];
         var users = [];

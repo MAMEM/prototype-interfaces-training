@@ -220,17 +220,12 @@ function loadLvlOutroStory(poe, completion) {
             { textString = composeFeedback('positive'); }
             else
             { textString = defaultFeedback.positive; }
-
-            scriptText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
-
         }
         else {
             if (!gameTypeStripped)
             { textString = composeFeedback('neutral'); }
             else
             { textString = defaultFeedback.neutral; }
-
-            scriptText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
         }
 
     } else {
@@ -239,10 +234,9 @@ function loadLvlOutroStory(poe, completion) {
         { textString = composeFeedback('negative'); }
         else
         { textString = defaultFeedback.negative; }
-
-        scriptText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
     }
 
+    scriptText = new createjs.Text(textString, "500 18px Roboto", color.textRegular);
     scriptText = alignTextToStageCenter(stage, scriptText);
     scriptText.y = textContainer.y;
     scriptText.lineWidth = textContainer.width - 40;
@@ -675,22 +669,22 @@ function composeFeedback(type) {
 
             if(user.age > 45 ) {
                 // Old
-                if (user.gender === 'm') {
+                if (user.gender === 'male') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldMale.positive.length-1);
                     textString = personalizedFeedback.oldMale.positive[randomFeedbackFlag];
                 }
-                else if (user.gender === 'f') {
+                else if (user.gender === 'female') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldFemale.positive.length-1);
                     textString = personalizedFeedback.oldFemale.positive[randomFeedbackFlag];
                 }
 
             } else {
                 // Young
-                if (user.gender === 'm') {
+                if (user.gender === 'male') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngMale.positive.length-1);
                     textString = personalizedFeedback.youngMale.positive[randomFeedbackFlag];
                 }
-                else if (user.gender === 'f') {
+                else if (user.gender === 'female') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngFemale.positive.length-1);
                     textString = personalizedFeedback.youngFemale.positive[randomFeedbackFlag];
                 }
@@ -701,22 +695,22 @@ function composeFeedback(type) {
 
             if(user.age > 45 ) {
                 // Old
-                if (user.gender === 'm') {
+                if (user.gender === 'male') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldMale.neutral.length-1);
                     textString = personalizedFeedback.oldMale.neutral[randomFeedbackFlag];
                 }
-                else if (user.gender === 'f') {
+                else if (user.gender === 'female') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldFemale.neutral.length-1);
                     textString = personalizedFeedback.oldFemale.neutral[randomFeedbackFlag];
                 }
 
             } else {
                 // Young
-                if (user.gender === 'm') {
+                if (user.gender === 'male') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngMale.neutral.length-1);
                     textString = personalizedFeedback.youngMale.neutral[randomFeedbackFlag];
                 }
-                else if (user.gender === 'f') {
+                else if (user.gender === 'female') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngFemale.neutral.length-1);
                     textString = personalizedFeedback.youngFemale.neutral[randomFeedbackFlag];
                 }
@@ -727,22 +721,22 @@ function composeFeedback(type) {
 
             if(user.age > 45 ) {
                 // Old
-                if (user.gender === 'm') {
+                if (user.gender === 'male') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldMale.negative.length-1);
                     textString = personalizedFeedback.oldMale.negative[randomFeedbackFlag];
                 }
-                else if (user.gender === 'f') {
+                else if (user.gender === 'female') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.oldFemale.negative.length-1);
                     textString = personalizedFeedback.oldFemale.negative[randomFeedbackFlag];
                 }
 
             } else {
                 // Young
-                if (user.gender === 'm') {
+                if (user.gender === 'male') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngMale.negative.length-1);
                     textString = personalizedFeedback.youngMale.negative[randomFeedbackFlag];
                 }
-                else if (user.gender === 'f') {
+                else if (user.gender === 'female') {
                     randomFeedbackFlag = getRandomInt(randomFeedbackFlag, 0, personalizedFeedback.youngFemale.negative.length-1);
                     textString = personalizedFeedback.youngFemale.negative[randomFeedbackFlag];
                 }
