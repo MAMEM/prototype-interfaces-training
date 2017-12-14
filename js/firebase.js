@@ -1,41 +1,5 @@
 var firebaseUsernameHUD;
 
-function registerUser() {
-
-    firebase.auth().createUserWithEmailAndPassword(user.email, user.password).then(function() {
-
-        var currentUser =  firebase.auth().currentUser;
-
-        if (currentUser != null) {
-
-            // When saving data on first level, save name too (to be used on scoreboard).
-            firebase.database().ref('users/' + currentUser.uid + '/userDetails').set({
-                "nickname": user.nickname,
-                "gender": user.gender,
-                "age": user.age
-            });
-
-            firebaseUsernameHUD = new createjs.Text(user.firstName, "18px Roboto", color.textRegular);
-            firebaseUsernameHUD.x = parseInt(stage.canvas.width-20, 10);
-            firebaseUsernameHUD.y = 20;
-            firebaseUsernameHUD.textAlign = "right";
-            stage.addChild(firebaseUsernameHUD);
-
-            personalizedFeedback = createFeedback(user.firstName);
-
-        } else {
-
-            return genericText.signedOut;
-        }
-
-    }, function(error) {
-        alert(error.code);
-        window.location.href = currentUrl;
-        return error.code;
-    });
-}
-
-
 function loginUser() {
 
     firebase.auth().signInWithEmailAndPassword(user.email, user.password).then(function() {
@@ -212,8 +176,6 @@ function createScoreboard(group, level, col) {
         var userData = snapshot.val();
 
         userData = userData.training;
-
-        console.log(userData);
 
         var key;
         var entity = [];
