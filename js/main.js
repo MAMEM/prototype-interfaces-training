@@ -137,7 +137,7 @@ function loadOverviewPage() {
 
     // Calculate and render levels (locked or unlocked)
     var userId = firebase.auth().currentUser.uid;
-    return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+    return firebase.database().ref('/users/' + userId + '/training/').once('value').then(function(snapshot) {
 
 
         // BASIC
@@ -202,14 +202,24 @@ function loadOverviewPage() {
             /*if (levelAvailable[i]) {*/
 
             if (!gameTypeStripped) {
+
+                s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+
+                if (snapshot.val().levels.basic){
+                    if (snapshot.val().levels.basic[Object.keys(snapshot.val().levels.basic)[i]]){
+                        s[i].graphics.setStrokeStyle(6).beginStroke(color.blue).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+                    }
+                }
+
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
                     basicLevelTrophy[i] = new createjs.Bitmap("assets/trophies/basic-level"+ (i+1) +"-on.png");
-
                 } else {
-                    s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
                     basicLevelTrophy[i] = new createjs.Bitmap("assets/trophies/basic-level"+ (i+1) +"-off.png");
                 }
+
+
+
                 basicLevelTrophy[i].x = poe + s[i].x + width/2 - 24;
                 basicLevelTrophy[i].y = 310;
 
@@ -389,11 +399,19 @@ function loadOverviewPage() {
 
             if (!gameTypeStripped) {
 
+                s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+
+                if (snapshot.val().levels.int){
+                    if (snapshot.val().levels.int[Object.keys(snapshot.val().levels.int)[i]]) {
+                        s[i].graphics.setStrokeStyle(6).beginStroke(color.blue).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+                    }
+
+                }
+
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
                     intLevelTrophy[i] = new createjs.Bitmap("assets/trophies/int-level"+ (i+1) +"-on.png");
                 } else {
-                    s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
                     intLevelTrophy[i] = new createjs.Bitmap("assets/trophies/int-level"+ (i+1) +"-off.png");
                 }
 
@@ -578,12 +596,20 @@ function loadOverviewPage() {
 
             if (!gameTypeStripped) {
 
+                s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+
+                if (snapshot.val().levels.adv) {
+                    if (snapshot.val().levels.adv[Object.keys(snapshot.val().levels.adv)[i]]) {
+                        s[i].graphics.setStrokeStyle(6).beginStroke(color.blue).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+                    } 
+                }
+
                 if (trophyAvailable[i]) {
+
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
-                    advLevelTrophy[i] = new createjs.Bitmap("assets/trophies/adv-level"+ (i+1) +"-on.png");
+                    advLevelTrophy[i] = new createjs.Bitmap("assets/trophies/adv-level" + (i + 1) + "-on.png");
                 } else {
-                    s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
-                    advLevelTrophy[i] = new createjs.Bitmap("assets/trophies/adv-level"+ (i+1) +"-off.png");
+                    advLevelTrophy[i] = new createjs.Bitmap("assets/trophies/adv-level" + (i + 1) + "-off.png");
                 }
 
                 if (levelAvailable[i+1]) {
