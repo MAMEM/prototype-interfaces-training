@@ -1945,9 +1945,6 @@ function InitiateLevel(group, level, levelStructure) {
                         metrics.close++;
                     }
 
-                    console.log(string);
-                    console.log(taskList);
-
                     if (string === 'close' && taskList.url) {
 
                         metrics.trophy = (metrics.edit === 1);

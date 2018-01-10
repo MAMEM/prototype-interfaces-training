@@ -601,7 +601,7 @@ function loadOverviewPage() {
                 if (snapshot.val().levels.adv) {
                     if (snapshot.val().levels.adv[Object.keys(snapshot.val().levels.adv)[i]]) {
                         s[i].graphics.setStrokeStyle(6).beginStroke(color.blue).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
-                    } 
+                    }
                 }
 
                 if (trophyAvailable[i]) {

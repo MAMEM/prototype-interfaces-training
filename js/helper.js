@@ -71,7 +71,6 @@ function abortLevel() {
 
     // Delete countdown interval
     if (timerInterval) {
-        console.log("Countdown interval deleted");
         clearInterval(timerInterval);
         timerInterval = false;
     }
