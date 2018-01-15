@@ -2603,8 +2603,10 @@ function InitiateLevel(group, level, levelStructure) {
                 trophy.title = new createjs.Text(trophy.info.title, "Italic 20px Roboto", color.yellow);
             }
 
-            var userId = firebase.auth().currentUser.uid;
-            firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+            var userId = firebase.auth().currentUser;
+            userId = userId.uid;
+
+            firebase.database().ref('/users/' + userId + '/training/').once('value').then(function(snapshot) {
 
                 if (snapshot.val()) {
 
