@@ -2486,7 +2486,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (metrics.clicks === 1) {accuracy.val = 100;}
                     else {
-                        accuracy = (2 / metrics.clicks) * 100;
+                        accuracy.val = (2 / metrics.clicks) * 100;
                     }
 
                 } else if (level === 1) {
