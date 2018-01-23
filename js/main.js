@@ -19,15 +19,11 @@ var gameTypeElems = false;
 var advLevelsEnabled = true;
 var toggleQuizTranslations = false;
 
-loginUser();
-init();
-
 // Preload libs
 var queue = new createjs.LoadQueue(true);
 queue.loadFile({src:"https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i", type:createjs.AbstractLoader.CSS});
 queue.on("complete", function(){
     loginUser();
-    init();
 });
 
 function init() {

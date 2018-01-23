@@ -20,12 +20,14 @@ function loginUser() {
                 toggleQuizTranslations = user.quizTranslation;
 
                 firebaseUsernameHUD = new createjs.Text(user.firstName, "18px Roboto", color.textRegular);
-                firebaseUsernameHUD.x = parseInt(stage.canvas.width-20, 10);
+                firebaseUsernameHUD.x = parseInt(window.innerWidth-20, 10);
                 firebaseUsernameHUD.y = 20;
                 firebaseUsernameHUD.textAlign = "right";
                 stage.addChild(firebaseUsernameHUD);
 
-                personalizedFeedback = createFeedback(user.firstName);
+                personalizedFeedback = createFeedback(user.language);
+
+                init();
 
             });
 
