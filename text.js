@@ -21,8 +21,6 @@ function createFeedback(lang) {
             defaultFeedback.neutral = "You have finished the level, and can play again or proceed to the next level.";
             defaultFeedback.negative = "You have not completed the level successfully.";
 
-
-
             personalizedFeedback = {
 
                 youngMale: {
@@ -96,7 +94,6 @@ function createFeedback(lang) {
             };
 
 
-            // Translate all phrases inside " "
             levelText = [
                 {
                     fullTitle: "BASIC - 01 Focus on the markers",
@@ -131,25 +128,25 @@ function createFeedback(lang) {
                 {
                     fullTitle: "ADVANCED - 01 Gaze Visualization",
                     shortTitle: "Settings - Gaze Visualization",
-                    story: "You uncovered the location of the treasure in the previous levels. Now tread through the path accross 4 locations to finally find the treasure, while learning how to use the unique tools GTW has to offer! Try following the instructions without making the same action twice to get the trophy!",
+                    story: "You uncovered the location of the treasure in the previous levels. Now tread through the path across 4 locations to finally find the treasure, while learning how to use the unique tools GTW has to offer!",
                     storyNeutral: "Learning how to use the Gaze Visualization."
                 },
                 {
                     fullTitle: "ADVANCED - 02 URL Typing",
                     shortTitle: "URL Typing",
-                    story: "Learn how to edit a url on GTW Browser. Try following the instructions without making the same action twice to get the trophy!",
+                    story: "Learn how to edit a url on GTW Browser.",
                     storyNeutral: "Learn how to edit a url on GTW Browser."
                 },
                 {
                     fullTitle: "ADVANCED - 03 Text prediction",
                     shortTitle: "Text prediction",
-                    story: "Learn how to type using text prediction. Try following the instructions without making the same action twice to get the trophy!",
+                    story: "Learn how to type using text prediction.",
                     storyNeutral: "Learn how to type using text prediction."
                 },
                 {
                     fullTitle: "ADVANCED - 04 Bookmarks",
                     shortTitle: "Bookmarks",
-                    story: "Learn how to bookmark a page. Try following the instructions without making the same action twice to get the trophy!",
+                    story: "Learn how to bookmark a page.",
                     storyNeutral: "Learn how to bookmark a page."
                 }
             ];
@@ -348,7 +345,7 @@ function createFeedback(lang) {
                 }
             ];
             break;
-            
+
         case 'greek':
 
             defaultFeedback.positive = "Έχεις ολοκληρώσει το επίπεδο και μπορείς να προχωρήσεις στο επόμενο.";
@@ -431,12 +428,14 @@ function createFeedback(lang) {
                 {
                     fullTitle: "ΒΑΣΙΚΟ - 01 Εστίασε στους δείκτες",
                     shortTitle: "Εστίασε στους δείκτες",
-                    story: "Προσπάθησε να εστιάσεις το βλέμα σου στους δείκτες. Κέρδισε το τρόπαιο εστιάζοντας σε κάθε δείκτη μόνο μια φορά!"
+                    story: "Προσπάθησε να εστιάσεις το βλέμα σου στους δείκτες. Προσπάθησε να είσαι γρήγορος και ακριβής για έξτρα βαθμολογία!",
+                    storyNeutral: "Προσπάθησε να εστιάσεις το βλέμα σου στους δείκτες."
                 },
                 {
                     fullTitle: "ΒΑΣΙΚΟ - 02 Εστίασε σε μια σειρά από δείκτες",
                     shortTitle: "Whack-a-mole!",
-                    story: "Προσπάθησε να εστιάσεις το βλέμα σου σε κάθε δείκτη όταν αυτός εμφανίζεται, για ένα χρονικό διάστημα. Εστίασε σε όλους τους δείκτες και κέρδισε το τρόπαιο!"
+                    story: "Προσπάθησε να εστιάσεις το βλέμα σου σε κάθε δείκτη όταν αυτός εμφανίζεται, για ένα χρονικό διάστημα. Εστίασε σε όλους τους δείκτες και κέρδισε το τρόπαιο!",
+                    storyNeutral: "Προσπάθησε να εστιάσεις το βλέμα σου στους δείκτες."
                 },
                 {
                     fullTitle: "ΕΝΔΙΑΜΕΣΟ - 01 Βρές το μάγο",
@@ -555,7 +554,7 @@ function createFeedback(lang) {
                     lvl5CongrText: "Άξιος! Τώρα βρες το θησαυρό!",
                     coordinates: "ΣΥΝΤΕΤΑΓΜΕΝΕΣ",
                     lvl5ScrollDesc: "χρησιμοποίησε το",
-                    lvl5PasteDesc: "to paste, use",
+                    lvl5PasteDesc: "για επικόλληση",
                     lvl5coords: "Λάθος συντεταγμένες! Δεν υπάρχει θησαυρός εκεί!",
                     signedOut: "Ο ΧΡΗΣΤΗΣ ΑΠΟΣΥΝΔΕΘΗΚΕ",
                     tasks: "Ενέργειες",
@@ -563,10 +562,11 @@ function createFeedback(lang) {
                     advQuote2: "That You Want To",
                     noScore: "δεν υπάρχει σκόρ",
                     abort: "Διακοπή",
-                    congrats: "CONGRATULATIONS",
-                    trainingComplete: "You have completed the training",
-                    treasureFound: "You have found the treasure!",
-                    ok: "OK"
+                    congrats: "ΣΥΓΧΑΡΗΤΗΡΙΑ",
+                    trainingComplete: "Ολοκλήρωσες την εκπαίδευση",
+                    treasureFound: "Βρήκες το Θησαυρό!",
+                    ok: "OK",
+                    accuracy: "Ακριβεια"
                 };
 
             advFirstInstructions =
@@ -879,7 +879,8 @@ function createFeedback(lang) {
                     congrats: "CONGRATULATIONS",
                     trainingComplete: "You have completed the training",
                     treasureFound: "You have found the treasure!",
-                    ok: "OK"
+                    ok: "OK",
+                    accuracy: "accuracy"
                 };
 
             advFirstInstructions =
