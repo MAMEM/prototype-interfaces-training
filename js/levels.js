@@ -72,12 +72,7 @@ function loadLevel(group, level) {
 
     // Send LSL Message
     if (window.loggingMediator) {
-
-        if (tutorialContainer) {
-            SendLSLMessage("page_load__level_intro_w_tutorials");
-        } else {
-            SendLSLMessage("page_load__level_intro");
-        }
+        SendLSLMessage("page_load__level_intro");
     }
 
     function startLevel() {

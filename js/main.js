@@ -201,12 +201,13 @@ function loadOverviewPage() {
 
                 s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
 
-                if (snapshot.val().levels.basic){
-                    if (snapshot.val().levels.basic[Object.keys(snapshot.val().levels.basic)[i]]){
-                        s[i].graphics.setStrokeStyle(6).beginStroke(color.blue).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+                if (snapshot.val()) {
+                    if (snapshot.val().levels.basic){
+                        if (snapshot.val().levels.basic[Object.keys(snapshot.val().levels.basic)[i]]){
+                            s[i].graphics.setStrokeStyle(6).beginStroke(color.blue).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+                        }
                     }
                 }
-
                 if (trophyAvailable[i]) {
                     s[i].graphics.setStrokeStyle(6).beginStroke(color.yellow).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
                     basicLevelTrophy[i] = new createjs.Bitmap("assets/trophies/basic-level"+ (i+1) +"-on.png");
@@ -397,11 +398,14 @@ function loadOverviewPage() {
 
                 s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
 
-                if (snapshot.val().levels.int){
-                    if (snapshot.val().levels.int[Object.keys(snapshot.val().levels.int)[i]]) {
-                        s[i].graphics.setStrokeStyle(6).beginStroke(color.blue).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
-                    }
 
+                if (snapshot.val()) {
+                    if (snapshot.val().levels.int){
+                        if (snapshot.val().levels.int[Object.keys(snapshot.val().levels.int)[i]]) {
+                            s[i].graphics.setStrokeStyle(6).beginStroke(color.blue).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+                        }
+
+                    }
                 }
 
                 if (trophyAvailable[i]) {
@@ -594,9 +598,12 @@ function loadOverviewPage() {
 
                 s[i].graphics.setStrokeStyle(6).beginStroke("rgba(0,0,0,0.12)").beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
 
-                if (snapshot.val().levels.adv) {
-                    if (snapshot.val().levels.adv[Object.keys(snapshot.val().levels.adv)[i]]) {
-                        s[i].graphics.setStrokeStyle(6).beginStroke(color.blue).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+                if (snapshot.val()) {
+
+                    if (snapshot.val().levels.adv) {
+                        if (snapshot.val().levels.adv[Object.keys(snapshot.val().levels.adv)[i]]) {
+                            s[i].graphics.setStrokeStyle(6).beginStroke(color.blue).beginFill("white").drawRect(s[i].entryX, s[i].entryY, width, height).endFill();
+                        }
                     }
                 }
 
