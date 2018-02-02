@@ -175,10 +175,8 @@ function updateUserData(group, level, userId, score, time, trophy, metrics, inte
 function createScoreboard(group, level, col) {
 
     firebase.database().ref("users").once('value').then(function(snapshot) {
+
         var userData = snapshot.val();
-
-        userData = userData.training;
-
         var key;
         var entity = [];
         var users = [];
@@ -198,16 +196,16 @@ function createScoreboard(group, level, col) {
 
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
-                        if (!userData[key].levels) continue;
-                        if (!userData[key].levels.basic) continue;
-                        if (!userData[key].levels.basic.level1) continue;
+                        if (!userData[key].training) continue;
+                        if (!userData[key].training.levels.basic) continue;
+                        if (!userData[key].training.levels.basic.level1) continue;
 
                         entity = {
                             nickname: userData[key].userDetails.nickname,
                             id: key,
-                            score: userData[key].levels.basic.level1.score,
-                            time: userData[key].levels.basic.level1.timeLabel,
-                            trophy: userData[key].levels.basic.level1.trophyGained
+                            score: userData[key].training.levels.basic.level1.score,
+                            time: userData[key].training.levels.basic.level1.timeLabel,
+                            trophy: userData[key].training.levels.basic.level1.trophyGained
                         };
                         users.push(entity);
                     }
@@ -219,16 +217,16 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
-                        if (!userData[key].levels) continue;
-                        if (!userData[key].levels.basic) continue;
-                        if (!userData[key].levels.basic.level2) continue;
+                        if (!userData[key].training) continue;
+                        if (!userData[key].training.levels.basic) continue;
+                        if (!userData[key].training.levels.basic.level2) continue;
 
                         entity = {
                             nickname: userData[key].userDetails.nickname,
                             id: key,
-                            score: userData[key].levels.basic.level2.score,
-                            time: userData[key].levels.basic.level2.timeLabel,
-                            trophy: userData[key].levels.basic.level2.trophyGained
+                            score: userData[key].training.levels.basic.level2.score,
+                            time: userData[key].training.levels.basic.level2.timeLabel,
+                            trophy: userData[key].training.levels.basic.level2.trophyGained
                         };
                         users.push(entity);
                     }
@@ -245,16 +243,16 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
-                        if (!userData[key].levels) continue;
-                        if (!userData[key].levels.int) continue;
-                        if (!userData[key].levels.int.level1) continue;
+                        if (!userData[key].training) continue;
+                        if (!userData[key].training.levels.int) continue;
+                        if (!userData[key].training.levels.int.level1) continue;
 
                         entity = {
                             nickname: userData[key].userDetails.nickname,
                             id: key,
-                            score: userData[key].levels.int.level1.score,
-                            time: userData[key].levels.int.level1.timeLabel,
-                            trophy: userData[key].levels.int.level1.trophyGained
+                            score: userData[key].training.levels.int.level1.score,
+                            time: userData[key].training.levels.int.level1.timeLabel,
+                            trophy: userData[key].training.levels.int.level1.trophyGained
                         };
                         users.push(entity);
                     }
@@ -266,16 +264,16 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
-                        if (!userData[key].levels) continue;
-                        if (!userData[key].levels.int) continue;
-                        if (!userData[key].levels.int.level2) continue;
+                        if (!userData[key].training) continue;
+                        if (!userData[key].training.levels.int) continue;
+                        if (!userData[key].training.levels.int.level2) continue;
 
                         entity = {
                             nickname: userData[key].userDetails.nickname,
                             id: key,
-                            score: userData[key].levels.int.level2.score,
-                            time: userData[key].levels.int.level2.timeLabel,
-                            trophy: userData[key].levels.int.level2.trophyGained
+                            score: userData[key].training.levels.int.level2.score,
+                            time: userData[key].training.levels.int.level2.timeLabel,
+                            trophy: userData[key].training.levels.int.level2.trophyGained
                         };
                         users.push(entity);
                     }
@@ -287,16 +285,16 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
-                        if (!userData[key].levels) continue;
-                        if (!userData[key].levels.int) continue;
-                        if (!userData[key].levels.int.level3) continue;
+                        if (!userData[key].training) continue;
+                        if (!userData[key].training.levels.int) continue;
+                        if (!userData[key].training.levels.int.level3) continue;
 
                         entity = {
                             nickname: userData[key].userDetails.nickname,
                             id: key,
-                            score: userData[key].levels.int.level3.score,
-                            time: userData[key].levels.int.level3.timeLabel,
-                            trophy: userData[key].levels.int.level3.trophyGained
+                            score: userData[key].training.levels.int.level3.score,
+                            time: userData[key].training.levels.int.level3.timeLabel,
+                            trophy: userData[key].training.levels.int.level3.trophyGained
                         };
                         users.push(entity);
                     }
@@ -313,16 +311,16 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
-                        if (!userData[key].levels) continue;
-                        if (!userData[key].levels.adv) continue;
-                        if (!userData[key].levels.adv.level1) continue;
+                        if (!userData[key].training) continue;
+                        if (!userData[key].training.levels.adv) continue;
+                        if (!userData[key].training.levels.adv.level1) continue;
 
                         entity = {
                             nickname: userData[key].userDetails.nickname,
                             id: key,
-                            score: userData[key].levels.adv.level1.score,
-                            time: userData[key].levels.adv.level1.timeLabel,
-                            trophy: userData[key].levels.adv.level1.trophyGained
+                            score: userData[key].training.levels.adv.level1.score,
+                            time: userData[key].training.levels.adv.level1.timeLabel,
+                            trophy: userData[key].training.levels.adv.level1.trophyGained
                         };
                         users.push(entity);
                     }
@@ -334,16 +332,16 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
-                        if (!userData[key].levels) continue;
-                        if (!userData[key].levels.adv) continue;
-                        if (!userData[key].levels.adv.level2) continue;
+                        if (!userData[key].training) continue;
+                        if (!userData[key].training.levels.adv) continue;
+                        if (!userData[key].training.levels.adv.level2) continue;
 
                         entity = {
                             nickname: userData[key].userDetails.nickname,
                             id: key,
-                            score: userData[key].levels.adv.level2.score,
-                            time: userData[key].levels.adv.level2.timeLabel,
-                            trophy: userData[key].levels.adv.level2.trophyGained
+                            score: userData[key].training.levels.adv.level2.score,
+                            time: userData[key].training.levels.adv.level2.timeLabel,
+                            trophy: userData[key].training.levels.adv.level2.trophyGained
                         };
                         users.push(entity);
                     }
@@ -355,16 +353,16 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
-                        if (!userData[key].levels) continue;
-                        if (!userData[key].levels.adv) continue;
-                        if (!userData[key].levels.adv.level3) continue;
+                        if (!userData[key].training) continue;
+                        if (!userData[key].training.levels.adv) continue;
+                        if (!userData[key].training.levels.adv.level3) continue;
 
                         entity = {
                             nickname: userData[key].userDetails.nickname,
                             id: key,
-                            score: userData[key].levels.adv.level3.score,
-                            time: userData[key].levels.adv.level3.timeLabel,
-                            trophy: userData[key].levels.adv.level3.trophyGained
+                            score: userData[key].training.levels.adv.level3.score,
+                            time: userData[key].training.levels.adv.level3.timeLabel,
+                            trophy: userData[key].training.levels.adv.level3.trophyGained
                         };
                         users.push(entity);
                     }
@@ -375,16 +373,16 @@ function createScoreboard(group, level, col) {
                     for (key in userData) {
                         // skip loop if the property is from prototype
                         if (!userData.hasOwnProperty(key)) continue;
-                        if (!userData[key].levels) continue;
-                        if (!userData[key].levels.adv) continue;
-                        if (!userData[key].levels.adv.level4) continue;
+                        if (!userData[key].training) continue;
+                        if (!userData[key].training.levels.adv) continue;
+                        if (!userData[key].training.levels.adv.level4) continue;
 
                         entity = {
                             nickname: userData[key].userDetails.nickname,
                             id: key,
-                            score: userData[key].levels.adv.level4.score,
-                            time: userData[key].levels.adv.level4.timeLabel,
-                            trophy: userData[key].levels.adv.level4.trophyGained
+                            score: userData[key].training.levels.adv.level4.score,
+                            time: userData[key].training.levels.adv.level4.timeLabel,
+                            trophy: userData[key].training.levels.adv.level4.trophyGained
                         };
                         users.push(entity);
                     }
@@ -393,12 +391,15 @@ function createScoreboard(group, level, col) {
                 break;
         }
 
+
+
+
         // Sort the array
         users.sort(function(a, b) {
             return parseInt(b.score) - parseInt(a.score);
         });
 
-        // Keep only top 5
+        // Keep only top 3
         if (users.length > 3) {
             users = users.slice(0,3);
         }

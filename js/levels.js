@@ -2432,8 +2432,6 @@ function InitiateLevel(group, level, levelStructure) {
 
         trophy.current = false;
 
-
-
         switch(group) {
             case 0:
                 if (level === 0) {
@@ -2444,7 +2442,7 @@ function InitiateLevel(group, level, levelStructure) {
                     score.current = parseInt(scoreBounds.level11 - ((stopwatch.time()/2) + ((metrics.countOffTotal - metrics.points) * 50)), 10);
                     trophy.current = metrics.trophy;
 
-                    accuracy.val = (metrics.points / metrics.countOnTotal) * 100;
+                    accuracy.val = parseInt(((metrics.points / metrics.countOnTotal) * 100), 10);
 
                 } else if (level === 1) {
                     stage.removeChild(results[0]); // remove markers container
@@ -2463,7 +2461,7 @@ function InitiateLevel(group, level, levelStructure) {
                     }
                     trophy.current = metrics.trophy;
 
-                    accuracy.val = (metrics.hits / ( metrics.moles + (metrics.moles - metrics.hits))) * 100;
+                    accuracy.val = parseInt(((metrics.hits / ( metrics.moles + (metrics.moles - metrics.hits))) * 100), 10);
 
                 }
 
@@ -2481,7 +2479,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     if (metrics.clicks === 1) {accuracy.val = 100;}
                     else {
-                        accuracy.val = (2 / metrics.clicks) * 100;
+                        accuracy.val = parseInt(((2 / metrics.clicks) * 100), 10);
                     }
 
                 } else if (level === 1) {
@@ -2493,7 +2491,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level22 - (stopwatch.time()/8 + (metrics.fail * 200)), 10);
 
-                    accuracy.val = (metrics.pass / metrics.submit) * 100;
+                    accuracy.val = parseInt(((metrics.pass / metrics.submit) * 100), 10);
                 }
                 else if (level === 2) {
 
@@ -2504,7 +2502,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level23 - (stopwatch.time()/4), 10);
 
-                    accuracy.val = (6 / (metrics.click)) * 100;
+                    accuracy.val = parseInt(((6 / (metrics.click)) * 100), 10);
                 }
 
                 break;
@@ -2522,7 +2520,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level31 - (stopwatch.time()/4), 10);
 
-                    accuracy.val = (2 / (metrics.gaze_on + metrics.gaze_off)) * 100;
+                    accuracy.val = parseInt(((2 / (metrics.gaze_on + metrics.gaze_off)) * 100), 10);
 
                 }
                 else if (level === 1) {
@@ -2534,7 +2532,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level32 - (stopwatch.time()/4), 10);
 
-                    accuracy.val = (12 / (metrics.keystroke)) * 100;
+                    accuracy.val = parseInt(((12 / (metrics.keystroke)) * 100), 10);
                 }
                 else if (level === 2) {
 
@@ -2545,7 +2543,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level33 - (stopwatch.time()/6), 10);
 
-                    accuracy.val = (1 / (metrics.click)) * 100;
+                    accuracy.val = parseInt(((1 / (metrics.click)) * 100), 10);
                 }
                 else if (level === 3) {
 
@@ -2556,7 +2554,7 @@ function InitiateLevel(group, level, levelStructure) {
 
                     score.current = parseInt(scoreBounds.level34 - (stopwatch.time()/6), 10);
 
-                    accuracy.val = (2 / (metrics.bookmark_add + metrics.select_bookmark)) * 100;
+                    accuracy.val = parseInt(((2 / (metrics.bookmark_add + metrics.select_bookmark)) * 100), 10);
 
                 }
                 break;
