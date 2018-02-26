@@ -476,7 +476,7 @@ function positionResultsElements(score, time, accuracy, trophy, col, label, sepa
 
     if (RTL) {
         label.rewards.textAlign = "right";
-        label.rewards.x = (3* col.width);
+        label.rewards.x = (4* col.width);
 
         label.time.textAlign = "right";
         label.time.x = (2* col.width);
@@ -484,13 +484,18 @@ function positionResultsElements(score, time, accuracy, trophy, col, label, sepa
         label.score.textAlign = "right";
         label.score.x = (col.width);
 
-        trophy.img.x = (3 * col.width) - (col.x/2);
+        label.accuracy.textAlign = "right";
+        label.accuracy.x = (3* col.width) - (col.x/2);
+
+        trophy.img.x = (4 * col.width) - (col.x);
 
         trophy.title.textAlign = "right";
-        trophy.title.x = (3* col.width) - 40;
+        trophy.title.x = (4* col.width) - 80;
 
         trophy.desc.textAlign = "right";
-        trophy.desc.x = label.rewards.x;
+        trophy.desc.x = (4* col.width) - 80;
+
+
     }
 
     separator.rewards = new createjs.Shape();

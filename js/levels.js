@@ -2631,7 +2631,6 @@ function InitiateLevel(group, level, levelStructure) {
 
                         score = calculateNewScore(score, levelInformation.score);
                         time = calculateNewTime(time, levelInformation, stopwatch);
-
                         trophy = calculateNewTrophy(trophy, levelInformation.trophyGained);
                     }
                 }
